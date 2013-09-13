@@ -10,11 +10,11 @@ endif
 
 NeoBundle 'git://github.com/kien/ctrlp.vim.git'
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
-NeoBundle 'git://github.com/scrooloose/nerdtree.git'
 NeoBundle 'git://github.com/scrooloose/syntastic.git'
 NeoBundle 'git://github.com/thinca/vim-quickrun.git'
 NeoBundle 'git://github.com/plasticboy/vim-markdown.git'
 NeoBundle 'git://github.com/thinca/vim-scouter.git'
+NeoBundle 'git://github.com/dart-lang/dart-vim-plugin.git'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
