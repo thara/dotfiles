@@ -5,19 +5,22 @@ filetype off
 
 if has('vim_starting')
   execute 'set runtimepath+=' . expand('~/.vim/bundle/neobundle.vim')
-  call neobundle#rc(expand('~/.vim/bundle'))
 endif
+call neobundle#rc(expand('~/.vim/bundle'))
 
-NeoBundle 'git://github.com/kien/ctrlp.vim.git'
-NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
-NeoBundle 'git://github.com/scrooloose/nerdtree.git'
-NeoBundle 'git://github.com/scrooloose/syntastic.git'
-NeoBundle 'git://github.com/thinca/vim-quickrun.git'
-NeoBundle 'git://github.com/plasticboy/vim-markdown.git'
-NeoBundle 'git://github.com/thinca/vim-scouter.git'
+NeoBundle 'kien/ctrlp.vim.git'
+NeoBundle 'Shougo/neobundle.vim.git'
+NeoBundle 'scrooloose/syntastic.git'
+NeoBundle 'thinca/vim-quickrun.git'
+NeoBundle 'plasticboy/vim-markdown.git'
+NeoBundle 'thinca/vim-scouter.git'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
+NeoBundle 'vim-jp/vimdoc-ja'
+
+filetype plugin indent on
+" NeoBundleCheck
 
 let g:quickrun_config = {}
 let g:quickrun_config.mkd = {'outputter' : 'null', 'command' : 'open', 'cmdopt' : '-a', 'args' : 'Marked', 'exec' : '%c %o %a %s',}
@@ -77,7 +80,11 @@ set imsearch=1
 set clipboard+=unnamed
 
 syntax on
-filetype plugin indent on
+
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set helplang=ja
 
 "-------------------------------------------------------------------------------
 " 表示 Apperance
@@ -100,13 +107,17 @@ set wildmenu "コマンドライン補完の拡張モード
 set scrolloff=5
 
 hi Search term=reverse ctermbg=DarkBlue ctermfg=NONE
-autocmd FileType ruby set tabstop=2 tw=0 sw=2 expandtab
-autocmd FileType eruby set tabstop=2 tw=0 sw=2 expandtab
-autocmd BufNewFile,BufRead app/*/*.rhtml set ft=mason fenc=utf-8
-autocmd BufNewFile,BufRead app/**/*.rb set ft=ruby fenc=utf-8
-autocmd BufNewFile,BufRead app/**/*.yml set ft=ruby fenc=utf-8
-autocmd FileType c hi Comment ctermfg=darkcyan
-autocmd FileType cpp hi Comment ctermfg=darkcyan
+
+augroup AutoLoadSyntaxComplete
+    autocmd!
+augroup END
+autocmd AutoLoadSyntaxComplete FileType ruby setlocal tabstop=2 tw=0 sw=2 expandtab
+autocmd AutoLoadSyntaxComplete FileType eruby setlocal tabstop=2 tw=0 sw=2 expandtab
+autocmd AutoLoadSyntaxComplete BufNewFile,BufRead app/*/*.rhtml setlocal ft=mason fenc=utf-8
+autocmd AutoLoadSyntaxComplete BufNewFile,BufRead app/**/*.rb setlocal ft=ruby fenc=utf-8
+autocmd AutoLoadSyntaxComplete BufNewFile,BufRead app/**/*.yml setlocal ft=ruby fenc=utf-8
+autocmd AutoLoadSyntaxComplete FileType c hi Comment ctermfg=darkcyan
+autocmd AutoLoadSyntaxComplete FileType cpp hi Comment ctermfg=darkcyan
 
 "-------------------------------------------------------------------------------
 " エンコーディング関連 Encoding
@@ -161,27 +172,18 @@ set smartcase  " 検索文字列に大文字が含まれている場合は区別
 set incsearch  " インクリメンタルサーチ
 set hlsearch   " 検索文字をハイライト
 
-:if ! has ("migemo")
-    :finish
-:endif
-
-set migemo
+if has ("migemo")
+  set migemo
+endif
 
 set formatoptions+=mM
 let format_join_spaces = 2
 let format_allow_over_tw = 1
-
-set tabstop=2
-set shiftwidth=2
-set noexpandtab
 
 " changelog
 let g:changelog_timeformat = "%Y-%m-%d"
 let g:changelog_username = "Tomochika Hara"
 
 " キーワード補完の自動読み込み
-"augroup AutoLoadSyntaxComplete
-"    autocmd!
-"augroup END
 "
 "autocmd AutoLoadSyntaxComplete FileType * if omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif

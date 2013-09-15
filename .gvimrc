@@ -33,5 +33,3 @@ elseif has("gui_mac")
   imap <D-M-Left> <C-o>:tabp<CR>
 end
 
-autocmd VimEnter * tab all
-autocmd BufAdd * exe 'tablast | tabe "' . expand( "<afile") .'"'
