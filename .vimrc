@@ -119,6 +119,7 @@ autocmd AutoLoadSyntaxComplete BufNewFile,BufRead app/**/*.rb setlocal ft=ruby f
 autocmd AutoLoadSyntaxComplete BufNewFile,BufRead app/**/*.yml setlocal ft=ruby fenc=utf-8
 autocmd AutoLoadSyntaxComplete FileType c hi Comment ctermfg=darkcyan
 autocmd AutoLoadSyntaxComplete FileType cpp hi Comment ctermfg=darkcyan
+autocmd AutoLoadSyntaxComplete FileType haskell setlocal tabstop=2 tw=0 sw=2 expandtab
 
 "-------------------------------------------------------------------------------
 " エンコーディング関連 Encoding
@@ -185,6 +186,19 @@ let format_allow_over_tw = 1
 let g:changelog_timeformat = "%Y-%m-%d"
 let g:changelog_username = "Tomochika Hara"
 
-" キーワード補完の自動読み込み
-"
-"autocmd AutoLoadSyntaxComplete FileType * if omnifunc == '' | setlocal omnifunc=syntaxcomplete#Complete | endif
+" Kobitoを開く
+function! s:open_kobito(...)
+    if a:0 == 0
+        call system('open -a Kobito '.expand('%:p'))
+    else
+        call system('open -a Kobito '.join(a:000, ' '))
+    endif
+endfunction
+
+" 引数のファイル(複数指定可)を Kobitoで開く
+" （引数無しのときはカレントバッファを開く
+command! -nargs=* Kobito call s:open_kobito(<f-args>)
+" Kobito を閉じる
+command! -nargs=0 KobitoClose call system("osascript -e 'tell application \"Kobito\" to quit'")
+" Kobito にフォーカスを移す
+command! -nargs=0 KobitoFocus call system("osascript -e 'tell application \"Kobito\" to activate'")
