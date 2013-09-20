@@ -1,3 +1,5 @@
+colorscheme desert
+
 set columns=100
 set lines=40
 
