@@ -202,3 +202,7 @@ command! -nargs=* Kobito call s:open_kobito(<f-args>)
 command! -nargs=0 KobitoClose call system("osascript -e 'tell application \"Kobito\" to quit'")
 " Kobito にフォーカスを移す
 command! -nargs=0 KobitoFocus call system("osascript -e 'tell application \"Kobito\" to activate'")
+
+" Netrw
+let g:netrw_altv = 1
+let g:netrw_winsize=70
