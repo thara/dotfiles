@@ -21,7 +21,7 @@ NeoBundle 'kana/vim-smartinput'
 NeoBundle 'vim-jp/vimdoc-ja'
 
 filetype plugin indent on
-" NeoBundleCheck
+NeoBundleCheck
 
 let g:quickrun_config = {}
 let g:quickrun_config.mkd = {'outputter' : 'null', 'command' : 'open', 'cmdopt' : '-a', 'args' : 'Marked', 'exec' : '%c %o %a %s',}
