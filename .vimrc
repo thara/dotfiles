@@ -107,6 +107,8 @@ set wildmenu "コマンドライン補完の拡張モード
 
 set scrolloff=5
 
+colorscheme desert
+
 hi Search term=reverse ctermbg=DarkBlue ctermfg=NONE
 
 augroup AutoLoadSyntaxComplete
