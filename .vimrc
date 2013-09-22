@@ -19,6 +19,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'vim-jp/vimdoc-ja'
+NeoBundle 'derekwyatt/vim-scala'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -106,6 +107,8 @@ set laststatus=2 "ステータス行を常時表示
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
 set wildmenu "コマンドライン補完の拡張モード
 
+" 行を折り返さない
+set nowrap
 set scrolloff=5
 
 hi Search term=reverse ctermbg=DarkBlue ctermfg=NONE
