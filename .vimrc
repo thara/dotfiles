@@ -20,6 +20,7 @@ NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'scrooloose/nerdtree'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -168,6 +169,14 @@ nnoremap Y y$
 
 " インサートモードでも誤爆を防ぐ
 inoremap <C-@> <C-[>
+
+" ウィンドウ移動
+nnoremap <C-j> <C-w>w
+nnoremap <C-k> <C-w>W
+
+" タブ移動
+nnoremap <C-l> :tabnext<CR>
+nnoremap <C-h> :tabprevious<CR>
 
 "-------------------------------------------------------------------------------
 " 検索設定 Search
