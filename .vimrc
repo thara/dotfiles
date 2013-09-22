@@ -8,6 +8,9 @@ if has('vim_starting')
 endif
 call neobundle#rc(expand('~/.vim/bundle'))
 
+let g:NERDTreeMapJumpNextSibling = '¥<C-J¥>'
+let g:NERDTreeMapJumpPrevSibling = '¥<C-K¥>'
+
 NeoBundle 'kien/ctrlp.vim.git'
 NeoBundle 'Shougo/neobundle.vim.git'
 NeoBundle 'scrooloose/syntastic.git'
@@ -177,6 +180,9 @@ nnoremap <C-k> <C-w>W
 " タブ移動
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
+
+" NERD Tree 設定
+nnoremap <silent> <C-e> :NERDTreeToggle<CR>
 
 "-------------------------------------------------------------------------------
 " 検索設定 Search
