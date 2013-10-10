@@ -1,7 +1,7 @@
 colorscheme desert
 
-set columns=100
-set lines=40
+set columns=140
+set lines=55
 
 highlight CursorIM guibg=Purple guifg=NONE
 highlight Search guibg=DarkBlue guifg=NONE

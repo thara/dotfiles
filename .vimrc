@@ -88,7 +88,7 @@ set clipboard+=unnamed
 colorscheme desert
 syntax on
 
-set tabstop=2
+set tabstop=4
 set shiftwidth=2
 set expandtab
 set helplang=ja
@@ -128,6 +128,8 @@ autocmd AutoLoadSyntaxComplete BufNewFile,BufRead app/**/*.yml setlocal ft=ruby 
 autocmd AutoLoadSyntaxComplete FileType c hi Comment ctermfg=darkcyan
 autocmd AutoLoadSyntaxComplete FileType cpp hi Comment ctermfg=darkcyan
 autocmd AutoLoadSyntaxComplete FileType haskell setlocal tabstop=2 tw=0 sw=2 expandtab
+autocmd AutoLoadSyntaxComplete FileType php setlocal tabstop=4 tw=0 sw=4 expandtab
+autocmd AutoLoadSyntaxComplete FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
 
 "-------------------------------------------------------------------------------
 " エンコーディング関連 Encoding
