@@ -24,6 +24,8 @@ NeoBundle 'kana/vim-smartinput'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'groenewege/vim-less'
 
 filetype plugin indent on
 NeoBundleCheck
