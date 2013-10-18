@@ -1,0 +1,26 @@
+[include]
+	path = .gitconfig.local
+[user]
+	name = Tomochika Hara
+	email = hara@wonderpla.net
+[core]
+	editor = vim -c \"set fenc=utf-8\"
+	excludesfile = .gitignore_global
+[color]
+	status = auto
+	diff = auto
+	branch = auto
+	interactive = auto
+	grep = auto
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[alias]
+	co = checkout
+	st = status
+	ft = fetch
+	br = branch
+	sh = show
