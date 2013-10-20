@@ -233,3 +233,6 @@ command! -nargs=0 KobitoFocus call system("osascript -e 'tell application \"Kobi
 " Netrw
 let g:netrw_altv = 1
 let g:netrw_winsize=70
+
+" 隠しファイルを表示する
+let NERDTreeShowHidden = 1
