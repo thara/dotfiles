@@ -112,6 +112,7 @@ set cmdheight=2
 set laststatus=2 "ステータス行を常時表示
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
 set wildmenu "コマンドライン補完の拡張モード
+set relativenumber "相対行番号
 
 " 行を折り返さない
 set nowrap
