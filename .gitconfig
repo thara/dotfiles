@@ -24,3 +24,4 @@
 	ft = fetch
 	br = branch
 	sh = show
+	cm = commit
