@@ -186,6 +186,9 @@ nnoremap <C-k> <C-w>W
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
 
+" 相対行番号表示をトグル
+nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
+
 " NERD Tree 設定
 nnoremap <silent> <C-e> :NERDTreeToggle<CR>
 
