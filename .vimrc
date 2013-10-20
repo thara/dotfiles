@@ -26,6 +26,7 @@ NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'groenewege/vim-less'
+NeoBundle 'cohama/vim-insert-linenr'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -99,7 +100,7 @@ set helplang=ja
 " 表示 Apperance
 "-------------------------------------------------------------------------------
 set showmatch         " 括弧の対応をハイライト
-set number            " 行番号表示
+set number relativenumber " 行番号表示
 set list              " 不可視文字表示
 set listchars=tab:>.,trail:_,extends:>,precedes:< " 不可視文字の表示形式
 set display=uhex      " 印字不可能文字を16進数で表示
@@ -112,7 +113,6 @@ set cmdheight=2
 set laststatus=2 "ステータス行を常時表示
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
 set wildmenu "コマンドライン補完の拡張モード
-set relativenumber "相対行番号
 
 " 行を折り返さない
 set nowrap
