@@ -25,3 +25,4 @@
 	br = branch
 	sh = show
 	cm = commit
+	df = diff
