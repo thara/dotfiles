@@ -27,6 +27,8 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'tomochikahara/vim-insert-linenr'
+NeoBundle 'rizzatti/funcoo.vim'
+NeoBundle 'rizzatti/dash.vim'
 
 filetype plugin indent on
 NeoBundleCheck
