@@ -1,8 +1,5 @@
 [include]
 	path = .gitconfig.local
-[user]
-	name = Tomochika Hara
-	email = hara@wonderpla.net
 [core]
 	editor = vim -c \"set fenc=utf-8\"
 	excludesfile = .gitignore_global
