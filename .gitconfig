@@ -23,3 +23,4 @@
 	sh = show
 	cm = commit
 	df = diff
+	lg = log --graph --all --decorate --oneline
