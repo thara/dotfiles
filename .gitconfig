@@ -24,3 +24,4 @@
 	cm = commit
 	df = diff
 	lg = log --graph --all --decorate --oneline
+	rb = rebase
