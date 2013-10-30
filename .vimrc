@@ -29,6 +29,7 @@ NeoBundle 'groenewege/vim-less'
 NeoBundle 'tomochikahara/vim-insert-linenr'
 NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
+NeoBundle 'tpope/vim-fugitive'
 
 filetype plugin indent on
 NeoBundleCheck
