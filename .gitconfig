@@ -9,6 +9,8 @@
 	branch = auto
 	interactive = auto
 	grep = auto
+[push]
+	default = simple
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -22,6 +24,7 @@
 	br = branch
 	sh = show
 	cm = commit
+	cma = commit -am
 	df = diff
 	lg = log --graph --all --decorate --oneline
 	rb = rebase
