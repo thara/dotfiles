@@ -16,8 +16,8 @@ compinit
 
 ## Command History configuration
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=50000
+SAVEHIST=50000
 setopt hist_ignore_dups
 setopt share_history
 # historical backward/forward search with linehead string
