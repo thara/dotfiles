@@ -53,4 +53,19 @@ alias df="df -h"
 export LSCOLORS=ExFxCxdxBxegedabagacad
 zstyle ':completion:*' list-colors 'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
 
-
+# Auto execution from file extension
+alias -s zip=zipinfo
+alias -s tgz=gzcat
+alias -s gz=gzcat
+alias -s tbz=bzcat
+alias -s bz2=bzcat
+alias -s java=vim
+alias -s c=vim
+alias -s h=vim
+alias -s C=vim
+alias -s cpp=vim
+alias -s sh=vim
+alias -s txt=vim
+alias -s xml=vim
+alias -s html=vim
+alias -s xhtml=vim
