@@ -2,10 +2,13 @@
 export LANG=ja_JP.UTF-8
 
 ## Default shell configuration
+#
+autoload colors
+colors
 PROMPT='%F{white}[%n@%m]# '
 RPROMPT="[%~]"
-SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%{[m%}%b "
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT="%{^[[37m%}${HOST%%.*} ${PROMPT}"
+SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
 
 ## Completion configuration
 autoload -U compinit
