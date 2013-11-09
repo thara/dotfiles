@@ -7,6 +7,7 @@ RPROMPT="[%~]"
 SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%{[m%}%b "
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT="%{^[[37m%}${HOST%%.*} ${PROMPT}"
 
+## Completion configuration
 autoload -U compinit
 compinit
 
@@ -37,7 +38,6 @@ setopt nolistbeep
 
 ## Command aliases
 alias ls='ls -G'
-export LSCOLORS=exfxcxdxbxegedabagacad
 alias la='ls -a'
 alias ll='ls -l'
 alias lsa='ls -la'
@@ -46,3 +46,9 @@ alias du="du -h"
 alias df="df -h"
 
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+
+export LSCOLORS=exfxcxdxbxegedabagacad
+zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
+
+export LSCOLORS=ExFxCxdxBxegedabagacad
+zstyle ':completion:*' list-colors 'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
