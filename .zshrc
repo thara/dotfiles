@@ -35,7 +35,9 @@ setopt correct
 # no beep sound when complete list displayed
 setopt nolistbeep
 
+## Command aliases
 alias ls='ls -G'
+export LSCOLORS=exfxcxdxbxegedabagacad
 alias la='ls -a'
 alias ll='ls -l'
 alias lsa='ls -la'
