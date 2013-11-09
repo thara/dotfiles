@@ -39,6 +39,7 @@ setopt noautoremoveslash
 setopt nolistbeep
 
 ## Command aliases
+setopt complete_aliases
 alias ls='ls -G'
 alias la='ls -a'
 alias ll='ls -l'
