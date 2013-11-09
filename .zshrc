@@ -33,6 +33,8 @@ setopt auto_cd
 setopt auto_pushd
 # command correct edition before each completion attempt
 setopt correct
+# no remove postfix slash of command line
+setopt noautoremoveslash
 # no beep sound when complete list displayed
 setopt nolistbeep
 
