@@ -31,12 +31,17 @@ NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'tpope/vim-fugitive'
 
+NeoBundle 'itchyny/lightline.vim'
+
 filetype plugin indent on
 NeoBundleCheck
 
 let g:quickrun_config = {}
 let g:quickrun_config.mkd = {'outputter' : 'null', 'command' : 'open', 'cmdopt' : '-a', 'args' : 'Marked', 'exec' : '%c %o %a %s',}
 
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 
 " CD  : カレントディレクトリを変更する
 " CD! : 移動先のディレクトリを表示する
