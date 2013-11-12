@@ -67,7 +67,6 @@ alias -s c=vim
 alias -s h=vim
 alias -s C=vim
 alias -s cpp=vim
-alias -s sh=vim
 alias -s txt=vim
 alias -s xml=vim
 alias -s html=vim
