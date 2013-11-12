@@ -51,6 +51,8 @@ alias lsa='ls -la'
 alias du="du -h"
 alias df="df -h"
 
+alias gr="grep --color=auto -EDUIn"
+
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 
 export LSCOLORS=ExFxCxdxBxegedabagacad
