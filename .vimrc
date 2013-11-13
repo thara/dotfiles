@@ -38,6 +38,9 @@ NeoBundle 'tpope/vim-commentary'
 
 NeoBundle 'itchyny/lightline.vim'
 
+" 独自モードを作成
+NeoBundle 'thinca/vim-submode'
+
 filetype plugin indent on
 NeoBundleCheck
 
@@ -47,6 +50,20 @@ let g:quickrun_config.mkd = {'outputter' : 'null', 'command' : 'open', 'cmdopt' 
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
+
+" submode.vim {{{
+"   ウィンドウリサイズモード
+let g:submode_keep_leaving_key = 1
+let g:submode_timeout = 0
+call submode#enter_with('winsize', 'n', '', '<C-W>>', '<C-W>>')
+call submode#enter_with('winsize', 'n', '', '<C-W><', '<C-W><')
+call submode#enter_with('winsize', 'n', '', '<C-W>+', '<C-W>+')
+call submode#enter_with('winsize', 'n', '', '<C-W>-', '<C-W>-')
+call submode#map('winsize', 'n', '', '>', '<C-W>>')
+call submode#map('winsize', 'n', '', '<', '<C-W><')
+call submode#map('winsize', 'n', '', '+', '<C-W>+')
+call submode#map('winsize', 'n', '', '-', '<C-W>-')
+" }}}
 
 " CD  : カレントディレクトリを変更する
 " CD! : 移動先のディレクトリを表示する
