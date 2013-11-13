@@ -225,6 +225,10 @@ nnoremap <silent> <C-e> :NERDTreeToggle<CR>
 let g:NERDTreeMapJumpNextSibling = '¥<C-J¥>'
 let g:NERDTreeMapJumpPrevSibling = '¥<C-K¥>'
 
+" コマンド履歴のフィルタリングにカーソルキーを使わない
+cnoremap <C-p> <Up>
+cnoremap <C-p> <Down>
+
 "-------------------------------------------------------------------------------
 " 検索設定 Search
 "-------------------------------------------------------------------------------
