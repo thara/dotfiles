@@ -51,6 +51,15 @@ alias lsa='ls -la'
 alias du="du -h"
 alias df="df -h"
 
+alias gr="grep --color=auto -EDUIn"
+
+alias g="git"
+alias gi="git"
+alias gs="git status -s -b"
+alias gst="git status -s -b"
+alias gc="git commit"
+alias gca="git commit -a"
+
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 
 export LSCOLORS=ExFxCxdxBxegedabagacad
@@ -67,7 +76,6 @@ alias -s c=vim
 alias -s h=vim
 alias -s C=vim
 alias -s cpp=vim
-alias -s sh=vim
 alias -s txt=vim
 alias -s xml=vim
 alias -s html=vim

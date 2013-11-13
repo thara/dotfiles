@@ -36,6 +36,7 @@ NeoBundle 'kana/vim-textobj-entire'
 " コメント化
 NeoBundle 'tpope/vim-commentary'
 
+NeoBundle 'itchyny/lightline.vim'
 
 filetype plugin indent on
 NeoBundleCheck
@@ -43,6 +44,9 @@ NeoBundleCheck
 let g:quickrun_config = {}
 let g:quickrun_config.mkd = {'outputter' : 'null', 'command' : 'open', 'cmdopt' : '-a', 'args' : 'Marked', 'exec' : '%c %o %a %s',}
 
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 
 " CD  : カレントディレクトリを変更する
 " CD! : 移動先のディレクトリを表示する
