@@ -8,15 +8,13 @@ if has('vim_starting')
 endif
 call neobundle#rc(expand('~/.vim/bundle'))
 
-let g:NERDTreeMapJumpNextSibling = '¥<C-J¥>'
-let g:NERDTreeMapJumpPrevSibling = '¥<C-K¥>'
+" NeoBundle
+NeoBundle 'Shougo/neobundle.vim'
+" 構文チェック
+NeoBundle 'scrooloose/syntastic'
 
-NeoBundle 'kien/ctrlp.vim.git'
-NeoBundle 'Shougo/neobundle.vim.git'
-NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'thinca/vim-quickrun.git'
 NeoBundle 'plasticboy/vim-markdown.git'
-NeoBundle 'thinca/vim-scouter.git'
 NeoBundle 'dart-lang/dart-vim-plugin.git'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-smartchr'
@@ -30,6 +28,14 @@ NeoBundle 'tomochikahara/vim-insert-linenr'
 NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'tpope/vim-fugitive'
+
+NeoBundle 'kana/vim-textobj-user'
+" 全体をテキストオブジェクト化
+NeoBundle 'kana/vim-textobj-entire'
+
+" コメント化
+NeoBundle 'tpope/vim-commentary'
+
 
 filetype plugin indent on
 NeoBundleCheck
@@ -194,6 +200,9 @@ nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 
 " NERD Tree 設定
 nnoremap <silent> <C-e> :NERDTreeToggle<CR>
+
+let g:NERDTreeMapJumpNextSibling = '¥<C-J¥>'
+let g:NERDTreeMapJumpPrevSibling = '¥<C-K¥>'
 
 "-------------------------------------------------------------------------------
 " 検索設定 Search
