@@ -15,7 +15,6 @@ NeoBundle 'scrooloose/syntastic'
 
 NeoBundle 'thinca/vim-quickrun.git'
 NeoBundle 'plasticboy/vim-markdown.git'
-NeoBundle 'dart-lang/dart-vim-plugin.git'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
@@ -40,6 +39,11 @@ NeoBundle 'itchyny/lightline.vim'
 
 " 独自モードを作成
 NeoBundle 'thinca/vim-submode'
+
+" for Dart
+NeoBundle 'dart-lang/dart-vim-plugin.git'
+" for JavaScript
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
 filetype plugin indent on
 NeoBundleCheck
@@ -142,7 +146,6 @@ set showcmd "コマンド表示
 set cmdheight=2
 set laststatus=2 "ステータス行を常時表示
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
-set wildmenu "コマンドライン補完の拡張モード
 
 " 行を折り返さない
 set nowrap
@@ -216,6 +219,12 @@ nnoremap <C-k> <C-w>W
 nnoremap <C-l> :tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
 
+" バッファ移動
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
 " 相対行番号表示をトグル
 nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 
@@ -225,9 +234,19 @@ nnoremap <silent> <C-e> :NERDTreeToggle<CR>
 let g:NERDTreeMapJumpNextSibling = '¥<C-J¥>'
 let g:NERDTreeMapJumpPrevSibling = '¥<C-K¥>'
 
+"-------------------------------------------------------------------------------
+" コマンドライン CommandLine
+"-------------------------------------------------------------------------------
+" コマンドライン補完
+set wildmenu
+" コマンドライン補完方法
+set wildmode=longest:full,full
+" コマンドライン履歴の保存数
+set history=2000
+
 " コマンド履歴のフィルタリングにカーソルキーを使わない
 cnoremap <C-p> <Up>
-cnoremap <C-p> <Down>
+cnoremap <C-n> <Down>
 
 "-------------------------------------------------------------------------------
 " 検索設定 Search
