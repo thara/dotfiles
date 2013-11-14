@@ -28,3 +28,6 @@
 	df = diff
 	lg = log --graph --all --decorate --oneline
 	rb = rebase
+[tig "bind"]
+    generic = g move-first-line
+    generic = G move-last-line
