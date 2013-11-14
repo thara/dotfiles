@@ -20,12 +20,16 @@
 [alias]
 	co = checkout
 	st = status
+	sb = show-branch
 	ft = fetch
 	br = branch
 	sh = show
-	cm = commit
-	cma = commit -am
+	cm = commit -av
+	cmm = commit -am
+	d = diff -C
 	df = diff
+	ds = diff --staged
+	dst = diff -C --stat
 	lg = log --graph --all --decorate --oneline
 	rb = rebase
 [tig "bind"]
