@@ -32,6 +32,7 @@ bindkey "^N" history-beginning-search-forward-end
 
 # auto chnage directory
 setopt auto_cd
+function chpwd() { ls -G }
 # auto directory pushd that you can get dirs list by cd -[tab]
 setopt auto_pushd
 # command correct edition before each completion attempt
