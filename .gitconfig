@@ -24,12 +24,12 @@
 	ft = fetch
 	br = branch
 	sh = show
-	cm = commit -av
+	cm = commit -a
 	cmm = commit -am
-	d = diff -C
-	df = diff
-	ds = diff --staged
-	dst = diff -C --stat
+	mg = merge
+	df = diff -C
+	dfs = diff -C --staged
+	dfst = diff -C --stat
 	lg = log --graph --all --decorate --oneline
 	rb = rebase
 [tig "bind"]
