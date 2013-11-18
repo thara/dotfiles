@@ -10,6 +10,8 @@ call neobundle#rc(expand('~/.vim/bundle'))
 
 " NeoBundle
 NeoBundle 'Shougo/neobundle.vim'
+" タグページごとにカレントディレクトリを設定
+NeoBundle 'kana/vim-tabpagecd'
 " 構文チェック
 NeoBundle 'scrooloose/syntastic'
 
@@ -44,6 +46,11 @@ NeoBundle 'thinca/vim-submode'
 NeoBundle 'dart-lang/dart-vim-plugin.git'
 " for JavaScript
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+" for Ruby
+NeoBundleLazy 'vim-ruby/vim-ruby', {
+\ 'autoload': {
+\   'filetypes' : ['ruby', 'eruby']
+\ }}
 
 filetype plugin indent on
 NeoBundleCheck
