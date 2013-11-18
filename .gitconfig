@@ -24,8 +24,8 @@
 	ft = fetch
 	br = branch
 	sh = show
-	cm = commit -a
-	cmm = commit -am
+	cm = commit
+	cmm = commit -m
 	mg = merge
 	df = diff -C
 	dfs = diff -C --staged
