@@ -254,6 +254,10 @@ set wildmode=longest:full,full
 " コマンドライン履歴の保存数
 set history=2000
 
+cnoremap <C-a> <Home>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+
 " コマンド履歴のフィルタリングにカーソルキーを使わない
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
