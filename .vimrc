@@ -132,14 +132,21 @@ set clipboard+=unnamed
 colorscheme desert
 syntax on
 
+set autoindent
+set smartindent
 set tabstop=4
 set shiftwidth=2
 set expandtab
+set smarttab
+
 set helplang=ja
+
+set nojoinspaces
 
 "-------------------------------------------------------------------------------
 " 表示 Apperance
 "-------------------------------------------------------------------------------
+set t_Co=256
 set showmatch         " 括弧の対応をハイライト
 set number relativenumber " 行番号表示
 set list              " 不可視文字表示
@@ -157,6 +164,8 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
 " 行を折り返さない
 set nowrap
 set scrolloff=5
+
+set showtabline=1
 
 hi Search term=reverse ctermbg=DarkBlue ctermfg=NONE
 
@@ -207,10 +216,6 @@ nnoremap <silent> <Space>eg  :<C-u>edit $MYGVIMRC<CR>
 nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
 nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
 
-" Insert mode中で単語単位/行単位の削除をアンドゥ可能に
-inoremap <C-u> <C-g>u<C-u>
-inoremap <C-w> <C-g>u<C-w>
-
 " ページ送り
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
@@ -218,16 +223,17 @@ noremap <Space>k <C-b>
 " 行末までヤンクする
 nnoremap Y y$
 
-" インサートモードでも誤爆を防ぐ
-inoremap <C-@> <C-[>
+" 引数リスト移動
+nnoremap <silent> <ESC>l :next<CR>
+nnoremap <silent> <ESC>h :prev<CR>
 
 " ウィンドウ移動
 nnoremap <C-j> <C-w>w
 nnoremap <C-k> <C-w>W
 
 " タブ移動
-nnoremap <C-l> :tabnext<CR>
-nnoremap <C-h> :tabprevious<CR>
+nnoremap <silent> <C-l> :tabnext<CR>
+nnoremap <silent> <C-h> :tabprevious<CR>
 
 " バッファ移動
 nnoremap <silent> [b :bprevious<CR>
@@ -243,6 +249,16 @@ nnoremap <silent> <C-e> :NERDTreeToggle<CR>
 
 let g:NERDTreeMapJumpNextSibling = '¥<C-J¥>'
 let g:NERDTreeMapJumpPrevSibling = '¥<C-K¥>'
+
+"-------------------------------------------------------------------------------
+" Insert Mode
+"-------------------------------------------------------------------------------
+inoremap <C-e> <End>
+inoremap <C-a> <C-o>^
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+" インサートモードでも誤爆を防ぐ
+inoremap <C-@> <C-[>
 
 "-------------------------------------------------------------------------------
 " コマンドライン CommandLine
@@ -264,6 +280,13 @@ cnoremap <C-n> <Down>
 
 " アクティブなファイルが含まれているディレクトリを展開
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+"-------------------------------------------------------------------------------
+" Visual Mode
+"-------------------------------------------------------------------------------
+
+" 繰り返しを楽にする
+xnoremap . :normal .<CR>
 
 "-------------------------------------------------------------------------------
 " 検索設定 Search
