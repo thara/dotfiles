@@ -59,6 +59,7 @@ alias gs="git status -s -b"
 alias gst="git status -s -b"
 alias gc="git commit"
 alias gca="git commit -a"
+alias gcls="git config --list | grep alias"
 
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 

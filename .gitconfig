@@ -18,14 +18,16 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [alias]
+	a = add
+	aa = add -A
 	co = checkout
 	st = status
 	sb = show-branch
 	ft = fetch
 	br = branch
 	sh = show
-	cm = commit -a
-	cmm = commit -am
+	cm = commit
+	cmm = commit -m
 	mg = merge
 	df = diff -C
 	dfs = diff -C --staged

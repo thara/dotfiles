@@ -10,6 +10,8 @@ call neobundle#rc(expand('~/.vim/bundle'))
 
 " NeoBundle
 NeoBundle 'Shougo/neobundle.vim'
+" タグページごとにカレントディレクトリを設定
+NeoBundle 'kana/vim-tabpagecd'
 " 構文チェック
 NeoBundle 'scrooloose/syntastic'
 
@@ -28,6 +30,21 @@ NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'tpope/vim-fugitive'
 
+" ColorSchema{{{{
+" Hybrid ColorScheme
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'vim-scripts/Zenburn'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'desert256.vim'
+" }}}
+
+" Unite
+NeoBundle 'Shougo/unite.vim'
+" カラースキーム一覧表示
+NeoBundle 'ujihisa/unite-colorscheme'
+
 NeoBundle 'kana/vim-textobj-user'
 " 全体をテキストオブジェクト化
 NeoBundle 'kana/vim-textobj-entire'
@@ -44,6 +61,11 @@ NeoBundle 'thinca/vim-submode'
 NeoBundle 'dart-lang/dart-vim-plugin.git'
 " for JavaScript
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+" for Ruby
+NeoBundleLazy 'vim-ruby/vim-ruby', {
+\ 'autoload': {
+\   'filetypes' : ['ruby', 'eruby']
+\ }}
 
 filetype plugin indent on
 NeoBundleCheck
@@ -121,14 +143,22 @@ set imsearch=1
 set clipboard+=unnamed
 
 
+set autoindent
+set smartindent
 set tabstop=4
 set shiftwidth=2
 set expandtab
+set smarttab
+
 set helplang=ja
+
+set nojoinspaces
 
 "-------------------------------------------------------------------------------
 " 表示 Apperance
 "-------------------------------------------------------------------------------
+set t_Co=256
+
 set showmatch         " 括弧の対応をハイライト
 set number relativenumber " 行番号表示
 set list              " 不可視文字表示
@@ -147,9 +177,14 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
 set nowrap
 set scrolloff=5
 
+set cursorline
+
 autocmd MyAutoCmd ColorScheme * hi Search term=reverse ctermbg=DarkBlue ctermfg=NONE
-autocmd MyAutoCmd ColorScheme * hi LineNr term=underline ctermfg=3 ctermbg=0 guifg=Yellow guibg=grey20
-autocmd MyAutoCmd ColorScheme * hi CursorLineNr term=bold ctermfg=11 ctermbg=none gui=bold guifg=Yellow guibg=grey20
+autocmd MyAutoCmd WinLeave * set nocursorline
+autocmd MyAutoCmd WinEnter,BufRead * set cursorline
+autocmd MyAutoCmd ColorScheme * hi clear CursorLine
+autocmd MyAutoCmd ColorScheme * hi CursorLine gui=underline
+autocmd MyAutoCmd ColorScheme * hi CursorLine ctermbg=black guibg=black
 
 autocmd MyAutoCmd FileType ruby setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType eruby setlocal tabstop=2 tw=0 sw=2 expandtab
@@ -162,7 +197,9 @@ autocmd MyAutoCmd FileType haskell setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType php setlocal tabstop=4 tw=0 sw=4 expandtab
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
 
-colorscheme desert
+set showtabline=1
+
+colorscheme jellybeans
 syntax on
 
 "-------------------------------------------------------------------------------
@@ -178,8 +215,11 @@ set encoding=utf-8    " デフォルトエンコーディング
 noremap <Esc><Esc> :nohlsearch<CR><Esc>
 noremap ; :
 noremap : ;
-nmap n nzz
-nmap N Nzz
+
+" 検索結果マッチ時にカーソル位置を画面中央に
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
 nmap * *zz
 nmap # #zz
 nmap g* g*zz
@@ -195,10 +235,6 @@ nnoremap <silent> <Space>eg  :<C-u>edit $MYGVIMRC<CR>
 nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
 nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
 
-" Insert mode中で単語単位/行単位の削除をアンドゥ可能に
-inoremap <C-u> <C-g>u<C-u>
-inoremap <C-w> <C-g>u<C-w>
-
 " ページ送り
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
@@ -206,16 +242,17 @@ noremap <Space>k <C-b>
 " 行末までヤンクする
 nnoremap Y y$
 
-" インサートモードでも誤爆を防ぐ
-inoremap <C-@> <C-[>
+" 引数リスト移動
+nnoremap <silent> <ESC>l :next<CR>
+nnoremap <silent> <ESC>h :prev<CR>
 
 " ウィンドウ移動
 nnoremap <C-j> <C-w>w
 nnoremap <C-k> <C-w>W
 
 " タブ移動
-nnoremap <C-l> :tabnext<CR>
-nnoremap <C-h> :tabprevious<CR>
+nnoremap <silent> <C-l> :tabnext<CR>
+nnoremap <silent> <C-h> :tabprevious<CR>
 
 " バッファ移動
 nnoremap <silent> [b :bprevious<CR>
@@ -233,6 +270,16 @@ let g:NERDTreeMapJumpNextSibling = '¥<C-J¥>'
 let g:NERDTreeMapJumpPrevSibling = '¥<C-K¥>'
 
 "-------------------------------------------------------------------------------
+" Insert Mode
+"-------------------------------------------------------------------------------
+inoremap <C-e> <End>
+inoremap <C-a> <C-o>^
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+" インサートモードでも誤爆を防ぐ
+inoremap <C-@> <C-[>
+
+"-------------------------------------------------------------------------------
 " コマンドライン CommandLine
 "-------------------------------------------------------------------------------
 " コマンドライン補完
@@ -242,12 +289,23 @@ set wildmode=longest:full,full
 " コマンドライン履歴の保存数
 set history=2000
 
+cnoremap <C-a> <Home>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+
 " コマンド履歴のフィルタリングにカーソルキーを使わない
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
 " アクティブなファイルが含まれているディレクトリを展開
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+"-------------------------------------------------------------------------------
+" Visual Mode
+"-------------------------------------------------------------------------------
+
+" 繰り返しを楽にする
+xnoremap . :normal .<CR>
 
 "-------------------------------------------------------------------------------
 " 検索設定 Search
