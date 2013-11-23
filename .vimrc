@@ -48,6 +48,9 @@ NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascr
 filetype plugin indent on
 NeoBundleCheck
 
+augroup MyAutoCmd
+    autocmd!
+augroup END
 let g:quickrun_config = {}
 let g:quickrun_config.mkd = {'outputter' : 'null', 'command' : 'open', 'cmdopt' : '-a', 'args' : 'Marked', 'exec' : '%c %o %a %s',}
 
@@ -84,18 +87,13 @@ function! s:ChangeCurrentDir(directory, bang)
     endif
 endfunction
 
-""Set augroup.
-augroup VimrcReloadAutoCmd
-    autocmd!
-augroup END
-
 if !has('gui_running') && !(has('win32') || has('win64'))
     " .vimrcの再読込時にも色が変化するようにする
-    autocmd VimrcReloadAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
+    autocmd MyAutoCmd BufWritePost $MYVIMRC nested source $MYVIMRC
 else
     " .vimrcの再読込時にも色が変化するようにする
-    autocmd VimrcReloadAutoCmd BufWritePost $MYVIMRC source $MYVIMRC | if has('gui_running') | source $MYGVIMRC
-    autocmd VimrcReloadAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
+    autocmd MyAutoCmd BufWritePost $MYVIMRC source $MYVIMRC | if has('gui_running') | source $MYGVIMRC
+    autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
 endif
 
 "-------------------------------------------------------------------------------
@@ -122,8 +120,6 @@ set imsearch=1
 " OSのクリップボードを使用する
 set clipboard+=unnamed
 
-colorscheme desert
-syntax on
 
 set tabstop=4
 set shiftwidth=2
@@ -151,21 +147,23 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
 set nowrap
 set scrolloff=5
 
-hi Search term=reverse ctermbg=DarkBlue ctermfg=NONE
+autocmd MyAutoCmd ColorScheme * hi Search term=reverse ctermbg=DarkBlue ctermfg=NONE
+autocmd MyAutoCmd ColorScheme * hi LineNr term=underline ctermfg=3 ctermbg=0 guifg=Yellow guibg=grey20
+autocmd MyAutoCmd ColorScheme * hi CursorLineNr term=bold ctermfg=11 ctermbg=none gui=bold guifg=Yellow guibg=grey20
 
-augroup AutoLoadSyntaxComplete
-    autocmd!
-augroup END
-autocmd AutoLoadSyntaxComplete FileType ruby setlocal tabstop=2 tw=0 sw=2 expandtab
-autocmd AutoLoadSyntaxComplete FileType eruby setlocal tabstop=2 tw=0 sw=2 expandtab
-autocmd AutoLoadSyntaxComplete BufNewFile,BufRead app/*/*.rhtml setlocal ft=mason fenc=utf-8
-autocmd AutoLoadSyntaxComplete BufNewFile,BufRead app/**/*.rb setlocal ft=ruby fenc=utf-8
-autocmd AutoLoadSyntaxComplete BufNewFile,BufRead app/**/*.yml setlocal ft=ruby fenc=utf-8
-autocmd AutoLoadSyntaxComplete FileType c hi Comment ctermfg=darkcyan
-autocmd AutoLoadSyntaxComplete FileType cpp hi Comment ctermfg=darkcyan
-autocmd AutoLoadSyntaxComplete FileType haskell setlocal tabstop=2 tw=0 sw=2 expandtab
-autocmd AutoLoadSyntaxComplete FileType php setlocal tabstop=4 tw=0 sw=4 expandtab
-autocmd AutoLoadSyntaxComplete FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
+autocmd MyAutoCmd FileType ruby setlocal tabstop=2 tw=0 sw=2 expandtab
+autocmd MyAutoCmd FileType eruby setlocal tabstop=2 tw=0 sw=2 expandtab
+autocmd MyAutoCmd BufNewFile,BufRead app/*/*.rhtml setlocal ft=mason fenc=utf-8
+autocmd MyAutoCmd BufNewFile,BufRead app/**/*.rb setlocal ft=ruby fenc=utf-8
+autocmd MyAutoCmd BufNewFile,BufRead app/**/*.yml setlocal ft=ruby fenc=utf-8
+autocmd MyAutoCmd FileType c hi Comment ctermfg=darkcyan
+autocmd MyAutoCmd FileType cpp hi Comment ctermfg=darkcyan
+autocmd MyAutoCmd FileType haskell setlocal tabstop=2 tw=0 sw=2 expandtab
+autocmd MyAutoCmd FileType php setlocal tabstop=4 tw=0 sw=4 expandtab
+autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
+
+colorscheme desert
+syntax on
 
 "-------------------------------------------------------------------------------
 " エンコーディング関連 Encoding
