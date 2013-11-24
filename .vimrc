@@ -26,6 +26,8 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'cohama/vim-insert-linenr'
+NeoBundle 'cohama/vim-smartinput-endwise'
+call smartinput_endwise#define_default_rules()
 NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'tpope/vim-fugitive'
