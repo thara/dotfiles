@@ -25,12 +25,12 @@ NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'groenewege/vim-less'
-NeoBundle 'tomochikahara/vim-insert-linenr'
+NeoBundle 'cohama/vim-insert-linenr'
 NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'tpope/vim-fugitive'
 
-" ColorSchema{{{{
+" ColorScheme{{{{
 " Hybrid ColorScheme
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'nanotech/jellybeans.vim'
@@ -180,11 +180,14 @@ set scrolloff=5
 set cursorline
 
 autocmd MyAutoCmd ColorScheme * hi Search term=reverse ctermbg=DarkBlue ctermfg=NONE
+
 autocmd MyAutoCmd WinLeave * set nocursorline
 autocmd MyAutoCmd WinEnter,BufRead * set cursorline
 autocmd MyAutoCmd ColorScheme * hi clear CursorLine
 autocmd MyAutoCmd ColorScheme * hi CursorLine gui=underline
 autocmd MyAutoCmd ColorScheme * hi CursorLine ctermbg=black guibg=black
+
+autocmd MyAutoCmd ColorScheme * hi LineNr ctermfg=241 ctermbg=234 guifg=Yellow
 
 autocmd MyAutoCmd FileType ruby setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType eruby setlocal tabstop=2 tw=0 sw=2 expandtab
@@ -199,7 +202,7 @@ autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
 
 set showtabline=1
 
-colorscheme jellybeans
+colorscheme hybrid
 syntax on
 
 "-------------------------------------------------------------------------------
@@ -238,6 +241,9 @@ nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
 " ページ送り
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
+" Scroll
+noremap <C-f> <C-e>
+noremap <C-b> <C-y>
 
 " 行末までヤンクする
 nnoremap Y y$
