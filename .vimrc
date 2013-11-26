@@ -69,6 +69,15 @@ NeoBundleLazy 'vim-ruby/vim-ruby', {
 \   'filetypes' : ['ruby', 'eruby']
 \ }}
 
+" todo.txt
+NeoBundle 'freitass/todo.txt-vim'
+
+" URLからブラウザを開く
+NeoBundle 'tyru/open-browser.vim'
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+
 filetype plugin indent on
 NeoBundleCheck
 
@@ -245,6 +254,8 @@ nnoremap <silent> <Space>eg  :<C-u>edit $MYGVIMRC<CR>
 " Load .gvimrc after .vimrc edited at GVim.
 nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
 nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
+
+nnoremap <silent> <Space>tv :<C-u>edit ~/Dropbox/todo/todo.txt<CR>
 
 " ページ送り
 noremap <Space>j <C-f>
