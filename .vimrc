@@ -259,6 +259,8 @@ nnoremap Y y$
 " 引数リスト移動
 nnoremap <silent> <ESC>l :next<CR>
 nnoremap <silent> <ESC>h :prev<CR>
+nnoremap <silent> <ESC>j :argadd %<CR>
+nnoremap <silent> <ESC>k :argdelete %<CR>
 
 " ウィンドウ移動
 nnoremap <C-j> <C-w>w
