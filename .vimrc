@@ -120,6 +120,11 @@ else
     autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
 endif
 
+if !exists('loaded_matchit')
+  " matchitを有効化
+  runtime macros/matchit.vim
+endif
+
 "-------------------------------------------------------------------------------
 " 基本設定 Basics
 "-------------------------------------------------------------------------------
@@ -189,7 +194,8 @@ autocmd MyAutoCmd ColorScheme * hi clear CursorLine
 autocmd MyAutoCmd ColorScheme * hi CursorLine gui=underline
 autocmd MyAutoCmd ColorScheme * hi CursorLine ctermbg=black guibg=black
 
-autocmd MyAutoCmd ColorScheme * hi LineNr ctermfg=241 ctermbg=234 guifg=Yellow
+autocmd MyAutoCmd ColorScheme * hi LineNr ctermfg=241 ctermbg=none guifg=Yellow
+autocmd MyAutoCmd ColorScheme * hi Normal ctermfg=250 ctermbg=none
 
 autocmd MyAutoCmd FileType ruby setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType eruby setlocal tabstop=2 tw=0 sw=2 expandtab
