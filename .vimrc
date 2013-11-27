@@ -257,6 +257,13 @@ nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
 
 nnoremap <silent> <Space>tv :<C-u>edit ~/Dropbox/todo/todo.txt<CR>
 
+" Unite
+nnoremap [unite]    <Nop>
+nmap     <Space>u [unite]
+nnoremap <silent> [unite]f :<C-u>Unite file<CR>
+nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]c   :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
+
 " ページ送り
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
