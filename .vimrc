@@ -22,6 +22,7 @@ NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'derekwyatt/vim-scala'
+" NERDTree
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'groenewege/vim-less'
@@ -158,6 +159,8 @@ set imsearch=1
 " OSのクリップボードを使用する
 set clipboard+=unnamed
 
+" キーコード待ち時間
+set ttimeoutlen=50
 
 set autoindent
 set smartindent
@@ -255,7 +258,7 @@ nnoremap <silent> <Space>eg  :<C-u>edit $MYGVIMRC<CR>
 nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
 nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
 
-nnoremap <silent> <Space>tv :<C-u>edit ~/Dropbox/todo/todo.txt<CR>
+nnoremap <silent> <Space>et :<C-u>edit ~/Dropbox/todo/todo.txt<CR>
 
 " Unite
 nnoremap [unite]    <Nop>
@@ -277,8 +280,9 @@ nnoremap Y y$
 " 引数リスト移動
 nnoremap <silent> <ESC>l :next<CR>
 nnoremap <silent> <ESC>h :prev<CR>
-nnoremap <silent> <ESC>j :argadd %<CR>
-nnoremap <silent> <ESC>k :argdelete %<CR>
+nnoremap <ESC>j :argadd %<CR>
+nnoremap <ESC>k :argdelete %<CR>
+nnoremap <ESC>d :argdelete *<CR>
 
 " ウィンドウ移動
 nnoremap <C-j> <C-w>w
@@ -299,7 +303,8 @@ nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 
 " NERD Tree 設定
 nnoremap <silent> <C-e> :NERDTreeToggle<CR>
-
+nnoremap <silent> <C-@> :NERDTreeFind<CR>
+let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeMapJumpNextSibling = '¥<C-J¥>'
 let g:NERDTreeMapJumpPrevSibling = '¥<C-K¥>'
 
@@ -312,6 +317,13 @@ inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 " インサートモードでも誤爆を防ぐ
 inoremap <C-@> <C-[>
+
+" Emacs風
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+inoremap <C-e> <End>
+inoremap <C-a> <Home>
+inoremap <C-d> <Del>
 
 "-------------------------------------------------------------------------------
 " コマンドライン CommandLine
