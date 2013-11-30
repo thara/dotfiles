@@ -14,6 +14,8 @@ NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'kana/vim-tabpagecd'
 " 構文チェック
 NeoBundle 'scrooloose/syntastic'
+" Finder
+NeoBundle 'kien/ctrlp.vim'
 
 NeoBundle 'thinca/vim-quickrun.git'
 NeoBundle 'plasticboy/vim-markdown.git'
@@ -48,9 +50,12 @@ NeoBundle 'Shougo/unite.vim'
 " カラースキーム一覧表示
 NeoBundle 'ujihisa/unite-colorscheme'
 
+" テキストオブジェクト拡張
 NeoBundle 'kana/vim-textobj-user'
 " 全体をテキストオブジェクト化
 NeoBundle 'kana/vim-textobj-entire'
+" Rubyのブロックをテキストオブジェクト化
+NeoBundle 'rhysd/vim-textobj-ruby'
 
 " コメント化
 NeoBundle 'tpope/vim-commentary'
@@ -252,8 +257,8 @@ map ¥ <leader>
 " Change current directory.
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
 
-nnoremap <silent> <Space>ev  :<C-u>edit $MYVIMRC<CR>
-nnoremap <silent> <Space>eg  :<C-u>edit $MYGVIMRC<CR>
+nnoremap <silent> <Space>ev  :<C-u>tabedit $MYVIMRC<CR>
+nnoremap <silent> <Space>eg  :<C-u>tabedit $MYGVIMRC<CR>
 " Load .gvimrc after .vimrc edited at GVim.
 nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
 nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
