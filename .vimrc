@@ -8,6 +8,11 @@ if has('vim_starting')
 endif
 call neobundle#rc(expand('~/.vim/bundle'))
 
+if !exists('loaded_matchit')
+  " matchitを有効化
+  runtime macros/matchit.vim
+endif
+
 " NeoBundle
 NeoBundle 'Shougo/neobundle.vim'
 " タグページごとにカレントディレクトリを設定
@@ -133,11 +138,6 @@ else
     " .vimrcの再読込時にも色が変化するようにする
     autocmd MyAutoCmd BufWritePost $MYVIMRC source $MYVIMRC | if has('gui_running') | source $MYGVIMRC
     autocmd MyAutoCmd BufWritePost $MYGVIMRC if has('gui_running') | source $MYGVIMRC
-endif
-
-if !exists('loaded_matchit')
-  " matchitを有効化
-  runtime macros/matchit.vim
 endif
 
 "-------------------------------------------------------------------------------
@@ -357,6 +357,8 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " 繰り返しを楽にする
 xnoremap . :normal .<CR>
+" ヤンクレジスタの値をペースト
+xnoremap <silent> <C-p> "0p<CR>
 
 "-------------------------------------------------------------------------------
 " 検索設定 Search
