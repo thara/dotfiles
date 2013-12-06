@@ -25,7 +25,7 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
 ## Key bind configuration
-bindkey -e
+bindkey -v
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
@@ -64,7 +64,7 @@ alias gcls="git config --list | grep alias"
 # fabric
 alias fab='nocorrect fab'
 
-[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 export LSCOLORS=ExFxCxdxBxegedabagacad
 zstyle ':completion:*' list-colors 'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'

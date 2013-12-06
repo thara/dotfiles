@@ -31,7 +31,7 @@ NeoBundle 'vim-jp/vimdoc-ja'
 NeoBundle 'derekwyatt/vim-scala'
 " NERDTree
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'kchmck/vim-coffee-script'
+
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'cohama/vim-insert-linenr'
 NeoBundle 'cohama/vim-smartinput-endwise'
@@ -79,6 +79,10 @@ NeoBundleLazy 'vim-ruby/vim-ruby', {
 \ 'autoload': {
 \   'filetypes' : ['ruby', 'eruby']
 \ }}
+NeoBundle 'slim-template/vim-slim'
+NeoBundle 'cakebaker/scss-syntax.vim'
+" for CoffeeScript
+NeoBundle 'kchmck/vim-coffee-script'
 
 " todo.txt
 NeoBundle 'freitass/todo.txt-vim'
