@@ -166,7 +166,7 @@ set iminsert=1
 set imsearch=1
 
 " OSのクリップボードを使用する
-set clipboard+=unnamed
+set clipboard& clipboard+=unnamed
 
 " キーコード待ち時間
 set ttimeoutlen=50
@@ -373,7 +373,7 @@ if has ("migemo")
   set migemo
 endif
 
-set formatoptions+=mM
+set formatoptions& formatoptions+=mM
 let format_join_spaces = 2
 let format_allow_over_tw = 1
 
