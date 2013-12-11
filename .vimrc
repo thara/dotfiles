@@ -320,10 +320,6 @@ let g:NERDTreeMapJumpPrevSibling = '¥<C-K¥>'
 "-------------------------------------------------------------------------------
 " Insert Mode
 "-------------------------------------------------------------------------------
-inoremap <C-e> <End>
-inoremap <C-a> <C-o>^
-inoremap <C-f> <Right>
-inoremap <C-b> <Left>
 " インサートモードでも誤爆を防ぐ
 inoremap <C-@> <C-[>
 
