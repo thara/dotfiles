@@ -54,6 +54,24 @@ NeoBundle 'Shougo/unite.vim'
 " カラースキーム一覧表示
 NeoBundle 'ujihisa/unite-colorscheme'
 
+" VimProc
+NeoBundle 'Shougo/vimproc', {
+\ 'build': {
+\ 'windows': 'make -f make_mingw32.mak',
+\ 'cygwin': 'make -f make_cygwin.mak',
+\ 'mac': 'make -f make_mac.mak',
+\ 'unix': 'make -f make_unix.mak',
+\ }
+\}
+" VimShell
+NeoBundle 'Shougo/vimshell'
+let g:vimshell_interactive_update_time = 10
+let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
+
+" 補完
+NeoBundle 'Shougo/neocomplete'
+let g:neocomplete#enable_at_startup = 1
+
 " テキストオブジェクト拡張
 NeoBundle 'kana/vim-textobj-user'
 " 全体をテキストオブジェクト化
@@ -169,7 +187,7 @@ set iminsert=1
 set imsearch=1
 
 " OSのクリップボードを使用する
-set clipboard+=unnamed
+set clipboard& clipboard+=unnamed
 
 " キーコード待ち時間
 set ttimeoutlen=50
@@ -279,6 +297,20 @@ nnoremap <silent> [unite]f :<C-u>Unite file<CR>
 nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
 nnoremap <silent> [unite]c   :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
 
+" VimShell
+nnoremap [vimshell]    <Nop>
+nmap     <Space>v [vimshell]
+nnoremap <silent> [vimshell]s :VimShell<CR>
+nnoremap <silent> [vimshell]c :VimShellCreate<CR>
+nnoremap <silent> [vimshell]t :VimShellTab<CR>
+nnoremap <silent> [vimshell]p :VimShellPop<CR>
+
+autocmd MyAutoCmd FileType vimshell call s:vimshell_my_settings()
+function! s:vimshell_my_settings()
+  let b:smartinput_disable_local = 1
+  unmap <buffer> <C-k>
+endfunction
+
 " ページ送り
 noremap <Space>j <C-f>
 noremap <Space>k <C-b>
@@ -316,17 +348,13 @@ nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 " NERD Tree 設定
 nnoremap <silent> <C-e> :NERDTreeToggle<CR>
 nnoremap <silent> <C-@> :NERDTreeFind<CR>
-let g:NERDTreeShowBookmarks = 1
+" let g:NERDTreeShowBookmarks = 1
 let g:NERDTreeMapJumpNextSibling = '¥<C-J¥>'
 let g:NERDTreeMapJumpPrevSibling = '¥<C-K¥>'
 
 "-------------------------------------------------------------------------------
 " Insert Mode
 "-------------------------------------------------------------------------------
-inoremap <C-e> <End>
-inoremap <C-a> <C-o>^
-inoremap <C-f> <Right>
-inoremap <C-b> <Left>
 " インサートモードでも誤爆を防ぐ
 inoremap <C-@> <C-[>
 
@@ -380,7 +408,7 @@ if has ("migemo")
   set migemo
 endif
 
-set formatoptions+=mM
+set formatoptions& formatoptions+=mM
 let format_join_spaces = 2
 let format_allow_over_tw = 1
 
