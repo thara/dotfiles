@@ -23,7 +23,6 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kien/ctrlp.vim'
 
 NeoBundle 'thinca/vim-quickrun.git'
-NeoBundle 'plasticboy/vim-markdown.git'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
@@ -83,6 +82,10 @@ NeoBundle 'rhysd/vim-textobj-ruby'
 
 " コメント化
 NeoBundle 'tpope/vim-commentary'
+
+" Markdown
+NeoBundle 'plasticboy/vim-markdown.git'
+let g:vim_markdown_folding_disabled=1
 
 NeoBundle 'itchyny/lightline.vim'
 
