@@ -72,6 +72,7 @@ let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 " 補完
 NeoBundle 'Shougo/neocomplete'
 let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
 
 " テキストオブジェクト拡張
 NeoBundle 'kana/vim-textobj-user'
@@ -262,7 +263,7 @@ set encoding=utf-8    " デフォルトエンコーディング
 " キーマップ Key mappings
 "-------------------------------------------------------------------------------
 "Escの2回押しでハイライト消去
-noremap <Esc><Esc> :nohlsearch<CR><Esc>
+noremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 noremap ; :
 noremap : ;
 
@@ -292,15 +293,15 @@ nnoremap [unite]    <Nop>
 nmap     <Space>u [unite]
 nnoremap <silent> [unite]f :<C-u>Unite file<CR>
 nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
-nnoremap <silent> [unite]c   :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
 
 " VimShell
 nnoremap [vimshell]    <Nop>
 nmap     <Space>v [vimshell]
-nnoremap <silent> [vimshell]s :VimShell<CR>
-nnoremap <silent> [vimshell]c :VimShellCreate<CR>
-nnoremap <silent> [vimshell]t :VimShellTab<CR>
-nnoremap <silent> [vimshell]p :VimShellPop<CR>
+nnoremap <silent> [vimshell]s :<C-u>VimShell<CR>
+nnoremap <silent> [vimshell]c :<C-u>VimShellCreate<CR>
+nnoremap <silent> [vimshell]t :<C-u>VimShellTab<CR>
+nnoremap <silent> [vimshell]p :<C-u>VimShellPop<CR>
 
 autocmd MyAutoCmd FileType vimshell call s:vimshell_my_settings()
 function! s:vimshell_my_settings()
@@ -319,11 +320,11 @@ noremap <C-b> <C-y>
 nnoremap Y y$
 
 " 引数リスト移動
-nnoremap <silent> <ESC>l :next<CR>
-nnoremap <silent> <ESC>h :prev<CR>
-nnoremap <ESC>j :argadd %<CR>
-nnoremap <ESC>k :argdelete %<CR>
-nnoremap <ESC>d :argdelete *<CR>
+" nnoremap <silent> <ESC>l :n<C-u>ext<CR>
+" nnoremap <silent> <ESC>h :p<C-u>rev<CR>
+" nnoremap <ESC>j :<C-u>argadd %<CR>
+" nnoremap <ESC>k :<C-u>argdelete %<CR>
+" nnoremap <ESC>d :<C-u>argdelete *<CR>
 
 " ウィンドウ移動
 nnoremap <C-j> <C-w>w
@@ -390,7 +391,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " 繰り返しを楽にする
 xnoremap . :normal .<CR>
 " ヤンクレジスタの値をペースト
-xnoremap <silent> <C-p> "0p<CR>
+xnoremap <silent> <C-p> "0p
 
 "-------------------------------------------------------------------------------
 " 検索設定 Search
