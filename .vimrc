@@ -22,6 +22,12 @@ NeoBundle 'scrooloose/syntastic'
 " Finder
 NeoBundle 'kien/ctrlp.vim'
 
+" easymotion
+NeoBundle 'Lokaltog/vim-easymotion'
+nmap <CR> [EasyMotion]
+let g:EasyMotion_leader_key = '[EasyMotion]'
+let g:EasyMotion_smartcase = 1
+
 NeoBundle 'thinca/vim-quickrun.git'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-smartchr'
