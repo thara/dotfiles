@@ -289,7 +289,7 @@ nnoremap <silent> <Space>eg  :<C-u>tabedit $MYGVIMRC<CR>
 nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
 nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
 
-nnoremap <silent> <Space>et :<C-u>edit ~/Dropbox/todo/todo.txt<CR>
+nnoremap <silent> <Space>et :<C-u>edit ~/Dropbox/work/todo/todo.txt<CR>
 
 " Unite
 nnoremap [unite]    <Nop>
