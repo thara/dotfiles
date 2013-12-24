@@ -423,6 +423,7 @@ let format_allow_over_tw = 1
 " changelog
 let g:changelog_timeformat = "%Y-%m-%d"
 let g:changelog_username = "Tomochika Hara"
+let g:changelog_spacing_errors = 0
 
 " Kobitoを開く
 function! s:open_kobito(...)
