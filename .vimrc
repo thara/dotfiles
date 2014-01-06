@@ -86,8 +86,17 @@ NeoBundle 'kana/vim-textobj-entire'
 " Rubyのブロックをテキストオブジェクト化
 NeoBundle 'rhysd/vim-textobj-ruby'
 
+" ### 編集系 ### {{{
 " コメント化
 NeoBundle 'tpope/vim-commentary'
+
+" 整形 (Vim Align them all)
+NeoBundleLazy 'h1mesuke/vim-alignta', {
+\ 'autoload' : {
+\   'commands' : ['Alignta', 'Align']
+\ }}
+" }}}
+
 
 " Markdown
 NeoBundle 'plasticboy/vim-markdown.git'
