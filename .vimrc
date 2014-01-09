@@ -111,6 +111,9 @@ NeoBundle 'thinca/vim-submode'
 NeoBundle 'dart-lang/dart-vim-plugin.git'
 " for JavaScript
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+" for Handlerbars
+NeoBundle 'nono/vim-handlebars'
+
 " for Ruby
 NeoBundleLazy 'vim-ruby/vim-ruby', {
 \ 'autoload': {
@@ -129,6 +132,10 @@ NeoBundle 'tyru/open-browser.vim'
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
+
+" Calendar
+NeoBundle 'itchyny/calendar.vim'
+let g:calendar_google_calendar = 1
 
 filetype plugin indent on
 NeoBundleCheck
