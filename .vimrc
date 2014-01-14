@@ -362,19 +362,21 @@ noremap <C-b> <C-y>
 nnoremap Y y$
 
 " 引数リスト移動
-nnoremap <silent> <ESC>l :<C-u>next<CR>:<C-u>args<CR>
-nnoremap <silent> <ESC>h :<C-u>prev<CR>:<C-u>args<CR>
-nnoremap <ESC>j :<C-u>argadd %<CR>:<C-u>args<CR>
-nnoremap <ESC>k :<C-u>argdelete %<CR>:<C-u>args<CR>
+nnoremap <silent> <C-l> :<C-u>next<CR>:<C-u>args<CR>
+nnoremap <silent> <C-h> :<C-u>prev<CR>:<C-u>args<CR>
+nnoremap <C-j> :<C-u>argadd %<CR>:<C-u>args<CR>
+nnoremap <C-k> :<C-u>argdelete %<CR>:<C-u>args<CR>
 nnoremap <ESC>d :<C-u>argdelete *<CR>:<C-u>args<CR>
 
 " ウィンドウ移動
-nnoremap <C-j> <C-w>w
-nnoremap <C-k> <C-w>W
+nnoremap <Tab> <C-w>w
+nnoremap <S-Tab> <C-w>W
 
 " タブ移動
-nnoremap <silent> <C-h> :tabprevious<CR>
-nnoremap <silent> <C-l> :tabnext<CR>
+nnoremap <silent> <ESC>h :tabprevious<CR>
+nnoremap <silent> <ESC>l :tabnext<CR>
+nnoremap <silent> <ESC>n :tabnew<CR>
+nnoremap <silent> <ESC>c :tabclose<CR>
 nnoremap <silent> [t :tabprevious<CR>
 nnoremap <silent> ]t :tabnext<CR>
 nnoremap <silent> [T :tabfirst<CR>
@@ -393,8 +395,8 @@ nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
 nnoremap <silent> <C-e> :NERDTreeToggle<CR>
 nnoremap <silent> <C-@> :NERDTreeFind<CR>
 " let g:NERDTreeShowBookmarks = 1
-let g:NERDTreeMapJumpNextSibling = '<C-n>'
-let g:NERDTreeMapJumpPrevSibling = '<C-p>'
+" let g:NERDTreeMapJumpNextSibling = '<C-n>'
+" let g:NERDTreeMapJumpPrevSibling = '<C-p>'
 
 "-------------------------------------------------------------------------------
 " Insert Mode
