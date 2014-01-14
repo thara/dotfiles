@@ -304,6 +304,7 @@ autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=
 autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
 
 " ファイルタイプ
+autocmd MyAutoCmd FileType c setlocal tabstop=4 tw=0 sw=4 expandtab
 autocmd MyAutoCmd FileType ruby setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType eruby setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd BufNewFile,BufRead app/*/*.rhtml setlocal ft=mason fenc=utf-8
