@@ -334,8 +334,9 @@ nnoremap <silent> <Space>ec :<C-u>tabedit  ~/Dropbox/work/changelog<CR>
 nnoremap [unite]    <Nop>
 nmap     <Space>u [unite]
 nnoremap <silent> [unite]f :<C-u>Unite file<CR>
-nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]r :<C-u>Unite file_mru<CR>
 nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru bookmark file<CR>
+nnoremap <silent> [unite]m :<C-u>Unite bookmark<CR>
 
 " VimShell
 nnoremap [vimshell]    <Nop>
