@@ -31,7 +31,10 @@ bindkey "^N" history-beginning-search-forward-end
 
 # auto chnage directory
 setopt auto_cd
+# ls after cd
 function chpwd() { ls -G }
+# cd search path
+cdpath=(~ ..)
 # auto directory pushd that you can get dirs list by cd -[tab]
 setopt auto_pushd
 # command correct edition before each completion attempt
@@ -63,6 +66,8 @@ alias gcls="git config --list | grep alias"
 
 # fabric
 alias fab='nocorrect fab'
+# tmux
+alias tmux='nocorrect tmux'
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
@@ -101,3 +106,18 @@ precmd () {
 
 # バージョン管理されているディレクトリにいれば表示，そうでなければ非表示
 RPROMPT="%1(v|%F{green}%1v%f|)%F{magenta}[%~]%f"
+
+# Direcotry Bookmarks
+alias m1='alias g1="cd `pwd`"'
+alias m2='alias g2="cd `pwd`"'
+alias m3='alias g3="cd `pwd`"'
+alias m4='alias g4="cd `pwd`"'
+alias m5='alias g5="cd `pwd`"'
+alias m6='alias g6="cd `pwd`"'
+alias m7='alias g7="cd `pwd`"'
+alias m8='alias g8="cd `pwd`"'
+alias m9='alias g9="cd `pwd`"'
+alias mdump='alias | grep -e "g[0-9]=" | grep -v "m[0-9]" | sed "s/^g/alias g/g" > ~/.zsh_bookmarks'
+alias mls='alias | grep -e "g[0-9]=" | grep -v "m[0-9]" | sed "s/^g/alias g/g"'
+touch ~/.zsh_bookmarks
+source ~/.zsh_bookmarks
