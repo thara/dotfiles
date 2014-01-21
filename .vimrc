@@ -398,6 +398,7 @@ nnoremap <silent> <C-@> :NERDTreeFind<CR>
 " let g:NERDTreeShowBookmarks = 1
 " let g:NERDTreeMapJumpNextSibling = '<C-n>'
 " let g:NERDTreeMapJumpPrevSibling = '<C-p>'
+let NERDTreeIgnore=['vendor', '.bundle', '.sass-cache', 'node_modules', '.git']
 
 "-------------------------------------------------------------------------------
 " Insert Mode
