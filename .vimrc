@@ -45,6 +45,9 @@ NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'tpope/vim-fugitive'
 
+" Multiple selection
+NeoBundle 'terryma/vim-multiple-cursors'
+
 " ColorScheme{{{{
 " Hybrid ColorScheme
 NeoBundle 'w0ng/vim-hybrid'
