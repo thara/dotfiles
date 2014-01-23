@@ -273,24 +273,24 @@ set scrolloff=5
 
 set cursorline
 
-autocmd MyAutoCmd ColorScheme * hi Search term=reverse ctermbg=DarkBlue ctermfg=NONE
+autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermbg=DarkBlue ctermfg=NONE
 
 autocmd MyAutoCmd WinLeave * set nocursorline
 autocmd MyAutoCmd WinEnter,BufRead * set cursorline
-autocmd MyAutoCmd ColorScheme * hi clear CursorLine
-autocmd MyAutoCmd ColorScheme * hi CursorLine gui=underline
-autocmd MyAutoCmd ColorScheme * hi CursorLine ctermbg=black guibg=black
+autocmd MyAutoCmd ColorScheme * highlight clear CursorLine
+autocmd MyAutoCmd ColorScheme * highlight CursorLine cterm=underline ctermbg=black
+autocmd MyAutoCmd ColorScheme * highlight CursorLine gui=underline guibg=black
 
-autocmd MyAutoCmd ColorScheme * hi LineNr ctermfg=241 ctermbg=none guifg=Yellow
-autocmd MyAutoCmd ColorScheme * hi Normal ctermfg=250 ctermbg=none
+autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
+autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
 
 autocmd MyAutoCmd FileType ruby setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType eruby setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd BufNewFile,BufRead app/*/*.rhtml setlocal ft=mason fenc=utf-8
 autocmd MyAutoCmd BufNewFile,BufRead app/**/*.rb setlocal ft=ruby fenc=utf-8
 autocmd MyAutoCmd BufNewFile,BufRead app/**/*.yml setlocal ft=ruby fenc=utf-8
-autocmd MyAutoCmd FileType c hi Comment ctermfg=darkcyan
-autocmd MyAutoCmd FileType cpp hi Comment ctermfg=darkcyan
+autocmd MyAutoCmd FileType c highlight Comment ctermfg=darkcyan
+autocmd MyAutoCmd FileType cpp highlight Comment ctermfg=darkcyan
 autocmd MyAutoCmd FileType haskell setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType php setlocal tabstop=4 tw=0 sw=4 expandtab
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
