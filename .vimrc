@@ -271,19 +271,21 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
 set nowrap
 set scrolloff=5
 
+" カーソル行
 set cursorline
 
-autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermbg=DarkBlue ctermfg=NONE
+autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermfg=black ctermbg=106
 
 autocmd MyAutoCmd WinLeave * set nocursorline
 autocmd MyAutoCmd WinEnter,BufRead * set cursorline
 autocmd MyAutoCmd ColorScheme * highlight clear CursorLine
-autocmd MyAutoCmd ColorScheme * highlight CursorLine cterm=underline ctermbg=black
-autocmd MyAutoCmd ColorScheme * highlight CursorLine gui=underline guibg=black
+autocmd MyAutoCmd ColorScheme * highlight CursorLine cterm=None ctermbg=233
+autocmd MyAutoCmd ColorScheme * highlight CursorLine gui=None guibg=DarkBlue
 
 autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
 autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
 
+" ファイルタイプ
 autocmd MyAutoCmd FileType ruby setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType eruby setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd BufNewFile,BufRead app/*/*.rhtml setlocal ft=mason fenc=utf-8
@@ -447,7 +449,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " 繰り返しを楽にする
 xnoremap . :normal .<CR>
 " ヤンクレジスタの値をペースト
-xnoremap <silent> <C-p> "0p
+xnoremap <silent> <ESC>p "0p
 
 "-------------------------------------------------------------------------------
 " 検索設定 Search
