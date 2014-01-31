@@ -127,6 +127,9 @@ NeoBundle 'cakebaker/scss-syntax.vim'
 " for CoffeeScript
 NeoBundle 'kchmck/vim-coffee-script'
 
+" for Django
+NeoBundle 'vim-scripts/django.vim'
+
 " todo.txt
 NeoBundle 'freitass/todo.txt-vim'
 
@@ -231,14 +234,25 @@ set imsearch=1
 " OSのクリップボードを使用する
 set clipboard& clipboard+=unnamed
 
+" マッピングの待ち時間
+set timeout
+set timeoutlen=1000
 " キーコード待ち時間
 set ttimeoutlen=50
 
+" 新しい行のインデントを現在行と同じに
 set autoindent
+" 高度なインデント
 set smartindent
-set tabstop=4
+" 画面上でタブ文字が対応する幅
+set tabstop=2
+" Tabで動くカーソルの幅
+set softtabstop=2
+" インデントでずれる幅
 set shiftwidth=2
+" Tabの代わりにSpaceを挿入
 set expandtab
+" 行頭の余白内でのTabがshiftwidth分になる
 set smarttab
 
 set helplang=ja
@@ -295,6 +309,9 @@ autocmd MyAutoCmd FileType c highlight Comment ctermfg=darkcyan
 autocmd MyAutoCmd FileType cpp highlight Comment ctermfg=darkcyan
 autocmd MyAutoCmd FileType haskell setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType php setlocal tabstop=4 tw=0 sw=4 expandtab
+autocmd MyAutoCmd FileType python setlocal tabstop=4 tw=0 shiftwidth=4 expandtab softtabstop=4
+autocmd MyAutoCmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd MyAutoCmd FileType python :inoremap # X#
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
 
 set showtabline=1
@@ -406,7 +423,7 @@ nnoremap <silent> <C-@> :NERDTreeFind<CR>
 " let g:NERDTreeShowBookmarks = 1
 " let g:NERDTreeMapJumpNextSibling = '<C-n>'
 " let g:NERDTreeMapJumpPrevSibling = '<C-p>'
-let NERDTreeIgnore=['vendor', '.bundle', '.sass-cache', 'node_modules', '.git', '.*\.lock']
+let NERDTreeIgnore=['vendor', '.bundle', '.sass-cache', 'node_modules', '.git', '.*\.lock', '__pycache__']
 
 "-------------------------------------------------------------------------------
 " Insert Mode
