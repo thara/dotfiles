@@ -5,7 +5,7 @@ export LANG=ja_JP.UTF-8
 #
 autoload colors
 colors
-PROMPT='%F{white}[%n@%m]# '
+PROMPT='[%n@%m]# '
 SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
 [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
 
