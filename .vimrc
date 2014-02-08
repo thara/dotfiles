@@ -33,6 +33,9 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'vim-jp/vimdoc-ja'
+" インデント可視化
+NeoBundle 'Yggdroot/indentLine'
+let g:indentLine_color_term=239
 NeoBundle 'derekwyatt/vim-scala'
 " NERDTree
 NeoBundle 'scrooloose/nerdtree'
@@ -127,8 +130,9 @@ NeoBundle 'cakebaker/scss-syntax.vim'
 " for CoffeeScript
 NeoBundle 'kchmck/vim-coffee-script'
 
-" for Django
+" for Python
 NeoBundle 'vim-scripts/django.vim'
+NeoBundle 'mitsuhiko/vim-jinja'
 
 " todo.txt
 NeoBundle 'freitass/todo.txt-vim'
@@ -332,6 +336,8 @@ set encoding=utf-8    " デフォルトエンコーディング
 noremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 noremap ; :
 noremap : ;
+inoremap ; :
+inoremap : ;
 
 " 検索結果マッチ時にカーソル位置を画面中央に
 nnoremap n nzzzv
@@ -513,3 +519,14 @@ let g:netrw_winsize=70
 
 " 隠しファイルを表示する
 let NERDTreeShowHidden = 1
+
+" Magic comment
+function! AddMagicComment()
+  let magic_comment = "# -*- coding: utf-8 -*-\n"
+  let pos = getpos(".")
+  call cursor(1,0)
+  execute ":normal i" . magic_comment
+  call setpos(".", pos)
+endfunction
+
+noremap <silent> <F12> :call AddMagicComment()
