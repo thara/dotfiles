@@ -337,8 +337,6 @@ set encoding=utf-8    " デフォルトエンコーディング
 noremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 noremap ; :
 noremap : ;
-inoremap ; :
-inoremap : ;
 
 " 検索結果マッチ時にカーソル位置を画面中央に
 nnoremap n nzzzv
