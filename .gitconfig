@@ -42,3 +42,6 @@
     log = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
     show = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
     diff = `brew --prefix git`/share/git-core/contrib/diff-highlight/diff-highlight | less
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
