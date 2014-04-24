@@ -46,10 +46,10 @@ setopt nolistbeep
 
 ## Command aliases
 setopt complete_aliases
-alias ls='ls -G'
-alias la='ls -a'
-alias ll='ls -l'
-alias lsa='ls -la'
+alias ls='ls -GF'
+alias la='ls -aF'
+alias ll='ls -lF'
+alias lsa='ls -laF'
 
 alias du="du -h"
 alias df="df -h"
