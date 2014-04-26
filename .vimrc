@@ -320,7 +320,7 @@ autocmd MyAutoCmd FileType python setlocal tabstop=4 tw=0 shiftwidth=4 expandtab
 autocmd MyAutoCmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd MyAutoCmd FileType python :inoremap # X#
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
-autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4
+autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab
 
 set showtabline=1
 
