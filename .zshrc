@@ -5,9 +5,6 @@ export LANG=ja_JP.UTF-8
 #
 autoload colors
 colors
-PROMPT='[%n@%m]# '
-SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && PROMPT="%{${fg[cyan]}%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
 
 ## Completion configuration
 autoload -U compinit
@@ -90,37 +87,7 @@ alias -s xml=vim
 alias -s html=vim
 alias -s xhtml=vim
 
-# VCSの情報を取得するzshの便利関数 vcs_infoを使う
-autoload -Uz vcs_info
-
-# 表示フォーマットの指定
-# %b ブランチ情報
-# %a アクション名(mergeなど)
-zstyle ':vcs_info:*' formats '[%b]'
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () {
-    psvar=()
-    LANG=en_US.UTF-8 vcs_info
-    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-}
-
-# バージョン管理されているディレクトリにいれば表示，そうでなければ非表示
-RPROMPT="%1(v|%F{green}%1v%f|)%F{magenta}[%~]%f"
-
-# Direcotry Bookmarks
-alias m1='alias g1="cd `pwd`"'
-alias m2='alias g2="cd `pwd`"'
-alias m3='alias g3="cd `pwd`"'
-alias m4='alias g4="cd `pwd`"'
-alias m5='alias g5="cd `pwd`"'
-alias m6='alias g6="cd `pwd`"'
-alias m7='alias g7="cd `pwd`"'
-alias m8='alias g8="cd `pwd`"'
-alias m9='alias g9="cd `pwd`"'
-alias mdump='alias | grep -e "g[0-9]=" | grep -v "m[0-9]" | sed "s/^g/alias g/g" > ~/.zsh_bookmarks'
-alias mls='alias | grep -e "g[0-9]=" | grep -v "m[0-9]" | sed "s/^g/alias g/g"'
-touch ~/.zsh_bookmarks
-source ~/.zsh_bookmarks
+alias myzsh="mate ~/.zshrc"
 
 ###### oh-my-zsh template #####
 
@@ -132,10 +99,6 @@ export ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="nanotech"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -210,6 +173,3 @@ zstyle ':completion:*' recent-dirs-insert both
 source ~/zaw/zaw.zsh
 zstyle ':filter-select' case-sensitive yes
 bindkey '^@' zaw-cdr
-
-
-
