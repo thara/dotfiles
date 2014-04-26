@@ -5,6 +5,8 @@ filetype off
 
 if has('vim_starting')
   execute 'set runtimepath+=' . expand('~/.vim/bundle/neobundle.vim')
+  set runtimepath+=$GOROOT/misc/vim
+  exe "set runtimepath+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 endif
 call neobundle#rc(expand('~/.vim/bundle'))
 
@@ -318,8 +320,12 @@ autocmd MyAutoCmd FileType python setlocal tabstop=4 tw=0 shiftwidth=4 expandtab
 autocmd MyAutoCmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd MyAutoCmd FileType python :inoremap # X#
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
+autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4
 
 set showtabline=1
+
+" 補完
+set completeopt=menu,preview
 
 colorscheme hybrid
 syntax on
