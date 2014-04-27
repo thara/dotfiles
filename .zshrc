@@ -29,7 +29,7 @@ bindkey "^N" history-beginning-search-forward-end
 # auto chnage directory
 setopt auto_cd
 # ls after cd
-function chpwd() { ls -G }
+function chpwd() { ls -GF }
 # cd search path
 cdpath=(~ ..)
 # auto directory pushd that you can get dirs list by cd -[tab]

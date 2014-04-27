@@ -18,3 +18,5 @@ Session.vim
 
 .vim/bundle/
 .vim/.netrwhist
+
+.emacs.d/auto-save-list
