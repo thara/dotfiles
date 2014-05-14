@@ -136,6 +136,9 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'vim-scripts/django.vim'
 NeoBundle 'mitsuhiko/vim-jinja'
 
+" for Golang
+NeoBundle 'Blackrush/vim-gocode'
+
 " todo.txt
 NeoBundle 'freitass/todo.txt-vim'
 
@@ -321,6 +324,7 @@ autocmd MyAutoCmd FileType python setlocal smartindent cinwords=if,elif,else,for
 autocmd MyAutoCmd FileType python :inoremap # X#
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab
+autocmd MyAutoCmd BufWritePre *.go Fmt
 
 set showtabline=1
 
