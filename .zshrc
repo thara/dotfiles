@@ -15,6 +15,7 @@ HISTFILE=~/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
 setopt hist_ignore_dups
+setopt hist_ignore_all_dups
 setopt share_history
 # historical backward/forward search with linehead string
 autoload history-search-end
@@ -66,7 +67,6 @@ alias fab='nocorrect fab'
 # tmux
 alias tmux='nocorrect tmux'
 
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 export LSCOLORS=ExFxCxdxBxegedabagacad
 zstyle ':completion:*' list-colors 'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
@@ -137,7 +137,7 @@ ZSH_THEME="nanotech"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ruby osx bundler brew rails emoji-clock themes)
+plugins=(git ruby osx bundler brew rails emoji-clock themes fabric)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -173,3 +173,12 @@ zstyle ':completion:*' recent-dirs-insert both
 source ~/zaw/zaw.zsh
 zstyle ':filter-select' case-sensitive yes
 bindkey '^@' zaw-cdr
+
+[ -f ~/.zshrc.func ] && source ~/.zshrc.func
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# z: https://github.com/rupa/z
+if which brew > /dev/null; then
+    _Z_CMD=j
+    source $(brew --prefix)/etc/profile.d/z.sh
+fi
