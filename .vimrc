@@ -50,8 +50,11 @@ NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'tpope/vim-fugitive'
 
-" Multiple selection
-NeoBundle 'terryma/vim-multiple-cursors'
+NeoBundle 'yonchu/accelerated-smooth-scroll'
+nmap <silent> <C-j> <Plug>(ac-smooth-scroll-c-d)
+nmap <silent> <C-k> <Plug>(ac-smooth-scroll-c-u)
+let g:ac_smooth_scroll_du_sleep_time_msec = 5
+let g:ac_smooth_scroll_fb_sleep_time_msec = 5
 
 " ColorScheme{{{{
 " Hybrid ColorScheme
@@ -138,6 +141,9 @@ NeoBundle 'mitsuhiko/vim-jinja'
 
 " for Golang
 NeoBundle 'Blackrush/vim-gocode'
+
+" for Swift
+NeoBundle 'toyamarinyon/vim-swift'
 
 " todo.txt
 NeoBundle 'freitass/todo.txt-vim'
@@ -271,6 +277,8 @@ set nojoinspaces
 " 自動改行禁止
 set tw=0
 
+set undodir=/tmp/vim/
+
 "-------------------------------------------------------------------------------
 " 表示 Apperance
 "-------------------------------------------------------------------------------
@@ -324,6 +332,7 @@ autocmd MyAutoCmd FileType python setlocal smartindent cinwords=if,elif,else,for
 autocmd MyAutoCmd FileType python :inoremap # X#
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab
+autocmd MyAutoCmd FileType swift setlocal tabstop=4 tw=0 sw=4 expandtab
 autocmd MyAutoCmd BufWritePre *.go Fmt
 
 set showtabline=1
@@ -428,6 +437,12 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
+
+" Quickfix
+nnoremap <silent> [q :cprevious<CR>
+nnoremap <silent> ]q :cnext<CR>
+nnoremap <silent> [Q :<C-u>cfirst<CR>
+nnoremap <silent> ]Q :<C-u>clast<CR>
 
 " 相対行番号表示をトグル
 nnoremap <F3> :<C-u>setlocal relativenumber!<CR>
