@@ -50,12 +50,6 @@ NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'tpope/vim-fugitive'
 
-NeoBundle 'yonchu/accelerated-smooth-scroll'
-nmap <silent> <C-j> <Plug>(ac-smooth-scroll-c-d)
-nmap <silent> <C-k> <Plug>(ac-smooth-scroll-c-u)
-let g:ac_smooth_scroll_du_sleep_time_msec = 5
-let g:ac_smooth_scroll_fb_sleep_time_msec = 5
-
 " ColorScheme{{{{
 " Hybrid ColorScheme
 NeoBundle 'w0ng/vim-hybrid'
@@ -402,11 +396,40 @@ function! s:vimshell_my_settings()
 endfunction
 
 " ページ送り
-noremap <Space>j <C-f>
-noremap <Space>k <C-b>
 " Scroll
 noremap <C-f> <C-e>
 noremap <C-b> <C-y>
+
+" c0hama smooth scroll
+let s:scroll_time_ms = 100
+let s:scroll_precision = 8
+function! TomochikaSmoothScroll(dir, windiv, factor)
+  let cl = &cursorline
+  let cc = &cursorcolumn
+  set nocursorline nocursorcolumn
+  let height = winheight(0) / a:windiv
+  let n = height / s:scroll_precision
+  if n <= 0
+    let n = 1
+  endif
+  let wait_per_one_move_ms = s:scroll_time_ms / s:scroll_precision * a:factor
+  let i = 0
+  let scroll_command = a:dir == "down" ?
+    \ "normal! " . n . "\<C-e>" . n . "j" :
+    \ "normal! " . n . "\<C-y>" . n . "k"
+  while i < s:scroll_precision
+    let i = i + 1
+    execute scroll_command
+    execute "sleep " . wait_per_one_move_ms . "m"
+    redraw
+  endwhile
+  let &cursorline = cl
+  let &cursorcolumn = cc
+endfunction
+noremap <silent> <C-d> :call TomochikaSmoothScroll("down", 2, 1)<CR>
+noremap <silent> <C-u> :call TomochikaSmoothScroll("up", 2, 1)<CR>
+noremap <silent> <Space>j :call TomochikaSmoothScroll("down", 1, 2)<CR>
+noremap <silent> <Space>k :call TomochikaSmoothScroll("up", 1, 2)<CR>
 
 " 行末までヤンクする
 nnoremap Y y$
