@@ -13,3 +13,4 @@ ln -s $HOME/dotfiles/.oh-my-zsh/custom/.zsh $HOME/.oh-my-zsh/custom/.zsh
 
 
 [ ! -d ~/zaw ] && git clone git://github.com/zsh-users/zaw.git ~/zaw
+[ ! -d ~/.vim/bundle ] && git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
