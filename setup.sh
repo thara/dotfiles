@@ -14,3 +14,10 @@ ln -s $HOME/dotfiles/.oh-my-zsh/custom/.zsh $HOME/.oh-my-zsh/custom/.zsh
 
 [ ! -d ~/zaw ] && git clone git://github.com/zsh-users/zaw.git ~/zaw
 [ ! -d ~/.vim/bundle ] && git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+
+
+# Linux : diff-highlight for git diff
+# $ dpkg -L git | grep 'diff-highlight'
+# $ sudo ln -s /usr/share/doc/git/contrib/diff-highlight/diff-highlight /usr/local/bin/diff-highlight
+# $ sudo chmod 755 /usr/local/bin/diff-highlight
+
