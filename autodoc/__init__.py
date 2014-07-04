@@ -137,7 +137,7 @@ class Autodoc(object):
         def _autodoc(func, *_args, **_kwargs):
             if len(_args) > 0:
                 #: Instance or class method.
-                response = func(_args[0])
+                response = func(*_args)
             else:
                 #: Function.
                 if len(_kwargs) > 0:
