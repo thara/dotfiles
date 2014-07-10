@@ -26,7 +26,7 @@ NeoBundle 'kien/ctrlp.vim'
 
 " easymotion
 NeoBundle 'Lokaltog/vim-easymotion'
-nmap <CR> [EasyMotion]
+nmap <C-k> [EasyMotion]
 let g:EasyMotion_leader_key = '[EasyMotion]'
 let g:EasyMotion_smartcase = 1
 
@@ -51,10 +51,11 @@ NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'tpope/vim-fugitive'
 
 NeoBundle 'yonchu/accelerated-smooth-scroll'
-nmap <silent> <C-j> <Plug>(ac-smooth-scroll-c-d)
-nmap <silent> <C-k> <Plug>(ac-smooth-scroll-c-u)
-let g:ac_smooth_scroll_du_sleep_time_msec = 5
-let g:ac_smooth_scroll_fb_sleep_time_msec = 5
+let g:ac_smooth_scroll_no_default_key_mappings = 1
+nmap <silent> <C-d> <Plug>(ac-smooth-scroll-c-d)
+nmap <silent> <C-u> <Plug>(ac-smooth-scroll-c-u)
+let g:ac_smooth_scroll_du_sleep_time_msec = 10
+let g:ac_smooth_scroll_fb_sleep_time_msec = 10
 
 " ColorScheme{{{{
 " Hybrid ColorScheme
@@ -157,6 +158,10 @@ vmap gx <Plug>(openbrowser-smart-search)
 " Calendar
 NeoBundle 'itchyny/calendar.vim'
 let g:calendar_google_calendar = 1
+
+NeoBundle 'xolox/vim-notes'
+NeoBundle 'xolox/vim-misc'
+let g:notes_directories = ['~/Dropbox/Notes']
 
 filetype plugin indent on
 NeoBundleCheck
@@ -302,6 +307,10 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
 set nowrap
 set scrolloff=5
 
+" Folding
+set foldcolumn=1
+set foldmethod=marker
+
 " カーソル行
 set cursorline
 
@@ -315,6 +324,9 @@ autocmd MyAutoCmd ColorScheme * highlight CursorLine gui=None guibg=DarkBlue
 
 autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
 autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
+
+" vimgrep時に同時にquickfix-windowを開く
+autocmd MyAutoCmd QuickFixCmdPost *grep* cwindow
 
 " ファイルタイプ
 autocmd MyAutoCmd FileType c setlocal tabstop=4 tw=0 sw=4 expandtab
@@ -365,7 +377,10 @@ nmap * *zz
 nmap # #zz
 nmap g* g*zz
 nmap g# g#zz
-map ¥ <leader>
+
+if has('gui_macvim')
+  map ¥ <leader>
+endif
 
 " Change current directory.
 nnoremap <silent> <Space>cd :<C-u>CD<CR>
@@ -395,11 +410,6 @@ nnoremap <silent> [vimshell]c :<C-u>VimShellCreate<CR>
 nnoremap <silent> [vimshell]t :<C-u>VimShellTab<CR>
 nnoremap <silent> [vimshell]p :<C-u>VimShellPop<CR>
 
-autocmd MyAutoCmd FileType vimshell call s:vimshell_my_settings()
-function! s:vimshell_my_settings()
-  let b:smartinput_disable_local = 1
-  unmap <buffer> <C-k>
-endfunction
 
 " ページ送り
 noremap <Space>j <C-f>
