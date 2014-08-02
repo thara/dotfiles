@@ -32,3 +32,14 @@ function peco_select_directory() {
 }
 zle -N peco_select_directory
 bindkey "^X^J" peco_select_directory
+
+function peco-select-repos () {
+    local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd ${selected_dir}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N peco-select-repos
+bindkey '^]' peco-select-repos
