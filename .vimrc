@@ -43,6 +43,7 @@ call smartinput_endwise#define_default_rules()
 NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'rhysd/clever-f.vim'
 
 " ColorScheme{{{{
 " Hybrid ColorScheme
