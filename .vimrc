@@ -113,6 +113,8 @@ NeoBundle 'dart-lang/dart-vim-plugin.git'
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 " for Handlerbars
 NeoBundle 'nono/vim-handlebars'
+" for Jade
+NeoBundle 'digitaltoad/vim-jade'
 
 " for Ruby
 NeoBundleLazy 'vim-ruby/vim-ruby', {
@@ -481,7 +483,9 @@ nnoremap <silent> <C-@> :NERDTreeFind<CR>
 " let g:NERDTreeShowBookmarks = 1
 " let g:NERDTreeMapJumpNextSibling = '<C-n>'
 " let g:NERDTreeMapJumpPrevSibling = '<C-p>'
-let NERDTreeIgnore=['vendor', '.bundle', '.sass-cache', 'node_modules', '.git', '.*\.lock', '__pycache__', '.*.egg-info', '.idea', '.*\.pyc']
+let NERDTreeIgnore=[
+\ 'vendor', '.bundle', '.sass-cache', 'node_modules', 'bower_components',
+\ '.git', '.*\.lock', '__pycache__', '.*.egg-info', '.idea', '.*\.pyc']
 
 "-------------------------------------------------------------------------------
 " Insert Mode
