@@ -23,6 +23,9 @@ NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'scrooloose/syntastic'
 " Finder
 NeoBundle 'kien/ctrlp.vim'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'line', 'mixed']
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:18'
 
 NeoBundle 'thinca/vim-quickrun.git'
 NeoBundle 'tpope/vim-surround'
