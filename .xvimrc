@@ -1,0 +1,42 @@
+"-------------------------------------------------------------------------------
+" Xvim config.
+"-------------------------------------------------------------------------------
+set wrapscan   " 最後まで検索したら先頭へ戻る
+set ignorecase " 大文字小文字無視
+set smartcase  " 検索文字列に大文字が含まれている場合は区別して検索する
+set incsearch  " インクリメンタルサーチ
+
+"set number relativenumber " 行番号相対表示
+
+set laststatus=2 "ステータス行を常時表示
+
+set gdefault "置換時のgオプションをデフォルトに
+
+noremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
+noremap ; :
+noremap : ;
+
+" 検索結果マッチ時にカーソル位置を画面中央に
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+nmap * *zz
+nmap # #zz
+nmap g* g*zz
+nmap g# g#zz
+
+" ファイルの履歴
+noremap <C-h> <C-o> " 戻る
+noremap <C-l> <C-i> " 進む"
+
+" 行送り
+noremap <C-f> <C-e>
+noremap <C-b> <C-y>
+
+" 行末までヤンクする
+nnoremap Y y$
+
+" インサートモードでも誤爆を防ぐ
+inoremap <C-@> <C-[>
+
+inoremap <C-j> <CR>
