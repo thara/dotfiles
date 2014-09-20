@@ -23,9 +23,6 @@ NeoBundle 'kana/vim-tabpagecd'
 NeoBundle 'scrooloose/syntastic'
 " Finder
 NeoBundle 'kien/ctrlp.vim'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'line', 'mixed']
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:18'
 
 NeoBundle 'thinca/vim-quickrun.git'
 NeoBundle 'tpope/vim-surround'
@@ -79,8 +76,6 @@ let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 
 " 補完
 NeoBundle 'Shougo/neocomplete'
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
 
 " テキストオブジェクト拡張
 NeoBundle 'kana/vim-textobj-user'
@@ -98,6 +93,18 @@ NeoBundleLazy 'h1mesuke/vim-alignta', {
 \ 'autoload' : {
 \   'commands' : ['Alignta', 'Align']
 \ }}
+
+" ヤンク履歴
+NeoBundle 'LeafCage/yankround.vim'
+nmap p <Plug>(yankround-p)
+xmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap gp <Plug>(yankround-gp)
+xmap gp <Plug>(yankround-gp)
+nmap gP <Plug>(yankround-gP)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+
 " }}}
 
 
@@ -119,6 +126,37 @@ NeoBundle 'nono/vim-handlebars'
 " for Jade
 NeoBundle 'digitaltoad/vim-jade'
 
+" Zen-Coding
+NeoBundleLazy 'mattn/emmet-vim', {
+\ 'autoload' : {
+\   'filetypes' : ['html', 'eruby', 'jsp', 'xml'],
+\   'commands' : ['<Plug>ZenCodingExpandNormal']
+\ }}
+
+let g:user_emmet_mode = 'iv'
+let g:user_emmet_leader_key = '<C-Y>'
+let g:use_emmet_complete_tag = 1
+let g:user_emmet_settings = {
+      \ 'lang' : 'ja',
+      \ 'html' : {
+      \   'filters' : 'html',
+      \ },
+      \ 'css' : {
+      \   'filters' : 'fc',
+      \ },
+      \ 'php' : {
+      \   'extends' : 'html',
+      \   'filters' : 'html',
+      \ },
+      \}
+" for CSS3
+NeoBundle 'hail2u/vim-css3-syntax'
+" for HTML5
+NeoBundle 'othree/html5.vim'
+
+" for AngularJS
+NeoBundle 'burnettk/vim-angular'
+
 " for Ruby
 NeoBundleLazy 'vim-ruby/vim-ruby', {
 \ 'autoload': {
@@ -138,6 +176,14 @@ NeoBundle 'Blackrush/vim-gocode'
 
 " for Swift
 NeoBundle 'toyamarinyon/vim-swift'
+
+" tagbar
+NeoBundle 'vim-scripts/tagbar'
+NeoBundle 'vim-scripts/tagbar-phpctags', {
+  \   'build' : {
+  \     'others' : 'chmod +x bin/phpctags',
+  \   },
+  \ }
 
 " todo.txt
 NeoBundle 'freitass/todo.txt-vim'
@@ -333,8 +379,9 @@ autocmd MyAutoCmd FileType c highlight Comment ctermfg=darkcyan
 autocmd MyAutoCmd FileType cpp highlight Comment ctermfg=darkcyan
 autocmd MyAutoCmd FileType haskell setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType php setlocal tabstop=4 tw=0 sw=4 expandtab
-autocmd MyAutoCmd FileType python setlocal tabstop=4 tw=0 shiftwidth=4 expandtab softtabstop=4
+autocmd MyAutoCmd FileType python setlocal tabstop=4 tw=0 shiftwidth=4 expandtab softtabstop=4 
 autocmd MyAutoCmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd MyAutoCmd FileType python setlocal completeopt-=preview
 autocmd MyAutoCmd FileType python :inoremap # X#
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab
@@ -343,8 +390,46 @@ autocmd MyAutoCmd BufWritePre *.go Fmt
 
 set showtabline=1
 
-" 補完
+"Completion {{{
 set completeopt=menu,preview
+
+"------------------------------------
+" neocomplete.vim
+"------------------------------------
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 colorscheme hybrid
 syntax on
@@ -411,7 +496,7 @@ noremap <C-f> <C-e>
 noremap <C-b> <C-y>
 
 " c0hama smooth scroll
-let s:scroll_time_ms = 100
+let s:scroll_time_ms = 50
 let s:scroll_precision = 8
 function! TomochikaSmoothScroll(dir, windiv, factor)
   let cl = &cursorline
@@ -443,6 +528,8 @@ noremap <silent> <Space>k :call TomochikaSmoothScroll("up", 1, 2)<CR>
 
 " 行末までヤンクする
 nnoremap Y y$
+" 行末まで選択
+vnoremap v $h
 
 " 引数リスト移動
 "nnoremap <silent> <C-l> :<C-u>next<CR>:<C-u>args<CR>
@@ -488,7 +575,33 @@ nnoremap <silent> <C-@> :NERDTreeFind<CR>
 " let g:NERDTreeMapJumpPrevSibling = '<C-p>'
 let NERDTreeIgnore=[
 \ 'vendor', '.bundle', '.sass-cache', 'node_modules', 'bower_components',
-\ '.git', '.*\.lock', '__pycache__', '.*.egg-info', '.idea', '.*\.pyc']
+\ '.git', '.*\.lock', '__pycache__', '.*.egg-info', '.idea', '.*\.pyc', '.DS_Store', '.tmp']
+
+" ctrlp
+let g:ctrlp_map = '<Nop>'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'line', 'mixed']
+let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:18'
+
+let g:ctrlp_use_migemo = 1
+let g:ctrlp_clear_cache_on_exit = 0   " 終了時キャッシュをクリアしない
+let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
+let g:ctrlp_open_new_file       = 1   " 新規ファイル作成時にタブで開く
+
+nnoremap [ctrlp] <Nop>
+nmap     s [ctrlp]
+nnoremap sp :<C-u>CtrlP<Space>
+nnoremap sb :<C-u>CtrlPBuffer<CR>
+nnoremap sh :<C-u>CtrlPMRUFiles<CR>
+nnoremap sl :<C-u>CtrlPLine<CR>
+nnoremap sd :<C-u>CtrlPDir<CR>
+nnoremap sq :<C-u>CtrlPQuickfix<CR>
+nnoremap st :<C-u>CtrlPTag<CR>
+nnoremap ss :<C-u>CtrlPMixed<CR>
+nnoremap sy :<C-u>CtrlPYankRound<CR>
+
+" tagbar
+nnoremap <C-k> :TagbarToggle<CR>
 
 "-------------------------------------------------------------------------------
 " Insert Mode
@@ -589,3 +702,48 @@ function! AddMagicComment()
 endfunction
 
 noremap <silent> <F12> :call AddMagicComment()
+
+" タブページのラベル http://d.hatena.ne.jp/thinca/20111204/1322932585
+" thx thinca!
+function! s:tabpage_label(n)
+  " n 番目のタブのラベルを返す
+  let title = gettabvar(a:n, 'title')
+  if title !=# ''
+    return title
+  endif
+
+  " タブページ内のバッファのリスト
+  let bufnrs = tabpagebuflist(a:n)
+
+  " カレントタブページかどうかでハイライトを切り替える
+  let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLine#'
+
+  " バッファが複数あったらバッファ数を表示
+  let no = len(bufnrs)
+  if no is 1
+    let no = ''
+  endif
+  " タブページ内に変更ありのバッファがあったら '+' を付ける
+  let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
+  let sp = (no . mod) ==# '' ? '' : ' '  " 隙間空ける
+
+  " カレントバッファ
+  let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
+  let fname = pathshorten(bufname(curbufnr))
+
+  let label = no . mod . sp . fname
+  return '%' . a:n . 'T' . hi . label . '%T%#TabLineFill#'
+endfunction
+
+function! MakeTabLine()
+  let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
+  let sep = ' | '  " タブ間の区切り
+  let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
+
+  " カレントディレクトリ
+  let info = fnamemodify(getcwd(), ":~") . ' '
+
+  return tabpages . '%=' . info  " タブリストを左に、情報を右に表示
+endfunction
+
+"set tabline=%!MakeTabLine()
