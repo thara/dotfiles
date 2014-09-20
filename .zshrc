@@ -23,7 +23,7 @@ zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
 ## Key bind configuration
-bindkey -e
+bindkey -v # vi mode
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
@@ -137,7 +137,7 @@ ZSH_THEME="nanotech"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ruby osx bundler brew rails emoji-clock themes fabric)
+plugins=(git ruby osx bundler brew rails emoji-clock themes fabric vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
