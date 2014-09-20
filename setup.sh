@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DOT_FILES=( ".zshrc" ".zshrc.func" ".vimrc" ".gvimrc" ".vim" ".ghci" ".todo.cfg" ".vrapperrc" ".gitconfig" \
-  ".tmux.conf" ".gemrc" ".emacs.d" ".emacs.el" ".lessfilter")
+  ".tmux.conf" ".gemrc" ".emacs.d" ".emacs.el" ".lessfilter" ".ctags")
 
 for file in ${DOT_FILES[@]}
 do
