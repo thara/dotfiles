@@ -76,6 +76,10 @@ let g:vimshell_user_prompt = 'fnamemodify(getcwd(), ":~")'
 
 " 補完
 NeoBundle 'Shougo/neocomplete'
+" スニペット補完プラグイン
+NeoBundle 'Shougo/neosnippet'
+" 各種スニペット
+NeoBundle 'Shougo/neosnippet-snippets'
 
 " テキストオブジェクト拡張
 NeoBundle 'kana/vim-textobj-user'
@@ -432,6 +436,11 @@ inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 " }}}
+
+
+" スニペット展開
+imap <C-s> <Plug>(neosnippet_expand_or_jump)
+smap <C-s> <Plug>(neosnippet_expand_or_jump)
 
 colorscheme hybrid
 syntax on
