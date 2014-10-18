@@ -169,7 +169,7 @@ NeoBundle 'kchmck/vim-coffee-script'
 
 " for Python
 NeoBundle 'vim-scripts/django.vim'
-NeoBundle 'mitsuhiko/vim-jinja'
+NeoBundle 'Glench/Vim-Jinja2-Syntax'
 
 " for Golang
 NeoBundle 'Blackrush/vim-gocode'
@@ -430,6 +430,8 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+" }}}
 
 colorscheme hybrid
 syntax on
@@ -701,7 +703,7 @@ function! AddMagicComment()
   call setpos(".", pos)
 endfunction
 
-noremap <silent> <F12> :call AddMagicComment()
+noremap <silent> <F12> :call AddMagicComment()<CR><ESC>
 
 " タブページのラベル http://d.hatena.ne.jp/thinca/20111204/1322932585
 " thx thinca!
