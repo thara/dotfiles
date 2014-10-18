@@ -31,7 +31,7 @@ function peco_select_directory() {
     zle reset-prompt
 }
 zle -N peco_select_directory
-bindkey "^X^J" peco_select_directory
+bindkey "^T" peco_select_directory
 
 function peco-select-repos () {
     local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
