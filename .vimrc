@@ -83,6 +83,15 @@ NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'kana/vim-textobj-entire'
 " Rubyのブロックをテキストオブジェクト化
 NeoBundle 'rhysd/vim-textobj-ruby'
+" Exuberant ctags
+NeoBundle 'majutsushi/tagbar', {
+      \ "autload": {
+      \   "commands": ["TagbarToggle"],
+      \ },
+      \ "build": {
+      \   "mac": "brew install ctags",
+      \ }}
+" nmap <Leader>t :TagbarToggle<CR>
 
 " ### 編集系 ### {{{
 " コメント化
@@ -178,12 +187,12 @@ NeoBundle 'Blackrush/vim-gocode'
 NeoBundle 'toyamarinyon/vim-swift'
 
 " tagbar
-NeoBundle 'vim-scripts/tagbar'
-NeoBundle 'vim-scripts/tagbar-phpctags', {
-  \   'build' : {
-  \     'others' : 'chmod +x bin/phpctags',
-  \   },
-  \ }
+" NeoBundle 'vim-scripts/tagbar'
+" NeoBundle 'vim-scripts/tagbar-phpctags', {
+"   \   'build' : {
+"   \     'others' : 'chmod +x bin/phpctags',
+"   \   },
+"   \ }
 
 " todo.txt
 NeoBundle 'freitass/todo.txt-vim'
