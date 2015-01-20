@@ -198,6 +198,11 @@ NeoBundle 'toyamarinyon/vim-swift'
 "   \   },
 "   \ }
 
+" Gist
+NeoBundle 'mattn/gist-vim', {'depends': 'mattn/webapi-vim'}
+let g:gist_show_privates = 1 " 一覧でPrivateを表示
+let g:gist_post_private = 1  " Privateで投稿
+
 " todo.txt
 NeoBundle 'freitass/todo.txt-vim'
 
@@ -362,6 +367,8 @@ set scrolloff=5
 " Folding
 set foldcolumn=1
 set foldmethod=marker
+
+set breakindent
 
 " カーソル行
 set cursorline

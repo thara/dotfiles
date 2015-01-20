@@ -48,3 +48,5 @@
 	required = true
 [ghq]
   root = ~/src
+[github]
+	user = tomochikahara
