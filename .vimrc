@@ -95,6 +95,7 @@ NeoBundle 'majutsushi/tagbar', {
       \ "build": {
       \   "mac": "brew install ctags",
       \ }}
+let g:tagbar_width=50
 " nmap <Leader>t :TagbarToggle<CR>
 
 " ### 編集系 ### {{{
@@ -710,7 +711,8 @@ let g:netrw_altv = 1
 let g:netrw_winsize=70
 
 " 隠しファイルを表示する
-let NERDTreeShowHidden = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeWinSize=35
 
 " Magic comment
 function! AddMagicComment()
@@ -767,3 +769,15 @@ function! MakeTabLine()
 endfunction
 
 "set tabline=%!MakeTabLine()
+
+"--- <F6>  タイムスタンプを挿入してinsertモードへ移行 ----
+function! AddTimeStamp()
+  let current_locale = v:lc_time
+  language time en_US
+  let now = strftime("%a, %d %b %Y %H:%M:%S %z")
+  execute 'language time '. current_locale
+  execute ":normal i" . now
+endfunction
+
+noremap <silent> <F6> :call AddTimeStamp()<CR><ESC>
+" noremap <silent> <F12> :call AddMagicComment()<CR><ESC>
