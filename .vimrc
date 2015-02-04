@@ -48,7 +48,11 @@ NeoBundle 'cohama/vim-smartinput-endwise'
 NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'tpope/vim-fugitive'
+
+" f{char}を便利に
 NeoBundle 'rhysd/clever-f.vim'
+let g:clever_f_across_no_line=1 " 現在行のみでf{char}
+let g:clever_f_use_migemo=1 " migemo風検索
 
 " ColorScheme{{{{
 " Hybrid ColorScheme
