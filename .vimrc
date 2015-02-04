@@ -1,19 +1,25 @@
-"-------------------------------------------------------------------------------
-" Plugin Bundles
-"-------------------------------------------------------------------------------
+ " Note: Skip initialization for vim-tiny or vim-small.
+ if !1 | finish | endif
+
 filetype off
 
 if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
   execute 'set runtimepath+=' . expand('~/.vim/bundle/neobundle.vim')
   set runtimepath+=$GOROOT/misc/vim
   exe "set runtimepath+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 endif
-call neobundle#rc(expand('~/.vim/bundle'))
 
 if !exists('loaded_matchit')
   " matchitを有効化
   runtime macros/matchit.vim
 endif
+
+" Plugin Bundles on NeoBundle {{{{
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " NeoBundle
 NeoBundle 'Shougo/neobundle.vim'
@@ -39,7 +45,6 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'cohama/vim-insert-linenr'
 NeoBundle 'cohama/vim-smartinput-endwise'
-call smartinput_endwise#define_default_rules()
 NeoBundle 'rizzatti/funcoo.vim'
 NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'tpope/vim-fugitive'
@@ -184,6 +189,13 @@ NeoBundle 'kchmck/vim-coffee-script'
 " for Python
 NeoBundle 'vim-scripts/django.vim'
 NeoBundle 'Glench/Vim-Jinja2-Syntax'
+NeoBundle 'Flake8-vim'
+NeoBundle 'hynek/vim-python-pep8-indent'
+let g:PyFlakeOnWrite = 1 " 保存時に自動でチェック
+let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
+let g:PyFlakeDefaultComplexity=10
+let g:syntastic_python_checkers = ['pyflakes', 'pep8'] " for syntastic
+let g:syntastic_python_checker_args='--ignore=E501'
 
 " for Golang
 NeoBundle 'Blackrush/vim-gocode'
@@ -221,8 +233,14 @@ NeoBundle 'xolox/vim-notes'
 NeoBundle 'xolox/vim-misc'
 let g:notes_directories = ['~/Dropbox/Notes']
 
+call neobundle#end()
+
 filetype plugin indent on
 NeoBundleCheck
+" }}}
+
+" configure for cohama/vim-smartinput-endwise
+call smartinput_endwise#define_default_rules()
 
 augroup MyAutoCmd
     autocmd!
