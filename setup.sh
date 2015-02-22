@@ -4,7 +4,7 @@
 
 DOT_FILES=( ".zshrc" ".zlogin" ".zlogout" ".zprofile" ".zshenv" ".zpreztorc" ".zshrc.func"\
   ".vimrc" ".gvimrc" ".vim" ".xvimrc" ".ghci" ".todo.cfg" ".vrapperrc" ".gitconfig" \
-  ".tmux.conf" ".gemrc" ".emacs.d" ".emacs.el" ".lessfilter" ".ctags")
+  ".tmux.conf" ".gemrc" ".emacs.d" ".emacs.el" ".lessfilter" ".ctags" ".luarocks" ".mjolnir")
 
 for file in ${DOT_FILES[@]}
 do
@@ -19,3 +19,8 @@ done
 # $ sudo ln -s /usr/share/doc/git/contrib/diff-highlight/diff-highlight /usr/local/bin/diff-highlight
 # $ sudo chmod 755 /usr/local/bin/diff-highlight
 
+
+# for mjolnir on OS X
+luarocks install mjolnir.hotkey
+luarocks install mjolnir.application
+luarocks install mjolnir.th.hints
