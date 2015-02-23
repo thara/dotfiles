@@ -66,6 +66,10 @@ NeoBundle 'desert256.vim'
 
 " Unite
 NeoBundle 'Shougo/unite.vim'
+" インサートモードで開始
+"let g:unite_enable_start_insert=1
+" ヒストリー/ヤンク機能を有効化
+"let g:unite_source_history_yank_enable=1
 " カラースキーム一覧表示
 NeoBundle 'ujihisa/unite-colorscheme'
 
@@ -94,6 +98,8 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'kana/vim-textobj-user'
 " 全体をテキストオブジェクト化
 NeoBundle 'kana/vim-textobj-entire'
+" Pythonの関数とクラスをテキストオブジェクト化 + motion追加
+NeoBundle 'bps/vim-textobj-python'
 " Rubyのブロックをテキストオブジェクト化
 NeoBundle 'rhysd/vim-textobj-ruby'
 " Exuberant ctags
@@ -198,8 +204,8 @@ NeoBundle 'hynek/vim-python-pep8-indent'
 let g:PyFlakeOnWrite = 1 " 保存時に自動でチェック
 let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
 let g:PyFlakeDefaultComplexity=10
+let g:PyFlakeDisabledMessages = 'E501,W404'
 let g:syntastic_python_checkers = ['pyflakes', 'pep8'] " for syntastic
-let g:syntastic_python_checker_args='--ignore=E501'
 
 " for Golang
 NeoBundle 'Blackrush/vim-gocode'
@@ -637,6 +643,8 @@ let g:ctrlp_use_migemo = 1
 let g:ctrlp_clear_cache_on_exit = 0   " 終了時キャッシュをクリアしない
 let g:ctrlp_mruf_max            = 500 " MRUの最大記録数
 let g:ctrlp_open_new_file       = 1   " 新規ファイル作成時にタブで開く
+
+let g:yankround_use_ctrlp=1
 
 nnoremap [ctrlp] <Nop>
 nmap     s [ctrlp]
