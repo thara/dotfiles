@@ -32,6 +32,8 @@ NeoBundle 'kien/ctrlp.vim'
 
 NeoBundle 'thinca/vim-quickrun.git'
 NeoBundle 'tpope/vim-surround'
+" surround 繰り返し
+NeoBundle 'tpope/vim-repeat'
 NeoBundle 'kana/vim-smartchr'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'vim-jp/vimdoc-ja'
@@ -526,8 +528,9 @@ nnoremap <silent> <Space>eg  :<C-u>tabedit $MYGVIMRC<CR>
 nnoremap <silent> <Space>rv :<C-u>source $MYVIMRC \| if has('gui_running') \| source $MYGVIMRC \| endif <CR>
 nnoremap <silent> <Space>rg :<C-u>source $MYGVIMRC<CR>
 
-nnoremap <silent> <Space>et :<C-u>tabedit  ~/Dropbox/work/todo/todo.txt<CR>
+nnoremap <silent> <Space>et :<C-u>tabedit  ~/Dropbox/Todo/todo.txt<CR>
 nnoremap <silent> <Space>ec :<C-u>tabedit  ~/Dropbox/work/changelog<CR>
+nnoremap <silent> <Space>em :<C-u>tabedit  ~/dotfiles/.mjolnir/init.lua<CR>
 
 " Unite
 nnoremap [unite]    <Nop>
@@ -648,7 +651,7 @@ let g:yankround_use_ctrlp=1
 
 nnoremap [ctrlp] <Nop>
 nmap     s [ctrlp]
-nnoremap sp :<C-u>CtrlP<Space>
+nnoremap sp :<C-u>CtrlP<CR>
 nnoremap sb :<C-u>CtrlPBuffer<CR>
 nnoremap sh :<C-u>CtrlPMRUFiles<CR>
 nnoremap sl :<C-u>CtrlPLine<CR>
