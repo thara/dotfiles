@@ -7,11 +7,10 @@ local fnutils = require "mjolnir.fnutils"
 local hints = require "mjolnir.th.hints"
 
 local key_app_map = {
-  D = "Dash",
+  A = "Atom",
   C = "Google Chrome",
-  O = "Opera",
   T = "iTerm",
-  S = "Slack"
+  P = "Pocket",
 }
 
 -- アプリの起動とフォーカス
@@ -28,6 +27,11 @@ local roundrobin = function(funcs)
     i = i % #funcs + 1
   end
 end
+
+-- ウインドウを中央に配置
+hotkey.bind({"ctrl"}, "8", function()
+  window.focusedwindow():movetounit({x=0.1, y=0.02, w=0.8, h=0.95})
+end)
 
 -- ウインドウを {左半分, 右半分, フル} にリサイズ
 hotkey.bind({"ctrl"}, "9", roundrobin({
@@ -48,14 +52,35 @@ hotkey.bind({"alt"}, "o", function()
   end
 end)
 
+-- ウィンドウ位置微調整(hjkl)
+hotkey.bind({"cmd", "alt", "ctrl"}, "H", function()
+  local win = window.focusedwindow()
+  local f = win:frame()
+  f.x = f.x - 10
+  win:setframe(f)
+end)
 
+hotkey.bind({"cmd", "alt", "ctrl"}, "J", function()
+  local win = window.focusedwindow()
+  local f = win:frame()
+  f.y = f.y + 10
+  win:setframe(f)
+end)
 
-hotkey.bind({"cmd", "alt", "ctrl"}, "D", function()
+hotkey.bind({"cmd", "alt", "ctrl"}, "K", function()
+  local win = window.focusedwindow()
+  local f = win:frame()
+  f.y = f.y - 10
+  win:setframe(f)
+end)
+
+hotkey.bind({"cmd", "alt", "ctrl"}, "L", function()
   local win = window.focusedwindow()
   local f = win:frame()
   f.x = f.x + 10
   win:setframe(f)
 end)
+
 
 -- Mjolnir Window Hints Module
 -- http://thume.ca/howto/2014/12/02/using-mjolnir-an-extensible-osx-window-manager/
