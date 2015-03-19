@@ -72,7 +72,6 @@ alias gc="git commit"
 alias gca="git commit -a"
 alias gcls="git config --list | grep alias"
 
-alias fab='nocorrect fab'
 alias tmux='nocorrect tmux'
 
 # z: https://github.com/rupa/z
