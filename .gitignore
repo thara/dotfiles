@@ -20,3 +20,4 @@ Session.vim
 .vim/.netrwhist
 
 .emacs.d/auto-save-list
+.luarocks/.luarocks
