@@ -215,6 +215,17 @@ NeoBundle 'Blackrush/vim-gocode'
 " for Swift
 NeoBundle 'toyamarinyon/vim-swift'
 
+" for C#
+NeoBundleLazy 'nosami/Omnisharp', {
+\   'autoload': {'filetypes': ['cs']},
+\   'build': {
+\     'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
+\     'mac': 'xbuild ~/server/OmniSharp.sln',
+\     'unix': 'xbuild ~/server/OmniSharp.sln',
+\   }
+\ }
+
+
 " tagbar
 " NeoBundle 'vim-scripts/tagbar'
 " NeoBundle 'vim-scripts/tagbar-phpctags', {
@@ -421,6 +432,7 @@ autocmd MyAutoCmd QuickFixCmdPost *grep* cwindow
 " ファイルタイプ
 autocmd MyAutoCmd FileType c setlocal tabstop=4 tw=0 sw=4 expandtab
 autocmd MyAutoCmd FileType cpp setlocal tabstop=4 tw=0 sw=4 expandtab
+autocmd MyAutoCmd FileType cs setlocal textwidth=0 tabstop=4 shiftwidth=4 noexpandtab
 autocmd MyAutoCmd FileType ruby setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType eruby setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd BufNewFile,BufRead app/*/*.rhtml setlocal ft=mason fenc=utf-8
@@ -430,7 +442,7 @@ autocmd MyAutoCmd FileType c highlight Comment ctermfg=darkcyan
 autocmd MyAutoCmd FileType cpp highlight Comment ctermfg=darkcyan
 autocmd MyAutoCmd FileType haskell setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType php setlocal tabstop=4 tw=0 sw=4 expandtab
-autocmd MyAutoCmd FileType python setlocal tabstop=4 tw=0 shiftwidth=4 expandtab softtabstop=4 
+autocmd MyAutoCmd FileType python setlocal tabstop=4 tw=0 shiftwidth=4 expandtab softtabstop=4
 autocmd MyAutoCmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd MyAutoCmd FileType python setlocal completeopt-=preview
 autocmd MyAutoCmd FileType python :inoremap # X#
