@@ -252,9 +252,17 @@ vmap gx <Plug>(openbrowser-smart-search)
 NeoBundle 'itchyny/calendar.vim'
 let g:calendar_google_calendar = 1
 
-NeoBundle 'xolox/vim-notes'
-NeoBundle 'xolox/vim-misc'
-let g:notes_directories = ['~/Dropbox/Notes']
+" Simple note
+NeoBundle 'glidenote/memolist.vim'
+nnoremap <silent> ,mn :MemoNew<CR>
+nnoremap <silent> ,mg :MemoGroup<CR>
+nnoremap <silent> ,mf :exe "CtrlP" g:memolist_path<CR><f5>
+let g:memolist_path = "~/Dropbox/Record"
+let g:memolist_memo_suffix = "md"
+
+" NeoBundle 'xolox/vim-notes'
+" NeoBundle 'xolox/vim-misc'
+" let g:notes_directories = ['~/Dropbox/Notes']
 
 call neobundle#end()
 
