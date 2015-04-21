@@ -209,6 +209,20 @@ let g:PyFlakeDefaultComplexity=10
 let g:PyFlakeDisabledMessages = 'E501,W404'
 let g:syntastic_python_checkers = ['pyflakes', 'pep8'] " for syntastic
 
+" DJANGO_SETTINGS_MODULE を自動設定
+NeoBundleLazy "lambdalisue/vim-django-support", {
+\ "autoload": {
+\   "filetypes": ["python", "python3", "djangohtml"]
+\ }}
+
+" pyenv 処理用に vim-pyenv を追加
+" Note: depends が指定されているため jedi-vim より後にロードされる
+NeoBundleLazy "lambdalisue/vim-pyenv", {
+\ "autoload": {
+\   "filetypes": ["python", "python3", "djangohtml"]
+\ }}
+
+
 " for Golang
 NeoBundle 'Blackrush/vim-gocode'
 
@@ -654,7 +668,7 @@ nnoremap <silent> <C-@> :NERDTreeFind<CR>
 " let g:NERDTreeMapJumpPrevSibling = '<C-p>'
 let NERDTreeIgnore=[
 \ 'vendor', '.bundle', '.sass-cache', 'node_modules', 'bower_components',
-\ '.git', '.*\.lock', '__pycache__', '.*.egg-info', '.idea', '.*\.pyc', '.DS_Store', '.tmp']
+\ '.git', '.*\.lock', '__pycache__', '.*.egg-info', '.idea', '.*\.pyc', '.DS_Store', '.tmp', '.python-version']
 
 " ctrlp
 let g:ctrlp_map = '<Nop>'
@@ -841,3 +855,23 @@ endfunction
 
 noremap <silent> <F6> :call AddTimeStamp()<CR><ESC>
 " noremap <silent> <F12> :call AddMagicComment()<CR><ESC>
+
+" PATHの自動更新関数
+" | 指定された path が $PATH に存在せず、ディレクトリとして存在している場合
+" | のみ $PATH に加える
+function! IncludePath(path)
+  " define delimiter depends on platform
+  if has('win16') || has('win32') || has('win64')
+    let delimiter = ";"
+  else
+    let delimiter = ":"
+  endif
+  let pathlist = split($PATH, delimiter)
+  if isdirectory(a:path) && index(pathlist, a:path) == -1
+    let $PATH=a:path.delimiter.$PATH
+  endif
+endfunction
+
+" ~/.pyenv/shims を $PATH に追加する
+" これを行わないとpythonが正しく検索されない
+:call IncludePath(expand("~/.pyenv/shims"))
