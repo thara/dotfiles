@@ -1,5 +1,3 @@
-#!/bin/bash
-
 [ ! -d ~/.zprezto ] && git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
 DOT_FILES=( ".zshrc" ".zlogin" ".zlogout" ".zprofile" ".zshenv" ".zpreztorc" ".zshrc.func"\

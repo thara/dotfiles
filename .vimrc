@@ -78,10 +78,11 @@ NeoBundle 'ujihisa/unite-colorscheme'
 " VimProc
 NeoBundle 'Shougo/vimproc', {
 \ 'build': {
-\ 'windows': 'make -f make_mingw32.mak',
-\ 'cygwin': 'make -f make_cygwin.mak',
-\ 'mac': 'make -f make_mac.mak',
-\ 'unix': 'make -f make_unix.mak',
+\   'windows': 'make -f make_mingw32.mak',
+\   'cygwin': 'make -f make_cygwin.mak',
+\   'mac': 'make -f make_mac.mak',
+\   'linux' : 'make',
+\   'unix' : 'gmake',
 \ }
 \}
 " VimShell
@@ -297,35 +298,39 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
 
+if neobundle#tap('vim-submode')
 " submode.vim {{{
-"   ウィンドウリサイズモード
-let g:submode_keep_leaving_key = 1
-let g:submode_timeout = 0
-call submode#enter_with('winsize', 'n', '', '<C-W>>', '<C-W>>')
-call submode#enter_with('winsize', 'n', '', '<C-W><', '<C-W><')
-call submode#enter_with('winsize', 'n', '', '<C-W>+', '<C-W>+')
-call submode#enter_with('winsize', 'n', '', '<C-W>-', '<C-W>-')
-call submode#map('winsize', 'n', '', '>', '<C-W>>')
-call submode#map('winsize', 'n', '', '<', '<C-W><')
-call submode#map('winsize', 'n', '', '+', '<C-W>+')
-call submode#map('winsize', 'n', '', '-', '<C-W>-')
-"   タブ移動モード
-function! s:SIDP()
-  return '<SNR>' . matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SIDP$') . '_'
-endfunction
-function! s:modulo(n, m)
-  let d = a:n * a:m < 0 ? 1 : 0
-  return a:n + (-(a:n + (0 < a:m ? d : -d)) / a:m + d) * a:m
-endfunction
-function! s:movetab(nr)
-  execute 'tabmove' s:modulo(tabpagenr() + a:nr - 1, tabpagenr('$'))
-endfunction
-let s:movetab = ':<C-u>call ' . s:SIDP() . 'movetab(%d)<CR>'
-call submode#enter_with('tabmove', 'n', '', '<Space>gt', printf(s:movetab, 1))
-call submode#enter_with('tabmove', 'n', '', '<Space>gT', printf(s:movetab, -1))
-call submode#map('tabmove', 'n', '', 'h', printf(s:movetab, -1))
-call submode#map('tabmove', 'n', '', 'l', printf(s:movetab, 1))
+  let g:submode_keep_leaving_key = 1
+  let g:submode_timeout = 0
+  let s:movetab = ':<C-u>call ' . s:SIDP() . 'movetab(%d)<CR>'
+  function neobundle#hooks.on_source(_)
+    "  ウィンドウリサイズモード
+    call submode#enter_with('winsize', 'n', '', '<C-W>>', '<C-W>>')
+    call submode#enter_with('winsize', 'n', '', '<C-W><', '<C-W><')
+    call submode#enter_with('winsize', 'n', '', '<C-W>+', '<C-W>+')
+    call submode#enter_with('winsize', 'n', '', '<C-W>-', '<C-W>-')
+    call submode#map('winsize', 'n', '', '>', '<C-W>>')
+    call submode#map('winsize', 'n', '', '<', '<C-W><')
+    call submode#map('winsize', 'n', '', '+', '<C-W>+')
+    call submode#map('winsize', 'n', '', '-', '<C-W>-')
+    "   タブ移動モード
+    function! s:SIDP()
+      return '<SNR>' . matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SIDP$') . '_'
+    endfunction
+    function! s:modulo(n, m)
+      let d = a:n * a:m < 0 ? 1 : 0
+      return a:n + (-(a:n + (0 < a:m ? d : -d)) / a:m + d) * a:m
+    endfunction
+    function! s:movetab(nr)
+      execute 'tabmove' s:modulo(tabpagenr() + a:nr - 1, tabpagenr('$'))
+    endfunction
+    call submode#enter_with('tabmove', 'n', '', '<Space>gt', printf(s:movetab, 1))
+    call submode#enter_with('tabmove', 'n', '', '<Space>gT', printf(s:movetab, -1))
+    call submode#map('tabmove', 'n', '', 'h', printf(s:movetab, -1))
+    call submode#map('tabmove', 'n', '', 'l', printf(s:movetab, 1))
+  endfunction
 " }}}
+endif
 
 " CD  : カレントディレクトリを変更する
 " CD! : 移動先のディレクトリを表示する
