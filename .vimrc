@@ -302,7 +302,6 @@ if neobundle#tap('vim-submode')
 " submode.vim {{{
   let g:submode_keep_leaving_key = 1
   let g:submode_timeout = 0
-  let s:movetab = ':<C-u>call ' . s:SIDP() . 'movetab(%d)<CR>'
   function neobundle#hooks.on_source(_)
     "  ウィンドウリサイズモード
     call submode#enter_with('winsize', 'n', '', '<C-W>>', '<C-W>>')
@@ -317,6 +316,7 @@ if neobundle#tap('vim-submode')
     function! s:SIDP()
       return '<SNR>' . matchstr(expand('<sfile>'), '<SNR>\zs\d\+\ze_SIDP$') . '_'
     endfunction
+    let s:movetab = ':<C-u>call ' . s:SIDP() . 'movetab(%d)<CR>'
     function! s:modulo(n, m)
       let d = a:n * a:m < 0 ? 1 : 0
       return a:n + (-(a:n + (0 < a:m ? d : -d)) / a:m + d) * a:m
