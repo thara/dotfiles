@@ -115,6 +115,13 @@ NeoBundle 'majutsushi/tagbar', {
 let g:tagbar_width=50
 " nmap <Leader>t :TagbarToggle<CR>
 
+" タスクリスト
+NeoBundleLazy "vim-scripts/TaskList.vim", {
+      \ "autoload": {
+      \   "mappings": ['<Plug>TaskList'],
+      \}}
+nmap <Leader>T <plug>TaskList
+
 " ### 編集系 ### {{{
 " コメント化
 NeoBundle 'tpope/vim-commentary'
@@ -201,12 +208,16 @@ NeoBundle 'kchmck/vim-coffee-script'
 " for Python
 NeoBundle 'vim-scripts/django.vim'
 NeoBundle 'Glench/Vim-Jinja2-Syntax'
+NeoBundleLazy 'hynek/vim-python-pep8-indent', {
+\ "autoload": {"insert": 1, "filetypes": ["python", "python3", "djangohtml"]} }
+
 NeoBundle 'Flake8-vim'
-NeoBundle 'hynek/vim-python-pep8-indent'
 let g:PyFlakeOnWrite = 1 " 保存時に自動でチェック
-let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
+" let g:PyFlakeCheckers = 'pep8,mccabe,pyflakes'
+let g:PyFlakeCheckers = 'pep8,pyflakes'
 let g:PyFlakeDefaultComplexity=10
 let g:PyFlakeDisabledMessages = 'E501,W404'
+let g:syntastic_python_flake8_args='--ignore=E501,W404'
 let g:syntastic_python_checkers = ['pyflakes', 'pep8'] " for syntastic
 
 " DJANGO_SETTINGS_MODULE を自動設定
@@ -216,7 +227,6 @@ NeoBundleLazy "lambdalisue/vim-django-support", {
 \ }}
 
 " pyenv 処理用に vim-pyenv を追加
-" Note: depends が指定されているため jedi-vim より後にロードされる
 NeoBundleLazy "lambdalisue/vim-pyenv", {
 \ "autoload": {
 \   "filetypes": ["python", "python3", "djangohtml"]
@@ -379,7 +389,7 @@ set clipboard& clipboard+=unnamed
 set timeout
 set timeoutlen=1000
 " キーコード待ち時間
-set ttimeoutlen=50
+set ttimeoutlen=10
 
 " 新しい行のインデントを現在行と同じに
 set autoindent
@@ -589,7 +599,7 @@ noremap <C-f> <C-e>
 noremap <C-b> <C-y>
 
 " c0hama smooth scroll
-let s:scroll_time_ms = 50
+let s:scroll_time_ms = 30
 let s:scroll_precision = 8
 function! TomochikaSmoothScroll(dir, windiv, factor)
   let cl = &cursorline
@@ -668,7 +678,7 @@ nnoremap <silent> <C-@> :NERDTreeFind<CR>
 " let g:NERDTreeMapJumpPrevSibling = '<C-p>'
 let NERDTreeIgnore=[
 \ 'vendor', '.bundle', '.sass-cache', 'node_modules', 'bower_components',
-\ '.git', '.*\.lock', '__pycache__', '.*.egg-info', '.idea', '.*\.pyc', '.DS_Store', '.tmp', '.python-version']
+\ '.git', '.*\.lock', '__pycache__', '.*.egg-info', '.idea', '.*\.pyc', '.DS_Store', '.tmp', '.python-version', '.cache']
 
 " ctrlp
 let g:ctrlp_map = '<Nop>'
@@ -874,4 +884,6 @@ endfunction
 
 " ~/.pyenv/shims を $PATH に追加する
 " これを行わないとpythonが正しく検索されない
-:call IncludePath(expand("~/.pyenv/shims"))
+" if has('vim_starting')
+"   :call IncludePath(expand("~/.pyenv/shims"))
+" endif

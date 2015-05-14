@@ -1,14 +1,12 @@
-colorscheme desert
-
-set columns=140
-set lines=55
+" colorscheme solarized
+set background=dark
 
 highlight CursorIM guibg=Purple guifg=NONE
 highlight Search guibg=DarkBlue guifg=NONE
 
 if has("gui_macvim")
-  "set gfn=Osaka-Mono:h14
-  "set gfw=Osaka-Mono:h14
+  " set gfn=Osaka-Mono:h14
+  " set gfw=Osaka-Mono:h14
   set transparency=10
   "set guioptions-=T
 elseif has("gui_mac")
