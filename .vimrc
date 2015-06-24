@@ -678,7 +678,7 @@ nnoremap <silent> <C-@> :NERDTreeFind<CR>
 " let g:NERDTreeMapJumpPrevSibling = '<C-p>'
 let NERDTreeIgnore=[
 \ 'vendor', '.bundle', '.sass-cache', 'node_modules', 'bower_components',
-\ '.git', '.*\.lock', '__pycache__', '.*.egg-info', '.idea', '.*\.pyc', '.DS_Store', '.tmp', '.python-version', '.cache']
+\ '.git', '.*\.lock', '__pycache__', '.*.egg', '.*.egg-info', '.idea', '.*.pyc', '.DS_Store', '.tmp', '.python-version', '.cache']
 
 " ctrlp
 let g:ctrlp_map = '<Nop>'
