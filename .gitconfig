@@ -52,3 +52,5 @@
   root = ~/src
 [github]
 	user = tomochikahara
+[user]
+  email = tomochikahara@gmail.com
