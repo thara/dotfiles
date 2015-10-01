@@ -1,10 +1,17 @@
+-- add non-standard homebrew directories to lua's path
+require "os"
+require "string"
+local homebrew = "/opt/homebrew"
+package.path  = package.path  .. string.format(";%s/share/lua/5.2/?.lua", homebrew)
+package.cpath = package.cpath .. string.format(";%s/lib/lua/5.2/?.so", homebrew)
+
 -- Load Extensions
 local application = require "mjolnir.application"
 local hotkey = require "mjolnir.hotkey"
 local window = require "mjolnir.window"
 local fnutils = require "mjolnir.fnutils"
 -- User packages
-local hints = require "mjolnir.th.hints"
+-- local hints = require "mjolnir.th.hints"
 
 local key_app_map = {
   A = "Atom",
@@ -37,6 +44,11 @@ end)
 hotkey.bind({"ctrl"}, "9", roundrobin({
   function() window.focusedwindow():movetounit({x=0, y=0, w=0.5, h=1}) end,
   function() window.focusedwindow():movetounit({x=0.5, y=0, w=0.5, h=1}) end,
+  function() window.focusedwindow():movetounit({x=0, y=0, w=1, h=1}) end
+}))
+
+-- ウインドウを {左半分, 右半分, フル} にリサイズ
+hotkey.bind({"ctrl"}, "0", roundrobin({
   function() window.focusedwindow():movetounit({x=0, y=0, w=1, h=1}) end
 }))
 
@@ -84,10 +96,10 @@ end)
 
 -- Mjolnir Window Hints Module
 -- http://thume.ca/howto/2014/12/02/using-mjolnir-an-extensible-osx-window-manager/
-hotkey.bind({"cmd"}, "e", hints.windowHints)
+-- hotkey.bind({"cmd"}, "e", hints.windowHints)
 
 -- This switches between windows of the focused app
-hotkey.bind({"ctrl", "cmd"}, "j", function() hints.appHints(window.focusedwindow():application()) end)
+-- hotkey.bind({"ctrl", "cmd"}, "j", function() hints.appHints(window.focusedwindow():application()) end)
 
 -- You can also use this with appfinder to switch to windows of a specific app
 -- local appfinder = require "mjolnir.cmsj.appfinder"
