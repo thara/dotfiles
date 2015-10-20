@@ -2,7 +2,7 @@
 	path = .gitconfig.local
 [core]
 	editor = vim -c \"set fenc=utf-8\"
-	excludesfile = ~/.gitignore_global
+	excludesfile = $HOME/.gitignore_global
 	quotepath = false
 	precomposeunicode = true
 [color]
@@ -31,12 +31,14 @@
 	sh = show
 	cm = commit
 	cmm = commit -m
+	cma = commit -a --amend
 	mg = merge
 	df = diff -C
 	dfs = diff -C --staged
 	dfst = diff -C --stat
-	lg = log --graph --all --decorate --oneline
 	rb = rebase
+	lg = !git --no-pager log -10 --oneline --decorate --author tomochika
+	log-graph = log --graph --all --decorate --oneline
 [tig "bind"]
     generic = g move-first-line
     generic = G move-last-line
@@ -54,3 +56,7 @@
 	user = tomochikahara
 [user]
   email = tomochikahara@gmail.com
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
