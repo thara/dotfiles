@@ -1,9 +1,10 @@
 #!/bin/bash
+ln -s $HOME/src/github.com/tomochikahara/dotfiles $HOME/dotfiles
 
 [ ! -d ~/.zprezto ] && git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
 DOT_FILES=( ".zshrc" ".zlogin" ".zlogout" ".zprofile" ".zshenv" ".zpreztorc" ".zshrc.func"\
-  ".vimrc" ".gvimrc" ".vim" ".xvimrc" ".ghci" ".todo.cfg" ".vrapperrc" ".gitconfig" \
+  ".ghci" ".todo.cfg" ".vrapperrc" ".gitconfig" \
   ".tmux.conf" ".gemrc" ".emacs.d" ".emacs.el" ".lessfilter" ".ctags" ".luarocks" ".mjolnir")
 
 for file in ${DOT_FILES[@]}

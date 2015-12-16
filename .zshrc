@@ -42,15 +42,15 @@ setopt nolistbeep
 # zaw.zsh 
 #
 # from http://yagays.github.io/blog/2013/05/20/zaw-zsh/
-# autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-# add-zsh-hook chpwd chpwd_recent_dirs
-# zstyle ':chpwd:*' recent-dirs-max 500
-# zstyle ':chpwd:*' recent-dirs-default yes
-# zstyle ':completion:*' recent-dirs-insert both
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-max 500
+zstyle ':chpwd:*' recent-dirs-default yes
+zstyle ':completion:*' recent-dirs-insert both
 
-# source ~/zaw/zaw.zsh
-# zstyle ':filter-select' case-sensitive yes
-# bindkey '^@' zaw-cdr
+source ~/zaw/zaw.zsh
+zstyle ':filter-select' case-sensitive yes
+bindkey '^@' zaw-cdr
 
 [ -f ~/.zshrc.func ] && source ~/.zshrc.func
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
