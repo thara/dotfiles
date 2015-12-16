@@ -14,6 +14,8 @@
 	grep = auto
 [push]
 	default = simple
+[rebase]
+	autosquash = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -32,13 +34,14 @@
 	cm = commit
 	cmm = commit -m
 	cma = commit -a --amend
+	cmf = commit --fixup
 	mg = merge
 	df = diff -C
 	dfs = diff -C --staged
 	dfst = diff -C --stat
 	rb = rebase
-	lg = !git --no-pager log -10 --oneline --decorate --author tomochika
-	log-graph = log --graph --all --decorate --oneline
+	lg = !git --no-pager log -10 --oneline --decorate
+	lgg = log --graph --all --decorate --oneline
 [tig "bind"]
     generic = g move-first-line
     generic = G move-last-line
