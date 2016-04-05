@@ -26,7 +26,7 @@
 	a = add
 	aa = add -A
 	co = checkout
-	st = status
+	st = status --short --branch
 	sb = show-branch
 	ft = fetch
 	br = branch
@@ -40,8 +40,14 @@
 	dfs = diff -C --staged
 	dfst = diff -C --stat
 	rb = rebase
+  l = log --pretty=format:'%C(green)%h %C(white)%<(20,trunc)%an %<(80,trunc)%s'
+  ll = log --pretty=format:'%C(red reverse)%d%Creset%C(white reverse) %h% Creset %C(green reverse) %an %Creset %C(cyan)%ar%Creset%n%C(white bold)%w(80)%s%Creset%n%n%w(80,2,2)%b' --graph --name-status
 	lg = !git --no-pager log -10 --oneline --decorate
 	lgg = log --graph --all --decorate --oneline
+	ps = push
+	psu = push -u
+	pso = push -u origin
+	pl = pull
 [tig "bind"]
     generic = g move-first-line
     generic = G move-last-line
@@ -59,7 +65,14 @@
 	user = tomochikahara
 [user]
   email = tomochikahara@gmail.com
+[commit]
+  template = ~/.gitmessage.txt
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+[ghi]
+[ghi]
+	token = !security find-internet-password -a tomochikahara -s github.com -l 'ghi token' -w
+[pr-release]
+	token = 7bc1d2584234e08c5137226d8e3718b621754677

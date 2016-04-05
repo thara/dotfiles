@@ -74,8 +74,12 @@ alias gcls="git config --list | grep alias"
 
 alias tmux='nocorrect tmux'
 
+alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`' 
+
 # z: https://github.com/rupa/z
 if which brew > /dev/null; then
     _Z_CMD=j
     source $(brew --prefix)/etc/profile.d/z.sh
 fi
+
+source /opt/homebrew/etc/bash_completion.d
