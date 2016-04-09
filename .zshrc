@@ -14,6 +14,7 @@ fi
 HISTFILE=~/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
+setopt nonomatch
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 setopt share_history
