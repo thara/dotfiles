@@ -1,0 +1,19 @@
+#!/bin/bash
+
+trap 'echo Error: $0: stopped; exit 1' ERR INT
+
+. "$DOTPATH"/etc/lib/func
+
+ERR=0
+export ERR
+
+for i in "$DOTPATH"/etc/test/*_test.sh
+do
+  bash "$i" || ERR=1
+done
+
+n_unit=$(find "$DOTPATH"/etc/test -name "*_test.sh" | xargs grep "^test_.*\(\){$" | wc -l | sed "s/ //g")
+n_file=$(find "$DOTPATH"/etc/test -name "*_test.sh" | wc -l | sed "s/ //g")
+
+echo "Files=$n_file, Tests=$n_unit"
+[ "$ERR" = 1 ] && exit 1 || exit 0

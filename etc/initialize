@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Stop script if errors occur
+trap 'echo Error: $0:$LINENO stopped; exit 1' ERR INT
+set -eu
+
+. "$DOTPATH"/etc/lib/func
+
+cd $DOTPATH
+
+for i in "$DOTPATH"/etc/macos/*.sh
+do
+    if [ -f "$i" ]; then
+        log_info "Running $(basename "$i")"
+        bash "$i"
+    else
+        continue
+    fi
+done

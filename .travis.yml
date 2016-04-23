@@ -1,0 +1,16 @@
+language: c
+os:
+  - osx
+
+env:
+  global:
+    - DOTPATH=~/.dotfiles
+
+# install:
+    # - curl -L URL | bash
+
+before_script:
+    - cd $(dotpath)
+
+script:
+    - make --silent test

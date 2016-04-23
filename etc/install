@@ -1,0 +1,43 @@
+#!/bin/bash
+set -eu
+
+GITHUB_URL=https://github.com/tomochikahara/dotfiles
+DOTPATH=~/src/github.com/tomochikahara/dotfiles
+
+. "$DOTPATH"/etc/lib/func
+
+
+download_dotfiles() {
+
+    if [ -d "$DOTPATH" ]; then
+        log_fail "$DOTPATH: already exists"
+        exit 1
+    fi
+
+    printf "Downloading dotfiles...\n"
+
+    git clone --recursive "$GITHUB_URL" "$DOTPATH"
+
+    printf "\n" && print_done "Dotfiles downloaded"
+}
+
+links_dotfiles() {
+
+    if [ ! -d $DOTPATH ]; then
+        log_fail "$DOTPATH: not found"
+        exit 1
+    fi
+
+    cd "$DOTPATH"
+    make links
+    printf "\n" && print_done "Dotfiles links"
+}
+
+init_dotfiles() {
+
+    make init
+    printf "\n" && print_done "Initialization"
+}
+
+
+download_dotfiles && links_dotfiles && init_dotfiles
