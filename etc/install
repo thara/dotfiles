@@ -74,14 +74,18 @@ links_dotfiles() {
     fi
 
     cd "$DOTPATH"
-    make links
-    printf "\n" && print_done "Dotfiles links"
+    make links && printf "\n" && print_done "Dotfiles links"
 }
 
 init_dotfiles() {
 
-    make init
-    printf "\n" && print_done "Initialization"
+    if [ -f Makefile ]; then
+        make init && printf "\n" && print_done "Initialization"
+    else
+        log_fail "Makefile: not found"
+        exit 1
+    fi
+
 }
 
 if echo "$-" | grep -q "i"; then
