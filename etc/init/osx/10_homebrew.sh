@@ -38,7 +38,8 @@ set -eu
       exit 1
   fi
 
-  brew bundle -f "$DOTPATH"/Brewfile
+  cd $DOTPATH
+  brew bundle
 
   log_pass "brew: bundle successfully"
 }
