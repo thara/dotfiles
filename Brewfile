@@ -167,6 +167,7 @@ brew 'supermomonga/splhack/macvim-kaoriya', args: ['HEAD']
 
 cask 'google-japanese-ime'
 cask 'mjolnir'
+cask 'flux'
 cask 'iterm2'
 cask 'karabiner'
 cask 'macdown'
