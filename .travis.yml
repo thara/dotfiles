@@ -6,5 +6,8 @@ env:
   global:
     - DOTPATH=~/.dotfiles
 
+install:
+    - ./etc/install
+
 script:
     - make --silent test
