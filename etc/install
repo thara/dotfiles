@@ -2,7 +2,10 @@
 set -eu
 
 GITHUB_URL=https://github.com/tomochikahara/dotfiles
-DOTPATH=~/src/github.com/tomochikahara/dotfiles
+
+if [ -z "${DOTPATH:-}" ]; then
+    DOTPATH=~/src/github.com/tomochikahara/dotfiles; export DOTPATH
+fi
 
 . "$DOTPATH"/etc/lib/func
 
