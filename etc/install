@@ -99,8 +99,25 @@ init_dotfiles() {
 
 if echo "$-" | grep -q "i"; then
     # -> source a.sh
+    VITALIZED=1
+    export VITALIZED
+
     : return
 else
-    download_dotfiles && links_dotfiles && init_dotfiles
+    # -> bash a.sh
+    if [ "$0" = "${BASH_SOURCE:-}" ]; then
+        exit
+    fi
+
+    # -> cat a.sh | bash
+    # -> bash -c "$(cat a.sh)"
+    if [ -n "${BASH_EXECUTION_STRING:-}" ] || [ -p /dev/stdin ]; then
+        # if already vitalized, skip to run dotfiles_install
+        if [ "${VITALIZED:=0}" = 1 ]; then
+            exit
+        fi
+
+        download_dotfiles && links_dotfiles && init_dotfiles
+    fi
 fi
 

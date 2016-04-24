@@ -8,7 +8,7 @@ set -eu
 
 cd $DOTPATH
 
-for i in "$DOTPATH"/etc/macos/*.sh
+for i in "$DOTPATH"/etc/init/$(get_os)/*.sh
 do
     if [ -f "$i" ]; then
         log_info "Running $(basename "$i")"
