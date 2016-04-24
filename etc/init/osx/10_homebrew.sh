@@ -11,23 +11,22 @@ set -eu
 
   if has "brew"; then
     log_pass "Homebrew: already installed"
-    exit
-  fi
-
-  if ! has "ruby"; then
-      log_fail "error: require: ruby"
-      exit 1
-  fi
-
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  if has "brew"; then
-      brew doctor
   else
-      log_fail "error: brew: failed to install"
-      exit 1
-  fi
+    if ! has "ruby"; then
+        log_fail "error: require: ruby"
+        exit 1
+    fi
 
-  log_pass "brew: installed successfully"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    if has "brew"; then
+        brew doctor
+    else
+        log_fail "error: brew: failed to install"
+        exit 1
+    fi
+
+    log_pass "brew: installed successfully"
+  fi
 }
 
 : "Homebrew bundle" && {
