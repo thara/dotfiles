@@ -7,7 +7,7 @@ if [ -z "${DOTPATH:-}" ]; then
     DOTPATH=~/src/github.com/tomochikahara/dotfiles; export DOTPATH
 fi
 
-. "$DOTPATH"/etc/lib/func
+# . "$DOTPATH"/etc/lib/func
 
 
 download_dotfiles() {
@@ -42,5 +42,10 @@ init_dotfiles() {
     printf "\n" && print_done "Initialization"
 }
 
+if echo "$-" | grep -q "i"; then
+    # -> source a.sh
+    : return
+else
+    download_dotfiles && links_dotfiles && init_dotfiles
+fi
 
-download_dotfiles && links_dotfiles && init_dotfiles
