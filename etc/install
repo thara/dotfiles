@@ -73,11 +73,7 @@ links_dotfiles() {
         exit 1
     fi
 
-    make
     cd "$DOTPATH"
-    echo "$DOTPATH"
-    ls -la
-    pwd
     make links && printf "\n" && print_done "Dotfiles links"
 }
 

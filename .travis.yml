@@ -7,7 +7,7 @@ env:
     - DOTPATH=~/.dotfiles
 
 install:
-    - ./etc/install
+    - make init
 
 script:
     - make test
