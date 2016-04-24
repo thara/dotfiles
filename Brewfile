@@ -143,9 +143,7 @@ brew 'dart-lang/dart/dart', args: ['with-dartium', 'with-content-shell']
 brew 'homebrew/completions/django-completion'
 brew 'homebrew/completions/pip-completion'
 brew 'sanemat/font/ricty'
-brew 'supermomonga/splhack/cmigemo-mk', args: ['HEAD']
-brew 'supermomonga/splhack/gettext-mk'
-brew 'supermomonga/splhack/macvim-kaoriya', args: ['HEAD']
+brew 'macvim'
 
 cask 'google-japanese-ime'
 cask 'mjolnir'
