@@ -10,4 +10,4 @@ install:
     - ./etc/install
 
 script:
-    - make --silent test
+    - make test
