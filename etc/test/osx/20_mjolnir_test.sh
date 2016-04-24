@@ -9,14 +9,12 @@ trap 'echo Error: $0: stopped; exit 1' ERR INT
 ERR=0
 export ERR
 
-test_links() {
-    cd "$DOTPATH"
-    make links >/dev/null
-    if [ $? -eq 0 ]; then
-        print_success "linking dot files"
+test_mjolnir() {
+    if bash $DOTPATH/etc/init/osx/20_mjolnir.sh; then
+        print_success "mjolnir setup"
     else
         failure "$0: $LINENO: $FUNCNAME"
     fi
 }
 
-test_links
+test_mjolnir
