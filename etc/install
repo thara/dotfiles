@@ -75,6 +75,8 @@ links_dotfiles() {
 
     make
     cd "$DOTPATH"
+    echo "$DOTPATH"
+    pwd
     make links && printf "\n" && print_done "Dotfiles links"
 }
 
