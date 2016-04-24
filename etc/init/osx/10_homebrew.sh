@@ -11,6 +11,8 @@ set -eu
 
   if has "brew"; then
     log_pass "Homebrew: already installed"
+    brew update
+    log_pass "brew: update successfully"
   else
     if ! has "ruby"; then
         log_fail "error: require: ruby"
