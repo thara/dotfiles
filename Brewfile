@@ -118,7 +118,6 @@ brew 'opam'
 brew 'pandoc'
 brew 'peco'
 brew 'pidof'
-brew 'postgresql'
 brew 'pwgen'
 brew 'pyenv'
 brew 'pyenv-virtualenv'
@@ -161,7 +160,6 @@ brew 'josegonzalez/php/php55-msgpack'
 brew 'josegonzalez/php/phpenv', args: ['HEAD']
 brew 'sanemat/font/ricty'
 brew 'supermomonga/splhack/cmigemo-mk', args: ['HEAD']
-brew 'supermomonga/splhack/ctags-objc-ja', args: ['HEAD']
 brew 'supermomonga/splhack/gettext-mk'
 brew 'supermomonga/splhack/macvim-kaoriya', args: ['HEAD']
 
