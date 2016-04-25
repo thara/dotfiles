@@ -1,0 +1,13 @@
+language: c
+os:
+  - osx
+
+env:
+  global:
+    - DOTPATH=~/.dotfiles
+
+install:
+    - make init
+
+script:
+    - make test

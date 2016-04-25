@@ -21,3 +21,9 @@ Session.vim
 
 .emacs.d/auto-save-list
 .luarocks/.luarocks
+
+# prezto
+.zlogin
+.zlogout
+.zprofile
+.zshenv

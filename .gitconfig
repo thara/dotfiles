@@ -2,7 +2,7 @@
 	path = .gitconfig.local
 [core]
 	editor = vim -c \"set fenc=utf-8\"
-	excludesfile = ~/.gitignore_global
+	excludesfile = $HOME/.gitignore_global
 	quotepath = false
 	precomposeunicode = true
 [color]
@@ -14,6 +14,8 @@
 	grep = auto
 [push]
 	default = simple
+[rebase]
+	autosquash = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -24,19 +26,30 @@
 	a = add
 	aa = add -A
 	co = checkout
-	st = status
+	st = status --short --branch
 	sb = show-branch
 	ft = fetch
 	br = branch
 	sh = show
 	cm = commit
 	cmm = commit -m
+	cma = commit -a --amend
+	cmf = commit --fixup
 	mg = merge
 	df = diff -C
 	dfs = diff -C --staged
 	dfst = diff -C --stat
-	lg = log --graph --all --decorate --oneline
 	rb = rebase
+  l = log --pretty=format:'%C(green)%h %C(white)%<(20,trunc)%an %<(80,trunc)%s'
+  ll = log --pretty=format:'%C(red reverse)%d%Creset%C(white reverse) %h% Creset %C(green reverse) %an %Creset %C(cyan)%ar%Creset%n%C(white bold)%w(80)%s%Creset%n%n%w(80,2,2)%b' --graph --name-status
+	lg = !git --no-pager log -10 --oneline --decorate
+	lgl = !git log --oneline --decorate
+	lgg = log --graph --all --decorate --oneline
+	ps = push
+	psu = push -u
+	pso = push -u origin
+	psf = push --force-with-lease
+	pl = pull
 [tig "bind"]
     generic = g move-first-line
     generic = G move-last-line
@@ -54,3 +67,14 @@
 	user = tomochikahara
 [user]
   email = tomochikahara@gmail.com
+[commit]
+  template = ~/.gitmessage.txt
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[ghi]
+[ghi]
+	token = !security find-internet-password -a tomochikahara -s github.com -l 'ghi token' -w
+[pr-release]
+	token = 7bc1d2584234e08c5137226d8e3718b621754677

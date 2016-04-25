@@ -1,0 +1,123 @@
+#!/bin/bash
+set -eu
+
+GITHUB_URL=https://github.com/tomochikahara/dotfiles
+
+if [ -z "${DOTPATH:-}" ]; then
+    DOTPATH=~/src/github.com/tomochikahara/dotfiles; export DOTPATH
+fi
+
+get_os() {
+  case "$(uname | awk '{print tolower($0)}')" in
+      *'linux'*)  echo 'linux'   ;;
+      *'darwin'*) echo 'osx'     ;;
+      *'bsd'*)    echo 'bsd'     ;;
+      *)          echo 'unknown' ;;
+  esac
+}
+
+has() {
+    which "$1" >/dev/null 2>&1
+    return $?
+}
+
+log_info() {
+  printf "$1\n"
+}
+
+log_pass() {
+  # green
+  local open="\033["
+  local close="${open}0m"
+  printf "${open}1;32m$1${close}\n"
+}
+
+log_fail() {
+  # red
+  local open="\033["
+  local close="${open}0m"
+  printf "${open}1;31m$1${close}\n"
+}
+
+print_done() {
+    printf " \033[37;1m%s\033[m...\033[32mOK\033[m\n" "✔ $*"
+}
+
+print_success() {
+    printf " \033[37;1m%s\033[m%s...\033[32mOK\033[m\n" "✔ " "$*"
+}
+
+print_error() {
+    printf " \033[31m%s\033[m\n" "✖ $*" 1>&2
+}
+
+failure() {
+    die "${1:-$FUNCNAME}"
+}
+
+die() {
+    print_error "$1" 1>&2
+    exit "${2:-1}"
+}
+
+
+download_dotfiles() {
+
+    if [ -d "$DOTPATH" ]; then
+        log_fail "$DOTPATH: already exists"
+        exit 1
+    fi
+
+    printf "Downloading dotfiles...\n"
+
+    git clone --recursive "$GITHUB_URL" "$DOTPATH"
+
+    printf "\n" && print_done "Dotfiles downloaded"
+}
+
+links_dotfiles() {
+
+    if [ ! -d $DOTPATH ]; then
+        log_fail "$DOTPATH: not found"
+        exit 1
+    fi
+
+    cd "$DOTPATH"
+    make links && printf "\n" && print_done "Dotfiles links"
+}
+
+init_dotfiles() {
+
+    if [ -f Makefile ]; then
+        make init && printf "\n" && print_done "Initialization"
+    else
+        log_fail "Makefile: not found"
+        exit 1
+    fi
+
+}
+
+if echo "$-" | grep -q "i"; then
+    # -> source a.sh
+    VITALIZED=1
+    export VITALIZED
+
+    : return
+else
+    # -> bash a.sh
+    if [ "$0" = "${BASH_SOURCE:-}" ]; then
+        exit
+    fi
+
+    # -> cat a.sh | bash
+    # -> bash -c "$(cat a.sh)"
+    if [ -n "${BASH_EXECUTION_STRING:-}" ] || [ -p /dev/stdin ]; then
+        # if already vitalized, skip to run dotfiles_install
+        if [ "${VITALIZED:=0}" = 1 ]; then
+            exit
+        fi
+
+        download_dotfiles && links_dotfiles && init_dotfiles
+    fi
+fi
+
