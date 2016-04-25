@@ -76,6 +76,8 @@ download_dotfiles() {
 }
 
 links_dotfiles() {
+    
+    printf "Linking dotfiles...\n"
 
     if [ ! -d $DOTPATH ]; then
         log_fail "$DOTPATH: not found"
@@ -87,6 +89,8 @@ links_dotfiles() {
 }
 
 init_dotfiles() {
+
+    printf "Initializing dotfiles...\n"
 
     if [ -f Makefile ]; then
         make init && printf "\n" && print_done "Initialization"
