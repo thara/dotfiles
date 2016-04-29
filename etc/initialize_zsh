@@ -3,15 +3,19 @@
 # Stop script if errors occur
 trap 'echo Error: $0:$LINENO stopped; exit 1' ERR INT
 set -eu
+setopt EXTENDED_GLOB
 
 . "$DOTPATH"/etc/lib/func
 
 
-echo "prezto install" && {
+: "prezto install" && {
 
-  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+  if [[ -d "${ZDOTDIR:-$HOME}/.zprezto" ]]; then
+    log_pass "prezto: allready installed"
+  else
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+  fi
 
-  setopt EXTENDED_GLOB
   for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
     if [ ! -f  "${ZDOTDIR:-$HOME}/.${rcfile:t}" ]; then
       ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"

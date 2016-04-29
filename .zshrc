@@ -5,6 +5,8 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+PATH=$PATH:~/bin
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -43,15 +45,15 @@ setopt nolistbeep
 # zaw.zsh 
 #
 # from http://yagays.github.io/blog/2013/05/20/zaw-zsh/
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-add-zsh-hook chpwd chpwd_recent_dirs
+# autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+# add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-max 500
 zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':completion:*' recent-dirs-insert both
 
-source ~/zaw/zaw.zsh
+# source ~/zaw/zaw.zsh
 zstyle ':filter-select' case-sensitive yes
-bindkey '^@' zaw-cdr
+# bindkey '^@' zaw-cdr
 
 [ -f ~/.zshrc.func ] && source ~/.zshrc.func
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
@@ -78,9 +80,11 @@ alias tmux='nocorrect tmux'
 alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`' 
 
 # z: https://github.com/rupa/z
-if which brew > /dev/null; then
-    _Z_CMD=j
-    source $(brew --prefix)/etc/profile.d/z.sh
-fi
+# if which brew > /dev/null; then
+#    _Z_CMD=j
+#    source $(brew --prefix)/etc/profile.d/z.sh
+# fi
 
-source /opt/homebrew/etc/bash_completion.d
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi

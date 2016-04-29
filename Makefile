@@ -13,7 +13,7 @@ init:
 	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/initialize
 
 initzsh:
-	@DOTPATH=$(DOTPATH) bash $(DOTPATH)/etc/initialize_zsh
+	@DOTPATH=$(DOTPATH) zsh $(DOTPATH)/etc/initialize_zsh
 
 update:
 	git pull origin master

@@ -78,3 +78,5 @@
 	token = !security find-internet-password -a tomochikahara -s github.com -l 'ghi token' -w
 [pr-release]
 	token = 7bc1d2584234e08c5137226d8e3718b621754677
+[credential]
+	helper = osxkeychain
