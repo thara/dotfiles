@@ -27,3 +27,5 @@ Session.vim
 .zlogout
 .zprofile
 .zshenv
+
+.vim/dein
