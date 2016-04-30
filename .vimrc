@@ -232,15 +232,47 @@ set viminfo='50,<1000,s100,\"50
 " }}}
 
 
+" ## Plugins {{{
+set runtimepath^=~/.vim/dein/repos/github.com/Shougo/dein.vim
+
+call dein#begin(expand('~/.cache/dein'))
+
+" ### Appearance {{{
+
+" Color Scheme
+call dein#add('w0ng/vim-hybrid')
+" }}}
+
+call dein#end()
+
+if dein#check_install()
+  call dein#install()
+endif
+
+filetype plugin indent on
+" }}}
+
+" ## Color {{{
+  autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermfg=black ctermbg=106
+  autocmd MyAutoCmd ColorScheme * highlight clear CursorLine
+  autocmd MyAutoCmd ColorScheme * highlight CursorLine cterm=None ctermbg=233
+  autocmd MyAutoCmd ColorScheme * highlight CursorLine gui=None guibg=DarkBlue
+  autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
+  autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
+  colorscheme hybrid
+  syntax on
+" }}}
+
+
 
 " ## Settings and keymaps {{{
 
-if has("mac")
-  " option(alt)キーをMetaキー扱いにする
-  set macmeta
-  map <ESC>h <M-h>
-  map <ESC>l <M-l>
-endif
+"if has("mac")
+"  " option(alt)キーをMetaキー扱いにする
+"  set macmeta
+"  map <ESC>h <M-h>
+"  map <ESC>l <M-l>
+"endif
 
 " Escの2回押しでハイライト消去
 noremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>

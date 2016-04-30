@@ -140,7 +140,7 @@ brew 'dart-lang/dart/dart', args: ['with-dartium', 'with-content-shell']
 brew 'homebrew/completions/django-completion'
 brew 'homebrew/completions/pip-completion'
 brew 'sanemat/font/ricty'
-brew 'macvim'
+brew 'vim', args: ['--with-lua', '--with-luajit']
 
 cask 'google-japanese-ime'
 cask 'mjolnir'
