@@ -232,40 +232,8 @@ set viminfo='50,<1000,s100,\"50
 " }}}
 
 
-" ## Plugins {{{
-set runtimepath^=~/.vim/dein/repos/github.com/Shougo/dein.vim
 
-call dein#begin(expand('~/.cache/dein'))
-
-" ### Appearance {{{
-
-" Color Scheme
-call dein#add('w0ng/vim-hybrid')
-" }}}
-
-call dein#end()
-
-if dein#check_install()
-  call dein#install()
-endif
-
-filetype plugin indent on
-" }}}
-
-" ## Color {{{
-  autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermfg=black ctermbg=106
-  autocmd MyAutoCmd ColorScheme * highlight clear CursorLine
-  autocmd MyAutoCmd ColorScheme * highlight CursorLine cterm=None ctermbg=233
-  autocmd MyAutoCmd ColorScheme * highlight CursorLine gui=None guibg=DarkBlue
-  autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
-  autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
-  colorscheme hybrid
-  syntax on
-" }}}
-
-
-
-" ## Settings and keymaps {{{
+" ## Key mapping {{{
 
 "if has("mac")
 "  " option(alt)キーをMetaキー扱いにする
@@ -350,7 +318,6 @@ nnoremap <silent> <Leader>rv :<C-u>source $MYVIMRC<CR>
 " vimgrep時に同時にquickfix-windowを開く
 autocmd MyAutoCmd QuickFixCmdPost *grep* cwindow
 
-
 " インサートモードでも誤爆を防ぐ
 inoremap <C-@> <C-[>
 
@@ -376,6 +343,221 @@ xnoremap . :normal .<CR>
 " ヤンクレジスタの値をペースト
 xnoremap <silent> <Leader>p "0p
 
+" }}}
+
+
+
+" ## Plugins {{{
+if has('vim_starting')
+  set runtimepath^=~/.vim/dein/repos/github.com/Shougo/dein.vim
+endif
+
+call dein#begin(expand('~/.cache/dein'))
+
+" Vim help written by japanese
+call dein#add('vim-jp/vimdoc-ja')
+
+" ### Appearance {{{
+" Color Scheme
+call dein#add('w0ng/vim-hybrid')
+
+" Filer
+call dein#add('scrooloose/nerdtree')
+
+" Finder
+call dein#add('kien/ctrlp.vim')
+
+" インデント可視化
+call dein#add('Yggdroot/indentLine')
+
+" インデント可視化
+call dein#add('cohama/vim-insert-linenr')
+
+" Coolなステータスライン
+call dein#add('itchyny/lightline.vim')
+" }}}
+
+
+" ### Input {{{
+" 賢い入力補助
+call dein#add('kana/vim-smartinput')
+
+" テキストオブジェクトのまわりに文字を挿入
+call dein#add('tpope/vim-surround', {
+\   'lazy': 1,
+\   'on_map': [['n', 'ys', 'ds', 'cs'], ['x', 'S']],
+\ })
+
+"コメントアウト/アンコメントのトグル
+call dein#add('tpope/vim-commentary', {
+\   'lazy': 1,
+\   'on_map': [['nx', 'gc', 'gC']],
+\ })
+
+" Alignment
+" call dein#add('junegunn/vim-easy-align')
+
+" 整形 (Vim Align them all)
+call dein#add('h1mesuke/vim-alignta', {
+\   'lazy': 1,
+\   'on_cmd': ['Alignta', 'Align'],
+\ })
+" }}}
+
+
+" ### Language {{{
+
+" for Scala
+call dein#add('derekwyatt/vim-scala', {
+\   'lazy': 1,
+\   'on_ft': 'scala',
+\ })
+
+" Pythonの関数とクラスをテキストオブジェクト化 + motion追加
+call dein#add('bps/vim-textobj-python')
+
+" Rubyのブロックをテキストオブジェクト化
+call dein#add('rhysd/vim-textobj-ruby')
+" }}}
+
+" ### Misc {{{
+" テキストオブジェクト拡張
+call dein#add('kana/vim-textobj-user')
+
+" 全体をテキストオブジェクト化
+call dein#add('kana/vim-textobj-entire')
+
+" タグページごとにカレントディレクトリを設定
+call dein#add('kana/vim-tabpagecd')
+
+" 独自モードを作成
+call dein#add('thinca/vim-submode')
+
+" ヤンク履歴
+call dein#add('LeafCage/yankround.vim')
+
+" Ag
+call dein#add('rking/ag.vim')
+
+" コードを書いて即実行
+call dein#add('thinca/vim-quickrun', {
+\   'lazy': 1,
+\   'on_map': [['n', '\r']],
+\   'on_cmd': ['QuickRun'],
+\ })
+
+" 汎用的な quickrun-hook
+call dein#add('osyo-manga/shabadou.vim', {
+\   'lazy': 1,
+\ })
+
+" QuickFix 該当箇所のハイライト
+call dein#add('cohama/vim-hier', {
+\   'lazy': 1,
+\ })
+
+" 非同期でシンタックスチェック
+call dein#add('osyo-manga/vim-watchdogs', {
+\   'lazy': 1,
+\   'depends': ['thinca/vim-quickrun', 'osyo-manga/shabadou.vim', 'cohama/vim-hier', 'dannyob/quickfixstatus'],
+\   'on_ft': [
+\     'cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'ocaml',
+\     'sh', 'zsh', 'sass', 'scss',
+\   ],
+\ })
+" }}}
+
+call dein#end()
+
+if dein#check_install()
+  call dein#install()
+endif
+
+filetype plugin indent on
+" }}}
+
+
+
+" ## Color {{{
+  autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermfg=black ctermbg=106
+  autocmd MyAutoCmd ColorScheme * highlight clear CursorLine
+  autocmd MyAutoCmd ColorScheme * highlight CursorLine cterm=None ctermbg=233
+  autocmd MyAutoCmd ColorScheme * highlight CursorLine gui=None guibg=DarkBlue
+  autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
+  autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
+
+  if dein#tap('w0ng/vim-hybrid')
+    colorscheme hybrid
+  endif
+  syntax on
+" }}}
+
+"## Plugin Setting {{{
+
+" ### Submode {{{
+if dein#tap('thinca/vim-submode')
+  let g:submode_keep_leaving_key = 1
+  let g:submode_timeout = 0
+  call submode#enter_with('winsize', 'n', '', '<C-W>>', '<C-W>>')
+  call submode#enter_with('winsize', 'n', '', '<C-W><', '<C-W><')
+  call submode#enter_with('winsize', 'n', '', '<C-W>+', '<C-W>+')
+  call submode#enter_with('winsize', 'n', '', '<C-W>-', '<C-W>-')
+  call submode#map('winsize', 'n', '', '>', '<C-W>>')
+  call submode#map('winsize', 'n', '', '<', '<C-W><')
+  call submode#map('winsize', 'n', '', '+', '<C-W>+')
+  call submode#map('winsize', 'n', '', '-', '<C-W>-')
+endif
+" }}}
+
+" ### ctrlp {{{
+if dein#tap('kien/ctrlp.vim')
+  " デフォルトのキーマップを無効化
+  let g:ctrlp_map = '<Nop>'
+  " ワーキングディレクトリに祖先のバージョン管理下にあるディレクトリを含む
+  let g:ctrlp_working_path_mode = 'ra'
+  " ctrlpの拡張
+  let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'line', 'mixed']
+  " 検索対象の最大階層数(default:40)
+  let g:ctrlp_max_depth = 10
+  " vim終了時にキャッシュクリアしない
+  let g:ctrlp_clear_cache_on_exit = 0
+  " 検索ウィンドウの設定
+  let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:18'
+  " migemoを使用
+  let g:ctrlp_use_migemo = 1
+   " MRUの最大記録数
+  let g:ctrlp_mruf_max = 500
+  " 新規ファイル作成時にタブで開く
+  let g:ctrlp_open_new_file = 1
+   " Yank履歴をCtrlpで使用可能に
+  let g:yankround_use_ctrlp = 1
+
+  nnoremap [ctrlp] <Nop>
+  nmap     <Leader>c [ctrlp]
+  nnoremap <silent> [ctrlp]p :<C-u>CtrlP<CR>
+  " ファイル、バッファ、最近使ったファイルから検索
+  nnoremap <silent> [ctrlp]s :<C-u>CtrlPMixed<CR>
+  " カレントディレクトリを基準に検索
+  nnoremap <silent> [ctrlp]f :<C-u>CtrlPCurWD<CR>
+  " カレントバッファのルートディレクトリを基準に検索
+  nnoremap <silent> [ctrlp]F :<C-u>CtrlPRoot<CR>
+  " バッファから検索
+  nnoremap <silent> [ctrlp]b :<C-u>CtrlPBuffer<CR>
+  " 最近使ったファイルから検索
+  nnoremap <silent> [ctrlp]h :<C-u>CtrlPMRUFiles<CR>
+  " UNDOヒストリを検索
+  nnoremap <silent> [ctrlp]u :<C-u>CtrlPUndo<CR>
+  " バッファ上の行を検索
+  nnoremap <silent> [ctrlp]l :<C-u>CtrlPLine<CR>
+  " ディレクトリを検索
+  nnoremap <silent> [ctrlp]d :<C-u>CtrlPDir<CR>
+  " Quickfixを検索
+  nnoremap <silent> [ctrlp]q :<C-u>CtrlPQuickfix<CR>
+  " Tagを検索
+  nnoremap <silent> [ctrlp]t :<C-u>CtrlPTag<CR>
+  " Yank履歴から検索
+  nnoremap <silent> [ctrlp]y :<C-u>CtrlPYankRound<CR>
+endif
 " }}}
 
 
@@ -412,6 +594,10 @@ noremap <silent> <C-u> :call MySmoothScroll("up", 2, 1)<CR>
 noremap <silent> <C-j> :call MySmoothScroll("down", 1, 2)<CR>
 noremap <silent> <C-k> :call MySmoothScroll("up", 1, 2)<CR>
 " }}}
+
+" }}}
+
+
 
 " ファイルタイプ別設定 {{{
 autocmd MyAutoCmd FileType c setlocal tabstop=4 tw=0 sw=4 expandtab
