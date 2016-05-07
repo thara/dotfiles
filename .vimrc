@@ -105,8 +105,6 @@ set cmdheight=2
 
 " 現在行の色を変える
 set cursorline
-let g:cursorline_flg = 1 " cursorline はウィンドウローカルなのでグローバルなフラグを用意しておく
-let g:cursorcolumn_flg = 0
 
 " ルーラー表示
 set ruler
@@ -375,6 +373,9 @@ call dein#add('cohama/vim-insert-linenr')
 
 " Coolなステータスライン
 call dein#add('itchyny/lightline.vim')
+
+" インサートモード時に行番号の色を反転
+call dein#add('cohama/vim-insert-linenr')
 " }}}
 
 
@@ -413,6 +414,9 @@ call dein#add('derekwyatt/vim-scala', {
 \   'on_ft': 'scala',
 \ })
 
+" for Golang
+call dein#add('fatih/vim-go')
+
 " Pythonの関数とクラスをテキストオブジェクト化 + motion追加
 call dein#add('bps/vim-textobj-python')
 
@@ -421,6 +425,7 @@ call dein#add('rhysd/vim-textobj-ruby')
 " }}}
 
 " ### Misc {{{
+
 " テキストオブジェクト拡張
 call dein#add('kana/vim-textobj-user')
 
@@ -472,27 +477,43 @@ call dein#end()
 if dein#check_install()
   call dein#install()
 endif
-
-filetype plugin indent on
 " }}}
 
 
 
 " ## Color {{{
-  autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermfg=black ctermbg=106
-  autocmd MyAutoCmd ColorScheme * highlight clear CursorLine
-  autocmd MyAutoCmd ColorScheme * highlight CursorLine cterm=None ctermbg=233
-  autocmd MyAutoCmd ColorScheme * highlight CursorLine gui=None guibg=DarkBlue
-  autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
-  autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
+filetype plugin indent on
 
-  if dein#tap('w0ng/vim-hybrid')
-    colorscheme hybrid
-  endif
-  syntax on
+autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermfg=black ctermbg=106
+autocmd MyAutoCmd ColorScheme * highlight clear CursorLine
+autocmd MyAutoCmd ColorScheme * highlight CursorLine cterm=None ctermbg=233 gui=None guibg=DarkBlue
+autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
+autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
+
+if dein#tap('vim-hybrid')
+  colorscheme hybrid
+endif
+
+syntax on
 " }}}
 
 "## Plugin Setting {{{
+
+" ##### NERDTree {{{
+" NERDTreeウィンドウのトグル
+nnoremap <silent> <C-e> :NERDTreeToggle<CR>
+" 開いているファイルをNERDTreeウィンドウ上でフォーカス
+nnoremap <silent> <C-@> :NERDTreeFind<CR>
+" 無視するファイル一覧
+let NERDTreeIgnore=[
+\ 'vendor', '.bundle', '.sass-cache', 'node_modules', 'bower_components',
+\ '.git', '.*\.lock', '__pycache__', '.*.egg', '.*.egg-info', '.idea',
+\ '.*.pyc', '.DS_Store', '.tmp', '.python-version', '.cache']
+" 隠しファイルを表示する
+let g:NERDTreeShowHidden = 1
+" ウィンドウの横幅
+let g:NERDTreeWinSize=35
+" }}}
 
 " ### Submode {{{
 if dein#tap('thinca/vim-submode')
@@ -617,9 +638,9 @@ autocmd MyAutoCmd FileType python setlocal smartindent cinwords=if,elif,else,for
 autocmd MyAutoCmd FileType python setlocal completeopt-=preview
 autocmd MyAutoCmd FileType python :inoremap # #
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
-autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab
 autocmd MyAutoCmd FileType swift setlocal tabstop=4 tw=0 sw=4 expandtab
-autocmd MyAutoCmd BufWritePre *.go Fmt
+autocmd MyAutoCmd BufWritePre *.go GoFmt
+autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab nolist
 " }}}
 
 " }}}
