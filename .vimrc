@@ -417,6 +417,9 @@ call dein#add('derekwyatt/vim-scala', {
 " for Golang
 call dein#add('fatih/vim-go')
 
+" for Rust lang
+call dein#add('rust-lang/rust.vim')
+
 " Pythonの関数とクラスをテキストオブジェクト化 + motion追加
 call dein#add('bps/vim-textobj-python')
 
