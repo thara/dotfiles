@@ -74,6 +74,9 @@ alias gst="git status -s -b"
 alias gc="git commit"
 alias gca="git commit -a"
 alias gcls="git config --list | grep alias"
+alias t="todo.sh"
+alias th="todo.sh shorthelp"
+alias tv="vim $HOME/Dropbox/Todo/todo.txt"
 
 alias tmux='nocorrect tmux'
 
