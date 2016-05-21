@@ -91,3 +91,7 @@ alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
+
+if [ -f /usr/local/bin/rbenv ]; then
+  eval "$(rbenv init -)"
+fi
