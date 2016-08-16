@@ -582,6 +582,10 @@ if dein#tap('kien/ctrlp.vim')
   " Yank履歴から検索
   nnoremap <silent> [ctrlp]y :<C-u>CtrlPYankRound<CR>
 endif
+
+nnoremap <Space>\ :Ag <c-r>=expand("<cword>")<cr><cr>
+nnoremap <Space>/ :Ag
+
 " }}}
 
 

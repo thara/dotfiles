@@ -12,8 +12,9 @@ mkdir -p $VIM_DIR
 
 : "Install Dein.vim" && {
   if ! [ -d "$VIM_DIR/dein" ] ; then
-    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-    sh ./installer.sh $VIM_DIR/dein
+    # Use my fork because realpath command does not found
+    curl https://raw.githubusercontent.com/tomochikahara/dein.vim/stop-using-realpath-in-installer/bin/installer.sh > installer.sh
+    bash ./installer.sh $VIM_DIR/dein
     rm ./installer.sh
   fi
 }
