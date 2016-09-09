@@ -8,13 +8,11 @@ set -eu
 
 VIM_DIR=$DOTPATH/.vim
 
-mkdir -p $VIM_DIR
+mkdir -p $VIM_DIR/autoload
 
-: "Install Dein.vim" && {
-  if ! [ -d "$VIM_DIR/dein" ] ; then
-    # Use my fork because realpath command does not found
-    curl https://raw.githubusercontent.com/tomochikahara/dein.vim/stop-using-realpath-in-installer/bin/installer.sh > installer.sh
-    bash ./installer.sh $VIM_DIR/dein
-    rm ./installer.sh
+: "Install vim-plug" && {
+  if ! [ -f "$VIM_DIR/autoload/plug.vim" ] ; then
+    curl -fLo $VIM_DIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    log_pass "vim: Install vim-plug"
   fi
 }

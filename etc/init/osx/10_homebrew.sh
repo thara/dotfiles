@@ -11,8 +11,6 @@ set -eu
 
   if has "brew"; then
     log_pass "Homebrew: already installed"
-    brew update
-    log_pass "brew: update successfully"
   else
     if ! has "ruby"; then
         log_fail "error: require: ruby"
@@ -29,17 +27,4 @@ set -eu
 
     log_pass "brew: installed successfully"
   fi
-}
-
-: "Homebrew bundle" && {
-
-  if ! brew tap Homebrew/bundle; then
-      log_fail "error: failed to tap Homebrew/bundle"
-      exit 1
-  fi
-
-  cd $DOTPATH
-  brew bundle
-
-  log_pass "brew: bundle successfully"
 }
