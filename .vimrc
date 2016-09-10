@@ -225,6 +225,8 @@ set undodir=/tmp/vim/
 " viminfoファイルの設定
 set viminfo='50,<1000,s100,\"50
 
+" 新しいウィンドウを右に開く
+set splitright
 " }}}
 
 " }}}
@@ -354,10 +356,11 @@ Plug 'vim-jp/vimdoc-ja'
 " ### Appearance {{{
 " Color Scheme
 Plug 'w0ng/vim-hybrid'
-" Filer
-Plug 'scrooloose/nerdtree'
+" Minimalist path navigator
+Plug 'justinmk/vim-dirvish'
+
 " Finder
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " インデント可視化
 Plug 'Yggdroot/indentLine'
 " インデント可視化
@@ -393,6 +396,8 @@ Plug 'rhysd/vim-textobj-ruby', { 'for': ['ruby']}
 " }}}
 
 " ### Misc {{{
+" Git
+Plug 'tpope/vim-fugitive'
 " テキストオブジェクト拡張
 Plug 'kana/vim-textobj-user'
 " 全体をテキストオブジェクト化
@@ -418,6 +423,8 @@ Plug 'thinca/vim-quickrun', { 'on': ['QuickRun']}
 \         'cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'ocaml', 'sh', 'zsh', 'sass', 'scss',
 \       ],
 \ }
+
+Plug 'glidenote/memolist.vim'
 " }}}
 
 call plug#end()
@@ -441,20 +448,27 @@ syntax on
 
 "## Plugin Setting {{{
 
-" ##### NERDTree {{{
-" NERDTreeウィンドウのトグル
-nnoremap <silent> <C-e> :NERDTreeToggle<CR>
-" 開いているファイルをNERDTreeウィンドウ上でフォーカス
-nnoremap <silent> <C-@> :NERDTreeFind<CR>
-" 無視するファイル一覧
-let NERDTreeIgnore=[
-\ 'vendor', '.bundle', '.sass-cache', 'node_modules', 'bower_components',
-\ '.git', '.*\.lock', '__pycache__', '.*.egg', '.*.egg-info', '.idea',
-\ '.*.pyc', '.DS_Store', '.tmp', '.python-version', '.cache']
-" 隠しファイルを表示する
-let g:NERDTreeShowHidden = 1
-" ウィンドウの横幅
-let g:NERDTreeWinSize=35
+" ##### dirvish.vim {{{
+nnoremap <silent> <C-e> :Dirvish<CR>
+" hidden files
+"autocmd MyAutoCmd FileType dirvish keeppatterns g@\v/(\.|__)[^\/]+/?$@d
+augroup my_dirvish_events
+  autocmd!
+  " Map t to "open in new tab".
+  autocmd FileType dirvish
+    \  nnoremap <buffer> t :call dirvish#open('tabedit', 0)<CR>
+    \ |xnoremap <buffer> t :call dirvish#open('tabedit', 0)<CR>
+
+  " Enable :Gstatus and friends.
+  autocmd FileType dirvish call fugitive#detect(@%)
+
+  " Map CTRL-R to reload the Dirvish buffer.
+  autocmd FileType dirvish nnoremap <buffer> <C-R> :<C-U>Dirvish %<CR>
+
+  " Map `gh` to hide dot-prefixed files.
+  " To "toggle" this, just press `R` to reload.
+  autocmd FileType dirvish nnoremap <buffer> gh :keeppatterns g@\v/(\.\|__)[^\/]+/?$@d<cr>
+augroup END
 " }}}
 
 " ### Submode {{{
@@ -472,7 +486,7 @@ call submode#map('winsize', 'n', '', '-', '<C-W>-')
 
 " ### ctrlp {{{
 " デフォルトのキーマップを無効化
-let g:ctrlp_map = '<Nop>'
+" let g:ctrlp_map = '<Nop>'
 " ワーキングディレクトリに祖先のバージョン管理下にあるディレクトリを含む
 let g:ctrlp_working_path_mode = 'ra'
 " ctrlpの拡張
@@ -521,6 +535,8 @@ nnoremap <silent> [ctrlp]y :<C-u>CtrlPYankRound<CR>
 nnoremap <Space>\ :Ag <c-r>=expand("<cword>")<cr><cr>
 nnoremap <Space>/ :Ag
 
+" memolist dir
+let g:memolist_path = "~/Dropbox/org/memo"
 " }}}
 
 
