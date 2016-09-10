@@ -95,3 +95,8 @@ fi
 if [ -f /usr/local/bin/rbenv ]; then
   eval "$(rbenv init -)"
 fi
+
+# http://apple.stackexchange.com/questions/3253/ctrl-o-behavior-in-terminal-app
+if [[ "$OSTYPE" =~ "darwin" ]];then
+  tty -s && stty discard undef # C-o
+fi
