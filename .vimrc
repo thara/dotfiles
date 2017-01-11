@@ -506,8 +506,13 @@ let g:ctrlp_open_new_file = 1
 " Yank履歴をCtrlpで使用可能に
 let g:yankround_use_ctrlp = 1
 
+if executable('ag')
+  let g:ctrlp_use_caching = 0
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup -g ""'
+endif
+
 nnoremap [ctrlp] <Nop>
-nmap     <Leader>c [ctrlp]
+nmap     s [ctrlp]
 nnoremap <silent> [ctrlp]p :<C-u>CtrlP<CR>
 " ファイル、バッファ、最近使ったファイルから検索
 nnoremap <silent> [ctrlp]s :<C-u>CtrlPMixed<CR>
