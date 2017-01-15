@@ -17,21 +17,22 @@ function peco_select_history() {
 zle -N peco_select_history
 bindkey '^R' peco_select_history
 
-function peco_select_directory() {
-    local tac
-    if which tac > /dev/null; then
-        tac="tac"
-    else
-        tac="tail -r"
-    fi
-    local dest=$(_z -r 2>&1 | eval $tac | peco --query "$LBUFFER" | awk '{ print $2 }')
-    if [ -n "${dest}" ]; then
-        cd ${dest}
-    fi
-    zle reset-prompt
+function peco-z-search {
+  which peco z > /dev/null
+  if [ $? -ne 0 ]; then
+    echo "Please install peco and z"
+    return 1
+  fi
+  local res=$(z | sort -rn | cut -c 12- | peco)
+  if [ -n "$res" ]; then
+    BUFFER+="cd $res"
+    zle accept-line
+  else
+    return 1
+  fi
 }
-zle -N peco_select_directory
-bindkey "^T" peco_select_directory
+zle -N peco-z-search
+bindkey '^f' peco-z-search
 
 function peco-select-repos () {
     local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
@@ -57,4 +58,4 @@ function peco-select-branch () {
     fi
 }
 zle -N peco-select-branch
-bindkey '^B' peco-select-branch
+bindkey '^K' peco-select-branch

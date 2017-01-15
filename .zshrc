@@ -42,6 +42,11 @@ setopt noautoremoveslash
 # no beep sound when complete list displayed
 setopt nolistbeep
 
+disable r
+
+# z.sh
+[ -f /usr/local/etc/profile.d/z.sh ] && . /usr/local/etc/profile.d/z.sh
+
 # zaw.zsh 
 #
 # from http://yagays.github.io/blog/2013/05/20/zaw-zsh/
