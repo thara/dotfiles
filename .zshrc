@@ -44,9 +44,6 @@ setopt nolistbeep
 
 disable r
 
-# z.sh
-[ -f /usr/local/etc/profile.d/z.sh ] && . /usr/local/etc/profile.d/z.sh
-
 # zaw.zsh 
 #
 # from http://yagays.github.io/blog/2013/05/20/zaw-zsh/
@@ -87,15 +84,13 @@ alias tmux='nocorrect tmux'
 
 alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`' 
 
-# z: https://github.com/rupa/z
-# if which brew > /dev/null; then
-#    _Z_CMD=j
-#    source $(brew --prefix)/etc/profile.d/z.sh
-# fi
-
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
+
+# z: https://github.com/rupa/z
+[ -f $(brew --prefix)/etc/profile.d/z.sh ] && . $(brew --prefix)/etc/profile.d/z.sh
+
 
 if [ -f /usr/local/bin/rbenv ]; then
   eval "$(rbenv init -)"
