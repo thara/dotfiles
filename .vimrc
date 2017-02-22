@@ -394,6 +394,8 @@ Plug 'rust-lang/rust.vim', { 'for': ['rust']}
 Plug 'bps/vim-textobj-python', { 'for': ['python']}
 " Rubyのブロックをテキストオブジェクト化
 Plug 'rhysd/vim-textobj-ruby', { 'for': ['ruby']}
+
+Plug 'elzr/vim-json', { 'for': ['json']}
 " }}}
 
 " ### Misc {{{
@@ -506,6 +508,8 @@ let g:ctrlp_mruf_max = 500
 let g:ctrlp_open_new_file = 1
 " Yank履歴をCtrlpで使用可能に
 let g:yankround_use_ctrlp = 1
+" JSONファイル表示に何も隠さない
+let g:vim_json_syntax_conceal = 0
 
 if executable('ag')
   let g:ctrlp_use_caching = 0
