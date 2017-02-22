@@ -100,3 +100,6 @@ fi
 if [[ "$OSTYPE" =~ "darwin" ]];then
   tty -s && stty discard undef # C-o
 fi
+
+export EDITOR='vim'
+[[ -s /Users/hara/.tmuxinator/scripts/tmuxinator ]] && source /Users/hara/.tmuxinator/scripts/tmuxinator
