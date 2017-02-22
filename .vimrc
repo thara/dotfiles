@@ -386,6 +386,7 @@ Plug 'h1mesuke/vim-alignta', {'on': ['Alignta', 'Align']}
 " }}}
 
 " ### Language {{{
+Plug 'toyamarinyon/vim-swift', { 'for': ['swift'] }
 Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
 Plug 'fatih/vim-go', { 'for': ['go']}
 Plug 'rust-lang/rust.vim', { 'for': ['rust']}
@@ -579,9 +580,26 @@ noremap <silent> <C-j> :call MySmoothScroll("down", 1, 2)<CR>
 noremap <silent> <C-k> :call MySmoothScroll("up", 1, 2)<CR>
 " }}}
 
+
+" ### Dvorak {{{
+let g:is_dvorak = 0
+
+function! ToggleDvorakMode()
+  if g:is_dvorak
+    let g:is_dvorak = 0
+    set keymap=
+  else
+    let g:is_dvorak = 1
+    set keymap=dvorak
+  endif
+endfunction
+
+command! ToggleDovorakMode call ToggleDvorakMode()
 " }}}
 
 
+
+" }}}
 
 " ファイルタイプ別設定 {{{
 autocmd MyAutoCmd FileType c setlocal tabstop=4 tw=0 sw=4 expandtab
