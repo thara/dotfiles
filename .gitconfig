@@ -65,11 +65,14 @@
   root = ~/src
 [github]
 	user = tomochikahara
-[user]
-  email = tomochikahara@gmail.com
 [commit]
   template = ~/.gitmessage.txt
+	gpgsign = false
 [filter "lfs"]
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+[gpg]
+	program = gpg2
+[ghi]
+	token = !security find-internet-password -a tomochikahara -s github.com -l 'ghi token' -w
