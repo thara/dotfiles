@@ -75,7 +75,7 @@ set smartcase
 set autoread
 
 " 編集中でも他のファイルを開けるようにする
-set nohidden
+set hidden
 
 " スワップファイルを作らない
 set noswapfile
@@ -162,7 +162,7 @@ set clipboard& clipboard+=unnamed
 
 " マッピングの受付時間 (<Leader> とか)
 set timeout
-set timeoutlen=1000
+set timeoutlen=2000
 
 " キーコード待ち時間
 set ttimeoutlen=10
@@ -389,7 +389,11 @@ Plug 'h1mesuke/vim-alignta', {'on': ['Alignta', 'Align']}
 Plug 'toyamarinyon/vim-swift', { 'for': ['swift'] }
 Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
 Plug 'fatih/vim-go', { 'for': ['go']}
+
 Plug 'rust-lang/rust.vim', { 'for': ['rust']}
+Plug 'racer-rust/vim-racer', { 'for': ['rust']}
+Plug 'rhysd/rust-doc.vim', { 'for': ['rust']}
+
 " Pythonの関数とクラスをテキストオブジェクト化 + motion追加
 Plug 'bps/vim-textobj-python', { 'for': ['python']}
 " Rubyのブロックをテキストオブジェクト化
@@ -428,6 +432,10 @@ Plug 'thinca/vim-quickrun', { 'on': ['QuickRun']}
 \ }
 
 Plug 'glidenote/memolist.vim'
+
+" Better JSON for vim
+Plug 'elzr/vim-json'
+let g:vim_json_syntax_conceal = 0
 " }}}
 
 call plug#end()
@@ -545,8 +553,23 @@ nnoremap <silent> [ctrlp]y :<C-u>CtrlPYankRound<CR>
 nnoremap <Space>\ :Ag <c-r>=expand("<cword>")<cr><cr>
 nnoremap <Space>/ :Ag
 
+nnoremap [Plugin]    <Nop>
+nmap     , [Plugin]
+
 " memolist dir
+
 let g:memolist_path = "~/Dropbox/org/memo"
+nmap [Plugin]mf :exe "CtrlP" g:memolist_path<cr><f5>
+nmap [Plugin]mn :MemoNew<cr>
+nmap [Plugin]mg :MemoGrep<cr>
+
+" Rust
+let g:rustfmt_autosave = 1
+let g:rustfmt_command = expand('~/.cargo/bin/rustfmt')
+let g:racer_cmd = expand("~/.cargo/bin/racer")
+let g:racer_experimental_completer = 1
+let g:rust_doc#open_cmd = 'open'
+
 " }}}
 
 
@@ -626,6 +649,11 @@ autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType swift setlocal tabstop=4 tw=0 sw=4 expandtab
 autocmd MyAutoCmd BufWritePre *.go GoFmt
 autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab nolist
+
+autocmd MyAutoCmd FileType rust nmap gd <Plug>(rust-def)
+autocmd MyAutoCmd FileType rust nmap gs <Plug>(rust-def-split)
+autocmd MyAutoCmd FileType rust nmap gx <Plug>(rust-def-vertical)
+autocmd MyAutoCmd FileType rust nmap <leader>gd <Plug>(rust-doc)
 " }}}
 
 " }}}
