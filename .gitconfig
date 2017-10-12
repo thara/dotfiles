@@ -64,7 +64,9 @@
 [ghq]
   root = ~/src
 [github]
-	user = tomochikahara
+	user = thara
+[user]
+  email = tomochikahara@gmail.com
 [commit]
   template = ~/.gitmessage.txt
 	gpgsign = false
@@ -76,3 +78,5 @@
 	program = gpg2
 [ghi]
 	token = !security find-internet-password -a tomochikahara -s github.com -l 'ghi token' -w
+[credential]
+	helper = osxkeychain

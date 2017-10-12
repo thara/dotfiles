@@ -17,7 +17,6 @@ local key_app_map = {
   A = "Atom",
   C = "Google Chrome",
   T = "iTerm",
-  P = "Pocket",
 }
 
 -- アプリの起動とフォーカス
