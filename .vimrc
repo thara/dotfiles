@@ -149,6 +149,9 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
 " 補完で preview しない
 set completeopt-=preview
 
+" 構文アイテムを検索する桁数の最大値
+set synmaxcol=150
+
 " }}}
 
 
@@ -431,8 +434,6 @@ Plug 'thinca/vim-quickrun', { 'on': ['QuickRun']}
 \       ],
 \ }
 
-Plug 'glidenote/memolist.vim'
-
 " Better JSON for vim
 Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
@@ -460,6 +461,7 @@ syntax on
 "## Plugin Setting {{{
 
 " ##### dirvish.vim {{{
+let g:dirvish_mode = ':sort r /[^\/]$/'
 nnoremap <silent> <C-e> :Dirvish<CR>
 " hidden files
 "autocmd MyAutoCmd FileType dirvish keeppatterns g@\v/(\.|__)[^\/]+/?$@d
@@ -555,13 +557,6 @@ nnoremap <Space>/ :Ag
 
 nnoremap [Plugin]    <Nop>
 nmap     , [Plugin]
-
-" memolist dir
-
-let g:memolist_path = "~/Dropbox/org/memo"
-nmap [Plugin]mf :exe "CtrlP" g:memolist_path<cr><f5>
-nmap [Plugin]mn :MemoNew<cr>
-nmap [Plugin]mg :MemoGrep<cr>
 
 " Rust
 let g:rustfmt_autosave = 1
