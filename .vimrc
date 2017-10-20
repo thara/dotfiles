@@ -542,7 +542,7 @@ nnoremap <silent> [ctrlp]h :<C-u>CtrlPMRUFiles<CR>
 " UNDOヒストリを検索
 nnoremap <silent> [ctrlp]u :<C-u>CtrlPUndo<CR>
 " バッファ上の行を検索
-nnoremap <silent> [ctrlp]l :<C-u>CtrlPLine<CR>
+nnoremap <silent> [ctrlp]l :<C-u>CtrlPLine %<CR>
 " ディレクトリを検索
 nnoremap <silent> [ctrlp]d :<C-u>CtrlPDir<CR>
 " Quickfixを検索
