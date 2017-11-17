@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Stop script if errors occur
+trap 'echo Error: $0:$LINENO stopped; exit 1' ERR INT
+set -eu
+
+. "$DOTFILES_ROOT/script/functions"
+
+
+if [ -n "$(get_os)" ]; then
+  f="$DOTFILES_ROOT"/script/init_"$(get_os)"
+  if [ -f "$f" ]; then
+    bash "$f"
+  fi
+fi

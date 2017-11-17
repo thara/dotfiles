@@ -8,8 +8,8 @@ list:
 links:
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 
-install:
-	@DOTFILES_ROOT=$(PWD) bash $(PWD)/script/install
+init:
+	@DOTFILES_ROOT=$(PWD) bash $(PWD)/script/init
 
 initzsh:
 	@DOTFILES_ROOT=$(PWD) zsh $(PWD)/script/init_zsh
