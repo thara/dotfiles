@@ -1,4 +1,4 @@
-CANDIDATES := $(wildcard .??*) bin .vim
+CANDIDATES := $(wildcard .??*) .vim
 EXCLUSIONS := .DS_Store .git .gitignore .gitmodules .travis.yml
 DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
 
@@ -8,18 +8,15 @@ list:
 links:
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 
-init:
-	@DOTPATH=$(PWD) bash $(PWD)/etc/initialize
+install:
+	@DOTFILES_ROOT=$(PWD) bash $(PWD)/script/install
 
 initzsh:
-	@DOTPATH=$(PWD) zsh $(PWD)/etc/initialize_zsh
-
-update:
-	git pull origin master
+	@DOTFILES_ROOT=$(PWD) zsh $(PWD)/script/init_zsh
 
 test:
-	@DOTPATH=$(PWD) bash $(PWD)/etc/runtest
+	@DOTFILES_ROOT=$(PWD) bash $(PWD)/script/runtest
 
 clean:
 	@echo 'Remove dotfiles in home directory...'
-	@-$(foreach val, $(DOTFILES), rm -vrf $(HOME)/$(val);)
+	@-$(foreach val, $(DOTFILES_ROOT), rm -vrf $(HOME)/$(val);)

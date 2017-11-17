@@ -1,0 +1,57 @@
+#!/bin/bash
+set -eu
+
+get_os() {
+  case "$(uname | awk '{print tolower($0)}')" in
+      *'linux'*)  echo 'linux'   ;;
+      *'darwin'*) echo 'osx'     ;;
+      *'bsd'*)    echo 'bsd'     ;;
+      *)          echo 'unknown' ;;
+  esac
+}
+
+# Returns true if executable $1 exists in $PATH
+is_exists() {
+    which "$1" >/dev/null 2>&1
+    return $?
+}
+
+log_info() {
+  printf "$1\n"
+}
+
+log_pass() {
+  # green
+  local open="\033["
+  local close="${open}0m"
+  printf "${open}1;32m$1${close}\n"
+}
+
+log_fail() {
+  # red
+  local open="\033["
+  local close="${open}0m"
+  printf "${open}1;31m$1${close}\n"
+}
+
+print_done() {
+    printf " \033[37;1m%s\033[m...\033[32mOK\033[m\n" "✔ $*"
+}
+
+print_success() {
+    printf " \033[37;1m%s\033[m%s...\033[32mOK\033[m\n" "✔ " "$*"
+}
+
+print_error() {
+    printf " \033[31m%s\033[m\n" "✖ $*" 1>&2
+}
+
+failure() {
+    die "${1:-$FUNCNAME}"
+}
+
+die() {
+    print_error "$1" 1>&2
+    exit "${2:-1}"
+}
+

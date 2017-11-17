@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Stop script if errors occur
+trap 'echo Error: $0:$LINENO stopped; exit 1' ERR INT
+set -eu
+
+. "$DOTFILES_ROOT/script/functions"
+
+ERR=0
+export ERR
+
+test_prezto() {
+  if [[ -d "$HOME/.zprezto" ]]; then
+    print_success "prezto installed"
+  else
+    failure "$0: $LINENO: $FUNCNAME"
+  fi
+}
+
+test_homebrew() {
+  if is_exists "brew"; then
+    print_success "homebrew installed"
+  else
+    failure "$0: $LINENO: $FUNCNAME"
+  fi
+}
+
+
+test_mjolnir() {
+  luarocks list | grep mjolnir
+  if [ $? -eq 0 ]; then
+    print_success "mjolnir setup"
+  else
+    failure "$0: $LINENO: $FUNCNAME"
+  fi
+}
+
+test_prezto && test_homebrew && test_mjolnir
