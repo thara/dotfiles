@@ -7,7 +7,7 @@ env:
     - DOTPATH=~/.dotfiles
 
 install:
-    - make install
+    - make init
     - make initzsh
 
 script:
