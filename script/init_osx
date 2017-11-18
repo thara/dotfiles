@@ -33,6 +33,9 @@ set -eu
 
 : "Hombrew setup" && {
 
+  export HOMEBREW_NO_AUTO_UPDATE=1
+
+  brew analytics off
   brew update  # https://github.com/travis-ci/travis-ci/issues/8552#issuecomment-335430374
 
   brew list rename &>/dev/null || brew install rename
@@ -42,13 +45,17 @@ set -eu
   brew list zsh-completions &>/dev/null || brew install zsh-completions
   brew list the_silver_searcher &>/dev/null || brew install the_silver_searcher
   brew list reattach-to-user-namespace &>/dev/null || brew install reattach-to-user-namespace
+  brew list rlwrap &>/dev/null || brew install rlwrap
 
   brew list git &>/dev/null || brew install git
   brew list git-now &>/dev/null || brew install git-now
   brew list tig &>/dev/null || brew install tig --with-docs
   brew list tmux &>/dev/null || brew install tmux
-  brew list vim &>/dev/null || brew install vim --with-lua --with-luajit
-  brew list rlwrap &>/dev/null || brew install rlwrap
+
+  # https://github.com/Homebrew/homebrew-core/issues/1165
+  # brew list pyenv &>/dev/null || brew install pyenv
+  # pyenv global system
+  # brew list vim &>/dev/null || brew install vim --with-python --with-lua --with-luajit --with-cscope --with-ruby --with-luajit --with-perl
 
   brwe tap caskroom/cask
   brew cask install google-japanese-ime
@@ -65,7 +72,6 @@ set -eu
   brew cask install google-drive
   brew cask install font-myrica
   brew cask install font-myricam
-
 }
 
 
