@@ -69,9 +69,10 @@ set -eu
   brew cask install google-chrome
   brew cask install firefox
   brew cask install dropbox
-  brew cask install google-drive
-  brew cask install font-myrica
-  brew cask install font-myricam
+ # brew cask install google-drive
+
+  brew tap caskroom/fonts
+  brew cask install font-myrica font-myricam
 }
 
 
