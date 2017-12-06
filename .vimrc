@@ -164,8 +164,7 @@ set backspace=indent,eol,start
 set clipboard& clipboard+=unnamed
 
 " マッピングの受付時間 (<Leader> とか)
-set timeout
-set timeoutlen=2000
+set timeout timeoutlen=3000 ttimeoutlen=100
 
 " キーコード待ち時間
 set ttimeoutlen=10
@@ -437,6 +436,17 @@ Plug 'thinca/vim-quickrun', { 'on': ['QuickRun']}
 " Better JSON for vim
 Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
+
+Plug 'fuenor/qfixhowm'
+let QFixHowm_Key = 'g'
+let howm_dir           = '~/howm'
+let howm_filename      = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
+let howm_fileencoding  = 'utf-8'
+let howm_fileformat    = 'unix'
+let QFixWin_EnableMode = 1
+let QFixHowm_FileType = 'markdown'
+let QFixHowm_Title = '#'
+
 " }}}
 
 call plug#end()
