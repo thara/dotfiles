@@ -57,6 +57,11 @@ set -eu
   # pyenv global system
   # brew list vim &>/dev/null || brew install vim --with-python --with-lua --with-luajit --with-cscope --with-ruby --with-luajit --with-perl
 
+  # https://github.com/sdegutis/mjolnir
+  brew install lua
+  mkdir -p /usr/local/etc/luarocks52
+  echo 'rocks_servers = { "http://rocks.moonscript.org" }' >> /usr/local/etc/luarocks52/config-5.2.lua
+
   brew tap caskroom/cask
   brew cask install google-japanese-ime
   brew cask install mjolnir
@@ -83,16 +88,13 @@ set -eu
       exit 1
   fi
 
-  luarocks list | grep mjolnir
-  if [ $? -eq 1 ]; then
-    luarocks install mjolnir.hotkey
-    luarocks install mjolnir.application
-    luarocks install mjolnir.th.hints
-    luarocks install mjolnir.fnutils
-    luarocks install mjolnir.geometry
-    luarocks install mjolnir.screen
-    luarocks install mjolnir.keycodes
-  fi
+  luarocks install mjolnir.hotkey
+  luarocks install mjolnir.application
+  luarocks install mjolnir.th.hints
+  luarocks install mjolnir.fnutils
+  luarocks install mjolnir.geometry
+  luarocks install mjolnir.screen
+  luarocks install mjolnir.keycodes
 }
 
 
