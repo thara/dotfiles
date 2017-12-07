@@ -388,6 +388,8 @@ Plug 'h1mesuke/vim-alignta', {'on': ['Alignta', 'Align']}
 " }}}
 
 " ### Language {{{
+Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
+
 Plug 'toyamarinyon/vim-swift', { 'for': ['swift'] }
 Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
 Plug 'fatih/vim-go', { 'for': ['go']}
