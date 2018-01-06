@@ -440,14 +440,22 @@ Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 
 Plug 'fuenor/qfixhowm'
-let QFixHowm_Key = 'g'
-let howm_dir           = '~/howm'
-let howm_filename      = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
-let howm_fileencoding  = 'utf-8'
-let howm_fileformat    = 'unix'
-let QFixWin_EnableMode = 1
-let QFixHowm_FileType = 'markdown'
-let QFixHowm_Title = '#'
+let g:QFixHowm_Key = 'g'
+let g:howm_dir           = '~/Dropbox/howm'
+let g:howm_filename      = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
+let g:howm_fileencoding  = 'utf-8'
+let g:howm_fileformat    = 'unix'
+let g:QFixWin_EnableMode = 1
+let g:QFixHowm_FileType = 'markdown'
+let g:QFixHowm_Title = '#'
+let g:QFixHowm_Wiki = 1
+let g:QFixHowm_WikiDir = 'wiki'
+let g:QFixHowm_UserSwActionLock = ['[ ]', '[:draft]', '[:work]', '[:private]']
+let g:QFixHowm_Template = [
+  \"# %TAG%",
+  \""
+\]
+let QFixHowm_MenuDir = 'menu'
 
 " }}}
 
