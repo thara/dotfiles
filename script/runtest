@@ -7,7 +7,7 @@ trap 'echo Error: $0: stopped; exit 1' ERR INT
 ERR=0
 export ERR
 
-for i in "$DOTFILES_ROOT"/script/tests/*_test
+for i in $( ls "$DOTFILES_ROOT"/script/tests | grep *_test )
 do
   bash "$i" || ERR=1
 done
