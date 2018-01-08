@@ -4,7 +4,7 @@ set -eu
 GITHUB_URL=https://github.com/thara/dotfiles
 
 if [ -z "${DOTFILES_ROOT:-}" ]; then
-  DOTFILES_ROOT=~/src/github.com/thara/dotfiles; export DOTFILES_ROOT
+  DOTFILES_ROOT=$HOME/src/github.com/thara/dotfiles; export DOTFILES_ROOT
 fi
 
 print_done() {
@@ -44,6 +44,20 @@ download_dotfiles() {
 }
 
 
+run_make() {
+
+    printf "Run Make...\n"
+
+    if [ ! -d $DOTFILES_ROOT ]; then
+        log_fail "$DOTFILES_ROOT: not found"
+        exit 1
+    fi
+
+    cd "$DOTFILES_ROOT"
+    make init && make initzsh && printf "\n" && print_done "Dotfiles links"
+}
+
+
 links_dotfiles() {
 
     printf "Linking dotfiles...\n"
@@ -58,4 +72,4 @@ links_dotfiles() {
 }
 
 
-download_dotfiles && links_dotfiles
+download_dotfiles && run_make && links_dotfiles
