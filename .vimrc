@@ -122,7 +122,7 @@ set listchars=tab:>.,trail:_,extends:>,precedes:<
 " 行番号を表示 (相対)
 set number relativenumber
 
-" 最低でも上下に表示する行数
+" タイプライタースクロール
 set scrolloff=5
 
 " 入力したコマンドを画面下に表示
@@ -324,11 +324,11 @@ autocmd MyAutoCmd QuickFixCmdPost *grep* cwindow
 inoremap <C-@> <C-[>
 
 " Emacs風
-inoremap <C-b> <Left>
-inoremap <C-f> <Right>
-inoremap <C-e> <End>
-inoremap <C-a> <Home>
-inoremap <C-d> <Del>
+inoremap <silent> <C-b> <Left>
+inoremap <silent> <C-f> <Right>
+inoremap <silent> <C-e> <End>
+inoremap <silent> <C-a> <Home>
+inoremap <silent> <C-d> <Del>
 
 " コマンドラインモードでもEmacs風
 cnoremap <C-a> <Home>
