@@ -5,6 +5,7 @@
 	excludesfile = $HOME/.gitignore_global
 	quotepath = false
 	precomposeunicode = true
+  ignorecase = false
 [color]
 	ui = auto
 	status = auto
@@ -20,7 +21,7 @@
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [alias]
 	a = add
@@ -66,9 +67,9 @@
 [github]
 	user = thara
 [user]
-  email = tomochikahara@gmail.com
+  email = git@thara.jp
 [commit]
-  template = ~/.gitmessage.txt
+	template = ~/.gitmessage.txt
 	gpgsign = false
 [filter "lfs"]
 	required = true
