@@ -536,7 +536,7 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>330</string>
+		<string>315</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
@@ -554,17 +554,17 @@
 	<key>NSWindow Frame Preferences</key>
 	<string>141 417 606 456 0 0 1440 877 </string>
 	<key>NSWindow Frame ProfilesPanel</key>
-	<string>525 459 735 382 0 0 1920 1057 </string>
+	<string>419 469 735 382 0 0 1920 1057 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>659 660 400 129 0 0 1680 1027 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>532 476 620 392 0 0 1680 1027 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
-	<string>269 139 606 456 0 0 1280 777 </string>
+	<string>524 265 606 469 0 0 1920 1057 </string>
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>570 337 796 473 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>4 0 1676 1027 0 0 1680 1027 </string>
+	<string>4 4 1897 1053 0 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>4 21 910 756 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -4422,7 +4422,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-11-24T01:41:24Z</date>
+	<date>2018-01-24T04:04:19Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -4467,10 +4467,12 @@
 	<string> </string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.1.5.beta.1</string>
+	<string>3.1.5.beta.2</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
