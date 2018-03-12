@@ -93,7 +93,7 @@ fi
 
 
 if [ -f /usr/local/bin/rbenv ]; then
-  eval "$(rbenv init -)"
+  eval "$(rbenv init --no-rehash -)"
 fi
 
 # http://apple.stackexchange.com/questions/3253/ctrl-o-behavior-in-terminal-app
@@ -106,3 +106,4 @@ export EDITOR='vim'
 
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
+export PATH="/opt/homebrew/bin:$PATH"
