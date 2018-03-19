@@ -84,17 +84,23 @@ alias tmux='nocorrect tmux'
 
 alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`' 
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
+if exists "brew"; then
+  homebrew_prefix=$(brew --prefix)
+else
+  homebrew_prefix="/usr/local"
+fi
+
+if [ -f $homebrew_prefix/etc/bash_completion ]; then
+  . $homebrew_prefix/etc/bash_completion
 fi
 
 # z: https://github.com/rupa/z
-[ -f $(brew --prefix)/etc/profile.d/z.sh ] && . $(brew --prefix)/etc/profile.d/z.sh
+[ -f $homebrew_prefix/etc/profile.d/z.sh ] && . $homebrew_prefix/etc/profile.d/z.sh
 
 
-if [ -f /usr/local/bin/rbenv ]; then
-  eval "$(rbenv init --no-rehash -)"
-fi
+# if [ -f /usr/local/bin/rbenv ]; then
+#   eval "$(rbenv init --no-rehash -)"
+# fi
 
 # http://apple.stackexchange.com/questions/3253/ctrl-o-behavior-in-terminal-app
 if [[ "$OSTYPE" =~ "darwin" ]];then
