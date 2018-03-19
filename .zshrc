@@ -113,3 +113,5 @@ export EDITOR='vim'
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 export PATH="/opt/homebrew/bin:$PATH"
+
+export RUST_BACKTRACE=1
