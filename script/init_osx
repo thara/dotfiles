@@ -52,6 +52,9 @@ set -eu
   brew list tig &>/dev/null || brew install tig --with-docs
   brew list tmux &>/dev/null || brew install tmux
 
+  brew list ghq &>/dev/null || brew install ghq
+  brew list peco &>/dev/null || brew install peco
+
   # https://github.com/Homebrew/homebrew-core/issues/1165
   # brew list pyenv &>/dev/null || brew install pyenv
   # pyenv global system
