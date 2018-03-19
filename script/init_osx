@@ -65,16 +65,25 @@ set -eu
   brew tap caskroom/cask
   brew cask install google-japanese-ime
   brew cask install mjolnir
-  brew cask install flux
   brew cask install iterm2
+  brew cask install macvim
   brew cask install macdown
-  brew cask install appcleaner
+  #brew cask install appcleaner  # Error: Download failed on Cask 'appcleaner' with message: Download failed: https://www.freemacsoft.net/downloads/AppCleaner_3.4.zip
+  brew cask install omnidisksweeper
+  brew cask install slack
   brew cask install virtualbox
   brew cask install vagrant
   brew cask install google-chrome
-  brew cask install firefox
   brew cask install dropbox
- # brew cask install google-drive
+  brew cask install atom
+  brew cask install visual-studio-code
+  brew cask install google-cloud-sdk
+  brew cask install karabiner-elements
+  brew cask install google-backup-and-sync
+  brew cask install handshaker  # Android device manager
+  brew cask install github
+  brew cask install kindle
+  brew cask install sequel-pro
 
   brew tap caskroom/fonts
   brew cask install font-myrica font-myricam
