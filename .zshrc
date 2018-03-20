@@ -58,6 +58,15 @@ zstyle ':filter-select' case-sensitive yes
 # bindkey '^@' zaw-cdr
 
 [ -f ~/.zshrc.func ] && source ~/.zshrc.func
+
+if [ -n "$(get_os)" ]; then
+  f="$HOME/.zshrc.$(get_os)"
+  if [ -f "$f" ]; then
+    echo "LOADED"
+    source "$f"
+  fi
+fi
+
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 ## Command aliases
@@ -84,34 +93,13 @@ alias tmux='nocorrect tmux'
 
 alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`' 
 
-if exists "brew"; then
-  homebrew_prefix=$(brew --prefix)
-else
-  homebrew_prefix="/usr/local"
-fi
-
-if [ -f $homebrew_prefix/etc/bash_completion ]; then
-  . $homebrew_prefix/etc/bash_completion
-fi
-
-# z: https://github.com/rupa/z
-[ -f $homebrew_prefix/etc/profile.d/z.sh ] && . $homebrew_prefix/etc/profile.d/z.sh
-
-
 # if [ -f /usr/local/bin/rbenv ]; then
 #   eval "$(rbenv init --no-rehash -)"
 # fi
 
-# http://apple.stackexchange.com/questions/3253/ctrl-o-behavior-in-terminal-app
-if [[ "$OSTYPE" =~ "darwin" ]];then
-  tty -s && stty discard undef # C-o
-fi
-
 export EDITOR='vim'
 #[[ -s /Users/hara/.tmuxinator/scripts/tmuxinator ]] && source /Users/hara/.tmuxinator/scripts/tmuxinator
 
-export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_NO_AUTO_UPDATE=1
-export PATH="/opt/homebrew/bin:$PATH"
+export PATH=$HOME/bin:$PATH
 
 export RUST_BACKTRACE=1
