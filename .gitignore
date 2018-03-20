@@ -21,6 +21,8 @@ Session.vim
 
 .emacs.d/auto-save-list
 .luarocks/.luarocks
+.luarocks/lib
+.luarocks/share
 
 # prezto
 .zlogin

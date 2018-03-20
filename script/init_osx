@@ -100,13 +100,13 @@ set -eu
       exit 1
   fi
 
-  luarocks install mjolnir.hotkey
-  luarocks install mjolnir.application
-  luarocks install mjolnir.th.hints
-  luarocks install mjolnir.fnutils
-  luarocks install mjolnir.geometry
-  luarocks install mjolnir.screen
-  luarocks install mjolnir.keycodes
+  luarocks install --local mjolnir.hotkey
+  luarocks install --local mjolnir.application
+  luarocks install --local mjolnir.th.hints
+  luarocks install --local mjolnir.fnutils
+  luarocks install --local mjolnir.geometry
+  luarocks install --local mjolnir.screen
+  luarocks install --local mjolnir.keycodes
 }
 
 

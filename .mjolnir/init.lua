@@ -1,9 +1,9 @@
 -- add non-standard homebrew directories to lua's path
 require "os"
 require "string"
-local homebrew = "/opt/homebrew"
-package.path  = package.path  .. string.format(";%s/share/lua/5.2/?.lua", homebrew)
-package.cpath = package.cpath .. string.format(";%s/lib/lua/5.2/?.so", homebrew)
+local homedir = os.getenv("HOME")
+package.path  = package.path  .. string.format(";%s/.luarocks/share/lua/5.2/?.lua", homedir)
+package.cpath = package.cpath .. string.format(";%s/.luarocks/lib/lua/5.2/?.so", homedir)
 
 -- Load Extensions
 local application = require "mjolnir.application"
