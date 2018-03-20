@@ -62,7 +62,6 @@ zstyle ':filter-select' case-sensitive yes
 if [ -n "$(get_os)" ]; then
   f="$HOME/.zshrc.$(get_os)"
   if [ -f "$f" ]; then
-    echo "LOADED"
     source "$f"
   fi
 fi
