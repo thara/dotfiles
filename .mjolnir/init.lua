@@ -2,8 +2,10 @@
 require "os"
 require "string"
 local homedir = os.getenv("HOME")
-package.path  = package.path  .. string.format(";%s/.luarocks/share/lua/5.2/?.lua", homedir)
-package.cpath = package.cpath .. string.format(";%s/.luarocks/lib/lua/5.2/?.so", homedir)
+local version = _VERSION:match("%d+%.%d+")
+package.path  = package.path  .. string.format(";%s/.luarocks/share/lua/%s/?.lua", homedir, version)
+package.path  = package.path  .. string.format(";%s/.luarocks/share/lua/%s/?/init.lua", homedir, version)
+package.cpath = package.cpath .. string.format(";%s/.luarocks/lib/lua/%s/?.so", homedir, version)
 
 -- Load Extensions
 local application = require "mjolnir.application"
