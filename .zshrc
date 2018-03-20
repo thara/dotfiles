@@ -4,8 +4,7 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
-
-PATH=$PATH:~/bin
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -98,7 +97,5 @@ alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s
 
 export EDITOR='vim'
 #[[ -s /Users/hara/.tmuxinator/scripts/tmuxinator ]] && source /Users/hara/.tmuxinator/scripts/tmuxinator
-
-export PATH=$HOME/bin:$PATH
 
 export RUST_BACKTRACE=1

@@ -1,7 +1,9 @@
+export PATH="/usr/homebrew/bin:/opt/homebrew/bin:$PATH"
+
 if exists "brew"; then
   homebrew_prefix=$(brew --prefix)
 else
-  homebrew_prefix="/usr/local"
+  homebrew_prefix="/usr/homebrew"
 fi
 
 if [ -f $homebrew_prefix/etc/bash_completion ]; then
@@ -16,7 +18,7 @@ tty -s && stty discard undef # C-o
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 
-export PATH="$homebrew_prefix/bin:$homebrew_prefix/sbin:/usr/local/bin:$PATH"
+export PATH="$homebrew_prefix/sbin:$PATH"
 export PATH=$PATH:$homebrew_prefix/opt/go/libexec/bin
 export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -24,7 +26,7 @@ export PATH="/Applications/MacVim.app/Contents/MacOS:${PATH}"
 alias vim='env_LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vi='vim'
 
-source $homebrew_prefix/etc/bash_completion.d
+[ -f $homebrew_prefix/etc/bash_completion.d ] && source $homebrew_prefix/etc/bash_completion.d
 
 autoload -Uz compinit
 compinit -u
