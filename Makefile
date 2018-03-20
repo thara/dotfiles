@@ -7,6 +7,7 @@ list:
 
 links:
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
+	@ln -sfnv src/github.com/thara/dotfiles $(HOME)/dotfiles
 
 init:
 	@DOTFILES_ROOT=$(PWD) bash $(PWD)/script/init
