@@ -48,6 +48,9 @@ set -eu
   brew list rlwrap &>/dev/null || brew install rlwrap
 
   brew list git &>/dev/null || brew install git
+  homebrew_prefix=$(brew --prefix)
+  ln -sfnv ${homebrew_prefix}/share/git-core/contrib/diff-highlight/diff-highlight ${homebrew_prefix}/bin
+
   brew list git-now &>/dev/null || brew install git-now
   brew list tig &>/dev/null || brew install tig --with-docs
   brew list tmux &>/dev/null || brew install tmux
