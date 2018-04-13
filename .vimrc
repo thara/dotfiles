@@ -419,8 +419,8 @@ Plug 'kana/vim-tabpagecd'
 Plug 'thinca/vim-submode'
 " ヤンク履歴
 Plug 'LeafCage/yankround.vim'
-" Ag
-Plug 'rking/ag.vim'
+" Ack
+Plug 'mileszs/ack.vim'
 
 " コードを書いて即実行
 " 汎用的な quickrun-hook
@@ -473,6 +473,8 @@ autocmd MyAutoCmd ColorScheme * highlight CursorLine cterm=None ctermbg=233 gui=
 autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
 autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
 
+"let g:hybrid_custom_term_colors = 1
+"let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
 colorscheme hybrid
 
 syntax on
@@ -572,8 +574,16 @@ nnoremap <silent> [ctrlp]t :<C-u>CtrlPTag<CR>
 " Yank履歴から検索
 nnoremap <silent> [ctrlp]y :<C-u>CtrlPYankRound<CR>
 
+" ### Ack {{{
 nnoremap <Space>\ :Ag <c-r>=expand("<cword>")<cr><cr>
 nnoremap <Space>/ :Ag
+
+let g:ackprg = 'ag --vimgrep --smart-case'
+cnoreabbrev ag Ack
+cnoreabbrev aG Ack
+cnoreabbrev Ag Ack
+cnoreabbrev AG Ack
+" }}}
 
 nnoremap [Plugin]    <Nop>
 nmap     , [Plugin]
