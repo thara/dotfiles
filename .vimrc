@@ -361,8 +361,9 @@ Plug 'w0ng/vim-hybrid'
 " Minimalist path navigator
 Plug 'justinmk/vim-dirvish'
 
-" Finder
-Plug 'ctrlpvim/ctrlp.vim'
+" Fuzzy Finder
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 " インデント可視化
 Plug 'Yggdroot/indentLine'
 " インデント可視化
@@ -379,6 +380,8 @@ Plug 'cohama/vim-insert-linenr'
 Plug 'kana/vim-smartinput'
 " テキストオブジェクトのまわりに文字を挿入
 Plug 'tpope/vim-surround'
+" surround.vim を繰り返し可能に
+Plug 'tpope/vim-repeat'
 "コメントアウト/アンコメントのトグル
 Plug 'tpope/vim-commentary'
 " Alignment
@@ -402,6 +405,8 @@ Plug 'rhysd/rust-doc.vim', { 'for': ['rust']}
 Plug 'bps/vim-textobj-python', { 'for': ['python']}
 " Rubyのブロックをテキストオブジェクト化
 Plug 'rhysd/vim-textobj-ruby', { 'for': ['ruby']}
+" end キーワードの自動挿入
+Plug 'tpope/vim-endwise'
 
 Plug 'elzr/vim-json', { 'for': ['json']}
 " }}}
@@ -409,6 +414,7 @@ Plug 'elzr/vim-json', { 'for': ['json']}
 " ### Misc {{{
 " Git
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 " テキストオブジェクト拡張
 Plug 'kana/vim-textobj-user'
 " 全体をテキストオブジェクト化
@@ -519,60 +525,20 @@ call submode#map('winsize', 'n', '', '+', '<C-W>+')
 call submode#map('winsize', 'n', '', '-', '<C-W>-')
 " }}}
 
-" ### ctrlp {{{
-" デフォルトのキーマップを無効化
-" let g:ctrlp_map = '<Nop>'
-" ワーキングディレクトリに祖先のバージョン管理下にあるディレクトリを含む
-let g:ctrlp_working_path_mode = 'ra'
-" ctrlpの拡張
-let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'line', 'mixed']
-" 検索対象の最大階層数(default:40)
-let g:ctrlp_max_depth = 10
-" vim終了時にキャッシュクリアしない
-let g:ctrlp_clear_cache_on_exit = 0
-" 検索ウィンドウの設定
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:18'
-" migemoを使用
-let g:ctrlp_use_migemo = 1
-" MRUの最大記録数
-let g:ctrlp_mruf_max = 500
-" 新規ファイル作成時にタブで開く
-let g:ctrlp_open_new_file = 1
-" Yank履歴をCtrlpで使用可能に
-let g:yankround_use_ctrlp = 1
 " JSONファイル表示に何も隠さない
 let g:vim_json_syntax_conceal = 0
 
-if executable('ag')
-  let g:ctrlp_use_caching = 0
-  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup -g ""'
-endif
+nnoremap [fzf] <Nop>
+nmap s [fzf]
+" https://github.com/junegunn/fzf.vim#commands
+nnoremap [fzf]b :Buffers<CR>
+nnoremap [fzf]f :Files<CR>
+nnoremap [fzf]t :Tags<CR>
+nnoremap [fzf]l :Lines<CR>
+nnoremap [fzf]c :Commits<CR>
 
-nnoremap [ctrlp] <Nop>
-nmap     s [ctrlp]
-nnoremap <silent> [ctrlp]p :<C-u>CtrlP<CR>
-" ファイル、バッファ、最近使ったファイルから検索
-nnoremap <silent> [ctrlp]s :<C-u>CtrlPMixed<CR>
-" カレントディレクトリを基準に検索
-nnoremap <silent> [ctrlp]f :<C-u>CtrlPCurWD<CR>
-" カレントバッファのルートディレクトリを基準に検索
-nnoremap <silent> [ctrlp]F :<C-u>CtrlPRoot<CR>
-" バッファから検索
-nnoremap <silent> [ctrlp]b :<C-u>CtrlPBuffer<CR>
-" 最近使ったファイルから検索
-nnoremap <silent> [ctrlp]h :<C-u>CtrlPMRUFiles<CR>
-" UNDOヒストリを検索
-nnoremap <silent> [ctrlp]u :<C-u>CtrlPUndo<CR>
-" バッファ上の行を検索
-nnoremap <silent> [ctrlp]l :<C-u>CtrlPLine %<CR>
-" ディレクトリを検索
-nnoremap <silent> [ctrlp]d :<C-u>CtrlPDir<CR>
-" Quickfixを検索
-nnoremap <silent> [ctrlp]q :<C-u>CtrlPQuickfix<CR>
-" Tagを検索
-nnoremap <silent> [ctrlp]t :<C-u>CtrlPTag<CR>
-" Yank履歴から検索
-nnoremap <silent> [ctrlp]y :<C-u>CtrlPYankRound<CR>
+cnoreabbrev Ack Ack!
+nnoremap [fzf]a :Ack!<Space>
 
 " ### Ack {{{
 nnoremap <Space>\ :Ag <c-r>=expand("<cword>")<cr><cr>
