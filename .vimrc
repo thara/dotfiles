@@ -103,8 +103,8 @@ set background=dark
 " コマンドラインの行数
 set cmdheight=2
 
-" 現在行の色を変える
-set cursorline
+" 現在行の色を変えない
+set nocursorline
 
 " ルーラー表示
 set ruler
@@ -330,6 +330,9 @@ inoremap <silent> <C-e> <End>
 inoremap <silent> <C-a> <Home>
 inoremap <silent> <C-d> <Del>
 
+nnoremap <silent> <C-X>0 :only<CR>
+nnoremap <silent> <C-x>2 :sp<CR>
+
 " コマンドラインモードでもEmacs風
 cnoremap <C-a> <Home>
 cnoremap <C-b> <Left>
@@ -372,6 +375,8 @@ Plug 'cohama/vim-insert-linenr'
 Plug 'itchyny/lightline.vim'
 " インサートモード時に行番号の色を反転
 Plug 'cohama/vim-insert-linenr'
+" AsciiDoc syntax highlighting
+Plug 'asciidoc/vim-asciidoc'
 " }}}
 
 
@@ -452,10 +457,11 @@ let g:howm_filename      = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
 let g:howm_fileencoding  = 'utf-8'
 let g:howm_fileformat    = 'unix'
 let g:QFixWin_EnableMode = 1
-let g:QFixHowm_FileType = 'markdown'
+let g:QFixHowm_FileType = 'asciidoc'
 let g:QFixHowm_Title = '#'
 let g:QFixHowm_Wiki = 1
 let g:QFixHowm_WikiDir = 'wiki'
+let QFixHowm_SaveTime = -1
 let g:QFixHowm_UserSwActionLock = ['[ ]', '[:draft]', '[:work]', '[:private]']
 let g:QFixHowm_Template = [
   \"# %TAG%",
@@ -592,10 +598,10 @@ function! MySmoothScroll(dir, windiv, factor)
   let &cursorline = cl
   let &cursorcolumn = cc
 endfunction
-noremap <silent> <C-d> :call MySmoothScroll("down", 2, 1)<CR>
-noremap <silent> <C-u> :call MySmoothScroll("up", 2, 1)<CR>
-noremap <silent> <C-j> :call MySmoothScroll("down", 1, 2)<CR>
-noremap <silent> <C-k> :call MySmoothScroll("up", 1, 2)<CR>
+"noremap <silent> <C-d> :call MySmoothScroll("down", 2, 1)<CR>
+"noremap <silent> <C-u> :call MySmoothScroll("up", 2, 1)<CR>
+"noremap <silent> <C-j> :call MySmoothScroll("down", 1, 2)<CR>
+"noremap <silent> <C-k> :call MySmoothScroll("up", 1, 2)<CR>
 " }}}
 
 
