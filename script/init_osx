@@ -66,7 +66,7 @@ set -eu
   # brew list vim &>/dev/null || brew install vim --with-python --with-lua --with-luajit --with-cscope --with-ruby --with-luajit --with-perl
 
   # https://github.com/sdegutis/mjolnir
-  brew install lua
+  brew list lua &>/dev/null || brew install lua
   mkdir -p /usr/local/etc/luarocks52
   echo 'rocks_servers = { "http://rocks.moonscript.org" }' >> /usr/local/etc/luarocks52/config-5.2.lua
 
