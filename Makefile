@@ -14,6 +14,7 @@ init:
 
 initzsh:
 	@DOTFILES_ROOT=$(PWD) zsh $(PWD)/script/init_zsh
+	@ln -sfnv $(HOME)/src/github.com/thara/dotfiles/etc $(HOME)/etc
 
 test:
 	@DOTFILES_ROOT=$(PWD) bash $(PWD)/script/runtest

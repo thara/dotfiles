@@ -102,3 +102,13 @@ export GOPATH="$HOME"
 export PATH="$PATH:$GOPATH/bin"
 
 export RUST_BACKTRACE=1
+
+for i in $HOME/etc/profile.d/*.sh ; do
+    if [ -r "$i" ]; then
+        if [ "${-#*i}" != "$-" ]; then
+            source "$i"
+        else
+            source "$i" >/dev/null 2>&1
+        fi
+    fi
+done
