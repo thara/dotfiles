@@ -84,7 +84,7 @@ set noswapfile
 set nobackup
 
 " 既存のファイルを開くときはとりあえず utf-8
-set fileencodings=utf-8,default,ucs-bom,latin1
+set fileencodings=utf-8,euc-jp,sjis,cp932,iso-2022-jp
 
 " Vim を終了しても undo の記録を残す
 set undofile undodir=~/.vimundo
