@@ -364,7 +364,7 @@ Plug 'w0ng/vim-hybrid'
 " Minimalist path navigator
 Plug 'justinmk/vim-dirvish'
 
-" Fuzzy Finder
+" Fuzzy Finder (ctrlp alternative)
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " インデント可視化
