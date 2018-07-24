@@ -1,0 +1,3 @@
+#!/bin/sh
+git diff --cached --name-only --diff-filter=AM | grep -e '\.rb$' -e '^Gemfile$' -e '\.thor$' | grep -v 'schema.rb' | xargs bundle exec rubocop -RDa
+exit $?
