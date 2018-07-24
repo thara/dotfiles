@@ -38,6 +38,7 @@
 	cmf = commit --fixup
 	mg = merge
 	df = diff -C
+	dff = diff -C --name-only
 	dfs = diff -C --staged
 	dfst = diff -C --stat
 	rb = rebase
