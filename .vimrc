@@ -461,7 +461,6 @@ let g:QFixHowm_FileType = 'asciidoc'
 let g:QFixHowm_Title = '#'
 let g:QFixHowm_Wiki = 1
 let g:QFixHowm_WikiDir = 'wiki'
-let QFixHowm_SaveTime = -1
 let g:QFixHowm_UserSwActionLock = ['[ ]', '[:draft]', '[:work]', '[:private]']
 let g:QFixHowm_Template = [
   \"# %TAG%",
