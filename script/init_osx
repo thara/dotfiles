@@ -60,6 +60,9 @@ set -eu
   brew list peco &>/dev/null || brew install peco
   brew list fzf &>/dev/null || brew install fzf
 
+  brew list mergepbx &>/dev/null || brew install mergepbx
+  brew list carthage &>/dev/null || brew install carthage
+
   # https://github.com/Homebrew/homebrew-core/issues/1165
   # brew list pyenv &>/dev/null || brew install pyenv
   # pyenv global system
