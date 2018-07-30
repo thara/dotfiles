@@ -1,4 +1,15 @@
 
+# Emoji)
+# - :memo: Documentation
+# - :bug: Bugfix
+# - :sparkles: New feature
+# - :lipstick: Cosmetic
+# - :rotating_light: Test
+# - :white_check_mark: Adding Test/Style check
+# - :fire: Remove code
+# - :hocho: Method/Class/Module extraction
+# - :file_cabinet: About Persistency
+# - :wrench: Configuration
 # Sample）
 # - Fix typo in docs
 # - Remove unused code
