@@ -68,18 +68,19 @@
 [github]
 	user = thara
 [user]
-  email = git@thara.jp
+	email = git@thara.jp
+	name = Tomochika Hara
 [commit]
 	template = ~/.gitmessage.txt
-	gpgsign = false
+	gpgsign = true
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 [gpg]
-	program = gpg2
+	program = gpg
 [ghi]
-	token = !security find-internet-password -a tomochikahara -s github.com -l 'ghi token' -w
+	token = !security find-internet-password -a thara -s github.com -l 'ghi token' -w
 [credential]
 	helper = osxkeychain
