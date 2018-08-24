@@ -259,6 +259,9 @@ nmap # #zz
 nmap g* g*zz
 nmap g# g#zz
 
+" Ex-Mode 無効
+nnoremap Q <Nop>
+
 " ページ送り
 noremap <C-f> <C-e>
 noremap <C-b> <C-y>
@@ -348,6 +351,9 @@ xnoremap . :normal .<CR>
 " ヤンクレジスタの値をペースト
 xnoremap <silent> <Leader>p "0p
 
+" lexima.vim で括弧repeat可能にする https://qiita.com/yami_beta/items/26995a5c382bd83ac38f
+inoremap <C-l> <C-g>U<Right>
+
 " }}}
 
 
@@ -369,8 +375,6 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " インデント可視化
 Plug 'Yggdroot/indentLine'
-" インデント可視化
-Plug 'cohama/vim-insert-linenr'
 " Coolなステータスライン
 Plug 'itchyny/lightline.vim'
 " インサートモード時に行番号の色を反転
