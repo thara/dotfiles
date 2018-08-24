@@ -3,13 +3,15 @@
 # - :memo: Documentation
 # - :bug: Bugfix
 # - :sparkles: New feature
-# - :lipstick: Cosmetic
-# - :rotating_light: Test
-# - :white_check_mark: Adding Test/Style check
-# - :fire: Remove code
+# - :art: Improving the format/structure of the code
+# - :crossed_swords: Add validation
+# - :white_check_mark: Add test
+# - :rotating_light: Fix tests
+# - :fire: Remove code or files
 # - :hocho: Method/Class/Module extraction
 # - :file_cabinet: About Persistency
 # - :wrench: Configuration
+# - :police_car: Lint
 # Sample）
 # - Fix typo in docs
 # - Remove unused code
