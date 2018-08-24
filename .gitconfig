@@ -34,7 +34,7 @@
 	sh = show
 	cm = commit
 	cmm = commit -m
-	cma = commit -a --amend
+	cma = commit --amend
 	cmf = commit --fixup
 	mg = merge
 	df = diff -C
