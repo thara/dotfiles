@@ -95,7 +95,9 @@ set undofile undodir=~/.vimundo
 " ### Appearance {{{
 
 " 色数
-set t_Co=256
+if !has('gui_running')
+  set t_Co=256
+endif
 
 " 背景色
 set background=dark
@@ -131,8 +133,8 @@ set showcmd
 " 自動折り返ししない
 set textwidth=0
 
-" タブページのラベルを常に表示
-set showtabline=2
+" 2個以上のタブページがあるときのみタブページのラベルを表示
+set showtabline=1
 
 " 長い行を @ にさせない, 印字不可能文字を16進数で表示
 set display=lastline,uhex
@@ -270,9 +272,24 @@ noremap <C-b> <C-y>
 nnoremap <Tab> <C-w>w
 nnoremap <S-Tab> <C-w>W
 
+" 引数リスト
+nnoremap <Space><Space> :args<CR>
+nnoremap <Space>l :arglocal<CR>
+nnoremap <Space>j :argadd % <Bar> next <Bar> args<CR>
+nnoremap <Space>e :argedit % <Bar> args<CR>
+nnoremap <Space>k :<C-R>=argidx()+1<CR>argdelete <Bar> args<CR>
+" 新規ローカル引数リストを作る
+nnoremap <Space>s :arglocal! %<CR>
+" 引数リスト内の現在指しているファイルに戻る
+nnoremap <Space>c :argument<CR>
+nnoremap <silent> <C-h> :previous<CR>
+nnoremap <silent> <C-l> :next<CR>
+nnoremap <Space>f :first<CR>
+nnoremap <Space>t :last<CR>
+
 " タブページ間の移動
-nnoremap <silent> <C-h> :tabprevious<CR>
-nnoremap <silent> <C-l> :tabnext<CR>
+"nnoremap <silent> <C-h> :tabprevious<CR>
+"nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> [t :tabprevious<CR>
 nnoremap <silent> ]t :tabnext<CR>
 nnoremap <silent> [T :tabfirst<CR>
@@ -374,7 +391,7 @@ Plug 'justinmk/vim-dirvish'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 " インデント可視化
-Plug 'Yggdroot/indentLine'
+"Plug 'Yggdroot/indentLine'
 " Coolなステータスライン
 Plug 'itchyny/lightline.vim'
 " インサートモード時に行番号の色を反転
@@ -422,8 +439,8 @@ Plug 'elzr/vim-json', { 'for': ['json']}
 
 " ### Misc {{{
 " Git
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+"Plug 'tpope/vim-fugitive'
+"Plug 'airblade/vim-gitgutter'
 " テキストオブジェクト拡張
 Plug 'kana/vim-textobj-user'
 " 全体をテキストオブジェクト化
@@ -510,7 +527,7 @@ augroup my_dirvish_events
     \ |xnoremap <buffer> t :call dirvish#open('tabedit', 0)<CR>
 
   " Enable :Gstatus and friends.
-  autocmd FileType dirvish call fugitive#detect(@%)
+  "autocmd FileType dirvish call fugitive#detect(@%)
 
   " Map CTRL-R to reload the Dirvish buffer.
   autocmd FileType dirvish nnoremap <buffer> <C-R> :<C-U>Dirvish %<CR>
@@ -550,8 +567,8 @@ cnoreabbrev Ack Ack!
 nnoremap [fzf]a :Ack!<Space>
 
 " ### Ack {{{
-nnoremap <Space>\ :Ag <c-r>=expand("<cword>")<cr><cr>
-nnoremap <Space>/ :Ag
+nnoremap <Space>/ :Ag <c-r>=expand("<cword>")<cr><cr>
+nnoremap <Space>\ :Ag
 
 let g:ackprg = 'ag --vimgrep --smart-case'
 cnoreabbrev ag Ack
@@ -570,37 +587,54 @@ let g:racer_cmd = expand("~/.cargo/bin/racer")
 let g:racer_experimental_completer = 1
 let g:rust_doc#open_cmd = 'open'
 
+" arglist status line
+"function! StatuslineArglistIndicator()
+"    return '%{argc()>0?("A[".repeat("-",argidx()).(expand("%")==argv(argidx())?"+":"~").repeat("-",argc()-argidx()-1)."]"):""}'
+"endfunction
+
+" lightline
+"let g:lightline = {
+"      \ 'colorscheme': 'wombat',
+"      \ 'active': {
+"      \   'left': [['mode', 'paste', 'arglist'], ['readonly', 'filename', 'modified']],
+"      \   'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+"      \ },
+"      \ 'component_function': {
+"      \   'arglist': 'StatuslineArglistIndicator'
+"      \ },
+"      \ }
+
 " }}}
 
 
 "## Scripts {{{
 
 " ### c0hama流スムースなスクロール {{{
-let s:scroll_time_ms = 100
-let s:scroll_precision = 8
-function! MySmoothScroll(dir, windiv, factor)
-  let cl = &cursorline
-  let cc = &cursorcolumn
-  set nocursorline nocursorcolumn
-  let height = winheight(0) / a:windiv
-  let n = height / s:scroll_precision
-  if n <= 0
-    let n = 1
-  endif
-  let wait_per_one_move_ms = s:scroll_time_ms / s:scroll_precision * a:factor
-  let i = 0
-  let scroll_command = a:dir == "down" ?
-    \ "normal! " . n . "\<C-e>" . n . "j" :
-    \ "normal! " . n . "\<C-y>" . n . "k"
-  while i < s:scroll_precision
-    let i = i + 1
-    execute scroll_command
-    execute "sleep " . wait_per_one_move_ms . "m"
-    redraw
-  endwhile
-  let &cursorline = cl
-  let &cursorcolumn = cc
-endfunction
+" let s:scroll_time_ms = 100
+" let s:scroll_precision = 8
+" function! MySmoothScroll(dir, windiv, factor)
+"   let cl = &cursorline
+"   let cc = &cursorcolumn
+"   set nocursorline nocursorcolumn
+"   let height = winheight(0) / a:windiv
+"   let n = height / s:scroll_precision
+"   if n <= 0
+"     let n = 1
+"   endif
+"   let wait_per_one_move_ms = s:scroll_time_ms / s:scroll_precision * a:factor
+"   let i = 0
+"   let scroll_command = a:dir == "down" ?
+"     \ "normal! " . n . "\<C-e>" . n . "j" :
+"     \ "normal! " . n . "\<C-y>" . n . "k"
+"   while i < s:scroll_precision
+"     let i = i + 1
+"     execute scroll_command
+"     execute "sleep " . wait_per_one_move_ms . "m"
+"     redraw
+"   endwhile
+"   let &cursorline = cl
+"   let &cursorcolumn = cc
+" endfunction
 "noremap <silent> <C-d> :call MySmoothScroll("down", 2, 1)<CR>
 "noremap <silent> <C-u> :call MySmoothScroll("up", 2, 1)<CR>
 "noremap <silent> <C-j> :call MySmoothScroll("down", 1, 2)<CR>
