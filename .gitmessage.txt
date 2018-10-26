@@ -12,6 +12,9 @@
 # - :file_cabinet: About Persistency
 # - :wrench: Configuration
 # - :police_car: Lint
+# - :heavy_minus_sign: Remove a dependency
+# - :heavy_plus_sign: Add a dependency
+# - :iphone: About mobile
 # Sample）
 # - Fix typo in docs
 # - Remove unused code
