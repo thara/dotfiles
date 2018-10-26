@@ -68,25 +68,19 @@ set -eu
   # pyenv global system
   # brew list vim &>/dev/null || brew install vim --with-python --with-lua --with-luajit --with-cscope --with-ruby --with-luajit --with-perl
 
-  # https://github.com/sdegutis/mjolnir
-  brew list lua &>/dev/null || brew install lua
-  mkdir -p /usr/local/etc/luarocks52
-  echo 'rocks_servers = { "http://rocks.moonscript.org" }' >> /usr/local/etc/luarocks52/config-5.2.lua
-
   brew tap caskroom/cask
   brew cask list google-japanese-ime &>/dev/null || brew cask install google-japanese-ime
-  brew cask list mjolnir &>/dev/null || brew cask install mjolnir
   brew cask list iterm2 &>/dev/null || brew cask install iterm2
   brew cask list macvim &>/dev/null || brew cask install macvim
   brew cask list macdown &>/dev/null || brew cask install macdown
   #brew cask install appcleaner  # Error: Download failed on Cask 'appcleaner' with message: Download failed: https://www.freemacsoft.net/downloads/AppCleaner_3.4.zip
   brew cask list omnidisksweeper &>/dev/null || brew cask install omnidisksweeper
   brew cask list slack &>/dev/null || brew cask install slack
+  brew cask list discord &>/dev/null || brew cask install discord
   brew cask list virtualbox &>/dev/null || brew cask install virtualbox
   brew cask list vagrant &>/dev/null || brew cask install vagrant
   brew cask list google-chrome &>/dev/null || brew cask install google-chrome
   brew cask list dropbox &>/dev/null || brew cask install dropbox
-  brew cask list atom &>/dev/null || brew cask install atom
   brew cask list visual-studio-code &>/dev/null || brew cask install visual-studio-code
   brew cask list google-cloud-sdk &>/dev/null || brew cask install google-cloud-sdk
   brew cask list karabiner-elements &>/dev/null || brew cask install karabiner-elements
@@ -99,23 +93,6 @@ set -eu
 
   brew tap caskroom/fonts
   brew cask install font-myrica font-myricam
-}
-
-
-: "Install mjolnir dependencies" && {
-
-  if ! is_exists "luarocks"; then
-      log_fail "error: require: luarocks"
-      exit 1
-  fi
-
-  luarocks install --local mjolnir.hotkey
-  luarocks install --local mjolnir.application
-  luarocks install --local mjolnir.th.hints
-  luarocks install --local mjolnir.fnutils
-  luarocks install --local mjolnir.geometry
-  luarocks install --local mjolnir.screen
-  luarocks install --local mjolnir.keycodes
 }
 
 
