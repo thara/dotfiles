@@ -112,3 +112,7 @@ for i in $HOME/etc/profile.d/*.sh ; do
         fi
     fi
 done
+
+alias e='exa -l'
+alias et='exa -lT'
+alias eg='exa -hl --git'
