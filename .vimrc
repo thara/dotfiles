@@ -319,11 +319,27 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
+" 行末までヤンク
+nnoremap Y y$
+
+" x,X,s,S でレジスタを汚さない
+nnoremap x "_x
+vnoremap x "_x
+nnoremap X "_X
+vnoremap X "_X
+nnoremap s "_s
+vnoremap s "_s
+nnoremap S "_S
+vnoremap S "_S
+
 " 貼り付けたテキストを素早く選択する
 noremap gV `[v`]
 
 " コマンドラインウィンドウ暴発防止
 map q: :q
+" 保存して閉じる/保存せず閉じるの暴発防止
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
 
 " LeaderをSpaceキーに
 let mapleader = "\<Space>"
@@ -371,6 +387,8 @@ xnoremap <silent> <Leader>p "0p
 " lexima.vim で括弧repeat可能にする https://qiita.com/yami_beta/items/26995a5c382bd83ac38f
 inoremap <C-l> <C-g>U<Right>
 
+" grep https://www.pixiv.net/fanbox/creator/3615/post/38621
+nnoremap g/  :<C-u>global//print<CR>
 " }}}
 
 
@@ -403,7 +421,8 @@ Plug 'asciidoc/vim-asciidoc'
 
 " ### Input {{{
 " 賢い入力補助
-Plug 'kana/vim-smartinput'
+"Plug 'kana/vim-smartinput'
+Plug 'cohama/lexima.vim'
 " テキストオブジェクトのまわりに文字を挿入
 Plug 'tpope/vim-surround'
 " surround.vim を繰り返し可能に
@@ -450,7 +469,7 @@ Plug 'kana/vim-tabpagecd'
 " 独自モードを作成
 Plug 'thinca/vim-submode'
 " ヤンク履歴
-Plug 'LeafCage/yankround.vim'
+"Plug 'LeafCage/yankround.vim'
 " Ack
 Plug 'mileszs/ack.vim'
 
@@ -562,9 +581,10 @@ nnoremap [fzf]f :Files<CR>
 nnoremap [fzf]t :Tags<CR>
 nnoremap [fzf]l :Lines<CR>
 nnoremap [fzf]c :Commits<CR>
+nnoremap [fzf]h :History<CR>
 
 cnoreabbrev Ack Ack!
-nnoremap [fzf]a :Ack!<Space>
+nnoremap [fzf]a :Ag<CR>
 
 " ### Ack {{{
 nnoremap <Space>/ :Ag <c-r>=expand("<cword>")<cr><cr>
@@ -639,6 +659,22 @@ let g:rust_doc#open_cmd = 'open'
 "noremap <silent> <C-u> :call MySmoothScroll("up", 2, 1)<CR>
 "noremap <silent> <C-j> :call MySmoothScroll("down", 1, 2)<CR>
 "noremap <silent> <C-k> :call MySmoothScroll("up", 1, 2)<CR>
+
+" 指定のデータをレジスタに登録する
+function! s:Clip(data)
+  let @*=a:data
+  echo "clipped: " . a:data
+endfunction
+
+" 現在開いているファイルのパスをレジスタへ
+command! -nargs=0 ClipPath call s:Clip(expand('%'))
+" 現在開いているファイルの絶対パスをレジスタへ
+command! -nargs=0 ClipFullPath call s:Clip(expand('%:p'))
+" 現在開いているファイルのファイル名をレジスタへ
+command! -nargs=0 ClipFile call s:Clip(expand('%:t'))
+" 現在開いているファイルのディレクトリパスをレジスタへ
+command! -nargs=0 ClipDir  call s:Clip(expand('%:p:h'))
+
 " }}}
 
 
