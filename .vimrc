@@ -177,6 +177,14 @@ set virtualedit& virtualedit+=block
 " 行連結でスペースを入れない
 set nojoinspaces
 
+" 辞書
+set dictionary=/usr/share/dict/words
+
+if !exists('loaded_matchit')
+  " matchitを有効化
+  runtime macros/matchit.vim
+endif
+
 " }}}
 
 
@@ -323,10 +331,10 @@ nnoremap <silent> p p`]
 nnoremap Y y$
 
 " x,X,s,S でレジスタを汚さない
-nnoremap x "_x
-vnoremap x "_x
-nnoremap X "_X
-vnoremap X "_X
+" nnoremap x "_x
+" vnoremap x "_x
+" nnoremap X "_X
+" vnoremap X "_X
 nnoremap s "_s
 vnoremap s "_s
 nnoremap S "_S
@@ -454,6 +462,19 @@ Plug 'rhysd/vim-textobj-ruby', { 'for': ['ruby']}
 Plug 'tpope/vim-endwise'
 
 Plug 'elzr/vim-json', { 'for': ['json']}
+
+Plug 'reasonml-editor/vim-reason-plus'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+" the path to python3 is obtained through executing `:echo exepath('python3')` in vim
+let g:python3_host_prog = "/usr/local/bin/python3"
+
 " }}}
 
 " ### Misc {{{
@@ -507,6 +528,9 @@ let g:QFixHowm_Template = [
   \""
 \]
 let QFixHowm_MenuDir = 'menu'
+
+" Dash
+Plug 'rizzatti/dash.vim'
 
 " }}}
 
@@ -586,6 +610,9 @@ nnoremap [fzf]h :History<CR>
 cnoreabbrev Ack Ack!
 nnoremap [fzf]a :Ag<CR>
 
+" Search a word under cursor about the file type on Dash
+:nmap <silent> sd <Plug>DashSearch
+
 " ### Ack {{{
 nnoremap <Space>/ :Ag <c-r>=expand("<cword>")<cr><cr>
 nnoremap <Space>\ :Ag
@@ -606,6 +633,16 @@ let g:rustfmt_command = expand('~/.cargo/bin/rustfmt')
 let g:racer_cmd = expand("~/.cargo/bin/racer")
 let g:racer_experimental_completer = 1
 let g:rust_doc#open_cmd = 'open'
+
+" OCaml
+set rtp+=<SHARE_DIR>/merlin/vim
+
+let g:LanguageClient_serverCommands = {
+    \ 'reason': ['/absolute/path/to/reason-language-server.exe'],
+    \ }
+
+" enable autocomplete
+let g:deoplete#enable_at_startup = 1
 
 " arglist status line
 "function! StatuslineArglistIndicator()
