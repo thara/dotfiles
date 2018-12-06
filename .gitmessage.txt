@@ -1,6 +1,7 @@
 
 # Emoji)
 # - :memo: Documentation
+# - :speech_balloon: Add/Fix messages
 # - :bug: Bugfix
 # - :sparkles: New feature
 # - :art: Improving the format/structure of the code
