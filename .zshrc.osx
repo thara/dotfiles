@@ -15,6 +15,7 @@ fi
 
 tty -s && stty discard undef # C-o
 
+export COCOAPODS_DISABLE_STATS=1
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 
