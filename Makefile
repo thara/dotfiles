@@ -1,13 +1,16 @@
 CANDIDATES := $(wildcard .??*) .vim
-EXCLUSIONS := .DS_Store .git .gitignore .gitmodules .travis.yml
+EXCLUSIONS := .DS_Store .git .gitignore .gitmodules .travis.yml bin
 DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
+BINFILES   := $(shell ls ./bin)
 
 list:
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
+	@$(foreach val, $(BINFILES), /bin/ls -dF ./bin/$(val);)
 
 links:
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 	@ln -sfnv src/github.com/thara/dotfiles $(HOME)/dotfiles
+	@$(foreach val, $(BINFILES), ln -sfnv $(abspath bin/$(val)) $(HOME)/bin/$(val);)
 
 init:
 	@DOTFILES_ROOT=$(PWD) bash $(PWD)/script/init
