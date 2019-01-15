@@ -1,0 +1,20 @@
+
+class String
+  def black; "\033[30m#{self}\033[0m" end
+  def red;   "\033[31m#{self}\033[0m" end
+end
+
+class Array
+  def avg
+    sum / count
+  end
+
+  def median!
+    sort!
+    if count % 2 == 0
+      (slice(count / 2 - 1) + slice(count / 2)) / 2
+    else
+      slice(count / 2)
+    end
+  end
+end
