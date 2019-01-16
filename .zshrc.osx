@@ -57,3 +57,16 @@ if exists "fzf" && exists "ag"; then
   --color info:108,prompt:109,spinner:108,pointer:168,marker:168
   '
 fi
+
+if exists "exa"; then
+  alias l='exa -lhg'
+  alias ls='exa -lhg --git --git-ignore'
+  alias la='exa -lhga --git'
+  alias ll='exa -lhga --git --git-ignore'
+  alias lt='exa -lhgT --git --git-ignore'
+fi
+
+if exists "bat"; then
+  alias b='bat'
+  export BAT_CONFIG_PATH="$HOME/.bat.conf"
+fi

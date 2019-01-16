@@ -69,10 +69,10 @@ fi
 
 ## Command aliases
 setopt complete_aliases
-alias ls='ls -GF'
-alias la='ls -aF'
-alias ll='ls -lF'
-alias lsa='ls -laF'
+#alias ls='ls -GF'
+# alias la='ls -aF'
+# alias ll='ls -lF'
+# alias lsa='ls -laF'
 alias du="du -h"
 alias df="df -h"
 alias gr="grep --color=auto -EDUIn"
