@@ -70,3 +70,7 @@ if exists "bat"; then
   alias b='bat'
   export BAT_CONFIG_PATH="$HOME/.bat.conf"
 fi
+
+if exists "fd"; then
+  alias f='fd'
+fi
