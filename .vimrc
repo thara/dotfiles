@@ -441,6 +441,8 @@ Plug 'tpope/vim-commentary'
 Plug 'junegunn/vim-easy-align'
 " 整形 (Vim Align them all)
 Plug 'h1mesuke/vim-alignta', {'on': ['Alignta', 'Align']}
+" Stop ]
+Plug 'tyru/stoptypofile.vim'
 " }}}
 
 " ### Language {{{
