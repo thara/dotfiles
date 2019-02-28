@@ -96,6 +96,7 @@ alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s
 # fi
 
 export EDITOR='vim'
+export VISUAL='vim'
 #[[ -s /Users/hara/.tmuxinator/scripts/tmuxinator ]] && source /Users/hara/.tmuxinator/scripts/tmuxinator
 #
 export GOPATH="$HOME"
