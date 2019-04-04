@@ -59,8 +59,11 @@ set -eu
   brew list ghq &>/dev/null || brew install ghq
   brew list peco &>/dev/null || brew install peco
   brew list fzf &>/dev/null || brew install fzf
-  brew list fd &>/dev/null || brew install fd
+
+  brew list bat &>/dev/null || brew install bat
   brew list exa &>/dev/null || brew install exa
+  brew list fd &>/dev/null || brew install fd
+  brew list rg &>/dev/null || brew install rg
 
   brew list mergepbx &>/dev/null || brew install mergepbx
   brew list carthage &>/dev/null || brew install carthage
