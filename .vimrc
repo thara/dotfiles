@@ -40,7 +40,7 @@ endif
 " ### Folding {{{
 
 " マーカーで折り畳みを指定
-set foldmethod=marker
+set foldmethod=indent
 
 " 折りたたみを示す列を表示
 set foldcolumn=1
@@ -154,6 +154,8 @@ set completeopt-=preview
 " 構文アイテムを検索する桁数の最大値
 set synmaxcol=150
 
+" 常に左側に列を表示する(gitgutterでガタガタしない)
+set signcolumn=yes
 " }}}
 
 
@@ -443,6 +445,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'h1mesuke/vim-alignta', {'on': ['Alignta', 'Align']}
 " Stop ]
 Plug 'tyru/stoptypofile.vim'
+" 一部分だけ別バッファで編集
+Plug 'thinca/vim-partedit'
 " }}}
 
 " ### Language {{{
@@ -477,12 +481,16 @@ Plug 'roxma/vim-hug-neovim-rpc'
 " the path to python3 is obtained through executing `:echo exepath('python3')` in vim
 let g:python3_host_prog = "/usr/local/bin/python3"
 
+"Plug 'tpope/vim-markdown'
 " }}}
 
 " ### Misc {{{
 " Git
-"Plug 'tpope/vim-fugitive'
-"Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+" Add GitHub support to fugitive
+Plug 'tpope/vim-rhubarb'
+" Show git diff left
+Plug 'airblade/vim-gitgutter'
 " テキストオブジェクト拡張
 Plug 'kana/vim-textobj-user'
 " 全体をテキストオブジェクト化
@@ -513,23 +521,23 @@ Plug 'thinca/vim-quickrun', { 'on': ['QuickRun']}
 Plug 'elzr/vim-json'
 let g:vim_json_syntax_conceal = 0
 
-Plug 'fuenor/qfixhowm'
-let g:QFixHowm_Key = 'g'
-let g:howm_dir           = '~/Dropbox/howm'
-let g:howm_filename      = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
-let g:howm_fileencoding  = 'utf-8'
-let g:howm_fileformat    = 'unix'
-let g:QFixWin_EnableMode = 1
-let g:QFixHowm_FileType = 'asciidoc'
-let g:QFixHowm_Title = '#'
-let g:QFixHowm_Wiki = 1
-let g:QFixHowm_WikiDir = 'wiki'
-let g:QFixHowm_UserSwActionLock = ['[ ]', '[:draft]', '[:work]', '[:private]']
-let g:QFixHowm_Template = [
-  \"# %TAG%",
-  \""
-\]
-let QFixHowm_MenuDir = 'menu'
+" Plug 'fuenor/qfixhowm'
+" let g:QFixHowm_Key = 'g'
+" let g:howm_dir           = '~/Dropbox/howm'
+" let g:howm_filename      = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
+" let g:howm_fileencoding  = 'utf-8'
+" let g:howm_fileformat    = 'unix'
+" let g:QFixWin_EnableMode = 1
+" let g:QFixHowm_FileType = 'asciidoc'
+" let g:QFixHowm_Title = '#'
+" let g:QFixHowm_Wiki = 1
+" let g:QFixHowm_WikiDir = 'wiki'
+" let g:QFixHowm_UserSwActionLock = ['[ ]', '[:draft]', '[:work]', '[:private]']
+" let g:QFixHowm_Template = [
+"   \"# %TAG%",
+"   \""
+" \]
+" let QFixHowm_MenuDir = 'menu'
 
 " Dash
 Plug 'rizzatti/dash.vim'
@@ -581,6 +589,10 @@ augroup my_dirvish_events
   " To "toggle" this, just press `R` to reload.
   autocmd FileType dirvish nnoremap <buffer> gh :keeppatterns g@\v/(\.\|__)[^\/]+/?$@d<cr>
 augroup END
+
+let g:LanguageClient_serverCommands = {
+    \ 'ruby': ['solargraph', 'stdio'],
+\}
 " }}}
 
 " ### Submode {{{
@@ -667,6 +679,9 @@ let g:deoplete#enable_at_startup = 1
 
 
 "## Scripts {{{
+
+command! Today r!date +\%Y-\%m-\%d
+
 
 " ### c0hama流スムースなスクロール {{{
 " let s:scroll_time_ms = 100
