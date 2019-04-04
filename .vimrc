@@ -460,6 +460,8 @@ Plug 'rust-lang/rust.vim', { 'for': ['rust']}
 Plug 'racer-rust/vim-racer', { 'for': ['rust']}
 Plug 'rhysd/rust-doc.vim', { 'for': ['rust']}
 
+Plug 'leafgarland/typescript-vim', { 'for': ['typescript']}
+
 " Pythonの関数とクラスをテキストオブジェクト化 + motion追加
 Plug 'bps/vim-textobj-python', { 'for': ['python']}
 " Rubyのブロックをテキストオブジェクト化
