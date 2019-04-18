@@ -249,6 +249,9 @@ let g:changelog_username = "thara"
 let g:changelog_new_date_format = "%d  %u\n\n  * %p %c\n\n\n"
 let g:changelog_new_entry_format = "  *  %c"
 
+" changelogグローバルマッピング自動設定
+autocmd MyAutoCmd BufEnter * runtime ftplugin/changelog.vim
+
 " }}}
 
 " }}}
