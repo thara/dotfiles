@@ -1,0 +1,39 @@
+#! /usr/bin/env ruby
+# based on http://0xcc.net/unimag/1/
+
+require 'getoptlong'
+
+$stdin = File.open(File.expand_path('~/Dropbox/Work/changelog'))
+
+def show_usage
+  puts "usage: clgrep [OPTIONS] <PATTERN> [FILE]..."
+  puts "    -i,  大文字・小文字を区別しない"
+  puts "    -r,  検索結果を逆順に表示する"
+end
+
+# コマンドラインオプションを解析してハッシュとして返す
+def parse_options
+  parser = GetoptLong.new
+  parser.set_options(['--ignore-case', '-i', GetoptLong::NO_ARGUMENT],
+                     ['--reverse', '-r',     GetoptLong::NO_ARGUMENT])
+  options = Hash.new
+  parser.each_option {|name, arg| options[name.sub(/^--/, "")] = arg}
+  (show_usage; exit(1)) if ARGV.empty?
+  return options
+end
+
+def main
+  options = parse_options
+  pattern = ARGV.shift
+  regexp_option = Regexp::IGNORECASE if options['ignore-case']
+  regexp = Regexp.new(pattern, regexp_option)
+
+  results = Array.new
+  while chunk = gets("") # 空行を境界として読み込む
+    results.push(chunk.gsub(/\s+$/, '')) if regexp.match(chunk) # マッチしたメモを溜め込む
+  end
+  results.reverse! if options['reverse'] # -r なら検索結果を逆順にする
+  puts results # 検索結果を表示
+end
+
+main
