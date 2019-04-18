@@ -30,6 +30,8 @@ Session.vim
 .zprofile
 .zshenv
 
-.vim
+.vim/*
+!.vim/cheatsheet.md
+!.vim/ftplugin
 
 .mjolnir/.mjolnir
