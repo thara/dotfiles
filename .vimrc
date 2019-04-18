@@ -241,6 +241,14 @@ set viminfo='50,<1000,s100,\"50
 
 " 新しいウィンドウを右に開く
 set splitright
+
+" changelog設定
+let g:changelog_dateformat = "%Y-%m-%d"
+let g:changelog_username = "thara"
+" エントリの下に空行を入れておくと新アイテム行が一番下になる
+let g:changelog_new_date_format = "%d  %u\n\n  * %p %c\n\n\n"
+let g:changelog_new_entry_format = "  *  %c"
+
 " }}}
 
 " }}}
@@ -505,6 +513,11 @@ Plug 'thinca/vim-submode'
 "Plug 'LeafCage/yankround.vim'
 " Ack
 Plug 'mileszs/ack.vim'
+
+" Cheat Sheet
+Plug 'reireias/vim-cheatsheet'
+let g:cheatsheet#cheat_file = '~/Dropbox/Work/cheatsheet.md'
+let g:cheatsheet#vsplit = 1
 
 " コードを書いて即実行
 " 汎用的な quickrun-hook
