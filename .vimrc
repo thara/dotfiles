@@ -326,6 +326,12 @@ nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
+" arglist移動
+nnoremap <silent> [a :previous<CR>
+nnoremap <silent> ]a :next<CR>
+nnoremap <silent> [A :first<CR>
+nnoremap <silent> ]A :last<CR>
+
 " Quickfix
 nnoremap <silent> [q :cprevious<CR>
 nnoremap <silent> ]q :cnext<CR>
@@ -425,6 +431,16 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'w0ng/vim-hybrid'
 " Minimalist path navigator
 Plug 'justinmk/vim-dirvish'
+" Plug 'kristijanhusak/vim-dirvish-git'
+"  let g:dirvish_git_indicators = {
+"   \ 'Modified'  : 'M',
+"   \ 'Staged'    : '+',
+"   \ 'Untracked' : '?',
+"   \ 'Renamed'   : 'R',
+"   \ 'Unmerged'  : '-',
+"   \ 'Ignored'   : 'x',
+"   \ 'Unknown'   : '?'
+"   \ }
 
 " Fuzzy Finder (ctrlp alternative)
 Plug '/usr/local/opt/fzf'
