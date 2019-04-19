@@ -29,11 +29,11 @@ def main
   regexp = Regexp.new(pattern, regexp_option)
 
   results = Array.new
-  while chunk = gets("") # 空行を境界として読み込む
-    results.push(chunk.gsub(/\s+$/, '')) if regexp.match(chunk) # マッチしたメモを溜め込む
+  while chunk = gets("")
+    results.push(chunk.gsub(/\s+$/, '')) if regexp.match(chunk)
   end
-  results.reverse! if options['reverse'] # -r なら検索結果を逆順にする
-  puts results # 検索結果を表示
+  results.reverse! if options['reverse']
+  puts results
 end
 
 main
