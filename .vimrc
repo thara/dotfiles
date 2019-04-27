@@ -592,6 +592,7 @@ autocmd MyAutoCmd ColorScheme * highlight clear CursorLine
 autocmd MyAutoCmd ColorScheme * highlight CursorLine cterm=None ctermbg=233 gui=None guibg=DarkBlue
 autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
 autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
+autocmd MyAutoCmd ColorScheme * highlight SpecialComment ctermfg=8
 
 "let g:hybrid_custom_term_colors = 1
 "let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
