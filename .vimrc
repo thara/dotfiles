@@ -428,7 +428,8 @@ Plug 'vim-jp/vimdoc-ja'
 
 " ### Appearance {{{
 " Color Scheme
-Plug 'w0ng/vim-hybrid'
+Plug 'pbrisbin/vim-colors-off'
+
 " Minimalist path navigator
 Plug 'justinmk/vim-dirvish'
 " Plug 'kristijanhusak/vim-dirvish-git'
@@ -452,7 +453,7 @@ Plug 'itchyny/lightline.vim'
 " インサートモード時に行番号の色を反転
 Plug 'cohama/vim-insert-linenr'
 " AsciiDoc syntax highlighting
-Plug 'asciidoc/vim-asciidoc'
+"Plug 'asciidoc/vim-asciidoc'
 " }}}
 
 
@@ -594,7 +595,7 @@ autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
 
 "let g:hybrid_custom_term_colors = 1
 "let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-colorscheme hybrid
+colorscheme off
 
 syntax on
 " }}}
