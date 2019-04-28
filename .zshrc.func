@@ -11,63 +11,52 @@ get_os() {
 
 function exists { which $1 &> /dev/null }
 
-function peco_select_history() {
-    local tac
-    if which tac > /dev/null; then
-      tac="tac"
-    else
-      tac="tail -r"
-    fi
-    BUFFER=$(\history -n 1 | \
-      eval $tac | \
-      peco --query "$LBUFFER")
-    CURSOR=$#BUFFER         # move cursor
-    zle clear-screen
-}
-zle -N peco_select_history
+function fzf_select_repos() {
+  local selected_dir=$(ghq list | fzf-tmux --query "$LBUFFER" --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
 
-function peco-z-search {
-  which peco z > /dev/null
-  if [ $? -ne 0 ]; then
-    echo "Please install peco and z"
-    return 1
-  fi
-  local res=$(z | sort -rn | cut -c 12- | peco)
-  if [ -n "$res" ]; then
-    BUFFER+="cd $res"
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd $(ghq root)/${selected_dir}"
     zle accept-line
-  else
-    return 1
   fi
+
+  zle reset-prompt
 }
-zle -N peco-z-search
+zle -N fzf_select_repos
 
-function peco-select-repos () {
-    local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
-    if [ -n "$selected_dir" ]; then
-        BUFFER="cd ${selected_dir}"
-        zle accept-line
-    fi
-    zle clear-screen
+function fzf_select_git_branch() {
+  local selected_branch=$(git for-each-ref --format='%(refname)' --sort=-committerdate refs/heads | perl -pne 's{^refs/heads/}{}' | fzf-tmux --query "$LBUFFER" --preview "git show --color=always {}")
+
+  if [ -n "$selected_branch" ]; then
+    BUFFER="git checkout ${selected_branch}"
+    zle accept-line
+  fi
+
+  zle reset-prompt
 }
-zle -N peco-select-repos
+zle -N fzf_select_git_branch
 
+function fzf_ssh_hosts() {
+  local selected_host=$(grep "Host " ~/.ssh/config | grep -v '*' | cut -b 6- | fzf-tmux --query "$LBUFFER")
 
-function peco-select-branch () {
-    local branch=$(git branch -a | peco | tr -d ' ' | tr -d '*')
-    if [ -n "$branch" ]; then
-      if [ -n "$LBUFFER" ]; then
-        local new_left="${LBUFFER%\ } $branch"
-      else
-        local new_left="$branch"
-      fi
-      BUFFER=${new_left}${RBUFFER}
-      CURSOR=${#new_left}
-    fi
+  if [ -n "$selected_host" ]; then
+    BUFFER="ssh ${selected_host}"
+    zle accept-line
+  fi
+  zle reset-prompt
 }
-zle -N peco-select-branch
+zle -N fzf_ssh_hosts
 
-bindkey '^R' peco_select_history
-bindkey '^f' peco-z-search
-bindkey '^]' peco-select-repos
-bindkey '^K' peco-select-branch
+function fzf_open_editor() {
+  local selected=$(fd | fzf-tmux --query "$LBUFFER" --multi --select-1)
+
+  if [ -n "$selected" ]; then
+    ${EDITOR:-vim} "${selected}"
+  fi
+  zle reset-prompt
+}
+zle -N fzf_open_editor
+
+bindkey '^]' fzf_select_repos
+bindkey '^B' fzf_select_git_branch
+bindkey '^\' fzf_ssh_hosts
+bindkey '^E' fzf_open_editor

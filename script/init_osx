@@ -57,7 +57,6 @@ set -eu
   brew list tmux &>/dev/null || brew install tmux
 
   brew list ghq &>/dev/null || brew install ghq
-  brew list peco &>/dev/null || brew install peco
   brew list fzf &>/dev/null || brew install fzf
 
   brew list bat &>/dev/null || brew install bat
