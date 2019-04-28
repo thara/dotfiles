@@ -493,7 +493,7 @@ Plug 'leafgarland/typescript-vim', { 'for': ['typescript']}
 " Pythonの関数とクラスをテキストオブジェクト化 + motion追加
 Plug 'bps/vim-textobj-python', { 'for': ['python']}
 " Rubyのブロックをテキストオブジェクト化
-Plug 'rhysd/vim-textobj-ruby', { 'for': ['ruby']}
+"Plug 'rhysd/vim-textobj-ruby', { 'for': ['ruby']}
 " end キーワードの自動挿入
 Plug 'tpope/vim-endwise'
 
@@ -543,14 +543,14 @@ let g:cheatsheet#vsplit = 1
 " 汎用的な quickrun-hook
 " QuickFix 該当箇所のハイライト
 " 非同期でシンタックスチェック
-Plug 'thinca/vim-quickrun', { 'on': ['QuickRun']}
-\   | Plug 'osyo-manga/shabadou.vim'
-\   | Plug 'cohama/vim-hier'
-\   | Plug 'osyo-manga/vim-watchdogs', {
-\       'for': [
-\         'cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'ocaml', 'sh', 'zsh', 'sass', 'scss',
-\       ],
-\ }
+"Plug 'thinca/vim-quickrun', { 'on': ['QuickRun']}
+"\   | Plug 'osyo-manga/shabadou.vim'
+"\   | Plug 'cohama/vim-hier'
+"\   | Plug 'osyo-manga/vim-watchdogs', {
+"\       'for': [
+"\         'cpp', 'ruby', 'javascript', 'haskell', 'python', 'perl', 'php', 'lua', 'c', 'scala', 'ocaml', 'sh', 'zsh', 'sass', 'scss',
+"\       ],
+"\ }
 
 " Better JSON for vim
 Plug 'elzr/vim-json'
@@ -659,6 +659,7 @@ nnoremap [fzf]h :History<CR>
 
 cnoreabbrev Ack Ack!
 nnoremap [fzf]a :Ag<CR>
+nnoremap [fzf]r :Rg<CR>
 
 " Search a word under cursor about the file type on Dash
 :nmap <silent> sd <Plug>DashSearch
