@@ -77,6 +77,9 @@ export FZF_CTRL_T_OPTS="--preview 'bat  --color=always --style=header,grid --lin
 export FZF_ALT_C_COMMAND="fd -t d . | sort"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
+## bat
+export BAT_THEME="Gray Matter Dark"
+
 ## Command aliases
 setopt complete_aliases
 #alias ls='ls -GF'
