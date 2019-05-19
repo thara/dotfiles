@@ -1,0 +1,68 @@
+#!/bin/bash
+
+# Stop script if errors occur
+trap 'echo Error: $0:$LINENO stopped; exit 1' ERR INT
+set -eu
+
+. "$DOTFILES_ROOT/script/functions"
+
+apt-get install -y tree wget zsh
+
+# zsh-completions
+wget -nv https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/xUbuntu_18.10/Release.key -O Release.key
+apt-key add - < Release.key
+rm Release.key
+apt-get update
+
+sh -c "echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/xUbuntu_18.10/ /' > /etc/apt/sources.list.d/shells:zsh-users:zsh-completions.list"
+apt-get update && apt-get install -y zsh-completions
+
+
+apt-get install -y git-lfs tig tmux
+
+## TODO
+# git-now
+# ghq
+# exa
+# fd
+# rg
+# vim
+# docker
+
+mkdir -p $HOME/.config/bat/themes
+git clone https://github.com/thara/gray-matter.git $HOME/.config/bat/themes/ || :
+
+# Vim
+apt-cache -i depends vim
+apt-get remove --purge -y vim vim-runtime vim-common
+apt-get install -y git build-essential ncurses-dev lua5.2 lua5.2-dev luajit python-dev python3-dev ruby-dev
+git clone --depth 1 https://github.com/vim/vim /opt/vim
+
+(cd /opt/vim && \
+  ./configure \
+      --with-features=huge \
+      --enable-multibyte \
+      --enable-luainterp=dynamic \
+      --enable-gpm \
+      --enable-cscope \
+      --enable-fontset \
+      --enable-fail-if-missing \
+      --prefix=/usr/local \
+      --enable-pythoninterp=dynamic \
+      --enable-python3interp=dynamic \
+      --enable-rubyinterp=dynamic && \
+  make && make install && hash vim
+)
+
+
+VIM_DIR=$DOTFILES_ROOT/.vim
+
+mkdir -p $VIM_DIR/autoload
+
+
+: "Install vim-plug" && {
+  if ! [ -f "$VIM_DIR/autoload/plug.vim" ] ; then
+    curl -fLo $VIM_DIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    log_pass "vim: Install vim-plug"
+  fi
+}

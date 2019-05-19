@@ -3,7 +3,14 @@ set -eu
 
 get_os() {
   case "$(uname | awk '{print tolower($0)}')" in
-      *'linux'*)  echo 'linux'   ;;
+      *'linux'*)
+          if [ -f /etc/os-release ]; then
+            . /etc/os-release
+            echo $ID_LIKE
+          else
+            echo 'linux'
+          fi
+          ;;
       *'darwin'*) echo 'osx'     ;;
       *'bsd'*)    echo 'bsd'     ;;
       *)          echo 'unknown' ;;
