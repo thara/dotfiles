@@ -10,6 +10,7 @@ list:
 links:
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
 	@ln -sfnv src/github.com/thara/dotfiles $(HOME)/dotfiles
+	@mkdir -p $(HOME)/bin
 	@$(foreach val, $(BINFILES), ln -sfnv $(abspath bin/$(val)) $(HOME)/bin/$(val);)
 
 init:
