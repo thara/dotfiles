@@ -22,5 +22,10 @@ setopt EXTENDED_GLOB
       log_pass "prezto: $HOME/.${rcfile:t} already exists."
     fi
   done
+
+  if [ ! -f "$HOME/.zprezto/modules/prompt/functions/prompt_thara_setup" ]; then
+    cp $DOTFILES_ROOT/etc/prezto-functions/prompt_thara_setup $HOME/.zprezto/modules/prompt/functions
+    log_pass "prezto: locate prompt_thara_setup"
+  fi
 }
 
