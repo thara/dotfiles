@@ -36,7 +36,7 @@ set -eu
   export HOMEBREW_NO_AUTO_UPDATE=1
 
   brew analytics off
-  brew update  # https://github.com/travis-ci/travis-ci/issues/8552#issuecomment-335430374
+  #brew update  # https://github.com/travis-ci/travis-ci/issues/8552#issuecomment-335430374
 
   brew list rename &>/dev/null || brew install rename
   brew list tree &>/dev/null || brew install tree
@@ -49,7 +49,10 @@ set -eu
 
   brew list git &>/dev/null || brew install git
   homebrew_prefix=$(brew --prefix)
-  ln -sfnv ${homebrew_prefix}/share/git-core/contrib/diff-highlight/diff-highlight ${homebrew_prefix}/bin
+
+  if ! [ -f "$homebrew_prefix/bin/diff-highlight" ] ; then
+    ln -sfnv ${homebrew_prefix}/share/git-core/contrib/diff-highlight/diff-highlight ${homebrew_prefix}/bin
+  fi
 
   brew list git-lfs &>/dev/null || brew install git-lfs
   brew list git-now &>/dev/null || brew install git-now
@@ -60,8 +63,14 @@ set -eu
   brew list fzf &>/dev/null || brew install fzf
 
   brew list bat &>/dev/null || brew install bat
-  mkdir -p $HOME/.config/bat/themes
-  git clone https://github.com/thara/gray-matter.git $HOME/.config/bat/themes/ || :
+
+  brew list fpp &>/dev/null || brew install fpp
+
+  if ! [ -f "$HOME/.config/bat/themes" ] ; then
+    mkdir -p $HOME/.config/bat/themes
+    git clone https://github.com/thara/gray-matter.git $HOME/.config/bat/themes/ || :
+  fi
+
   brew list exa &>/dev/null || brew install exa
   brew list fd &>/dev/null || brew install fd
   brew list rg &>/dev/null || brew install rg
@@ -78,27 +87,22 @@ set -eu
   brew cask list google-japanese-ime &>/dev/null || brew cask install google-japanese-ime
   brew cask list iterm2 &>/dev/null || brew cask install iterm2
   brew cask list macvim &>/dev/null || brew cask install macvim
-  brew cask list macdown &>/dev/null || brew cask install macdown
-  #brew cask install appcleaner  # Error: Download failed on Cask 'appcleaner' with message: Download failed: https://www.freemacsoft.net/downloads/AppCleaner_3.4.zip
   brew cask list omnidisksweeper &>/dev/null || brew cask install omnidisksweeper
   brew cask list slack &>/dev/null || brew cask install slack
   brew cask list discord &>/dev/null || brew cask install discord
   brew cask list virtualbox &>/dev/null || brew cask install virtualbox
-  brew cask list vagrant &>/dev/null || brew cask install vagrant
   brew cask list google-chrome &>/dev/null || brew cask install google-chrome
   brew cask list dropbox &>/dev/null || brew cask install dropbox
   brew cask list visual-studio-code &>/dev/null || brew cask install visual-studio-code
-  brew cask list google-cloud-sdk &>/dev/null || brew cask install google-cloud-sdk
   brew cask list karabiner-elements &>/dev/null || brew cask install karabiner-elements
   brew cask list google-backup-and-sync &>/dev/null || brew cask install google-backup-and-sync
   brew cask list handshaker &>/dev/null || brew cask install handshaker  # Android device manager
   brew cask list github &>/dev/null || brew cask install github
   brew cask list kindle &>/dev/null || brew cask install kindle
-  brew cask list sequel-pro &>/dev/null || brew cask install sequel-pro
   brew cask list docker &>/dev/null || brew cask install docker
 
   brew tap caskroom/fonts
-  brew cask install font-myrica font-myricam
+  brew cask list font-myrica &>/dev/null || brew cask install font-myrica font-myricam
 }
 
 
@@ -111,5 +115,12 @@ mkdir -p $VIM_DIR/autoload
   if ! [ -f "$VIM_DIR/autoload/plug.vim" ] ; then
     curl -fLo $VIM_DIR/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     log_pass "vim: Install vim-plug"
+  fi
+}
+
+: "Install tmux-plugins" && {
+  if ! [ -f "$HOME/.tmux/plugins/tpm" ] ; then
+    mkdir -p $HOME/.tmux/plugins/
+    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
   fi
 }
