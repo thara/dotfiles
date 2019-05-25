@@ -6,10 +6,6 @@ else
   homebrew_prefix="/usr/homebrew"
 fi
 
-if [ -f $homebrew_prefix/etc/bash_completion ]; then
-  . $homebrew_prefix/etc/bash_completion
-fi
-
 # z: https://github.com/rupa/z
 [ -f $homebrew_prefix/etc/profile.d/z.sh ] && . $homebrew_prefix/etc/profile.d/z.sh
 
@@ -29,7 +25,7 @@ export PATH="/Applications/MacVim.app/Contents/MacOS:${PATH}"
 alias vim='env_LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 alias vi='vim'
 
-[ -f $homebrew_prefix/etc/bash_completion.d ] && source $homebrew_prefix/etc/bash_completion.d
+fpath=($homebrew_prefix/share/zsh-completions $fpath)
 
 autoload -Uz compinit
 compinit -u
