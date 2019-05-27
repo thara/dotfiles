@@ -296,17 +296,17 @@ nnoremap <S-Tab> <C-w>W
 " 引数リスト
 nnoremap <Space><Space> :args<CR>
 nnoremap <Space>l :arglocal<CR>
-nnoremap <Space>j :argadd % <Bar> next <Bar> args<CR>
-nnoremap <Space>e :argedit % <Bar> args<CR>
-nnoremap <Space>k :<C-R>=argidx()+1<CR>argdelete <Bar> args<CR>
+nnoremap <Space>j :argadd % <Bar> next <CR>
+nnoremap <Space>e :argedit %<CR>
+nnoremap <Space>k :<C-R>=argidx()+1<CR>argdelete<CR>
 " 新規ローカル引数リストを作る
 nnoremap <Space>s :arglocal! %<CR>
 " 引数リスト内の現在指しているファイルに戻る
 nnoremap <Space>c :argument<CR>
-nnoremap <silent> <C-h> :previous<CR>
-nnoremap <silent> <C-l> :next<CR>
 nnoremap <Space>f :first<CR>
 nnoremap <Space>t :last<CR>
+nnoremap <silent> <C-h> :previous<CR>
+nnoremap <silent> <C-l> :next<CR>
 
 " タブページ間の移動
 "nnoremap <silent> <C-h> :tabprevious<CR>
