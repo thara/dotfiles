@@ -1,0 +1,6 @@
+#!/bin/sh
+if which swiftlint >/dev/null; then
+  git diff --cached --name-only --diff-filter=AM | grep -e '\.swift$' | xargs swiftlint autocorrect --format
+  git diff --cached --name-only --diff-filter=AM | grep -e '\.swift$' | xargs swiftlint --
+fi
+exit $?
