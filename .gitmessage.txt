@@ -6,6 +6,7 @@
 # - :sparkles: New feature
 # - :art: Improving the format/structure of the code
 # - :rocket: Performance Improvement
+# - :construction: WIP
 # - :construction_worker: Other refactoring
 # - :crossed_swords: Add validation
 # - :white_check_mark: Add test
@@ -16,6 +17,7 @@
 # - :file_cabinet: About Persistency
 # - :wrench: Configuration
 # - :police_car: Lint
+# - :see_no_evil: Fix typo
 # - :heavy_minus_sign: Remove a dependency
 # - :heavy_plus_sign: Add a dependency
 # - :iphone: About mobile
