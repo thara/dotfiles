@@ -58,6 +58,7 @@ set -eu
   brew list git-now &>/dev/null || brew install git-now
   brew list tig &>/dev/null || brew install tig --with-docs
   brew list tmux &>/dev/null || brew install tmux
+  brew list urlview &>/dev/null || brew install urlview
 
   brew list ghq &>/dev/null || brew install ghq
   brew list fzf &>/dev/null || brew install fzf
@@ -66,7 +67,7 @@ set -eu
 
   brew list fpp &>/dev/null || brew install fpp
 
-  if ! [ -f "$HOME/.config/bat/themes" ] ; then
+  if ! [ -d "$HOME/.config/bat/themes" ] ; then
     mkdir -p $HOME/.config/bat/themes
     git clone https://github.com/thara/gray-matter.git $HOME/.config/bat/themes/ || :
   fi
@@ -83,26 +84,26 @@ set -eu
   # pyenv global system
   # brew list vim &>/dev/null || brew install vim --with-python --with-lua --with-luajit --with-cscope --with-ruby --with-luajit --with-perl
 
-  brew tap caskroom/cask
-  brew cask list google-japanese-ime &>/dev/null || brew cask install google-japanese-ime
-  brew cask list iterm2 &>/dev/null || brew cask install iterm2
-  brew cask list macvim &>/dev/null || brew cask install macvim
-  brew cask list omnidisksweeper &>/dev/null || brew cask install omnidisksweeper
-  brew cask list slack &>/dev/null || brew cask install slack
-  brew cask list discord &>/dev/null || brew cask install discord
-  brew cask list virtualbox &>/dev/null || brew cask install virtualbox
-  brew cask list google-chrome &>/dev/null || brew cask install google-chrome
-  brew cask list dropbox &>/dev/null || brew cask install dropbox
-  brew cask list visual-studio-code &>/dev/null || brew cask install visual-studio-code
-  brew cask list karabiner-elements &>/dev/null || brew cask install karabiner-elements
-  brew cask list google-backup-and-sync &>/dev/null || brew cask install google-backup-and-sync
-  brew cask list handshaker &>/dev/null || brew cask install handshaker  # Android device manager
-  brew cask list github &>/dev/null || brew cask install github
-  brew cask list kindle &>/dev/null || brew cask install kindle
-  brew cask list docker &>/dev/null || brew cask install docker
+  # brew tap caskroom/cask
+  # brew cask list google-japanese-ime &>/dev/null || brew cask install google-japanese-ime
+  # brew cask list iterm2 &>/dev/null || brew cask install iterm2
+  # brew cask list macvim &>/dev/null || brew cask install macvim
+  # brew cask list omnidisksweeper &>/dev/null || brew cask install omnidisksweeper
+  # brew cask list slack &>/dev/null || brew cask install slack
+  # brew cask list discord &>/dev/null || brew cask install discord
+  # brew cask list virtualbox &>/dev/null || brew cask install virtualbox
+  # brew cask list google-chrome &>/dev/null || brew cask install google-chrome
+  # brew cask list dropbox &>/dev/null || brew cask install dropbox
+  # brew cask list visual-studio-code &>/dev/null || brew cask install visual-studio-code
+  # brew cask list karabiner-elements &>/dev/null || brew cask install karabiner-elements
+  # brew cask list google-backup-and-sync &>/dev/null || brew cask install google-backup-and-sync
+  # brew cask list handshaker &>/dev/null || brew cask install handshaker  # Android device manager
+  # brew cask list github &>/dev/null || brew cask install github
+  # brew cask list kindle &>/dev/null || brew cask install kindle
+  # brew cask list docker &>/dev/null || brew cask install docker
 
-  brew tap caskroom/fonts
-  brew cask list font-myrica &>/dev/null || brew cask install font-myrica font-myricam
+  # brew tap caskroom/fonts
+  # brew cask list font-myrica &>/dev/null || brew cask install font-myrica font-myricam
 }
 
 
@@ -119,7 +120,7 @@ mkdir -p $VIM_DIR/autoload
 }
 
 : "Install tmux-plugins" && {
-  if ! [ -f "$HOME/.tmux/plugins/tpm" ] ; then
+  if ! [ -d "$HOME/.tmux/plugins/tpm" ] ; then
     mkdir -p $HOME/.tmux/plugins/
     git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
   fi
