@@ -505,9 +505,9 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'roxma/nvim-yarp'
+"Plug 'roxma/vim-hug-neovim-rpc'
 " the path to python3 is obtained through executing `:echo exepath('python3')` in vim
 let g:python3_host_prog = "/usr/local/bin/python3"
 
@@ -538,6 +538,9 @@ Plug 'mileszs/ack.vim'
 Plug 'reireias/vim-cheatsheet'
 let g:cheatsheet#cheat_file = '~/Dropbox/Work/cheatsheet.md'
 let g:cheatsheet#vsplit = 1
+
+Plug 'davidoc/taskpaper.vim'
+let g:task_paper_date_format = "%Y-%m-%d %H:%M:%S"
 
 " コードを書いて即実行
 " 汎用的な quickrun-hook
