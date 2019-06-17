@@ -1,5 +1,6 @@
 
 ## Emoji
+# - :muscle: Implement
 # - :memo: Documentation
 # - :speech_balloon: Add/Fix messages
 # - :bug: Bugfix
