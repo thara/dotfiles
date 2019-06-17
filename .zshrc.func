@@ -77,7 +77,8 @@ note() {
     *)
       pushd "$notes_dir"
       if [ $# -eq 0 ]; then
-        vim journal/`date +%Y%m%d`.taskpaper
+#        vim journal/`date +%Y%m%d`.taskpaper
+        vim todo.taskpaper
       else
         vim memo/"$1".md -c 'setfiletype markdown'
       fi
