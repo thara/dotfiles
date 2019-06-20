@@ -631,7 +631,7 @@ augroup my_dirvish_events
     \ |xnoremap <buffer> t :call dirvish#open('tabedit', 0)<CR>
 
   " Enable :Gstatus and friends.
-  "autocmd FileType dirvish call fugitive#detect(@%)
+  autocmd FileType dirvish call fugitive#detect(@%)
 
   " Map CTRL-R to reload the Dirvish buffer.
   autocmd FileType dirvish nnoremap <buffer> <C-R> :<C-U>Dirvish %<CR>
@@ -665,15 +665,18 @@ let g:vim_json_syntax_conceal = 0
 nnoremap [fzf] <Nop>
 nmap s [fzf]
 " https://github.com/junegunn/fzf.vim#commands
-nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]f :Files<CR>
+nnoremap [fzf]g :GFiles?<CR>
+nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]t :Tags<CR>
+nnoremap [fzf]m :Marks<CR>
 nnoremap [fzf]l :Lines<CR>
-nnoremap [fzf]c :Commits<CR>
+nnoremap [fzf]cm :Commits<CR>
+nnoremap [fzf]cc :BCommits<CR>
 nnoremap [fzf]h :History<CR>
 
 cnoreabbrev Ack Ack!
-nnoremap [fzf]a :Ag<CR>
+nnoremap [fzf]a :Rg<CR>
 nnoremap [fzf]r :Rg<CR>
 
 " Search a word under cursor about the file type on Dash
