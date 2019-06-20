@@ -452,6 +452,16 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 " インサートモード時に行番号の色を反転
 Plug 'cohama/vim-insert-linenr'
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
+      \ }
 " AsciiDoc syntax highlighting
 "Plug 'asciidoc/vim-asciidoc'
 " }}}
