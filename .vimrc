@@ -479,8 +479,20 @@ Plug 'thinca/vim-partedit'
 
 " ### Language {{{
 "Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
+Plug 'vim-syntastic/syntastic'
 
-Plug 'toyamarinyon/vim-swift', { 'for': ['swift'] }
+Plug 'w0rp/ale'
+let g:ale_linters = {
+\   'swift': ['swiftlint'],
+\}
+let g:ale_linters_explicit = 1
+let g:ale_completion_enabled = 1
+
+
+"Plug 'toyamarinyon/vim-swift', { 'for': ['swift'] }
+" Plug 'keith/swift.vim', { 'for': ['swift'] }
+" let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
+
 Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
 Plug 'fatih/vim-go', { 'for': ['go']}
 
@@ -810,6 +822,7 @@ autocmd MyAutoCmd FileType python setlocal smartindent cinwords=if,elif,else,for
 autocmd MyAutoCmd FileType python setlocal completeopt-=preview
 autocmd MyAutoCmd FileType python :inoremap # #
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
+autocmd MyAutoCmd BufNewFile,BufRead *.swift setfiletype swift
 autocmd MyAutoCmd FileType swift setlocal tabstop=4 tw=0 sw=4 expandtab
 autocmd MyAutoCmd BufWritePre *.go GoFmt
 autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab nolist
