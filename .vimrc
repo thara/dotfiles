@@ -501,7 +501,7 @@ let g:ale_completion_enabled = 1
 
 
 "Plug 'toyamarinyon/vim-swift', { 'for': ['swift'] }
-" Plug 'keith/swift.vim', { 'for': ['swift'] }
+Plug 'keith/swift.vim', { 'for': ['swift'] }
 " let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 
 Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
@@ -687,10 +687,12 @@ nnoremap [fzf]g :GFiles?<CR>
 nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]t :Tags<CR>
 nnoremap [fzf]m :Marks<CR>
-nnoremap [fzf]l :Lines<CR>
+nnoremap [fzf]ln :Lines<CR>
+nnoremap [fzf]bl :BLines<CR>
 nnoremap [fzf]cm :Commits<CR>
 nnoremap [fzf]cc :BCommits<CR>
 nnoremap [fzf]h :History<CR>
+nnoremap [fzf]w :Windows<CR>
 
 cnoreabbrev Ack Ack!
 nnoremap [fzf]a :Rg<CR>
