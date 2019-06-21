@@ -1,0 +1,71 @@
+alias d="todo.sh"
+alias doing="vim $HOME/Dropbox/plaintexts/doing/todo.txt"
+alias edit-cheatsheet="vim $HOME/Dropbox/Work/cheatsheet.md"
+
+journal() {
+  local target_dir="$HOME/Dropbox/plaintexts/journals"
+
+  case "$1" in
+    cd)
+      cd "$target_dir"
+      ;;
+    ls)
+      ls "$target_dir"
+      ;;
+    pwd)
+      echo "$target_dir"
+      ;;
+    prev)
+      local day_or_week=`date +%w`
+      if [ $day_or_week == 1 ] ; then
+        look_back=3
+      else
+        look_back=1
+      fi
+      local prevday=`date -d "$look_back day ago" +'%Y-%m-%d'`
+      \vim "$prevday".md -c 'setfiletype markdown'
+      ;;
+    *)
+      pushd "$target_dir"
+      local today=`date +%Y-%m-%d`
+      if [ $# -eq 0 ]; then
+        local file="$today".md
+        echo "# $today\n" > $file
+        \vim $file -c 'setfiletype markdown'
+      else
+        local file=$1_$today.md
+        shift
+        \vim $file -c 'setfiletype markdown'
+      fi
+      popd
+      ;;
+  esac
+}
+
+note() {
+  local notes_dir="$HOME/Dropbox/plaintexts/notes"
+
+  case "$1" in
+    cd)
+      cd "$notes_dir"
+      ;;
+    ls)
+      ls "$notes_dir"
+      ;;
+    pwd)
+      echo "$notes_dir"
+      ;;
+    *)
+      pushd "$notes_dir"
+      local today=`date +%Y-%m-%d`
+
+      if [ $# -eq 0 ]; then
+        \vim "$today".md -c 'setfiletype markdown'
+      else
+        local file=$1_$today.md
+        \vim $file -c 'setfiletype markdown'
+      fi
+      popd
+      ;;
+  esac
+}

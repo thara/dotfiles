@@ -370,6 +370,7 @@ nnoremap ZQ <Nop>
 
 " LeaderをSpaceキーに
 let mapleader = "\<Space>"
+let g:maplocalleader = "\<Space>"
 
 " .vimrcを開く
 nnoremap <silent> <Leader>ev  :<C-u>tabedit $MYVIMRC<CR>
@@ -570,6 +571,8 @@ let g:cheatsheet#vsplit = 1
 
 Plug 'davidoc/taskpaper.vim'
 let g:task_paper_date_format = "%Y-%m-%d %H:%M:%S"
+
+Plug 'vim-scripts/todo-txt.vim'
 
 " コードを書いて即実行
 " 汎用的な quickrun-hook

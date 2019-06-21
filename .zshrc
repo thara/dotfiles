@@ -127,3 +127,6 @@ done
 alias e='exa -l'
 alias et='exa -lT'
 alias eg='exa -hl --git'
+
+
+[ -f ~/.zshrc.tools ] && source ~/.zshrc.tools

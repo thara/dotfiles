@@ -60,33 +60,3 @@ bindkey '^]' fzf_select_repos
 bindkey '^B' fzf_select_git_branch
 bindkey '^\' fzf_ssh_hosts
 bindkey '^E' fzf_open_editor
-
-note() {
-  local notes_dir="$HOME/Dropbox/Notes"
-
-  case "$1" in
-    cd)
-      cd "$notes_dir"
-      ;;
-    ls)
-      ls "$notes_dir"
-      ;;
-    pwd)
-      echo "$notes_dir"
-      ;;
-    *)
-      pushd "$notes_dir"
-      if [ $# -eq 0 ]; then
-#        vim journal/`date +%Y%m%d`.taskpaper
-        vim todo.taskpaper
-      else
-        vim memo/"$1".md -c 'setfiletype markdown'
-      fi
-      popd
-      ;;
-  esac
-}
-
-edit-cheatsheet() {
-  vim $HOME/Dropbox/Work/cheatsheet.md
-}
