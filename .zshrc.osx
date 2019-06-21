@@ -1,3 +1,5 @@
+alias date='/usr/local/bin/gdate'
+
 export PATH="/usr/homebrew/bin:/opt/homebrew/bin:$PATH"
 
 if exists "brew"; then
