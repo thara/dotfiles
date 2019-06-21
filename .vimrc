@@ -489,11 +489,12 @@ Plug 'thinca/vim-partedit'
 
 " ### Language {{{
 "Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 
 Plug 'w0rp/ale'
 let g:ale_linters = {
 \   'swift': ['swiftlint'],
+\   'ruby': ['rubocop'],
 \}
 let g:ale_linters_explicit = 1
 let g:ale_completion_enabled = 1
@@ -539,6 +540,12 @@ let g:python3_host_prog = "/usr/local/bin/python3"
 " ### Misc {{{
 " Git
 Plug 'tpope/vim-fugitive'
+nnoremap <silent> <Leader>gs  :<C-u>Gstatus<CR>
+nnoremap <silent> <Leader>gc  :<C-u>Gcommit<CR>
+nnoremap <silent> <Leader>gd  :<C-u>Gdiff<CR>
+nnoremap <silent> <Leader>gb  :<C-u>Gblame<CR>
+nnoremap <silent> <Leader>gw  :<C-u>Gbrowse<CR>
+
 " Add GitHub support to fugitive
 Plug 'tpope/vim-rhubarb'
 " Show git diff left
