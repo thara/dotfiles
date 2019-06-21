@@ -86,3 +86,7 @@ note() {
       ;;
   esac
 }
+
+edit-cheatsheet() {
+  vim $HOME/Dropbox/Work/cheatsheet.md
+}
