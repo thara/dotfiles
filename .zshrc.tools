@@ -1,5 +1,7 @@
 alias d="todo.sh"
 alias doing="vim $HOME/Dropbox/plaintexts/doing/todo.txt"
+alias plan="vim $HOME/Dropbox/plaintexts/planning.taskpaper"
+
 alias edit-cheatsheet="vim $HOME/Dropbox/Work/cheatsheet.md"
 
 journal() {
