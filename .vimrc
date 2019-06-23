@@ -690,8 +690,8 @@ nnoremap [fzf]g :GFiles?<CR>
 nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]t :Tags<CR>
 nnoremap [fzf]m :Marks<CR>
-nnoremap [fzf]ln :Lines<CR>
-nnoremap [fzf]bl :BLines<CR>
+"nnoremap [fzf]ln :Lines<CR>
+nnoremap [fzf]l :BLines<CR>
 nnoremap [fzf]cm :Commits<CR>
 nnoremap [fzf]cc :BCommits<CR>
 nnoremap [fzf]h :History<CR>
