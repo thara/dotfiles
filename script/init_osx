@@ -47,6 +47,8 @@ set -eu
   brew list reattach-to-user-namespace &>/dev/null || brew install reattach-to-user-namespace
   brew list rlwrap &>/dev/null || brew install rlwrap
 
+  brew list coreutils &>/dev/null || brew install coreutils
+
   brew list git &>/dev/null || brew install git
   homebrew_prefix=$(brew --prefix)
 
@@ -78,6 +80,8 @@ set -eu
 
   brew list mergepbx &>/dev/null || brew install mergepbx
   brew list carthage &>/dev/null || brew install carthage
+
+  brew list todo-txt &>/dev/null || brew install todo-txt
 
   # https://github.com/Homebrew/homebrew-core/issues/1165
   # brew list pyenv &>/dev/null || brew install pyenv
