@@ -26,7 +26,12 @@ journal() {
         look_back=1
       fi
       local prevday=`date -d "$look_back day ago" +'%Y-%m-%d'`
-      \vim "$prevday".md -c 'setfiletype markdown'
+      local file="$prevday".md
+      echo "# $prevday\n" > $file
+      if [ ! -f $file ]; then
+        echo "# $prevday\n" > $file
+      fi
+      \vim $file -c 'setfiletype markdown'
       popd
       ;;
     next)
@@ -38,21 +43,21 @@ journal() {
         forwards=1
       fi
       local next=`date -d "$forwards day" +'%Y-%m-%d'`
-      \vim "$next".md -c 'setfiletype markdown'
+      local file="$next".md
+      if [ ! -f $file ]; then
+        echo "# $next\n" > $file
+      fi
+      \vim $file -c 'setfiletype markdown'
       popd
       ;;
     *)
       pushd "$target_dir"
       local today=`date +%Y-%m-%d`
-      if [ $# -eq 0 ]; then
-        local file="$today".md
+      local file="$today".md
+      if [ ! -f $file ]; then
         echo "# $today\n" > $file
-        \vim $file -c 'setfiletype markdown'
-      else
-        local file=$1_$today.md
-        shift
-        \vim $file -c 'setfiletype markdown'
       fi
+      \vim $file -c 'setfiletype markdown'
       popd
       ;;
   esac
@@ -79,6 +84,9 @@ note() {
         \vim "$today".md -c 'setfiletype markdown'
       else
         local file=$1_$today.md
+        if [ ! -f $file ]; then
+          echo "# $1\n\n$today\n\n\n" > $file
+        fi
         \vim $file -c 'setfiletype markdown'
       fi
       popd
