@@ -492,15 +492,6 @@ Plug 'thinca/vim-partedit'
 "Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
 "Plug 'vim-syntastic/syntastic'
 
-Plug 'w0rp/ale'
-let g:ale_linters = {
-\   'swift': ['swiftlint'],
-\   'ruby': ['rubocop'],
-\}
-let g:ale_linters_explicit = 1
-let g:ale_completion_enabled = 1
-
-
 "Plug 'toyamarinyon/vim-swift', { 'for': ['swift'] }
 Plug 'keith/swift.vim', { 'for': ['swift'] }
 " let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
