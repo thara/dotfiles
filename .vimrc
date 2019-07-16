@@ -293,20 +293,23 @@ noremap <C-b> <C-y>
 nnoremap <Tab> <C-w>w
 nnoremap <S-Tab> <C-w>W
 
+" 一つ前に開いたファイルを開く
+nnoremap <Space><Space> <C-^>
+
 " 引数リスト
-nnoremap <Space><Space> :args<CR>
-nnoremap <Space>l :arglocal<CR>
-nnoremap <Space>j :argadd % <Bar> next <CR>
-nnoremap <Space>e :argedit %<CR>
-nnoremap <Space>k :<C-R>=argidx()+1<CR>argdelete<CR>
+"nnoremap <Space><Space> :args<CR>
+"nnoremap <Space>l :arglocal<CR>
+"nnoremap <Space>j :argadd % <Bar> next <CR>
+"nnoremap <Space>e :argedit %<CR>
+"nnoremap <Space>k :<C-R>=argidx()+1<CR>argdelete<CR>
 " 新規ローカル引数リストを作る
-nnoremap <Space>s :arglocal! %<CR>
+"'nnoremap <Space>s :arglocal! %<CR>
 " 引数リスト内の現在指しているファイルに戻る
-nnoremap <Space>c :argument<CR>
-nnoremap <Space>f :first<CR>
-nnoremap <Space>t :last<CR>
-nnoremap <silent> <C-h> :previous<CR>
-nnoremap <silent> <C-l> :next<CR>
+"nnoremap <Space>c :argument<CR>
+"nnoremap <Space>f :first<CR>
+"nnoremap <Space>t :last<CR>
+"nnoremap <silent> <C-h> :previous<CR>
+"nnoremap <silent> <C-l> :next<CR>
 
 " タブページ間の移動
 "nnoremap <silent> <C-h> :tabprevious<CR>
@@ -564,6 +567,7 @@ Plug 'davidoc/taskpaper.vim'
 let g:task_paper_date_format = "%Y-%m-%d %H:%M:%S"
 
 Plug 'vim-scripts/todo-txt.vim'
+Plug 'jkramer/vim-checkbox'
 
 " コードを書いて即実行
 " 汎用的な quickrun-hook
@@ -847,6 +851,8 @@ autocmd MyAutoCmd FileType rust nmap gd <Plug>(rust-def)
 autocmd MyAutoCmd FileType rust nmap gs <Plug>(rust-def-split)
 autocmd MyAutoCmd FileType rust nmap gx <Plug>(rust-def-vertical)
 autocmd MyAutoCmd FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+autocmd MyAutoCmd FileType markdown nnoremap <buffer> T :call checkbox#ToggleCB()<CR>
 " }}}
 
 " }}}
