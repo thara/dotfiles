@@ -36,7 +36,6 @@ set -eu
   export HOMEBREW_NO_AUTO_UPDATE=1
 
   brew analytics off
-  #brew update  # https://github.com/travis-ci/travis-ci/issues/8552#issuecomment-335430374
 
   brew list rename &>/dev/null || brew install rename
   brew list tree &>/dev/null || brew install tree
@@ -58,7 +57,7 @@ set -eu
 
   brew list git-lfs &>/dev/null || brew install git-lfs
   brew list git-now &>/dev/null || brew install git-now
-  brew list tig &>/dev/null || brew install tig --with-docs
+  brew list tig &>/dev/null || brew install tig
   brew list tmux &>/dev/null || brew install tmux
   brew list urlview &>/dev/null || brew install urlview
 
@@ -78,36 +77,40 @@ set -eu
   brew list fd &>/dev/null || brew install fd
   brew list rg &>/dev/null || brew install rg
 
+  brew list gpg2 &>/dev/null || brew install gpg2
+  brew list pinentry-mac &>/dev/null || brew install pinentry-mac
+
   brew list mergepbx &>/dev/null || brew install mergepbx
   brew list carthage &>/dev/null || brew install carthage
 
   brew list todo-txt &>/dev/null || brew install todo-txt
 
-  # https://github.com/Homebrew/homebrew-core/issues/1165
-  # brew list pyenv &>/dev/null || brew install pyenv
-  # pyenv global system
-  # brew list vim &>/dev/null || brew install vim --with-python --with-lua --with-luajit --with-cscope --with-ruby --with-luajit --with-perl
+  if [ -n "$DOTFILES_VIM" ] ; then
+    brew list vim &>/dev/null || brew install vim
+  fi
 
-  # brew tap caskroom/cask
-  # brew cask list google-japanese-ime &>/dev/null || brew cask install google-japanese-ime
-  # brew cask list iterm2 &>/dev/null || brew cask install iterm2
-  # brew cask list macvim &>/dev/null || brew cask install macvim
-  # brew cask list omnidisksweeper &>/dev/null || brew cask install omnidisksweeper
-  # brew cask list slack &>/dev/null || brew cask install slack
-  # brew cask list discord &>/dev/null || brew cask install discord
-  # brew cask list virtualbox &>/dev/null || brew cask install virtualbox
-  # brew cask list google-chrome &>/dev/null || brew cask install google-chrome
-  # brew cask list dropbox &>/dev/null || brew cask install dropbox
-  # brew cask list visual-studio-code &>/dev/null || brew cask install visual-studio-code
-  # brew cask list karabiner-elements &>/dev/null || brew cask install karabiner-elements
-  # brew cask list google-backup-and-sync &>/dev/null || brew cask install google-backup-and-sync
-  # brew cask list handshaker &>/dev/null || brew cask install handshaker  # Android device manager
-  # brew cask list github &>/dev/null || brew cask install github
-  # brew cask list kindle &>/dev/null || brew cask install kindle
-  # brew cask list docker &>/dev/null || brew cask install docker
+  if [ -n "$DOTFILES_CASK" ] ; then
+    brew cask list 1password &>/dev/null || brew cask install 1password
+    brew cask list google-japanese-ime &>/dev/null || brew cask install google-japanese-ime
+    brew cask list omnidisksweeper &>/dev/null || brew cask install omnidisksweeper
+    brew cask list slack &>/dev/null || brew cask install slack
+    brew cask list discord &>/dev/null || brew cask install discord
+    brew cask list virtualbox &>/dev/null || brew cask install virtualbox
+    brew cask list google-chrome &>/dev/null || brew cask install google-chrome
+    brew cask list dropbox &>/dev/null || brew cask install dropbox
+    brew cask list visual-studio-code &>/dev/null || brew cask install visual-studio-code
+    brew cask list karabiner-elements &>/dev/null || brew cask install karabiner-elements
+    brew cask list google-backup-and-sync &>/dev/null || brew cask install google-backup-and-sync
+    brew cask list handshaker &>/dev/null || brew cask install handshaker  # Android device manager
+    brew cask list github &>/dev/null || brew cask install github
+    brew cask list kindle &>/dev/null || brew cask install kindle
+    brew cask list docker &>/dev/null || brew cask install docker
+    brew cask list jetbrains-toolbox &>/dev/null || brew cask install jetbrains-toolbox
+    brew cask list hammerspoon &>/dev/null || brew cask install hammerspoon
 
-  # brew tap caskroom/fonts
-  # brew cask list font-myrica &>/dev/null || brew cask install font-myrica font-myricam
+    brew tap caskroom/fonts
+    brew cask list font-myrica &>/dev/null || brew cask install font-myrica font-myricam
+  fi
 }
 
 
