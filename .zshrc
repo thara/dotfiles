@@ -67,9 +67,6 @@ fi
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-## ripgrep
-alias rg='rg --hidden'
-
 ## fzf
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_DEFAULT_OPTS='--border'
