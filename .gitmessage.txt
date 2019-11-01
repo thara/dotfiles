@@ -22,6 +22,7 @@
 # - :heavy_minus_sign: Remove a dependency
 # - :heavy_plus_sign: Add a dependency
 # - :iphone: About mobile
+# - :triangular_flag_on_post: About feature flag
 #
 ##  Sample
 #
