@@ -533,6 +533,13 @@ let g:python3_host_prog = "/usr/local/bin/python3"
 " }}}
 
 " ### Misc {{{
+
+" Use ripgrep by default
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
 " Git
 Plug 'tpope/vim-fugitive'
 nnoremap <silent> <Leader>gs  :<C-u>Gstatus<CR>
@@ -555,8 +562,6 @@ Plug 'kana/vim-tabpagecd'
 Plug 'thinca/vim-submode'
 " ヤンク履歴
 "Plug 'LeafCage/yankround.vim'
-" Ack
-Plug 'mileszs/ack.vim'
 
 " Cheat Sheet
 Plug 'reireias/vim-cheatsheet'
@@ -692,23 +697,11 @@ nnoremap [fzf]cc :BCommits<CR>
 nnoremap [fzf]h :History<CR>
 nnoremap [fzf]w :Windows<CR>
 
-cnoreabbrev Ack Ack!
 nnoremap [fzf]a :Rg<CR>
 nnoremap [fzf]r :Rg<CR>
 
 " Search a word under cursor about the file type on Dash
 :nmap <silent> sd <Plug>DashSearch
-
-" ### Ack {{{
-nnoremap <Space>/ :Ag <c-r>=expand("<cword>")<cr><cr>
-nnoremap <Space>\ :Ag
-
-let g:ackprg = 'ag --vimgrep --smart-case'
-cnoreabbrev ag Ack
-cnoreabbrev aG Ack
-cnoreabbrev Ag Ack
-cnoreabbrev AG Ack
-" }}}
 
 nnoremap [Plugin]    <Nop>
 nmap     , [Plugin]
