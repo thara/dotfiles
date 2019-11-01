@@ -31,7 +31,9 @@
 	sb = show-branch
 	ft = fetch
 	br = branch
+	brh = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - (%(color:green)%(committerdate:relative)%(color:reset))'
 	sh = show
+	i = ls-files --others -i --exclude-standard
 	cm = commit
 	cmm = commit -m
 	cma = commit --amend
@@ -46,7 +48,9 @@
   ll = log --pretty=format:'%C(red reverse)%d%Creset%C(white reverse) %h% Creset %C(green reverse) %an %Creset %C(cyan)%ar%Creset%n%C(white bold)%w(80)%s%Creset%n%n%w(80,2,2)%b' --graph --name-status
 	lg = !git --no-pager log -10 --oneline --decorate
 	lgl = !git log --oneline --decorate
+	lgf = log --follow -p --
 	lgg = log --graph --all --decorate --oneline
+	lso = ls-files -o --exclude-per-directory=.gitignore
 	ps = push
 	psu = push -u
 	pso = push -u origin
