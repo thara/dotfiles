@@ -24,7 +24,7 @@ function fzf_select_repos() {
 zle -N fzf_select_repos
 
 function fzf_select_git_branch() {
-  local selected_branch=$(git for-each-ref --format='%(refname)' --sort=-committerdate refs/heads | perl -pne 's{^refs/heads/}{}' | fzf-tmux --query "$LBUFFER" --preview "git show --color=always {}")
+  local selected_branch=$(git for-each-ref --format='%(refname)' --sort=-authordate refs/heads | perl -pne 's{^refs/heads/}{}' | fzf-tmux --query "$LBUFFER" --preview "git show --color=always {}")
 
   if [ -n "$selected_branch" ]; then
     BUFFER="git checkout ${selected_branch}"

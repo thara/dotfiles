@@ -4,6 +4,9 @@ alias plan="vim $HOME/Dropbox/plaintexts/planning.taskpaper"
 
 alias edit-cheatsheet="vim $HOME/Dropbox/Work/cheatsheet.md"
 
+alias git-first-commit="git log --date-order --format=%cI | tail -1"
+alias git-commiter-last-month="git shortlog --summary --since='1 month ago'"
+
 journal() {
   local target_dir="$HOME/Dropbox/plaintexts/journals"
 
@@ -92,4 +95,9 @@ note() {
       popd
       ;;
   esac
+}
+
+# Open GitHub
+gh() {
+  open $(git config remote.origin.url | sed 's/.\{4\}$//')/$1$2
 }
