@@ -501,6 +501,7 @@ Plug 'keith/swift.vim', { 'for': ['swift'] }
 
 Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
 Plug 'fatih/vim-go', { 'for': ['go']}
+Plug 'elixir-editors/vim-elixir', { 'for': ['ex', 'exs', 'eex', 'leex'] }
 
 Plug 'rust-lang/rust.vim', { 'for': ['rust']}
 Plug 'racer-rust/vim-racer', { 'for': ['rust']}
