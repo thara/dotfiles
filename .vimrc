@@ -468,6 +468,9 @@ let g:lightline = {
       \ }
 " AsciiDoc syntax highlighting
 "Plug 'asciidoc/vim-asciidoc'
+
+" easily search for, substitute, and abbreviate multiple variants of a word
+Plug 'tpope/vim-abolish'
 " }}}
 
 
@@ -500,7 +503,7 @@ Plug 'keith/swift.vim', { 'for': ['swift'] }
 " let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 
 Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
-Plug 'fatih/vim-go', { 'for': ['go']}
+Plug 'mattn/vim-goimports'
 Plug 'elixir-editors/vim-elixir', { 'for': ['ex', 'exs', 'eex', 'leex'] }
 
 Plug 'rust-lang/rust.vim', { 'for': ['rust']}
@@ -519,10 +522,6 @@ Plug 'tpope/vim-endwise'
 Plug 'elzr/vim-json', { 'for': ['json']}
 
 Plug 'reasonml-editor/vim-reason-plus'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 
 "Plug 'Shougo/deoplete.nvim'
 "Plug 'roxma/nvim-yarp'
@@ -531,6 +530,20 @@ Plug 'autozimu/LanguageClient-neovim', {
 let g:python3_host_prog = "/usr/local/bin/python3"
 
 "Plug 'tpope/vim-markdown'
+
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+"let g:lsp_highlights_enabled = 0
+"let g:lsp_textprop_enabled = 0
+"let g:lsp_virtual_text_enabled = 0
+" let g:lsp_signature_help_enabled = 0
+" let g:lsp_log_verbose = 1
+"let g:lsp_log_file = expand('~/vim-lsp.log')
+"let g:lsp_settings = {
+"\  'solargraph': {'whitelist': []}
+"\}
+
 " }}}
 
 " ### Misc {{{
@@ -662,9 +675,6 @@ augroup my_dirvish_events
   autocmd FileType dirvish nnoremap <buffer> gh :keeppatterns g@\v/(\.\|__)[^\/]+/?$@d<cr>
 augroup END
 
-let g:LanguageClient_serverCommands = {
-    \ 'ruby': ['solargraph', 'stdio'],
-\}
 " }}}
 
 " ### Submode {{{
@@ -814,8 +824,18 @@ endfunction
 command! ToggleDovorakMode call ToggleDvorakMode()
 " }}}
 
-
-
+" ### lsp {{{
+nnoremap <silent> gd :<C-u>LspDefinition<CR>
+nnoremap <silent> gD :<C-u>LspDeclaration<CR>
+nnoremap <silent> gr :<C-u>LspReferences<CR>
+nnoremap <silent> gs :<C-u>LspDocumentSymbol<CR>
+nnoremap <silent> gS :<C-u>LspWorkspaceSymbol<CR>
+nnoremap <silent> gQ :<C-u>LspDocumentFormat<CR>
+vnoremap <silent> gQ :LspDocumentRangeFormat<CR>
+nnoremap <silent> gh :<C-u>LspHover<CR>
+nnoremap <silent> gp :<C-u>LspImplementation<CR>
+noremap <silent> gR :<C-u>LspRename<CR>
+" }}}
 " }}}
 
 " ファイルタイプ別設定 {{{
