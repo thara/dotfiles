@@ -23,7 +23,7 @@ set foldcolumn=1
 set foldlevel=0
 "}}}
 " Search{{{
-"set hlsearch
+set hlsearch
 "nohlsearch
 set ignorecase
 set incsearch
@@ -422,6 +422,8 @@ autocmd MyAutoCmd ColorScheme * highlight SpecialComment ctermfg=8
 colorscheme off
 "}}}
 " vim-lsp{{{
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
 "let g:lsp_highlights_enabled = 0
 "let g:lsp_textprop_enabled = 0
 "let g:lsp_virtual_text_enabled = 0
@@ -441,6 +443,9 @@ vnoremap <silent> gQ :LspDocumentRangeFormat<CR>
 nnoremap <silent> gh :<C-u>LspHover<CR>
 nnoremap <silent> gp :<C-u>LspImplementation<CR>
 noremap <silent> gR :<C-u>LspRename<CR>
+"nnoremap <silent> gh  :<C-u>LspDocumentDiagnostics<CR>
+nnoremap <silent> ]e  :<C-u>LspNextError<CR>
+nnoremap <silent> [e  :<C-u>LspPreviousError<CR>
 "}}}
 " Rust{{{
 let g:rustfmt_autosave = 1
