@@ -80,26 +80,20 @@ export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 ## bat
 export BAT_THEME="Gray Matter Dark"
 
+[ -f ~/.zshrc.aliases ] && source ~/.zshrc.aliases
 ## Command aliases
-setopt complete_aliases
-#alias ls='ls -GF'
-# alias la='ls -aF'
-# alias ll='ls -lF'
-# alias lsa='ls -laF'
-alias du="du -h"
-alias df="df -h"
-alias gr="grep --color=auto -EDUIn"
-alias g="git"
-alias gi="git"
-alias gs="git status -s -b"
-alias gst="git status -s -b"
-alias gc="git commit"
-alias gca="git commit -a"
-alias gcls="git config --list | grep alias"
 
-alias tmux='nocorrect tmux'
+#setopt complete_aliases
+# alias g="git"
+# alias gi="git"
+# alias gs="git status -s -b"
+# alias gst="git status -s -b"
+# alias gc="git commit"
+# alias gca="git commit -a"
+# alias gcls="git config --list | grep alias"
 
-alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`' 
+
+#alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`' 
 
 # if [ -f /usr/local/bin/rbenv ]; then
 #   eval "$(rbenv init --no-rehash -)"
@@ -124,9 +118,6 @@ for i in $HOME/etc/profile.d/*.sh ; do
     fi
 done
 
-alias e='exa -l'
-alias et='exa -lT'
-alias eg='exa -hl --git'
-
-
 [ -f ~/.zshrc.tools ] && source ~/.zshrc.tools
+
+export PATH="$HOME/.cargo/bin:$PATH"

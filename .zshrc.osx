@@ -25,7 +25,6 @@ export PKG_CONFIG_PATH="$homebrew_prefix/lib/pkgconfig:$homebrew_prefix/lib:$PKG
 
 export PATH="/Applications/MacVim.app/Contents/MacOS:${PATH}"
 alias vim='env_LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-alias vi='vim'
 
 fpath=($homebrew_prefix/share/zsh-completions $fpath)
 
@@ -54,21 +53,4 @@ if exists "fzf" && exists "ag"; then
   --color fg:242,bg:236,hl:65,fg+:15,bg+:239,hl+:108
   --color info:108,prompt:109,spinner:108,pointer:168,marker:168
   '
-fi
-
-if exists "exa"; then
-  alias l='exa -lhg'
-  alias ls='exa -lhg --git --git-ignore'
-  alias la='exa -lhga --git'
-  alias ll='exa -lhga --git --git-ignore'
-  alias lt='exa -lhgT --git --git-ignore'
-fi
-
-if exists "bat"; then
-  alias b='bat'
-  export BAT_CONFIG_PATH="$HOME/.bat.conf"
-fi
-
-if exists "fd"; then
-  alias f='fd'
 fi
