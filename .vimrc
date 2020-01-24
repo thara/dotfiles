@@ -45,7 +45,7 @@ if !has('gui_running')
   set t_Co=256
 endif
 set background=dark
-set cmdheight=2
+set cmdheight=1
 set nocursorline
 set ruler
 set laststatus=2
@@ -280,6 +280,8 @@ Plug 'tyru/stoptypofile.vim'
 Plug 'thinca/vim-partedit'
 " easily search for, substitute, and abbreviate multiple variants of a word
 Plug 'tpope/vim-abolish'
+" Emoji
+Plug 'junegunn/vim-emoji'
 "}}}
 " Language{{{
 Plug 'keith/swift.vim', { 'for': ['swift'] }
@@ -494,6 +496,8 @@ let g:cheatsheet#cheat_file = '~/Dropbox/Work/cheatsheet.md'
 let g:cheatsheet#vsplit = 1
 " Search a word under cursor about the file type on Dash
 nmap <silent> sd <Plug>DashSearch
+
+set completefunc=emoji#complete
 "}}}
 "}}}1
 
