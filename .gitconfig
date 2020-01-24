@@ -24,10 +24,12 @@
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [alias]
-	a = add
-	aa = add -A
-	co = checkout
+	al = config --get-regexp alias
+	s = status --short --branch
 	st = status --short --branch
+	a = add
+	co = checkout
+	co = checkout
 	sb = show-branch
 	ft = fetch
 	br = branch
@@ -42,20 +44,19 @@
 	df = diff -C
 	dff = diff -C --name-only
 	dfs = diff -C --staged
-	dfst = diff -C --stat
+	dft = diff -C --stat
 	rb = rebase
-  l = log --pretty=format:'%C(green)%h %C(white)%<(20,trunc)%an %<(80,trunc)%s'
-  ll = log --pretty=format:'%C(red reverse)%d%Creset%C(white reverse) %h% Creset %C(green reverse) %an %Creset %C(cyan)%ar%Creset%n%C(white bold)%w(80)%s%Creset%n%n%w(80,2,2)%b' --graph --name-status
+	l = log --pretty=format:'%C(green)%h %C(white)%<(20,trunc)%an %<(80,trunc)%s'
+	ll = log --pretty=format:'%C(red reverse)%d%Creset%C(white reverse) %h% Creset %C(green reverse) %an %Creset %C(cyan)%ar%Creset%n%C(white bold)%w(80)%s%Creset%n%n%w(80,2,2)%b' --graph --name-status
 	lg = !git --no-pager log -10 --oneline --decorate
 	lgl = !git log --oneline --decorate
-	lgf = log --follow -p --
 	lgg = log --graph --all --decorate --oneline
 	lso = ls-files -o --exclude-per-directory=.gitignore
+	pl = pull
 	ps = push
+	pst = push --tags
 	psu = push -u
 	pso = push -u origin
-	psf = push --force-with-lease
-	pl = pull
 [tig "bind"]
     generic = g move-first-line
     generic = G move-last-line
