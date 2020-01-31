@@ -1,5 +1,3 @@
-[include]
-	path = .gitconfig.local
 [core]
 	editor = vim -c \"set fenc=utf-8\"
 	excludesfile = $HOME/.gitignore_global
@@ -29,7 +27,7 @@
 	st = status --short --branch
 	a = add
 	co = checkout
-	co = checkout
+	com = checkout master
 	sb = show-branch
 	ft = fetch
 	br = branch
@@ -49,6 +47,7 @@
 	l = log --pretty=format:'%C(green)%h %C(white)%<(20,trunc)%an %<(80,trunc)%s'
 	ll = log --pretty=format:'%C(red reverse)%d%Creset%C(white reverse) %h% Creset %C(green reverse) %an %Creset %C(cyan)%ar%Creset%n%C(white bold)%w(80)%s%Creset%n%n%w(80,2,2)%b' --graph --name-status
 	lg = !git --no-pager log -10 --oneline --decorate
+	lgf = log --follow -p --
 	lgl = !git log --oneline --decorate
 	lgg = log --graph --all --decorate --oneline
 	lso = ls-files -o --exclude-per-directory=.gitignore
@@ -89,3 +88,5 @@
 	token = !security find-internet-password -a thara -s github.com -l 'ghi token' -w
 [credential]
 	helper = osxkeychain
+[include]
+	path = .gitconfig.local
