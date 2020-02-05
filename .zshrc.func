@@ -59,4 +59,4 @@ zle -N fzf_open_editor
 bindkey '^]' fzf_select_repos
 bindkey '^B' fzf_select_git_branch
 bindkey '^\' fzf_ssh_hosts
-bindkey '^E' fzf_open_editor
+bindkey '^V' fzf_open_editor
