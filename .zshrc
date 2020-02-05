@@ -120,4 +120,9 @@ done
 
 [ -f ~/.zshrc.tools ] && source ~/.zshrc.tools
 
+[ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^ ' autosuggest-accept
+
 export PATH="$HOME/.cargo/bin:$PATH"
+
+export TERM=xterm-256color
