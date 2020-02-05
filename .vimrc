@@ -134,12 +134,11 @@ nmap g* g*zz
 nmap g# g#zz
 " Ex-Mode 無効
 nnoremap Q <Nop>
-" ページ送り
-noremap <C-f> <C-e>
-noremap <C-b> <C-y>
 " ウィンドウ移動
-nnoremap <Tab> <C-w>w
-nnoremap <S-Tab> <C-w>W
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 " 一つ前に開いたファイルを開く
 nnoremap <Space><Space> <C-^>
 " 引数リスト
@@ -304,6 +303,8 @@ Plug 'tpope/vim-endwise'
 Plug 'elzr/vim-json', { 'for': ['json']}
 
 Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 "}}}
@@ -367,7 +368,7 @@ nmap     , [Plugin]
 
 " dirvish{{{
 let g:dirvish_mode = ':sort r /[^\/]$/'
-nnoremap <silent> <C-e> :Dirvish<CR>
+"nnoremap <silent> <C-e> :Dirvish<CR>
 " hidden files
 "autocmd MyAutoCmd FileType dirvish keeppatterns g@\v/(\.|__)[^\/]+/?$@d
 augroup my_dirvish_events
@@ -376,8 +377,6 @@ augroup my_dirvish_events
   autocmd FileType dirvish
     \  nnoremap <buffer> t :call dirvish#open('tabedit', 0)<CR>
     \ |xnoremap <buffer> t :call dirvish#open('tabedit', 0)<CR>
-  " Enable :Gstatus and friends.
-  autocmd FileType dirvish call fugitive#detect(@%)
   " Map CTRL-R to reload the Dirvish buffer.
   autocmd FileType dirvish nnoremap <buffer> <C-R> :<C-U>Dirvish %<CR>
   " Map `gh` to hide dot-prefixed files.
@@ -426,10 +425,10 @@ colorscheme off
 " vim-lsp{{{
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
-"let g:lsp_highlights_enabled = 0
-"let g:lsp_textprop_enabled = 0
-"let g:lsp_virtual_text_enabled = 0
-" let g:lsp_signature_help_enabled = 0
+let g:lsp_highlights_enabled = 1
+let g:lsp_textprop_enabled = 1
+let g:lsp_virtual_text_enabled = 0
+let g:lsp_signature_help_enabled = 0
 " let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 "let g:lsp_settings = {
