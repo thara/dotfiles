@@ -3,6 +3,9 @@ setopt complete_aliases
 
 alias tmux='nocorrect tmux'
 
+alias rgu="rg -u"
+alias rguu="rg -uu"
+
 alias du="du -h"
 alias df="df -h"
 
@@ -12,7 +15,7 @@ alias plan="vim $HOME/Dropbox/plaintexts/planning.taskpaper"
 alias edit-cheatsheet="vim $HOME/Dropbox/Work/cheatsheet.md"
 
 alias git-first-commit="git log --date-order --format=%cI | tail -1"
-alias git-commiter-last-month="git shortlog --summary --since='1 month ago'"
+alias git-commiter-last-month="git shortlog --summary --since='1 month ago' | sort -r"
 
 alias vi='vim'
 alias v='vim'
@@ -44,9 +47,11 @@ if exists "fd"; then
 fi
 
 # http://grml.org/zsh/zsh-lovers.html
-alias -g ...='../..'
-alias -g ....='../../..'
-alias -g .....='../../../..'
+alias -g ..2='../..'
+alias -g ..3='../../..'
+alias -g G='| egrep'
+alias -g H='| head'
+alias -g L='| less'
 alias -g EG='|& egrep'
 alias -g EH='|& head'
 alias -g EL='|& less'
@@ -54,8 +59,23 @@ alias -g ELS='|& less -S'
 alias -g ETL='|& tail -20'
 alias -g ET='|& tail'
 
-# Git
+alias -g C='| pbcopy'
+
 alias g='git'
+alias t='tig'
+
+alias zshrc='vi ~/src/github.com/thara/dotfiles/.zshrc'
+alias vimrc='vi ~/src/github.com/thara/dotfiles/.vimrc'
+alias today='date +%Y-%m-%d'
+alias now='date "+%Y-%m-%d %H:%M:%S"'
+
+alias j='jobs'
+
+# Suffix
+alias -s zip=zipinfo
+alias -s {tgz,gz}=gzcat
+alias -s {tbz,bz2}=bzcat
+alias -s html=open
 
 # Git Alias Shortcut
 alias gal='g al'
