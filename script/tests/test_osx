@@ -25,14 +25,4 @@ test_homebrew() {
   fi
 }
 
-
-test_mjolnir() {
-  luarocks list | grep mjolnir
-  if [ $? -eq 0 ]; then
-    print_success "mjolnir setup"
-  else
-    failure "$0: $LINENO: $FUNCNAME"
-  fi
-}
-
-test_prezto && test_homebrew && test_mjolnir
+test_prezto && test_homebrew
