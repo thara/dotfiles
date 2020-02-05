@@ -68,6 +68,7 @@ alias zshrc='vi ~/src/github.com/thara/dotfiles/.zshrc'
 alias vimrc='vi ~/src/github.com/thara/dotfiles/.vimrc'
 alias today='date +%Y-%m-%d'
 alias now='date "+%Y-%m-%d %H:%M:%S"'
+alias lst='tmux capture-pane -S -1 -E 1000 -p | sed '/^$/d' | tail -n 2 | head -n 1 | pbcopy'
 
 alias j='jobs'
 
