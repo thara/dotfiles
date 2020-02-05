@@ -1,0 +1,17 @@
+name: macOS
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macos
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install
+      run: |
+        make init
+        make initzsh
+    - name: Run tests
+      run: make test
