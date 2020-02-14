@@ -70,6 +70,7 @@ set -eu
 
   brew list git-lfs &>/dev/null || brew install git-lfs
   brew list git-now &>/dev/null || brew install git-now
+  brew list github/gh/gh &>/dev/null || brew install github/gh/gh
 
   if ! [ -d "$HOME/.config/bat/themes" ] ; then
     mkdir -p $HOME/.config/bat/themes

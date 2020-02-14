@@ -87,8 +87,3 @@ note() {
       ;;
   esac
 }
-
-# Open GitHub
-gh() {
-  open $(git config remote.origin.url | sed 's/.\{4\}$//')/$1$2
-}
