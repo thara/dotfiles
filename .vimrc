@@ -238,6 +238,14 @@ xnoremap <silent> <Leader>p "0p
 inoremap <C-l> <C-g>U<Right>
 " grep https://www.pixiv.net/fanbox/creator/3615/post/38621
 nnoremap g/  :<C-u>global//print<CR>
+
+nnoremap <Leader>cd :cd %:h<CR>:pwd<CR>
+
+" Go to index of notes
+nnoremap <Leader>o :e $NOTES_DIR/inbox.md<CR>
+nnoremap <Leader>ni :e $NOTES_DIR/index.md<CR>cd $NOTES_DIR<CR>
+" Run ctags
+nnoremap <Leader>tt :silent !ctags -R . <CR>:redraw!<CR>
 "}}}
 
 " Plugin{{{1
@@ -281,6 +289,8 @@ Plug 'thinca/vim-partedit'
 Plug 'tpope/vim-abolish'
 " Emoji
 Plug 'junegunn/vim-emoji'
+" extends f, F, t and T mappings for more convenience
+Plug 'rhysd/clever-f.vim'
 "}}}
 " Language{{{
 Plug 'keith/swift.vim', { 'for': ['swift'] }
@@ -357,6 +367,8 @@ Plug 'reireias/vim-cheatsheet'
 
 " Dash
 Plug 'rizzatti/dash.vim'
+" Google Translate
+Plug 'skanehira/translate.vim'
 "}}}
 
 call plug#end()
@@ -496,6 +508,11 @@ let g:cheatsheet#vsplit = 1
 " Search a word under cursor about the file type on Dash
 nmap <silent> sd <Plug>DashSearch
 
+" f always search to right, F is inverse that
+let g:clever_f_fix_key_direction = 1
+" f matchs Japanese characters by roman
+let g:clever_f_use_migemo = 1
+
 set completefunc=emoji#complete
 "}}}
 "}}}1
@@ -597,6 +614,7 @@ autocmd MyAutoCmd FileType rust nmap gx <Plug>(rust-def-vertical)
 autocmd MyAutoCmd FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 autocmd MyAutoCmd FileType markdown nnoremap <buffer> T :call checkbox#ToggleCB()<CR>
+autocmd MyAutoCmd FileType markdown setlocal wrap
 autocmd FileType vim setlocal foldmethod=marker
 " }}}
 "}}}
