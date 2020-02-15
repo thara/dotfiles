@@ -1,5 +1,5 @@
 journal() {
-  local target_dir="$HOME/Dropbox/plaintexts/journals"
+  local target_dir="$NOTES_DIR/journals"
 
   case "$1" in
     cd)
@@ -58,7 +58,7 @@ journal() {
 }
 
 note() {
-  local notes_dir="$HOME/Dropbox/plaintexts/notes"
+  local notes_dir="$NOTES_DIR/inbox"
 
   case "$1" in
     cd)
