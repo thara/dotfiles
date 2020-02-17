@@ -295,7 +295,7 @@ Plug 'rhysd/clever-f.vim'
 " Language{{{
 Plug 'keith/swift.vim', { 'for': ['swift'] }
 " let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
-Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
+"Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
 Plug 'mattn/vim-goimports'
 Plug 'elixir-editors/vim-elixir', { 'for': ['ex', 'exs', 'eex', 'leex'] }
 " Rust
@@ -313,8 +313,8 @@ Plug 'tpope/vim-endwise'
 Plug 'elzr/vim-json', { 'for': ['json']}
 
 Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
+"Plug 'prabirshrestha/asyncomplete.vim'
+"Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 "}}}
@@ -508,9 +508,8 @@ let g:cheatsheet#vsplit = 1
 " Search a word under cursor about the file type on Dash
 nmap <silent> sd <Plug>DashSearch
 
-" f always search to right, F is inverse that
-let g:clever_f_fix_key_direction = 1
 " f matchs Japanese characters by roman
+let g:clever_f_across_no_line = 1
 let g:clever_f_use_migemo = 1
 
 set completefunc=emoji#complete
