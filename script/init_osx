@@ -60,6 +60,7 @@ set -eu
 
   brew list rlwrap &>/dev/null || brew install rlwrap
   brew list coreutils &>/dev/null || brew install coreutils
+  brew list universal-ctags &>/dev/null || (brew tap universal-ctags/universal-ctags; brew install --with-jansson universal-ctags/universal-ctags/universal-ctags)
 
   brew list git &>/dev/null || brew install git
   homebrew_prefix=$(brew --prefix)
