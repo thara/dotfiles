@@ -417,6 +417,7 @@ nnoremap [fzf] <Nop>
 nmap s [fzf]
 " https://github.com/junegunn/fzf.vim#commands
 nnoremap [fzf]h :History<CR>
+nnoremap [fzf]a :Rg<CR>
 nnoremap [fzf]f :Files<CR>
 nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]t :Tags<CR>
