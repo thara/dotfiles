@@ -319,6 +319,8 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 "}}}
 " Misc{{{
+" Auto change directory to project root directory of the file
+Plug 'mattn/vim-findroot'
 " Git
 Plug 'tpope/vim-fugitive'
 " Add GitHub support to fugitive
@@ -334,6 +336,9 @@ Plug 'kana/vim-tabpagecd'
 
 " 独自モードを作成
 Plug 'thinca/vim-submode'
+
+" View and search LSP symbols, tags in Vim/NeoVim
+Plug 'liuchengxu/vista.vim'
 
 " ヤンク履歴
 "Plug 'LeafCage/yankround.vim'
@@ -411,19 +416,19 @@ augroup END
 nnoremap [fzf] <Nop>
 nmap s [fzf]
 " https://github.com/junegunn/fzf.vim#commands
+nnoremap [fzf]h :History<CR>
 nnoremap [fzf]f :Files<CR>
-nnoremap [fzf]g :GFiles?<CR>
 nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]t :Tags<CR>
+nnoremap [fzf]v :Vista finder vim_lsp<CR>
 nnoremap [fzf]m :Marks<CR>
 "nnoremap [fzf]ln :Lines<CR>
 nnoremap [fzf]l :BLines<CR>
-nnoremap [fzf]cm :Commits<CR>
-nnoremap [fzf]cc :BCommits<CR>
-nnoremap [fzf]h :History<CR>
+nnoremap [fzf]s :GFiles?<CR>
+nnoremap [fzf]gc :Commits<CR>
+nnoremap [fzf]gb :BCommits<CR>
+nnoremap [fzf]c :History:<CR>
 nnoremap [fzf]w :Windows<CR>
-nnoremap [fzf]a :Rg<CR>
-nnoremap [fzf]r :Rg<CR>
 "}}}
 " Color Scheme{{{
 autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermfg=black ctermbg=106
@@ -511,6 +516,20 @@ nmap <silent> sd <Plug>DashSearch
 " f matchs Japanese characters by roman
 let g:clever_f_across_no_line = 1
 let g:clever_f_use_migemo = 1
+
+let g:findroot_patterns = [
+\  '.git/',
+\  '.svn/',
+\  '.hg/',
+\  '.bzr/',
+\  'Rakefile',
+\  'pom.xml',
+\  'project.clj',
+\  '*.csproj',
+\  '*.sln',
+\]
+
+let g:vista#renderer#enable_icon = 0
 
 set completefunc=emoji#complete
 "}}}
