@@ -3,7 +3,7 @@
 
 require 'getoptlong'
 
-$stdin = File.open(File.expand_path('~/Dropbox/Work/changelog'))
+$stdin = File.open(File.expand_path('~/changelog'))
 
 def show_usage
   puts "usage: clgrep [OPTIONS] <PATTERN> [FILE]..."
