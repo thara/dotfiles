@@ -440,6 +440,8 @@ autocmd MyAutoCmd ColorScheme * highlight SpecialComment ctermfg=8
 colorscheme off
 "}}}
 " vim-lsp{{{
+let g:lsp_settings_servers_dir = expand("~/.vim/vim-lsp-servers")
+
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_highlights_enabled = 1
