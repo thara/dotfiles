@@ -23,8 +23,6 @@ setopt share_history
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
-bindkey "^p" history-beginning-search-backward-end
-bindkey "^n" history-beginning-search-forward-end
 
 # auto chnage directory
 setopt auto_cd
@@ -113,8 +111,23 @@ done
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^ ' autosuggest-accept
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
 export TERM=xterm-256color
+
+## Key bindings
+bindkey "^p" history-beginning-search-backward-end
+bindkey "^n" history-beginning-search-forward-end
+bindkey '^ ' autosuggest-accept
+
+## fzf
+bindkey '^]' fzf_select_repos
+bindkey '^B' fzf_select_git_branch
+bindkey '^\' fzf_ssh_hosts
+bindkey '^V' fzf_open_editor
+
+## Git
+bindkey '^g^f' fzf-git-files-widget
+bindkey '^g^b' fzf-git-branches-widget
+bindkey '^g^t' fzf-git-tags-widget
