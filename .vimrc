@@ -635,7 +635,7 @@ autocmd MyAutoCmd FileType rust nmap gx <Plug>(rust-def-vertical)
 autocmd MyAutoCmd FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 autocmd MyAutoCmd FileType markdown nnoremap <buffer> T :call checkbox#ToggleCB()<CR>
-autocmd MyAutoCmd FileType markdown setlocal wrap
+autocmd MyAutoCmd FileType markdown setlocal wrap syntax=off
 autocmd FileType vim setlocal foldmethod=marker
 " }}}
 "}}}
