@@ -313,8 +313,8 @@ Plug 'tpope/vim-endwise'
 Plug 'elzr/vim-json', { 'for': ['json']}
 
 Plug 'prabirshrestha/async.vim'
-"Plug 'prabirshrestha/asyncomplete.vim'
-"Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 "}}}
@@ -467,6 +467,19 @@ noremap <silent> gR :<C-u>LspRename<CR>
 "nnoremap <silent> gh  :<C-u>LspDocumentDiagnostics<CR>
 nnoremap <silent> ]e  :<C-u>LspNextError<CR>
 nnoremap <silent> [e  :<C-u>LspPreviousError<CR>
+
+let g:asyncomplete_auto_popup = 0
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ asyncomplete#force_refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 "}}}
 " Rust{{{
 let g:rustfmt_autosave = 1
