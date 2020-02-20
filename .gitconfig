@@ -56,6 +56,10 @@
 	pst = push --tags
 	psu = push -u
 	pso = push -u origin
+	short-recent = "for-each-ref --count=25 --sort=committerdate refs/heads/ --format='%(refname:short)'"
+	zco = "!git short-recent | fzf --print0 | xargs -0 -t git checkout"
+	za = "!git ls-files -m -o --exclude-standard | fzf --print0 -m --preview 'git diff {}' | xargs -0 -t -o git add --all"
+	ze = "!FILES=`git status -s | awk '{ print $2 }' | fzf -x -m --preview 'git diff {}'` && vim ${FILES}"
 [tig "bind"]
     generic = g move-first-line
     generic = G move-last-line
