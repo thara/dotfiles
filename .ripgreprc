@@ -1,4 +1,6 @@
 # https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+--max-columns=150
+--max-columns-preview
 
 --type-add=web:*.{html,css,js}*
 --type-add=dotfiles:.*
