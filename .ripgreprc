@@ -3,8 +3,7 @@
 --max-columns-preview
 
 --type-add=web:*.{html,css,js}*
---type-add=dotfiles:.*
 
---glob=!git/*
+--glob=!.git/*
 
 --smart-case
