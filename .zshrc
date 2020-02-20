@@ -67,16 +67,7 @@ fi
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-## fzf
-export FZF_DEFAULT_COMMAND='fd --type f'
-export FZF_DEFAULT_OPTS='--border'
-export FZF_TMUX_HEIGHT="50%"
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-export FZF_CTRL_T_COMMAND="rg --files --hidden --follow --glob '!.git/*'"
-export FZF_CTRL_T_OPTS="--preview 'bat  --color=always --style=header,grid --line-range :100 {}'"
-export FZF_ALT_C_COMMAND="fd -t d . | sort"
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
-
+export RIPGREP_CONFIG_PATH=~/.ripgreprc
 ## bat
 export BAT_THEME="Gray Matter Dark"
 
@@ -119,6 +110,7 @@ for i in $HOME/etc/profile.d/*.sh ; do
 done
 
 [ -f ~/.zshrc.tools ] && source ~/.zshrc.tools
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 bindkey '^ ' autosuggest-accept

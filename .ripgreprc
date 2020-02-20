@@ -1,0 +1,8 @@
+# https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file
+
+--type-add=web:*.{html,css,js}*
+--type-add=dotfiles:.*
+
+--glob=!git/*
+
+--smart-case
