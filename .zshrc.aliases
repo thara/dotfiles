@@ -20,6 +20,9 @@ alias git-commiter-last-month="git shortlog --summary --since='1 month ago' | so
 alias vi='vim'
 alias v='vim'
 
+vimruntime=`vim -e -T dumb --cmd 'exe "set t_cm=\<C-M>"|echo $VIMRUNTIME|quit' | tr -d '\015' `
+alias vless=$vimruntime/macros/less.sh
+
 alias ls='ls -GF'
 alias la='ls -aF'
 alias ll='ls -lF'
