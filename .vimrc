@@ -86,6 +86,7 @@ endif
 set wildmenu
 set wildmode=longest:full,full
 set history=5000
+set isfname+=@-@
 "}}}
 " Misc{{{
 set nrformats-=octal
@@ -430,6 +431,17 @@ nnoremap [fzf]gc :Commits<CR>
 nnoremap [fzf]gb :BCommits<CR>
 nnoremap [fzf]c :History:<CR>
 nnoremap [fzf]w :Windows<CR>
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 "}}}
 " Color Scheme{{{
 autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermfg=black ctermbg=106
@@ -649,6 +661,7 @@ autocmd MyAutoCmd FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 autocmd MyAutoCmd FileType markdown nnoremap <buffer> T :call checkbox#ToggleCB()<CR>
 autocmd MyAutoCmd FileType markdown setlocal wrap syntax=off
+autocmd MyAutoCmd FileType make setlocal isfname-==
 autocmd FileType vim setlocal foldmethod=marker
 " }}}
 "}}}
