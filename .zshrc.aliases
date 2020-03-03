@@ -45,10 +45,6 @@ if exists "bat"; then
   export BAT_CONFIG_PATH="$HOME/.bat.conf"
 fi
 
-if exists "fd"; then
-  alias f='fd'
-fi
-
 # http://grml.org/zsh/zsh-lovers.html
 alias -g ..2='../..'
 alias -g ..3='../../..'
@@ -71,6 +67,7 @@ alias zshrc='vi ~/src/github.com/thara/dotfiles/.zshrc'
 alias vimrc='vi ~/src/github.com/thara/dotfiles/.vimrc'
 alias today='date +%Y-%m-%d'
 alias now='date "+%Y-%m-%d %H:%M:%S"'
+alias f='tmux capture-pane -S -1 -E 1000 -p | fpp'
 alias lst='tmux capture-pane -S -1 -E 1000 -p | sed '/^$/d' | tail -n 2 | head -n 1 | pbcopy'
 
 alias j='jobs'
