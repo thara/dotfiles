@@ -59,6 +59,8 @@ alias -g ETL='|& tail -20'
 alias -g ET='|& tail'
 
 alias -g C='| pbcopy'
+alias -g P='| pbcopy'
+alias -g EP='|& pbcopy'
 
 alias g='git'
 alias t='tig'
