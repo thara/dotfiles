@@ -38,6 +38,7 @@
 	cmm = commit -m
 	cma = commit --amend
 	cmf = commit --fixup
+	cmfh = !git commit --fixup `git rev-parse --short HEAD`
 	mg = merge
 	df = diff -C
 	dff = diff -C --name-only
