@@ -323,9 +323,9 @@ Plug 'mattn/vim-lsp-settings'
 " Auto change directory to project root directory of the file
 Plug 'mattn/vim-findroot'
 " Git
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 " Add GitHub support to fugitive
-Plug 'tpope/vim-rhubarb'
+" Plug 'tpope/vim-rhubarb'
 " Show git diff left
 Plug 'airblade/vim-gitgutter'
 " テキストオブジェクト拡張
@@ -337,6 +337,9 @@ Plug 'kana/vim-tabpagecd'
 
 " 独自モードを作成
 Plug 'thinca/vim-submode'
+
+" Visually select increasingly larger regions of text using the same key combination
+Plug 'terryma/vim-expand-region'
 
 " View and search LSP symbols, tags in Vim/NeoVim
 Plug 'liuchengxu/vista.vim'
@@ -427,7 +430,7 @@ nnoremap [fzf]m :Marks<CR>
 "nnoremap [fzf]ln :Lines<CR>
 nnoremap [fzf]l :BLines<CR>
 nnoremap [fzf]s :GFiles?<CR>
-nnoremap [fzf]gc :Commits<CR>
+"nnoremap [fzf]gc :Commits<CR>
 nnoremap [fzf]gb :BCommits<CR>
 nnoremap [fzf]c :History:<CR>
 nnoremap [fzf]w :Windows<CR>
@@ -501,11 +504,11 @@ let g:racer_experimental_completer = 1
 let g:rust_doc#open_cmd = 'open'
 "}}}
 " fugitive{{{
-nnoremap <silent> <Leader>gs  :<C-u>Gstatus<CR>
-nnoremap <silent> <Leader>gc  :<C-u>Gcommit<CR>
-nnoremap <silent> <Leader>gd  :<C-u>Gdiff<CR>
-nnoremap <silent> <Leader>gb  :<C-u>Gblame<CR>
-nnoremap <silent> <Leader>gw  :<C-u>Gbrowse<CR>
+" nnoremap <silent> <Leader>gs  :<C-u>Gstatus<CR>
+" nnoremap <silent> <Leader>gc  :<C-u>Gcommit<CR>
+" nnoremap <silent> <Leader>gd  :<C-u>Gdiff<CR>
+" nnoremap <silent> <Leader>gb  :<C-u>Gblame<CR>
+" nnoremap <silent> <Leader>gw  :<C-u>Gbrowse<CR>
 "}}}
 " lightline{{{
 let g:lightline = {
@@ -558,6 +561,10 @@ let g:findroot_patterns = [
 \]
 
 let g:vista#renderer#enable_icon = 0
+
+" vim-expand-region
+map K <Plug>(expand_region_expand)
+map J <Plug>(expand_region_shrink)
 
 set completefunc=emoji#complete
 "}}}
