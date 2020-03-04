@@ -562,10 +562,6 @@ let g:findroot_patterns = [
 
 let g:vista#renderer#enable_icon = 0
 
-" vim-expand-region
-map K <Plug>(expand_region_expand)
-map J <Plug>(expand_region_shrink)
-
 set completefunc=emoji#complete
 "}}}
 "}}}1
