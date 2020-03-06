@@ -62,6 +62,8 @@ set display=lastline,uhex
 set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
 set synmaxcol=150
 set signcolumn=yes
+set ambiwidth=double
+set formatoptions+=mM
 
 set completeopt-=preview
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
@@ -123,7 +125,7 @@ autocmd MyAutoCmd BufEnter * runtime ftplugin/changelog.vim
 "endif
 
 noremap ; :
-noremap : ;
+noremap : <Plug>(clever-f-repeat-forward)
 " Escの2回押しでハイライト消去
 noremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 " 検索結果マッチ時にカーソル位置を画面中央に
@@ -544,6 +546,7 @@ let g:cheatsheet#vsplit = 1
 " Search a word under cursor about the file type on Dash
 nmap <silent> sd <Plug>DashSearch
 
+let g:clever_f_show_prompt = 1
 " f matchs Japanese characters by roman
 let g:clever_f_across_no_line = 1
 let g:clever_f_use_migemo = 1
