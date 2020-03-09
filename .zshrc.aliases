@@ -28,6 +28,8 @@ alias la='ls -aF'
 alias ll='ls -lF'
 alias lsa='ls -laF'
 
+alias cl='vi $NOTES_DIR/changelog'
+
 if exists "exa"; then
   alias e='exa -l'
   alias et='exa -lT'
