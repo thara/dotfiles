@@ -306,6 +306,8 @@ Plug 'rust-lang/rust.vim', { 'for': ['rust']}
 Plug 'racer-rust/vim-racer', { 'for': ['rust']}
 Plug 'rhysd/rust-doc.vim', { 'for': ['rust']}
 
+Plug 'udalov/kotlin-vim', { 'for': ['kotlin'] }
+
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript']}
 " [Python] 関数とクラスをテキストオブジェクト化 + motion追加
 Plug 'bps/vim-textobj-python', { 'for': ['python']}
@@ -424,14 +426,14 @@ nmap s [fzf]
 " https://github.com/junegunn/fzf.vim#commands
 nnoremap [fzf]h :History<CR>
 nnoremap [fzf]a :Rg<CR>
-nnoremap [fzf]f :Files<CR>
+nnoremap [fzf]f :GFiles<CR>
+nnoremap [fzf]s :GFiles?<CR>
 nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]t :Tags<CR>
-nnoremap [fzf]v :Vista finder vim_lsp<CR>
+nnoremap [fzf]j :Vista finder vim_lsp<CR>
 nnoremap [fzf]m :Marks<CR>
 "nnoremap [fzf]ln :Lines<CR>
 nnoremap [fzf]l :BLines<CR>
-nnoremap [fzf]s :GFiles?<CR>
 "nnoremap [fzf]gc :Commits<CR>
 nnoremap [fzf]gb :BCommits<CR>
 nnoremap [fzf]c :History:<CR>
