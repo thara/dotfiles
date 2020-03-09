@@ -22,6 +22,7 @@
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [alias]
+	ls = ls-files
 	al = config --get-regexp alias
 	s = status --short --branch
 	st = status --short --branch
@@ -95,3 +96,6 @@
 	helper = osxkeychain
 [include]
 	path = .gitconfig.local
+[grep]
+	lineNumber = true
+	patternType = extended
