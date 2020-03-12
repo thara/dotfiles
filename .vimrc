@@ -125,7 +125,7 @@ autocmd MyAutoCmd BufEnter * runtime ftplugin/changelog.vim
 "endif
 
 noremap ; :
-noremap : <Plug>(clever-f-repeat-forward)
+noremap : ;
 " Escの2回押しでハイライト消去
 noremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 " 検索結果マッチ時にカーソル位置を画面中央に
@@ -263,6 +263,8 @@ Plug 'pbrisbin/vim-colors-off'
 Plug 'itchyny/lightline.vim'
 " インサートモード時に行番号の色を反転
 Plug 'cohama/vim-insert-linenr'
+" place, toggle and display marks
+Plug 'kshenoy/vim-signature'
 "}}}
 " Navigation{{{
 " Minimalist path navigator
@@ -439,6 +441,20 @@ nnoremap [fzf]gb :BCommits<CR>
 nnoremap [fzf]c :History:<CR>
 nnoremap [fzf]w :Windows<CR>
 
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
@@ -449,6 +465,10 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+" Hide status line
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 "}}}
 " Color Scheme{{{
 autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermfg=black ctermbg=106
@@ -552,6 +572,23 @@ let g:clever_f_show_prompt = 1
 " f matchs Japanese characters by roman
 let g:clever_f_across_no_line = 1
 let g:clever_f_use_migemo = 1
+let g:clever_f_smart_case = 1
+
+" let g:clever_f_not_overwrites_standard_mappings = 1
+" map : <Plug>(clever-f-repeat-forward)
+" map , <Plug>(clever-f-repeat-back)
+" nmap f <Plug>(clever-f-reset)<Plug>(clever-f-f)
+" xmap f <Plug>(clever-f-reset)<Plug>(clever-f-f)
+" omap f <Plug>(clever-f-reset)<Plug>(clever-f-f)
+" nmap F <Plug>(clever-f-reset)<Plug>(clever-f-F)
+" xmap F <Plug>(clever-f-reset)<Plug>(clever-f-F)
+" omap F <Plug>(clever-f-reset)<Plug>(clever-f-F)
+" nmap t <Plug>(clever-f-reset)<Plug>(clever-f-t)
+" xmap t <Plug>(clever-f-reset)<Plug>(clever-f-t)
+" omap t <Plug>(clever-f-reset)<Plug>(clever-f-t)
+" nmap T <Plug>(clever-f-reset)<Plug>(clever-f-T)
+" xmap T <Plug>(clever-f-reset)<Plug>(clever-f-T)
+" omap T <Plug>(clever-f-reset)<Plug>(clever-f-T)
 
 let g:findroot_patterns = [
 \  '.git/',
