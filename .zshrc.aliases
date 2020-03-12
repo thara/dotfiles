@@ -117,6 +117,8 @@ alias gpst='g pst'
 alias gpsu='g psu'
 alias gpso='g pso'
 
+alias rc='git diff --cached --name-only --diff-filter=AM | grep -e '\.rb$' -e '^Gemfile$' -e '\.thor$' | grep -v 'schema.rb' | grep -v 'migrate' | xargs bundle exec rubocop -Da'
+
 # prezto aliase refarence
 #
 # directory
