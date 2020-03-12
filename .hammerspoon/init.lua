@@ -33,9 +33,23 @@ hs.hotkey.bind({"ctrl"}, "9", function()
   local screen = win:screen()
   local max = screen:frame()
 
-  f.x = max.x + 400
+  f.x = max.x + 300
   f.y = max.y + 50
-  f.w = 1200
+  f.w = 1400
+  f.h = max.h - 100
+  win:setFrame(f)
+end)
+
+-- ウインドウを中央に配置 3
+hs.hotkey.bind({"ctrl"}, "7", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x + 500
+  f.y = max.y + 50
+  f.w = 1000
   f.h = max.h - 100
   win:setFrame(f)
 end)
