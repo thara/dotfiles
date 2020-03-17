@@ -9,8 +9,7 @@ alias rguu="rg -uu"
 alias du="du -h"
 alias df="df -h"
 
-alias doing="vim $HOME/Dropbox/plaintexts/doing/todo.txt"
-alias plan="vim $HOME/Dropbox/plaintexts/planning.taskpaper"
+alias t="todo.sh"
 
 alias edit-cheatsheet="vim $HOME/Dropbox/Work/cheatsheet.md"
 
@@ -65,7 +64,6 @@ alias -g P='| pbcopy'
 alias -g EP='|& pbcopy'
 
 alias g='git'
-alias t='tig'
 
 alias zshrc='vi ~/src/github.com/thara/dotfiles/.zshrc'
 alias vimrc='vi ~/src/github.com/thara/dotfiles/.vimrc'
