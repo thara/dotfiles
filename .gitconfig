@@ -99,3 +99,6 @@
 [grep]
 	lineNumber = true
 	patternType = extended
+[diff]
+	renames = true
+	noprefix = true
