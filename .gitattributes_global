@@ -1,0 +1,13 @@
+*.c diff=cpp
+*.h diff=cpp
+*.cpp diff=cpp
+*.hpp diff=cpp
+*.java diff=java
+*.html diff=html
+*.py diff=python
+*.rb diff=ruby
+*.thor diff=ruby
+*.js diff=java
+*.ts diff=java
+*.go diff=golang
+*.rs diff=rust
