@@ -104,6 +104,7 @@ set encoding=utf-8
 set undodir=/tmp/vim/
 set viminfo='50,<1000,s100,\"50
 set splitright
+set termwinkey=<C-l>
 " changelog設定
 let g:changelog_dateformat = "%Y-%m-%d"
 let g:changelog_username = "thara"
@@ -159,8 +160,6 @@ nnoremap <Space><Space> <C-^>
 "nnoremap <silent> <C-h> :previous<CR>
 "nnoremap <silent> <C-l> :next<CR>
 " タブページ間の移動
-"nnoremap <silent> <C-h> :tabprevious<CR>
-"nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> [t :tabprevious<CR>
 nnoremap <silent> ]t :tabnext<CR>
 nnoremap <silent> [T :tabfirst<CR>
@@ -441,19 +440,20 @@ nnoremap [fzf]gb :BCommits<CR>
 nnoremap [fzf]c :History:<CR>
 nnoremap [fzf]w :Windows<CR>
 
+" https://github.com/junegunn/fzf.vim/issues/714
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+  \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+"function! RipgrepFzf(query, fullscreen)
+"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+"  let initial_command = printf(command_fmt, shellescape(a:query))
+"  let reload_command = printf(command_fmt, '{q}')
+"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+"endfunction
+"command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -526,6 +526,16 @@ let g:rustfmt_command = expand('~/.cargo/bin/rustfmt')
 let g:racer_cmd = expand("~/.cargo/bin/racer")
 let g:racer_experimental_completer = 1
 let g:rust_doc#open_cmd = 'open'
+let g:rust_doc#downloaded_rust_doc_dir = expand('~/.rustup/doc')
+
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+        \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
 "}}}
 " fugitive{{{
 " nnoremap <silent> <Leader>gs  :<C-u>Gstatus<CR>
@@ -569,8 +579,8 @@ let g:cheatsheet#vsplit = 1
 nmap <silent> sd <Plug>DashSearch
 
 let g:clever_f_show_prompt = 1
-" f matchs Japanese characters by roman
 let g:clever_f_across_no_line = 1
+" f matchs Japanese characters by roman
 let g:clever_f_use_migemo = 1
 let g:clever_f_smart_case = 1
 
