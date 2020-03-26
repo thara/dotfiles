@@ -65,7 +65,8 @@ set signcolumn=yes
 set ambiwidth=double
 set formatoptions+=mM
 
-set completeopt-=preview
+set completeopt+=menuone,noinsert
+"set completeopt-=preview
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
 
 let g:vim_indent_cont = 0
@@ -232,6 +233,10 @@ cnoremap <C-f> <Right>
 " コマンド履歴のフィルタリングにカーソルキーを使わない
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
+" オムニ補完
+inoremap <C-f> <C-x><C-o>
+" ユーザー定義補完
+inoremap <C-u> <C-x><C-u>
 " 繰り返しを楽にする
 xnoremap . :normal .<CR>
 " ヤンクレジスタの値をペースト
