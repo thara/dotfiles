@@ -52,7 +52,11 @@ set laststatus=2
 set lazyredraw
 set list
 set listchars=tab:>.,trail:_,extends:>,precedes:<
-set number relativenumber
+set number
+
+autocmd MyAutoCmd BufEnter,FocusGained,InsertLeave * set relativenumber
+autocmd MyAutoCmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+
 set scrolloff=5
 set showcmd
 " 自動折り返ししない
