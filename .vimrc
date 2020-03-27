@@ -528,6 +528,9 @@ inoremap <silent><expr> <TAB>
   \ <SID>check_back_space() ? "\<TAB>" :
   \ asyncomplete#force_refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+set omnifunc=lsp#complete
+
 "}}}
 " Rust{{{
 let g:rustfmt_autosave = 1
