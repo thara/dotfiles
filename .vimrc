@@ -55,7 +55,7 @@ set listchars=tab:>.,trail:_,extends:>,precedes:<
 set number
 
 autocmd MyAutoCmd BufEnter,FocusGained,InsertLeave * set relativenumber
-autocmd MyAutoCmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+autocmd MyAutoCmd BufLeave,FocusLost,InsertEnter * set number norelativenumber
 
 set scrolloff=5
 set showcmd
@@ -482,7 +482,6 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
 " Color Scheme{{{
 autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermfg=black ctermbg=106
 autocmd MyAutoCmd ColorScheme * highlight clear CursorLine
-autocmd MyAutoCmd ColorScheme * highlight CursorLine cterm=None ctermbg=233 gui=None guibg=DarkBlue
 autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
 autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
 autocmd MyAutoCmd ColorScheme * highlight SpecialComment ctermfg=8
