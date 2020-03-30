@@ -124,8 +124,7 @@ bindkey '^ ' autosuggest-accept
 ## fzf
 bindkey '^]' fzf_select_repos
 bindkey '^B' fzf_select_git_branch
-bindkey '^\' fzf_ssh_hosts
-bindkey '^V' fzf_open_editor
+bindkey '^E' fzf_open_editor
 
 ## Git
 bindkey '^g^f' fzf-git-files-widget
