@@ -69,8 +69,6 @@ set signcolumn=yes
 set ambiwidth=double
 set formatoptions+=mM
 
-set completeopt+=menuone,noinsert
-"set completeopt-=preview
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
 
 let g:vim_indent_cont = 0
@@ -327,11 +325,13 @@ Plug 'bps/vim-textobj-python', { 'for': ['python']}
 Plug 'tpope/vim-endwise'
 Plug 'elzr/vim-json', { 'for': ['json']}
 
+Plug 'axvr/zepl.vim'
+
 Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 "}}}
 " Misc{{{
 " Auto change directory to project root directory of the file
@@ -435,12 +435,12 @@ nnoremap [fzf] <Nop>
 nmap s [fzf]
 " https://github.com/junegunn/fzf.vim#commands
 nnoremap [fzf]h :History<CR>
-nnoremap [fzf]a :Rg<CR>
+nnoremap [fzf]a :RG<CR>
 nnoremap [fzf]f :GFiles<CR>
 nnoremap [fzf]s :GFiles?<CR>
 nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]t :Tags<CR>
-nnoremap [fzf]j :Vista finder vim_lsp<CR>
+nnoremap [fzf]v :Vista finder vim_lsp<CR>
 nnoremap [fzf]m :Marks<CR>
 "nnoremap [fzf]ln :Lines<CR>
 nnoremap [fzf]l :BLines<CR>
@@ -455,14 +455,14 @@ command! -bang -nargs=* Rg
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}), <bang>0)
 
-"function! RipgrepFzf(query, fullscreen)
-"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-"  let initial_command = printf(command_fmt, shellescape(a:query))
-"  let reload_command = printf(command_fmt, '{q}')
-"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-"endfunction
-"command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -494,8 +494,7 @@ let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_highlights_enabled = 1
 let g:lsp_textprop_enabled = 1
-let g:lsp_virtual_text_enabled = 0
-let g:lsp_signature_help_enabled = 0
+let g:lsp_virtual_text_enabled = 1
 " let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 "let g:lsp_settings = {
@@ -515,20 +514,8 @@ noremap <silent> gR :<C-u>LspRename<CR>
 nnoremap <silent> ]e  :<C-u>LspNextError<CR>
 nnoremap <silent> [e  :<C-u>LspPreviousError<CR>
 
-let g:asyncomplete_auto_popup = 0
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ asyncomplete#force_refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-set omnifunc=lsp#complete
+"set omnifunc=lsp#complete
+set completeopt+=preview
 
 "}}}
 " Rust{{{
@@ -669,6 +656,28 @@ command! Today r!date +\%Y-\%m-\%d
 "noremap <silent> <C-j> :call MySmoothScroll("down", 1, 2)<CR>
 "noremap <silent> <C-k> :call MySmoothScroll("up", 1, 2)<CR>
 " }}}
+
+" {{{ same_indent
+" https://github.com/tyru/config/blob/c765a18ee9577cd8f62e654e348ad066d4e4d3e2/home/volt/rc/default/vimrc.vim#L489-L506
+function! s:same_indent(dir) abort
+  let lnum = line('.')
+  let width = col('.') <= 1 ? 0 : strdisplaywidth(matchstr(getline(lnum)[: col('.')-2], '^\s*'))
+  while 1 <= lnum && lnum <= line('$')
+    let lnum += (a:dir ==# '+' ? 1 : -1)
+    let line = getline(lnum)
+    if width >= strdisplaywidth(matchstr(line, '^\s*')) && line =~# '^\s*\S'
+      break
+    endif
+  endwhile
+  return abs(line('.') - lnum) . a:dir
+endfunction
+nnoremap <expr><silent> sj <SID>same_indent('+')
+nnoremap <expr><silent> sk <SID>same_indent('-')
+onoremap <expr><silent> sj <SID>same_indent('+')
+onoremap <expr><silent> sk <SID>same_indent('-')
+xnoremap <expr><silent> sj <SID>same_indent('+')
+xnoremap <expr><silent> sk <SID>same_indent('-')
+" }}}
 " 指定のデータをレジスタに登録する
 function! s:Clip(data)
   let @*=a:data
@@ -712,7 +721,6 @@ autocmd MyAutoCmd FileType haskell setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType php setlocal tabstop=4 tw=0 sw=4 expandtab
 autocmd MyAutoCmd FileType python setlocal tabstop=4 tw=0 shiftwidth=4 expandtab softtabstop=4
 autocmd MyAutoCmd FileType python setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd MyAutoCmd FileType python setlocal completeopt-=preview
 autocmd MyAutoCmd FileType python :inoremap # #
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd BufNewFile,BufRead *.swift setfiletype swift
@@ -729,5 +737,13 @@ autocmd MyAutoCmd FileType markdown nnoremap <buffer> T :call checkbox#ToggleCB(
 autocmd MyAutoCmd FileType markdown setlocal wrap syntax=off
 autocmd MyAutoCmd FileType make setlocal isfname-==
 autocmd FileType vim setlocal foldmethod=marker
+
+augroup zepl
+    autocmd!
+    autocmd FileType python     let b:repl_config = { 'cmd': 'python3' }
+    autocmd FileType javascript let b:repl_config = { 'cmd': 'node' }
+    autocmd FileType ruby       let b:repl_config = { 'cmd': 'irb' }
+    autocmd FileType swift      let b:repl_config = { 'cmd': 'swift' }
+augroup END
 " }}}
 "}}}
