@@ -307,7 +307,10 @@ Plug 'rhysd/clever-f.vim'
 Plug 'keith/swift.vim', { 'for': ['swift'] }
 " let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 "Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
+
 Plug 'mattn/vim-goimports'
+Plug 'fatih/vim-go'
+
 Plug 'elixir-editors/vim-elixir', { 'for': ['ex', 'exs', 'eex', 'leex'] }
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': ['rust']}
