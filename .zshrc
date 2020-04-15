@@ -38,6 +38,9 @@ setopt correct
 setopt noautoremoveslash
 # no beep sound when complete list displayed
 setopt nolistbeep
+# Enable Ctrl-x-e to edit command line
+autoload -U edit-command-line
+zle -N edit-command-line
 
 disable r
 
@@ -130,3 +133,7 @@ bindkey '^E' fzf_open_editor
 bindkey '^g^f' fzf-git-files-widget
 bindkey '^g^b' fzf-git-branches-widget
 bindkey '^g^t' fzf-git-tags-widget
+
+# Emacs style
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
