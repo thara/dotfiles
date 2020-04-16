@@ -124,16 +124,6 @@ bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 bindkey '^ ' autosuggest-accept
 
-## fzf
-bindkey '^]' fzf_select_repos
-bindkey '^B' fzf_select_git_branch
-bindkey '^E' fzf_open_editor
-
-## Git
-bindkey '^g^f' fzf-git-files-widget
-bindkey '^g^b' fzf-git-branches-widget
-bindkey '^g^t' fzf-git-tags-widget
-
 # Emacs style
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
