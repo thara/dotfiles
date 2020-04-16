@@ -84,6 +84,7 @@
 [commit]
 	template = ~/.gitmessage.txt
 	gpgsign = true
+	verbose = true
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
