@@ -116,6 +116,11 @@ let g:changelog_new_date_format = "%d  %u\n\n  * %p %c\n\n\n"
 let g:changelog_new_entry_format = "  *  %c"
 " changelogグローバルマッピング自動設定
 autocmd MyAutoCmd BufEnter * runtime ftplugin/changelog.vim
+
+if executable('rg')
+    let &grepprg = 'rg --vimgrep --hidden'
+    set grepformat=%f:%l:%c:%m
+endif
 "}}}
 "}}}1
 
@@ -318,6 +323,7 @@ Plug 'racer-rust/vim-racer', { 'for': ['rust']}
 Plug 'rhysd/rust-doc.vim', { 'for': ['rust']}
 
 Plug 'udalov/kotlin-vim', { 'for': ['kotlin'] }
+Plug 'jparise/vim-graphql'
 
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript']}
 " [Python] 関数とクラスをテキストオブジェクト化 + motion追加
@@ -331,10 +337,14 @@ Plug 'elzr/vim-json', { 'for': ['json']}
 Plug 'axvr/zepl.vim'
 
 Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-lsp-icons'
+
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 "}}}
 " Misc{{{
 " Auto change directory to project root directory of the file
@@ -519,6 +529,21 @@ nnoremap <silent> [e  :<C-u>LspPreviousError<CR>
 
 "set omnifunc=lsp#complete
 set completeopt+=preview
+
+let g:asyncomplete_auto_popup = 0
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ asyncomplete#force_refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-language-server', 'gql-language-server']
 
 "}}}
 " Rust{{{
