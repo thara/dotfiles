@@ -228,8 +228,8 @@ inoremap <C-@> <C-[>
 " Emacs風
 inoremap <silent> <C-b> <Left>
 inoremap <silent> <C-f> <Right>
-inoremap <silent> <C-e> <End>
-inoremap <silent> <C-a> <Home>
+" inoremap <silent> <C-e> <End>
+" inoremap <silent> <C-a> <Home>
 inoremap <silent> <C-d> <Del>
 "nnoremap <silent> <C-X>0 :only<CR>
 "nnoremap <silent> <C-x>2 :sp<CR>
@@ -528,6 +528,19 @@ noremap <silent> gR :<C-u>LspRename<CR>
 "nnoremap <silent> gh  :<C-u>LspDocumentDiagnostics<CR>
 nnoremap <silent> ]e  :<C-u>LspNextError<CR>
 nnoremap <silent> [e  :<C-u>LspPreviousError<CR>
+
+let g:asyncomplete_auto_popup = 0
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ asyncomplete#force_refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 "set omnifunc=lsp#complete
 set completeopt+=preview
