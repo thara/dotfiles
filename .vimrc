@@ -134,9 +134,12 @@ endif
 "  map <ESC>l <M-l>
 "endif
 
+map <C-n> j
+map <C-p> k
 noremap ; :
 noremap : ;
-inoremap <C-]> <ESC>
+noremap <C-_> <ESC>
+inoremap <C-_> <ESC>
 " Escの2回押しでハイライト消去
 noremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 " 検索結果マッチ時にカーソル位置を画面中央に
@@ -149,10 +152,10 @@ nmap g# g#zz
 " Ex-Mode 無効
 nnoremap Q <Nop>
 " ウィンドウ移動
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-l> <C-w>l
 " 一つ前に開いたファイルを開く
 nnoremap <Space><Space> <C-^>
 " 引数リスト
@@ -285,6 +288,7 @@ Plug 'justinmk/vim-dirvish'
 " Fuzzy Finder (ctrlp alternative)
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'christoomey/vim-tmux-navigator'
 "}}}
 " Input{{{
 " 賢い入力補助
