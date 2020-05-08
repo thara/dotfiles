@@ -3,13 +3,17 @@ setopt complete_aliases
 
 alias tmux='nocorrect tmux'
 
+alias c='clear'
+alias ex='exit'
+
 alias rgu="rg -u"
 alias rguu="rg -uu"
 
 alias du="du -h"
 alias df="df -h"
 
-alias t="todo.sh"
+alias t="tmux"
+alias td="todo.sh"
 
 alias edit-cheatsheet="vim $HOME/Dropbox/Work/cheatsheet.md"
 
