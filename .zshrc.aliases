@@ -16,8 +16,8 @@ alias edit-cheatsheet="vim $HOME/Dropbox/Work/cheatsheet.md"
 alias git-first-commit="git log --date-order --format=%cI | tail -1"
 alias git-commiter-last-month="git shortlog --summary --since='1 month ago' | sort -r"
 
-alias vi='vim'
 alias v='vim'
+alias vi='vim'
 
 vimruntime=`vim -e -T dumb --cmd 'exe "set t_cm=\<C-M>"|echo $VIMRUNTIME|quit' | tr -d '\015' `
 alias vless=$vimruntime/macros/less.sh
@@ -30,15 +30,12 @@ alias lsa='ls -laF'
 alias cl='vi $NOTES_DIR/changelog'
 
 if exists "exa"; then
+  alias exa='exa --time-style long-iso'
   alias e='exa -l'
+  alias ea='exa -lag'
+  alias es='exa -l --git --git-ignore'
+  alias eg='exa -l --git'
   alias et='exa -lT'
-  alias eg='exa -hl --git'
-
-  alias l='exa -lhg'
-  alias ls='exa -lhg --git --git-ignore'
-  alias la='exa -lhga --git'
-  alias ll='exa -lhga --git --git-ignore'
-  alias lt='exa -lhgT --git --git-ignore'
 fi
 
 if exists "bat"; then
