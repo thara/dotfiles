@@ -104,7 +104,7 @@ zle -N fzf-git-branches-widget
 zle -N fzf-git-tags-widget
 
 bindkey "^f" fzf-file-widget
-bindkey '^]' fzf_select_repos
+bindkey '^Z' fzf_select_repos
 bindkey '^B' fzf_select_git_branch
 bindkey '^E' fzf_open_editor
 

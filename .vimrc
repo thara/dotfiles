@@ -92,6 +92,7 @@ set wildmenu
 set wildmode=longest:full,full
 set history=5000
 set isfname+=@-@
+set cedit=\<C-c>
 "}}}
 " Misc{{{
 set nrformats-=octal
@@ -135,6 +136,7 @@ endif
 
 noremap ; :
 noremap : ;
+inoremap <C-]> <ESC>
 " Escの2回押しでハイライト消去
 noremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 " 検索結果マッチ時にカーソル位置を画面中央に
