@@ -9,6 +9,32 @@ export FZF_ALT_C_COMMAND="fd -t d . | sort"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 
+function fzf_select_session() {
+  local selected_dir=$(ghq list | fzf-tmux --query "$LBUFFER" --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
+  echo $selected_dir
+  if [ -n "$selected_dir" ]; then
+    local project_path=$(ghq root)/${selected_dir}
+    if [[ ! -z ${TMUX} ]]; then
+      local session=${${selected_dir##*/}//./-}
+      local current_sessoin=$(tmux list-sessions | grep 'attached' | cut -d":" -f1)
+      if [[ $current_session =~ ^[0-9]+$ ]]; then
+        BUFFER="cd $project_path && tmux rename-session $session"
+      else
+        tmux list-sessions | cut -d":" -f1 | grep -e "^$session\$" > /dev/null
+        if [[ $? != 0 ]]; then
+          tmux new-session -d -c $project_path -s $session
+        fi
+        BUFFER="tmux switch-client -t $session"
+      fi
+    else
+      BUFFER="cd $project_path"
+    fi
+    zle accept-line
+  fi
+  zle reset-prompt
+}
+zle -N fzf_select_session
+
 function fzf_select_repos() {
   local selected_dir=$(ghq list | fzf-tmux --query "$LBUFFER" --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
 
@@ -105,6 +131,7 @@ zle -N fzf-git-tags-widget
 
 bindkey "^f" fzf-file-widget
 bindkey '^Z' fzf_select_repos
+bindkey '^S' fzf_select_session
 bindkey '^B' fzf_select_git_branch
 bindkey '^E' fzf_open_editor
 
