@@ -38,6 +38,8 @@ setopt correct
 setopt noautoremoveslash
 # no beep sound when complete list displayed
 setopt nolistbeep
+# Do not exit on end-of-file by Ctrl-d
+setopt ignore_eof
 # Enable Ctrl-x-e to edit command line
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -124,6 +126,22 @@ bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
 bindkey '^ ' autosuggest-accept
 
+bindkey -M viins '^xe' edit-command-line
+bindkey -M viins '^x^e' edit-command-line
+
 # Emacs style
-bindkey '^xe' edit-command-line
-bindkey '^x^e' edit-command-line
+bindkey -M viins '^?'  backward-delete-char
+bindkey -M viins '^A'  beginning-of-line
+bindkey -M viins '^B'  backward-char
+bindkey -M viins '^D'  delete-char-or-list
+bindkey -M viins '^E'  end-of-line
+bindkey -M viins '^F'  forward-char
+bindkey -M viins '^G'  send-break
+bindkey -M viins '^H'  backward-delete-char
+bindkey -M viins '^K'  kill-line
+bindkey -M viins '^N'  down-line-or-history
+bindkey -M viins '^P'  up-line-or-history
+bindkey -M viins '^R'  history-incremental-pattern-search-backward
+bindkey -M viins '^U'  backward-kill-line
+bindkey -M viins '^W'  backward-kill-word
+bindkey -M viins '^Y'  yank
