@@ -127,19 +127,8 @@ endif
 
 " Key mapping{{{
 
-"if has("mac")
-"  " option(alt)キーをMetaキー扱いにする
-"  set macmeta
-"  map <ESC>h <M-h>
-"  map <ESC>l <M-l>
-"endif
-
-map <C-n> j
-map <C-p> k
 noremap ; :
 noremap : ;
-noremap <C-_> <ESC>
-inoremap <C-_> <ESC>
 " Escの2回押しでハイライト消去
 noremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 " 検索結果マッチ時にカーソル位置を画面中央に
@@ -177,9 +166,6 @@ nnoremap <silent> [t :tabprevious<CR>
 nnoremap <silent> ]t :tabnext<CR>
 nnoremap <silent> [T :tabfirst<CR>
 nnoremap <silent> ]T :tablast<CR>
-" タブページの移動
-nnoremap <silent> <M-h> :<C-u>tabmove -1<CR>
-nnoremap <silent> <M-l> :<C-u>tabmove +1<CR>
 " バッファ移動
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
