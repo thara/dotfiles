@@ -19,10 +19,6 @@ setopt nonomatch
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 setopt share_history
-# historical backward/forward search with linehead string
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
 
 # auto chnage directory
 setopt auto_cd
@@ -122,12 +118,20 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export TERM=xterm-256color
 
 ## Key bindings
+
+# historical backward/forward search with linehead string
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
 bindkey "^p" history-beginning-search-backward-end
 bindkey "^n" history-beginning-search-forward-end
+
 bindkey '^ ' autosuggest-accept
 
-bindkey -M viins '^xe' edit-command-line
-bindkey -M viins '^x^e' edit-command-line
+autoload smart-insert-last-word
+zle -N insert-last-word smart-insert-last-word
+zstyle :insert-last-word match '*([^[:space:]][[:alpha:]/\\]|[[:alpha:]/\\][^[:space:]])*'
+bindkey '^]' insert-last-word
 
 # Emacs style
 bindkey -M viins '^?'  backward-delete-char
@@ -145,3 +149,5 @@ bindkey -M viins '^R'  history-incremental-pattern-search-backward
 bindkey -M viins '^U'  backward-kill-line
 bindkey -M viins '^W'  backward-kill-word
 bindkey -M viins '^Y'  yank
+
+zstyle ':completion:*:default' menu select=1
