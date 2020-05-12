@@ -143,9 +143,6 @@ bindkey -M viins '^F'  forward-char
 bindkey -M viins '^G'  send-break
 bindkey -M viins '^H'  backward-delete-char
 bindkey -M viins '^K'  kill-line
-bindkey -M viins '^N'  down-line-or-history
-bindkey -M viins '^P'  up-line-or-history
-bindkey -M viins '^R'  history-incremental-pattern-search-backward
 bindkey -M viins '^U'  backward-kill-line
 bindkey -M viins '^W'  backward-kill-word
 bindkey -M viins '^Y'  yank
