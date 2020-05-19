@@ -53,3 +53,15 @@ hs.hotkey.bind({"ctrl"}, "7", function()
   f.h = max.h - 100
   win:setFrame(f)
 end)
+
+hs.hotkey.bind({"ctrl"}, "1", function()
+  hs.application.launchOrFocus("Terminal")
+end)
+
+hs.hotkey.bind({"ctrl"}, "2", function()
+  hs.application.launchOrFocus("Firefox")
+end)
+
+hs.hotkey.bind({"ctrl"}, "3", function()
+  hs.application.launchOrFocus("Slack")
+end)
