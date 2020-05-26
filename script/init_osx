@@ -64,11 +64,7 @@ set -eu
   brew list universal-ctags &>/dev/null || (brew tap universal-ctags/universal-ctags; brew install --with-jansson --HEAD universal-ctags/universal-ctags/universal-ctags)
 
   brew list git &>/dev/null || brew install git
-  homebrew_prefix=$(brew --prefix)
-
-  if ! [ -f "$homebrew_prefix/bin/diff-highlight" ] ; then
-    ln -sfnv ${homebrew_prefix}/share/git-core/contrib/diff-highlight/diff-highlight ${homebrew_prefix}/bin
-  fi
+  brew list git-delta &>/dev/null || brew install git-delta
 
   brew list git-lfs &>/dev/null || brew install git-lfs
   brew list git-now &>/dev/null || brew install git-now

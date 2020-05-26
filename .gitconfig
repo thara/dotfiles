@@ -4,7 +4,8 @@
 	attributesfile = ~/.gitattributes_global
 	quotepath = false
 	precomposeunicode = true
-  ignorecase = false
+	ignorecase = false
+	pager = delta --theme='Gray Matter Dark'
 [color]
 	ui = auto
 	status = auto
@@ -66,10 +67,6 @@
 [tig "bind"]
     generic = g move-first-line
     generic = G move-last-line
-[pager]
-    log  = diff-highlight | less
-    show = diff-highlight | less
-    diff = diff-highlight | less
 [filter "media"]
 	clean = git media clean %f
 	smudge = git media smudge %f
@@ -104,3 +101,5 @@
 [diff]
 	renames = true
 	noprefix = true
+[interactive]
+	diffFilter = delta
