@@ -75,10 +75,10 @@ setopt complete_aliases
 
 alias tmux='nocorrect tmux'
 
-if exists "bat"; then
+exists "bat" && {
   alias b='bat'
   export BAT_CONFIG_PATH="$HOME/.bat.conf"
-fi
+}
 
 alias c='clear'
 alias cl='vi $NOTES_DIR/changelog'
@@ -86,14 +86,14 @@ alias cl='vi $NOTES_DIR/changelog'
 alias du="du -h"
 alias df="df -h"
 
-if exists "exa"; then
+exists "exa" && {
   alias exa='exa --time-style long-iso'
   alias e='exa -l'
   alias ea='exa -lag'
   alias es='exa -l --git --git-ignore'
   alias eg='exa -l --git'
   alias et='exa -lT'
-fi
+}
 
 alias f='tmux capture-pane -S -1 -E 1000 -p | fpp'
 
