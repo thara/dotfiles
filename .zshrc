@@ -70,24 +70,90 @@ export RIPGREP_CONFIG_PATH=~/.ripgreprc
 ## bat
 export BAT_THEME="Gray Matter Dark"
 
-[ -f ~/.zshrc.aliases ] && source ~/.zshrc.aliases
 ## Command aliases
+setopt complete_aliases
 
-#setopt complete_aliases
-# alias g="git"
-# alias gi="git"
-# alias gs="git status -s -b"
-# alias gst="git status -s -b"
-# alias gc="git commit"
-# alias gca="git commit -a"
-# alias gcls="git config --list | grep alias"
+alias tmux='nocorrect tmux'
 
+if exists "bat"; then
+  alias b='bat'
+  export BAT_CONFIG_PATH="$HOME/.bat.conf"
+fi
 
-#alias -g B='`git branch -a | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`' 
+alias c='clear'
+alias cl='vi $NOTES_DIR/changelog'
 
-# if [ -f /usr/local/bin/rbenv ]; then
-#   eval "$(rbenv init --no-rehash -)"
-# fi
+alias du="du -h"
+alias df="df -h"
+
+if exists "exa"; then
+  alias exa='exa --time-style long-iso'
+  alias e='exa -l'
+  alias ea='exa -lag'
+  alias es='exa -l --git --git-ignore'
+  alias eg='exa -l --git'
+  alias et='exa -lT'
+fi
+
+alias f='tmux capture-pane -S -1 -E 1000 -p | fpp'
+
+alias g='git'
+
+alias j='jobs'
+
+alias ls='ls -GF'
+alias la='ls -aF'
+alias ll='ls -lF'
+alias lsa='ls -laF'
+
+# Copy last line on CLI
+alias p='tmux capture-pane -S -1 -E 1000 -p | sed '/^$/d' | tail -n 2 | head -n 1 | pbcopy'
+
+alias t="tmux"
+alias td="todo.sh"
+
+alias v='vim'
+alias vi='vim'
+
+# http://grml.org/zsh/zsh-lovers.html
+alias -g ..2='../..'
+alias -g ..3='../../..'
+alias -g G='| egrep'
+alias -g H='| head'
+alias -g L='| less'
+alias -g EG='|& egrep'
+alias -g EH='|& head'
+alias -g EL='|& less'
+alias -g ELS='|& less -S'
+alias -g ETL='|& tail -20'
+alias -g ET='|& tail'
+
+alias -g C='| pbcopy'
+alias -g P='| pbcopy'
+alias -g EP='|& pbcopy'
+
+# Suffix alias
+alias -s zip=zipinfo
+alias -s {tgz,gz}=gzcat
+alias -s {tbz,bz2}=bzcat
+alias -s html=open
+
+# ripgrep: Reduce the level of "smart" searching.
+alias rgu="rg -u"
+# ripgrep: to disable all smart filtering and make ripgrep behave a bit more like classical grep
+alias rguu="rg -uu"
+
+alias zshrc='vi ~/src/github.com/thara/dotfiles/.zshrc'
+alias vimrc='vi ~/src/github.com/thara/dotfiles/.vimrc'
+alias today='date +%Y-%m-%d'
+alias now='date "+%Y-%m-%d %H:%M:%S"'
+
+vimruntime=`vim -e -T dumb --cmd 'exe "set t_cm=\<C-M>"|echo $VIMRUNTIME|quit' | tr -d '\015' `
+alias vless=$vimruntime/macros/less.sh
+
+alias edit-cheatsheet="vim $HOME/Dropbox/Work/cheatsheet.md"
+alias git-first-commit="git log --date-order --format=%cI | tail -1"
+alias git-commiter-last-month="git shortlog --summary --since='1 month ago' | sort -r"
 
 export EDITOR='vim'
 export VISUAL='vim'
