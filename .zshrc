@@ -344,7 +344,7 @@ exists "fzf" && {
   zle -N fzf-git-branches-widget
   zle -N fzf-git-tags-widget
 
-  bindkey "^f" fzf-file-widget
+  bindkey "^y" fzf-file-widget
   bindkey '^_' fzf_select_repos
   bindkey '^o' fzf_select_session
   bindkey '^v' fzf_select_git_branch
