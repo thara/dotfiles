@@ -305,7 +305,7 @@ Plug 'keith/swift.vim', { 'for': ['swift'] }
 "Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
 
 Plug 'mattn/vim-goimports'
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 
 Plug 'elixir-editors/vim-elixir', { 'for': ['ex', 'exs', 'eex', 'leex'] }
 " Rust
@@ -393,7 +393,7 @@ Plug 'reireias/vim-cheatsheet'
 " let QFixHowm_MenuDir = 'menu'
 
 " Dash
-Plug 'rizzatti/dash.vim'
+" Plug 'rizzatti/dash.vim'
 " Google Translate
 Plug 'skanehira/translate.vim'
 "}}}
@@ -506,11 +506,13 @@ let g:lsp_virtual_text_enabled = 1
 "let g:lsp_settings = {
 "\  'solargraph': {'whitelist': []}
 "\}
+nnoremap <silent> gs :<C-u>LspDefinition<CR>
+
 nnoremap <silent> gd :<C-u>LspDefinition<CR>
 nnoremap <silent> gD :<C-u>LspDeclaration<CR>
 nnoremap <silent> gr :<C-u>LspReferences<CR>
-nnoremap <silent> gs :<C-u>LspDocumentSymbol<CR>
-nnoremap <silent> gS :<C-u>LspWorkspaceSymbol<CR>
+nnoremap <silent> gy :<C-u>LspDocumentSymbol<CR>
+nnoremap <silent> gY :<C-u>LspWorkspaceSymbol<CR>
 nnoremap <silent> gQ :<C-u>LspDocumentFormat<CR>
 vnoremap <silent> gQ :LspDocumentRangeFormat<CR>
 nnoremap <silent> gh :<C-u>LspHover<CR>
@@ -759,7 +761,7 @@ autocmd MyAutoCmd FileType python :inoremap # #
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd BufNewFile,BufRead *.swift setfiletype swift
 autocmd MyAutoCmd FileType swift setlocal tabstop=4 tw=0 sw=4 expandtab
-autocmd MyAutoCmd BufWritePre *.go GoFmt
+"autocmd MyAutoCmd BufWritePre *.go GoFmt
 autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab nolist
 
 autocmd MyAutoCmd FileType rust nmap gd <Plug>(rust-def)
