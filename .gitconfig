@@ -103,3 +103,6 @@
 	noprefix = true
 [interactive]
 	diffFilter = delta
+[pull]
+  rebase = false
+  ff = only
