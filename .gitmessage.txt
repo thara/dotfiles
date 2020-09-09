@@ -22,6 +22,7 @@
 # - :construction: WIP
 # - :construction_worker: Other refactoring
 # - :rotating_light: Fix tests
+# - :crossed_swords: Add validation
 
 ##  Sample
 # https://gist.github.com/mono0926/e6ffd032c384ee4c1cef5a2aa4f778d7
