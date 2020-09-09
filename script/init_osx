@@ -2,7 +2,7 @@
 
 # Stop script if errors occur
 trap 'echo Error: $0:$LINENO stopped; exit 1' ERR INT
-set -eu
+set -e
 
 . "$DOTFILES_ROOT/script/functions"
 
@@ -18,7 +18,7 @@ set -eu
         exit 1
     fi
 
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
     if is_exists "brew"; then
         brew doctor
     else
@@ -82,7 +82,7 @@ set -eu
 
   brew list todo-txt &>/dev/null || brew install todo-txt
 
-  if [ -n "$DOTFILES_CASK" ] ; then
+  if [ -n "${DOTFILES_CASK:-}" ] ; then
     brew cask list 1password &>/dev/null || brew cask install 1password
     brew cask list google-japanese-ime &>/dev/null || brew cask install google-japanese-ime
     brew cask list omnidisksweeper &>/dev/null || brew cask install omnidisksweeper
@@ -103,7 +103,7 @@ set -eu
     brew cask list alfred &>/dev/null || brew cask install alfred
     brew cask list dash &>/dev/null || brew cask install dash
 
-    brew tap caskroom/fonts
+    brew tap homebrew/cask-fonts
     brew cask list font-myrica &>/dev/null || brew cask install font-myrica font-myricam
   fi
 }
