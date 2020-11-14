@@ -1,0 +1,42 @@
+# with literal string
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$aws\
+$gcloud\
+$env_var\
+$cmd_duration\
+$custom\
+$jobs\
+$battery\
+$time\
+$status\
+$character"""
+
+add_newline = false
+scan_timeout = 10
+
+[character]
+error_symbol = "[✗](bold red)"
+vicmd_symbol = "[I](bold green)"
+
+[directory]
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = "🌱"
+
+[git_status]
+disabled = true  # Too slow
+
+[aws]
+disabled = true
+
+[aws.region_aliases]
+ap-northeast-1 = "tk"
+us-east-1 = "va"

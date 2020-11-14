@@ -182,6 +182,14 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export TERM=xterm-256color
 
+## Prompt
+
+exists "starship" && {
+  eval "$(starship init zsh)"
+}
+
+export STARSHIP_CONFIG=~/.starship
+
 ## Key bindings
 
 # historical backward/forward search with linehead string
