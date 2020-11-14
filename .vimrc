@@ -300,7 +300,7 @@ Plug 'junegunn/vim-emoji'
 Plug 'rhysd/clever-f.vim'
 "}}}
 " Language{{{
-Plug 'keith/swift.vim', { 'for': ['swift'] }
+" Plug 'keith/swift.vim', { 'for': ['swift'] }
 " let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 "Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
 
@@ -761,6 +761,7 @@ autocmd MyAutoCmd FileType python :inoremap # #
 autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd BufNewFile,BufRead *.swift setfiletype swift
 autocmd MyAutoCmd FileType swift setlocal tabstop=4 tw=0 sw=4 expandtab
+autocmd MyAutoCmd FileType swift setlocal omnifunc=lsp#complete
 "autocmd MyAutoCmd BufWritePre *.go GoFmt
 autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab nolist
 
