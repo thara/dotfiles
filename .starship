@@ -22,8 +22,8 @@ add_newline = false
 scan_timeout = 10
 
 [character]
-error_symbol = "[✗](bold red)"
-vicmd_symbol = "[I](bold green)"
+format = "$symbol$symbol$symbol "
+vicmd_symbol = "[❮](bold yellow)"
 
 [directory]
 truncation_symbol = "…/"
