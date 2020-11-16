@@ -26,11 +26,11 @@
 [alias]
 	ls = ls-files
 	al = config --get-regexp alias
-	s = status --short --branch
 	st = status --short --branch
+	s = switch
+	r = restore
 	a = add
 	co = checkout
-	com = checkout master
 	sb = show-branch
 	ft = fetch
 	br = branch
@@ -82,11 +82,6 @@
 	template = ~/.gitmessage.txt
 	gpgsign = true
 	verbose = true
-[filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
 [gpg]
 	program = gpg
 [ghi]
@@ -106,3 +101,8 @@
 [pull]
   rebase = false
   ff = only
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
