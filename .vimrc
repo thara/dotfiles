@@ -286,8 +286,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 " Alignment
 Plug 'junegunn/vim-easy-align'
-" 整形 (Vim Align them all)
-Plug 'h1mesuke/vim-alignta', {'on': ['Alignta', 'Align']}
 " Stop ]
 Plug 'tyru/stoptypofile.vim'
 " 一部分だけ別バッファで編集
@@ -334,6 +332,8 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 
+Plug 'hashivim/vim-terraform'
+
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
 "}}}
@@ -361,6 +361,7 @@ Plug 'terryma/vim-expand-region'
 
 " View and search LSP symbols, tags in Vim/NeoVim
 Plug 'liuchengxu/vista.vim'
+let g:vista_sidebar_width = 50
 
 " ヤンク履歴
 "Plug 'LeafCage/yankround.vim'
@@ -649,6 +650,11 @@ let g:findroot_patterns = [
 let g:vista#renderer#enable_icon = 0
 
 set completefunc=emoji#complete
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 "}}}
 "}}}1
 
