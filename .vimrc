@@ -44,7 +44,7 @@ syntax on
 if !has('gui_running')
   set t_Co=256
 endif
-set background=dark
+set background=light
 set cmdheight=1
 set nocursorline
 set ruler
@@ -487,11 +487,11 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 "}}}
 " Color Scheme{{{
-autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermfg=black ctermbg=106
-autocmd MyAutoCmd ColorScheme * highlight clear CursorLine
-autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
-autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
-autocmd MyAutoCmd ColorScheme * highlight SpecialComment ctermfg=8
+"autocmd MyAutoCmd ColorScheme * highlight Search term=reverse ctermfg=black ctermbg=106
+"autocmd MyAutoCmd ColorScheme * highlight clear CursorLine
+"autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
+"autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
+"autocmd MyAutoCmd ColorScheme * highlight SpecialComment ctermfg=8
 colorscheme off
 "}}}
 " vim-lsp{{{
@@ -757,8 +757,6 @@ autocmd MyAutoCmd FileType eruby setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd BufNewFile,BufRead app/*/*.rhtml setlocal ft=mason fenc=utf-8
 autocmd MyAutoCmd BufNewFile,BufRead app/**/*.rb setlocal ft=ruby fenc=utf-8
 autocmd MyAutoCmd BufNewFile,BufRead app/**/*.yml setlocal ft=ruby fenc=utf-8
-autocmd MyAutoCmd FileType c highlight Comment ctermfg=darkcyan
-autocmd MyAutoCmd FileType cpp highlight Comment ctermfg=darkcyan
 autocmd MyAutoCmd FileType haskell setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd FileType php setlocal tabstop=4 tw=0 sw=4 expandtab
 autocmd MyAutoCmd FileType python setlocal tabstop=4 tw=0 shiftwidth=4 expandtab softtabstop=4

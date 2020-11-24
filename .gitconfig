@@ -5,7 +5,7 @@
 	quotepath = false
 	precomposeunicode = true
 	ignorecase = false
-	pager = delta --theme='Gray Matter Dark'
+	pager = delta --theme 'Solarized (light)'
 [color]
 	ui = auto
 	status = auto
@@ -106,3 +106,6 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[delta]
+	line-numbers = true
+	side-by-side = true
