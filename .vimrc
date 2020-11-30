@@ -296,7 +296,7 @@ Plug 'tpope/vim-abolish'
 " Emoji
 Plug 'junegunn/vim-emoji'
 " extends f, F, t and T mappings for more convenience
-Plug 'rhysd/clever-f.vim'
+"Plug 'rhysd/clever-f.vim'
 "}}}
 " Language{{{
 " Plug 'keith/swift.vim', { 'for': ['swift'] }
@@ -508,17 +508,18 @@ let g:lsp_virtual_text_enabled = 1
 "let g:lsp_settings = {
 "\  'solargraph': {'whitelist': []}
 "\}
-nnoremap <silent> gs :<C-u>LspDefinition<CR>
+nnoremap <silent> gs :<C-u>LspPeekDefinition<CR>
 
 nnoremap <silent> gd :<C-u>LspDefinition<CR>
-nnoremap <silent> gD :<C-u>LspDeclaration<CR>
-nnoremap <silent> gr :<C-u>LspReferences<CR>
+nnoremap <silent> gD :<C-u>vertical LspDefinition<CR>
+nnoremap <silent> gr :<C-u>vertical LspReferences<CR>
 nnoremap <silent> gy :<C-u>LspDocumentSymbol<CR>
-nnoremap <silent> gY :<C-u>LspWorkspaceSymbol<CR>
+nnoremap <silent> gY :<C-u>vertical LspWorkspaceSymbol<CR>
 nnoremap <silent> gQ :<C-u>LspDocumentFormat<CR>
 vnoremap <silent> gQ :LspDocumentRangeFormat<CR>
 nnoremap <silent> gh :<C-u>LspHover<CR>
-nnoremap <silent> gp :<C-u>LspImplementation<CR>
+nnoremap <silent> gH :<C-u>LspTypeHierarchy<CR>
+nnoremap <silent> gp :<C-u>vertical LspImplementation<CR>
 noremap <silent> gR :<C-u>LspRename<CR>
 "nnoremap <silent> gh  :<C-u>LspDocumentDiagnostics<CR>
 nnoremap <silent> ]e  :<C-u>LspNextError<CR>
