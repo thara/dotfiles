@@ -271,7 +271,8 @@ Plug 'kshenoy/vim-signature'
 " Minimalist path navigator
 Plug 'justinmk/vim-dirvish'
 " Fuzzy Finder (ctrlp alternative)
-Plug '/usr/local/opt/fzf'
+" Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator'
 "}}}
