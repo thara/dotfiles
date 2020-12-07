@@ -266,6 +266,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'cohama/vim-insert-linenr'
 " place, toggle and display marks
 Plug 'kshenoy/vim-signature'
+" Scroll bar for terminal
+Plug 'obcat/vim-sclow'
 "}}}
 " Navigation{{{
 " Minimalist path navigator
@@ -296,7 +298,7 @@ Plug 'tpope/vim-abolish'
 " Emoji
 Plug 'junegunn/vim-emoji'
 " extends f, F, t and T mappings for more convenience
-"Plug 'rhysd/clever-f.vim'
+Plug 'rhysd/clever-f.vim'
 "}}}
 " Language{{{
 " Plug 'keith/swift.vim', { 'for': ['swift'] }
@@ -442,7 +444,7 @@ nmap s [fzf]
 " https://github.com/junegunn/fzf.vim#commands
 nnoremap [fzf]h :History<CR>
 nnoremap [fzf]a :RG<CR>
-nnoremap [fzf]f :GFiles<CR>
+nnoremap [fzf]f :Files<CR>
 nnoremap [fzf]s :GFiles?<CR>
 nnoremap [fzf]b :Buffers<CR>
 nnoremap [fzf]t :Tags<CR>
@@ -450,9 +452,8 @@ nnoremap [fzf]v :Vista finder vim_lsp<CR>
 nnoremap [fzf]m :Marks<CR>
 "nnoremap [fzf]ln :Lines<CR>
 nnoremap [fzf]l :BLines<CR>
-"nnoremap [fzf]gc :Commits<CR>
-nnoremap [fzf]gb :BCommits<CR>
-nnoremap [fzf]c :History:<CR>
+nnoremap [fzf]c :Commits<CR>
+nnoremap [fzf]bc :BCommits<CR>
 nnoremap [fzf]w :Windows<CR>
 
 " https://github.com/junegunn/fzf.vim/issues/714
@@ -620,6 +621,8 @@ let g:clever_f_across_no_line = 1
 " f matchs Japanese characters by roman
 let g:clever_f_use_migemo = 1
 let g:clever_f_smart_case = 1
+let g:clever_f_mark_direct = 1
+let g:clever_f_fix_key_direction = 1
 
 " let g:clever_f_not_overwrites_standard_mappings = 1
 " map : <Plug>(clever-f-repeat-forward)
