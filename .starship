@@ -10,12 +10,13 @@ $git_status\
 $aws\
 $gcloud\
 $env_var\
+$status\
 $cmd_duration\
 $custom\
+$line_break\
 $jobs\
 $battery\
 $time\
-$status\
 $character"""
 
 add_newline = false
@@ -23,13 +24,15 @@ scan_timeout = 10
 
 [character]
 format = "$symbol$symbol$symbol "
-vicmd_symbol = "[❮](bold yellow)"
 
 [directory]
+truncation_length = 5
 truncation_symbol = "…/"
 
 [git_branch]
+format = "[$symbol$branch]($style) "
 symbol = "🌱"
+#truncation_length = 26
 
 [git_status]
 disabled = true  # Too slow
@@ -40,3 +43,10 @@ disabled = true
 [aws.region_aliases]
 ap-northeast-1 = "tk"
 us-east-1 = "va"
+
+[line_break]
+disabled = false
+
+[status]
+format = '[$symbol $status]($style) '
+disabled = false
