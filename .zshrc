@@ -12,48 +12,25 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 ## Command History configuration
-HISTFILE=~/.zsh_history
 HISTSIZE=50000
 SAVEHIST=50000
-setopt nonomatch
-setopt hist_ignore_dups
-setopt hist_ignore_all_dups
-setopt share_history
 
-# auto chnage directory
-setopt auto_cd
+setopt nonomatch
+
 # ls after cd
 function chpwd() { ls -GF }
 # cd search path
 cdpath=(~ ..)
-# auto directory pushd that you can get dirs list by cd -[tab]
-setopt auto_pushd
-# command correct edition before each completion attempt
-setopt correct
 # no remove postfix slash of command line
 setopt noautoremoveslash
 # no beep sound when complete list displayed
 setopt nolistbeep
 # Do not exit on end-of-file by Ctrl-d
 setopt ignore_eof
-# Enable Ctrl-x-e to edit command line
-autoload -U edit-command-line
-zle -N edit-command-line
 
 disable r
 
-# zaw.zsh 
-#
-# from http://yagays.github.io/blog/2013/05/20/zaw-zsh/
-# autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-# add-zsh-hook chpwd chpwd_recent_dirs
-zstyle ':chpwd:*' recent-dirs-max 500
-zstyle ':chpwd:*' recent-dirs-default yes
-zstyle ':completion:*' recent-dirs-insert both
-
-# source ~/zaw/zaw.zsh
 zstyle ':filter-select' case-sensitive yes
-# bindkey '^@' zaw-cdr
 
 [ -f ~/.zshrc.func ] && source ~/.zshrc.func
 
