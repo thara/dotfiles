@@ -339,6 +339,8 @@ Plug 'hashivim/vim-terraform'
 
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
+
+Plug 'gleam-lang/gleam.vim'
 "}}}
 " Misc{{{
 " Auto change directory to project root directory of the file
