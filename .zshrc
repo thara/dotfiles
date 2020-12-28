@@ -53,8 +53,13 @@ setopt complete_aliases
 alias tmux='nocorrect tmux'
 
 exists "bat" && {
-  alias b='bat'
+  unalias -m 'cat'
+  alias cat='bat -pp'
   export BAT_CONFIG_PATH="$HOME/.bat.conf"
+}
+
+exists "zoxide" && {
+  eval "$(zoxide init zsh)"
 }
 
 alias c='clear'
@@ -65,11 +70,16 @@ alias df="df -h"
 
 exists "exa" && {
   alias exa='exa --time-style long-iso'
-  alias e='exa -l'
-  alias ea='exa -lag'
-  alias es='exa -l --git --git-ignore'
-  alias eg='exa -l --git'
-  alias et='exa -lT'
+
+  unalias -m 'll'
+  unalias -m 'l'
+  unalias -m 'la'
+  unalias -m 'ls'
+  unalias -m 'lt'
+  alias ls='exa -G -a -s type'
+  alias ll='exa -l -a -s type -g'
+  alias lt='exa -lT'
+  alias lg='exa -l --git'
 }
 
 alias f='tmux capture-pane -S -1 -E 1000 -p | fpp'
@@ -330,6 +340,7 @@ exists "fzf" && {
   zle -N fzf-git-tags-widget
 
   bindkey "^y" fzf-file-widget
+  bindkey "^d" fzf-cd-widget
   bindkey '^_' fzf_select_repos
   bindkey '^o' fzf_select_session
   bindkey '^v' fzf_select_git_branch
