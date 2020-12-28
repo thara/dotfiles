@@ -69,7 +69,7 @@ set signcolumn=yes
 set ambiwidth=double
 set formatoptions+=mM
 
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
+"set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
 
 let g:vim_indent_cont = 0
 
@@ -299,6 +299,8 @@ Plug 'tpope/vim-abolish'
 Plug 'junegunn/vim-emoji'
 " extends f, F, t and T mappings for more convenience
 Plug 'rhysd/clever-f.vim'
+" Code template
+Plug 'mattn/vim-sonictemplate'
 "}}}
 " Language{{{
 " Plug 'keith/swift.vim', { 'for': ['swift'] }
@@ -345,8 +347,8 @@ Plug 'gleam-lang/gleam.vim'
 " Misc{{{
 " Auto change directory to project root directory of the file
 Plug 'mattn/vim-findroot'
-" Git
-" Plug 'tpope/vim-fugitive'
+" Git (using by lightline )
+Plug 'tpope/vim-fugitive'
 " Add GitHub support to fugitive
 " Plug 'tpope/vim-rhubarb'
 " Show git diff left
@@ -402,6 +404,9 @@ Plug 'reireias/vim-cheatsheet'
 " Plug 'rizzatti/dash.vim'
 " Google Translate
 Plug 'skanehira/translate.vim'
+
+" Git commit message
+Plug 'rhysd/committia.vim'
 "}}}
 
 call plug#end()
@@ -428,17 +433,6 @@ augroup my_dirvish_events
   " To "toggle" this, just press `R` to reload.
   autocmd FileType dirvish nnoremap <buffer> gh :keeppatterns g@\v/(\.\|__)[^\/]+/?$@d<cr>
 augroup END
-
-" Plug 'kristijanhusak/vim-dirvish-git'
-"  let g:dirvish_git_indicators = {
-"   \ 'Modified'  : 'M',
-"   \ 'Staged'    : '+',
-"   \ 'Untracked' : '?',
-"   \ 'Renamed'   : 'R',
-"   \ 'Unmerged'  : '-',
-"   \ 'Ignored'   : 'x',
-"   \ 'Unknown'   : '?'
-"   \ }
 "}}}
 " fzf{{{
 nnoremap [fzf] <Nop>
@@ -516,7 +510,8 @@ nnoremap <silent> gs :<C-u>LspPeekDefinition<CR>
 nnoremap <silent> gd :<C-u>LspDefinition<CR>
 nnoremap <silent> gD :<C-u>vertical LspDefinition<CR>
 nnoremap <silent> gr :<C-u>vertical LspReferences<CR>
-nnoremap <silent> gy :<C-u>LspDocumentSymbol<CR>
+"nnoremap <silent> gy :<C-u>LspDocumentSymbol<CR>
+nnoremap <silent> gy :<C-u>Vista finder vim_lsp<CR>
 nnoremap <silent> gY :<C-u>vertical LspWorkspaceSymbol<CR>
 nnoremap <silent> gQ :<C-u>LspDocumentFormat<CR>
 vnoremap <silent> gQ :LspDocumentRangeFormat<CR>
@@ -560,6 +555,13 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-language-server', 'gql-language-server']
 
 "}}}
+" Vista{{{
+" https://github.com/liuchengxu/vista.vim
+
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+"}}}
 " Rust{{{
 let g:rustfmt_autosave = 1
 let g:rustfmt_command = expand('~/.cargo/bin/rustfmt')
@@ -584,17 +586,38 @@ endif
 " nnoremap <silent> <Leader>gb  :<C-u>Gblame<CR>
 " nnoremap <silent> <Leader>gw  :<C-u>Gbrowse<CR>
 "}}}
+" committia.vim{{{
+let g:committia_hooks = {}
+function! g:committia_hooks.edit_open(info)
+    setlocal spell
+    setlocal spelllang+=cjk
+
+    " If no commit message, start with insert mode
+    if a:info.vcs ==# 'git' && getline(1) ==# ''
+        startinsert
+    endif
+
+    " Scroll the diff window from insert mode
+    " Map <C-n> and <C-p>
+    imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+    imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
+endfunction
+" }}}
 " lightline{{{
+let g:uesrhome = expand('%:p:h')
+
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'relativepath', 'modified', 'method' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'FugitiveHead',
+      \   'method': 'NearestMethodOrFunction',
       \ },
       \ }
+
 "}}}
 " Submode{{{
 let g:submode_keep_leaving_key = 1
@@ -662,6 +685,7 @@ set completefunc=emoji#complete
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
 "}}}
 "}}}1
 
