@@ -95,9 +95,8 @@ set isfname+=@-@
 "}}}
 " Misc{{{
 set nrformats-=octal
-set whichwrap&
-set whichwrap+=h,l
-set nowrap
+set whichwrap=b,s
+set wrap
 set helplang=ja
 set keywordprg=:help"
 set updatetime=1000
@@ -109,11 +108,13 @@ set viminfo='50,<1000,s100,\"50
 set splitright
 set termwinkey=<C-l>
 " changelog設定
+"let g:changelog_dateformat = "%Y-%m-%d %H:%M:%S"
 let g:changelog_dateformat = "%Y-%m-%d"
 let g:changelog_username = "thara"
+let g:changelog_new_date_format = "%d  %u\n\n* %p %c\n\n"
 " エントリの下に空行を入れておくと新アイテム行が一番下になる
-let g:changelog_new_date_format = "%d  %u\n\n  * %p %c\n\n\n"
-let g:changelog_new_entry_format = "  *  %c"
+"let g:changelog_new_date_format = "%d  %u\n\n  * %p %c\n\n\n"
+let g:changelog_new_entry_format = "*  %c"
 " changelogグローバルマッピング自動設定
 autocmd MyAutoCmd BufEnter * runtime ftplugin/changelog.vim
 
@@ -341,6 +342,8 @@ Plug 'hashivim/vim-terraform'
 
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
+
+Plug 'asciidoc/vim-asciidoc'
 
 Plug 'gleam-lang/gleam.vim'
 "}}}
@@ -804,6 +807,9 @@ autocmd MyAutoCmd FileType rust nmap gd <Plug>(rust-def)
 autocmd MyAutoCmd FileType rust nmap gs <Plug>(rust-def-split)
 autocmd MyAutoCmd FileType rust nmap gx <Plug>(rust-def-vertical)
 autocmd MyAutoCmd FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+autocmd MyAutoCmd BufNewFile,BufRead *.changelog setf changelog
+autocmd MyAutoCmd BufNewFile,BufRead *.clg setf changelog
 
 autocmd MyAutoCmd FileType markdown nnoremap <buffer> T :call checkbox#ToggleCB()<CR>
 autocmd MyAutoCmd FileType markdown setlocal wrap syntax=off
