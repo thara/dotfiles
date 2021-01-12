@@ -48,6 +48,7 @@ set -e
   brew list fd &>/dev/null || brew install fd
   brew list rg &>/dev/null || brew install rg
   brew list rargs &>/dev/null || brew install rargs
+  brew list zoxide &>/dev/null || brew install zoxide
 
   brew list tig &>/dev/null || brew install tig
   brew list tmux &>/dev/null || brew install tmux
