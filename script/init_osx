@@ -41,6 +41,7 @@ set -e
   brew list rename &>/dev/null || brew install rename
   brew list tree &>/dev/null || brew install tree
   brew list wget &>/dev/null || brew install wget
+  brew list bash &>/dev/null || brew install bash
   brew list zsh &>/dev/null || brew install zsh
   brew list zsh-completions &>/dev/null || brew install zsh-completions
 
