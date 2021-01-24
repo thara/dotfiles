@@ -54,11 +54,11 @@ hs.hotkey.bind({"ctrl"}, "7", function()
   hs.window.focusedWindow():centerOnScreen(nil, true)
 end)
 
-hs.hotkey.bind({"command"}, "1", function()
+hs.hotkey.bind({"command"}, "2", function()
   hs.application.launchOrFocus("Terminal")
 end)
 
-hs.hotkey.bind({"command"}, "2", function()
+hs.hotkey.bind({"command"}, "1", function()
   hs.application.launchOrFocus("Firefox")
 end)
 
