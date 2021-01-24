@@ -35,7 +35,7 @@ symbol = "🌱"
 #truncation_length = 26
 
 [git_status]
-disabled = true  # Too slow
+disabled = false
 
 [aws]
 disabled = true
