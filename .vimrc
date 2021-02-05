@@ -411,6 +411,8 @@ Plug 'skanehira/translate.vim'
 
 " Git commit message
 Plug 'rhysd/committia.vim'
+" Spell checker
+Plug 'kamykn/spelunker.vim'
 "}}}
 
 call plug#end()
@@ -514,6 +516,7 @@ nnoremap <silent> gs :<C-u>LspPeekDefinition<CR>
 nnoremap <silent> gd :<C-u>LspDefinition<CR>
 nnoremap <silent> gD :<C-u>vertical LspDefinition<CR>
 nnoremap <silent> gr :<C-u>vertical LspReferences<CR>
+nnoremap <silent> gl :<C-u>vertical LspCodeLens<CR>
 "nnoremap <silent> gy :<C-u>LspDocumentSymbol<CR>
 nnoremap <silent> gy :<C-u>Vista finder vim_lsp<CR>
 nnoremap <silent> gY :<C-u>vertical LspWorkspaceSymbol<CR>
