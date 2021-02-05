@@ -2,27 +2,31 @@
 ## Prefix
 
 # - :sparkles: feat - A new feature
+# - :muscle: Implement
+# - :construction: WIP
+# - :zap: Breaking changes
+#
 # - :bug: fix - A bug fix
 # - :memo: doc - Documentation only changes
 # - :art: style - Changes that do not affect the meaning of the code
-# - :hammer: refactor - A code change that neither fixes a bug nor adds a feature
 # - :rocket: pref - A code change that improves performance
-# - :white_check_mark: test - Adding missing or correcting existing tests
 # - :wrench: chore - Changes to the build process or auxiliary tools and libraries
 #
+# - :hammer: refactor - A code change that neither fixes a bug nor adds a feature
 # - :fire: Remove code or files
 # - :name_badge: Rename files
 # - :hocho: Method/Class/Module extraction
+# - :construction_worker: Other refactoring
+#
+# - :white_check_mark: test - Adding missing or correcting existing tests
+# - :rotating_light: Fix tests
+# - :crossed_swords: Add validation
 #
 # - :tada: Initial commit
 # - :police_car: Lint
 # - :see_no_evil: Fix typo
-#
-# - :muscle: Implement
-# - :construction: WIP
-# - :construction_worker: Other refactoring
-# - :rotating_light: Fix tests
-# - :crossed_swords: Add validation
+# - :mag: Monitoring
+# - :crossed_flags: Feature Flag
 
 ##  Sample
 # https://gist.github.com/mono0926/e6ffd032c384ee4c1cef5a2aa4f778d7
