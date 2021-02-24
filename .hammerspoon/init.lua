@@ -13,18 +13,18 @@ hs.hotkey.bind({"ctrl"}, "0", function()
 end)
 
 -- ウインドウを中央に配置
-hs.hotkey.bind({"ctrl"}, "8", function()
-  local win = hs.window.focusedWindow()
-  local f = win:frame()
-  local screen = win:screen()
-  local max = screen:frame()
+-- hs.hotkey.bind({"ctrl"}, "8", function()
+--   local win = hs.window.focusedWindow()
+--   local f = win:frame()
+--   local screen = win:screen()
+--   local max = screen:frame()
 
-  f.w = max.w - 200
-  f.h = max.h - 160
-  win:setFrame(f)
+--   f.w = max.w - 200
+--   f.h = max.h - 160
+--   win:setFrame(f)
 
-  hs.window.focusedWindow():centerOnScreen(nil, true)
-end)
+--   hs.window.focusedWindow():centerOnScreen(nil, true)
+-- end)
 
 -- ウインドウを中央に配置 2
 hs.hotkey.bind({"ctrl"}, "9", function()
@@ -40,18 +40,16 @@ hs.hotkey.bind({"ctrl"}, "9", function()
   hs.window.focusedWindow():centerOnScreen(nil, true)
 end)
 
--- ウインドウを中央に配置 3
-hs.hotkey.bind({"ctrl"}, "7", function()
+-- 80x40
+hs.hotkey.bind({"ctrl"}, "8", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
   local screen = win:screen()
   local max = screen:frame()
 
-  f.w = 1800
+  f.w = 900
   f.h = max.h - 100
   win:setFrame(f)
-
-  hs.window.focusedWindow():centerOnScreen(nil, true)
 end)
 
 hs.hotkey.bind({"command"}, "2", function()
