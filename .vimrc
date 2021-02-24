@@ -346,6 +346,7 @@ Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'asciidoc/vim-asciidoc'
 
 Plug 'gleam-lang/gleam.vim'
+Plug 'tikhomirov/vim-glsl'
 "}}}
 " Misc{{{
 " Auto change directory to project root directory of the file
