@@ -35,7 +35,7 @@ symbol = "🌱"
 #truncation_length = 26
 
 [git_status]
-disabled = false
+disabled = true  # too late in monorepo
 
 [aws]
 disabled = true
