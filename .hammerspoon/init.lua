@@ -13,20 +13,6 @@ hs.hotkey.bind({"ctrl"}, "0", function()
 end)
 
 -- ウインドウを中央に配置
--- hs.hotkey.bind({"ctrl"}, "8", function()
---   local win = hs.window.focusedWindow()
---   local f = win:frame()
---   local screen = win:screen()
---   local max = screen:frame()
-
---   f.w = max.w - 200
---   f.h = max.h - 160
---   win:setFrame(f)
-
---   hs.window.focusedWindow():centerOnScreen(nil, true)
--- end)
-
--- ウインドウを中央に配置 2
 hs.hotkey.bind({"ctrl"}, "9", function()
   local win = hs.window.focusedWindow()
   local f = win:frame()
@@ -35,6 +21,7 @@ hs.hotkey.bind({"ctrl"}, "9", function()
 
   f.w = 1400
   f.h = max.h - 100
+
   win:setFrame(f)
 
   hs.window.focusedWindow():centerOnScreen(nil, true)
@@ -49,6 +36,18 @@ hs.hotkey.bind({"ctrl"}, "8", function()
 
   f.w = 900
   f.h = max.h - 100
+  win:setFrame(f)
+end)
+
+-- half
+hs.hotkey.bind({"ctrl"}, "7", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.w = max.w / 2
+  f.h = max.h
   win:setFrame(f)
 end)
 
