@@ -96,7 +96,7 @@ set isfname+=@-@
 " Misc{{{
 set nrformats-=octal
 set whichwrap=b,s
-set wrap
+set nowrap
 set helplang=ja
 set keywordprg=:help"
 set updatetime=1000
@@ -260,7 +260,8 @@ Plug 'vim-jp/vimdoc-ja'
 
 " Appearance{{{
 " Color Scheme
-Plug 'pbrisbin/vim-colors-off'
+"Plug 'pbrisbin/vim-colors-off'
+Plug 'smypf/vim-colors-off'
 " Coolなステータスライン
 Plug 'itchyny/lightline.vim'
 " インサートモード時に行番号の色を反転
@@ -299,7 +300,7 @@ Plug 'tpope/vim-abolish'
 " Emoji
 Plug 'junegunn/vim-emoji'
 " extends f, F, t and T mappings for more convenience
-Plug 'rhysd/clever-f.vim'
+"Plug 'rhysd/clever-f.vim'
 " Code template
 Plug 'mattn/vim-sonictemplate'
 "}}}
