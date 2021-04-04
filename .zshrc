@@ -52,35 +52,11 @@ setopt complete_aliases
 
 alias tmux='nocorrect tmux'
 
-exists "bat" && {
-  unalias -m 'cat'
-  alias cat='bat -pp'
-  export BAT_CONFIG_PATH="$HOME/.bat.conf"
-}
-
-exists "zoxide" && {
-  eval "$(zoxide init zsh)"
-}
-
 alias c='clear'
 alias cl='vi $NOTES_DIR/changelog'
 
 alias du="du -h"
 alias df="df -h"
-
-exists "exa" && {
-  alias exa='exa --time-style long-iso'
-
-  unalias -m 'll'
-  unalias -m 'l'
-  unalias -m 'la'
-  unalias -m 'ls'
-  unalias -m 'lt'
-  alias ls='exa -G -a -s type'
-  alias ll='exa -l -a -s type -g'
-  alias lt='exa -lT'
-  alias lg='exa -l --git'
-}
 
 alias f='tmux capture-pane -S -1 -E 1000 -p | fpp'
 
@@ -141,6 +117,31 @@ alias vless=$vimruntime/macros/less.sh
 alias edit-cheatsheet="vim $HOME/Dropbox/Work/cheatsheet.md"
 alias git-first-commit="git log --date-order --format=%cI | tail -1"
 alias git-commiter-last-month="git shortlog --summary --since='1 month ago' | sort -r"
+
+exists "exa" && {
+  alias exa='exa --time-style long-iso'
+
+  unalias 'ls'
+  alias ls='exa -G -a -s type'
+
+  unalias 'll'
+  unalias 'l'
+  unalias 'la'
+  alias ll='exa -l -a -s type -g'
+  alias l='exa -G -a -s type'
+  alias lt='exa -lT'
+  alias lg='exa -l --git'
+}
+
+exists "bat" && {
+  unalias -m 'cat'
+  alias cat='bat -pp'
+  export BAT_CONFIG_PATH="$HOME/.bat.conf"
+}
+
+exists "zoxide" && {
+  eval "$(zoxide init zsh)"
+}
 
 export EDITOR='vim'
 export VISUAL='vim'
