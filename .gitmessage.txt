@@ -14,6 +14,7 @@
 #
 # - :hammer: refactor - A code change that neither fixes a bug nor adds a feature
 # - :fire: Remove code or files
+# - :truck: Move files
 # - :name_badge: Rename files
 # - :hocho: Method/Class/Module extraction
 # - :construction_worker: Other refactoring
