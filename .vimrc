@@ -315,7 +315,7 @@ Plug 'mattn/vim-goimports'
 Plug 'elixir-editors/vim-elixir', { 'for': ['ex', 'exs', 'eex', 'leex'] }
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': ['rust']}
-Plug 'racer-rust/vim-racer', { 'for': ['rust']}
+"Plug 'racer-rust/vim-racer', { 'for': ['rust']}
 Plug 'rhysd/rust-doc.vim', { 'for': ['rust']}
 
 Plug 'udalov/kotlin-vim', { 'for': ['kotlin'] }
@@ -334,8 +334,8 @@ Plug 'axvr/zepl.vim'
 
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
 
@@ -507,7 +507,7 @@ let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_highlights_enabled = 1
 let g:lsp_textprop_enabled = 1
 let g:lsp_virtual_text_enabled = 1
-" let g:lsp_log_verbose = 1
+"let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 "let g:lsp_settings = {
 "\  'solargraph': {'whitelist': []}
@@ -527,6 +527,8 @@ nnoremap <silent> gh :<C-u>LspHover<CR>
 nnoremap <silent> gH :<C-u>LspTypeHierarchy<CR>
 nnoremap <silent> gp :<C-u>vertical LspImplementation<CR>
 noremap <silent> gR :<C-u>LspRename<CR>
+noremap <silent> gj :<C-u>LspCallHierarchyIncoming<CR>
+noremap <silent> gk :<C-u>LspCallHierarchyOutgoing<CR>
 "nnoremap <silent> gh  :<C-u>LspDocumentDiagnostics<CR>
 nnoremap <silent> ]e  :<C-u>LspNextError<CR>
 nnoremap <silent> [e  :<C-u>LspPreviousError<CR>
@@ -545,20 +547,14 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 "set omnifunc=lsp#complete
-set completeopt+=preview
+"set completeopt+=preview
+set omnifunc=lsp#complete
 
-let g:asyncomplete_auto_popup = 0
+" allow modifying the completeopt variable, or it will
+" be overridden all the time
+let g:asyncomplete_auto_completeopt = 0
 
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ asyncomplete#force_refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+set completeopt=menuone,noinsert,noselect,preview
 
 let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-language-server', 'gql-language-server']
 
@@ -573,19 +569,19 @@ endfunction
 " Rust{{{
 let g:rustfmt_autosave = 1
 let g:rustfmt_command = expand('~/.cargo/bin/rustfmt')
-let g:racer_cmd = expand("~/.cargo/bin/racer")
-let g:racer_experimental_completer = 1
+"let g:racer_cmd = expand("~/.cargo/bin/racer")
+"let g:racer_experimental_completer = 1
 let g:rust_doc#open_cmd = 'open'
 let g:rust_doc#downloaded_rust_doc_dir = expand('~/.rustup/doc')
 
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-        \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
-        \ 'whitelist': ['rust'],
-        \ })
-endif
+" if executable('rls')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'rls',
+"         \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+"         \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
+"         \ 'whitelist': ['rust'],
+"         \ })
+" endif
 "}}}
 " fugitive{{{
 " nnoremap <silent> <Leader>gs  :<C-u>Gstatus<CR>
