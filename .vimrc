@@ -527,8 +527,8 @@ nnoremap <silent> gh :<C-u>LspHover<CR>
 nnoremap <silent> gH :<C-u>LspTypeHierarchy<CR>
 nnoremap <silent> gp :<C-u>vertical LspImplementation<CR>
 noremap <silent> gR :<C-u>LspRename<CR>
-noremap <silent> gj :<C-u>LspCallHierarchyIncoming<CR>
-noremap <silent> gk :<C-u>LspCallHierarchyOutgoing<CR>
+noremap <silent> gj :<C-u>LspCallHierarchyOutgoing<CR>
+noremap <silent> gk :<C-u>LspCallHierarchyIncoming<CR>
 "nnoremap <silent> gh  :<C-u>LspDocumentDiagnostics<CR>
 nnoremap <silent> ]e  :<C-u>LspNextError<CR>
 nnoremap <silent> [e  :<C-u>LspPreviousError<CR>
