@@ -804,11 +804,6 @@ autocmd MyAutoCmd FileType swift setlocal omnifunc=lsp#complete
 "autocmd MyAutoCmd BufWritePre *.go GoFmt
 autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab nolist
 
-autocmd MyAutoCmd FileType rust nmap gd <Plug>(rust-def)
-autocmd MyAutoCmd FileType rust nmap gs <Plug>(rust-def-split)
-autocmd MyAutoCmd FileType rust nmap gx <Plug>(rust-def-vertical)
-autocmd MyAutoCmd FileType rust nmap <leader>gd <Plug>(rust-doc)
-
 autocmd MyAutoCmd BufNewFile,BufRead *.changelog setf changelog
 autocmd MyAutoCmd BufNewFile,BufRead *.clg setf changelog
 
