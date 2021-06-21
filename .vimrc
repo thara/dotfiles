@@ -317,6 +317,7 @@ Plug 'elixir-editors/vim-elixir', { 'for': ['ex', 'exs', 'eex', 'leex'] }
 Plug 'rust-lang/rust.vim', { 'for': ['rust']}
 "Plug 'racer-rust/vim-racer', { 'for': ['rust']}
 Plug 'rhysd/rust-doc.vim', { 'for': ['rust']}
+" Plug 'keremc/asyncomplete-racer.vim', { 'for': ['rust'] }
 
 Plug 'udalov/kotlin-vim', { 'for': ['kotlin'] }
 Plug 'jparise/vim-graphql'
@@ -533,6 +534,12 @@ noremap <silent> gk :<C-u>LspCallHierarchyIncoming<CR>
 nnoremap <silent> ]e  :<C-u>LspNextError<CR>
 nnoremap <silent> [e  :<C-u>LspPreviousError<CR>
 
+"let g:asyncomplete_auto_popup = 1
+"
+"inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
 let g:asyncomplete_auto_popup = 0
 
 function! s:check_back_space() abort
@@ -549,12 +556,13 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 "set omnifunc=lsp#complete
 "set completeopt+=preview
 set omnifunc=lsp#complete
+set completeopt=menuone,noinsert,noselect,preview
 
 " allow modifying the completeopt variable, or it will
 " be overridden all the time
 let g:asyncomplete_auto_completeopt = 0
 
-set completeopt=menuone,noinsert,noselect,preview
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 let g:lsp_settings_filetype_typescript = ['typescript-language-server', 'eslint-language-server', 'gql-language-server']
 
@@ -573,6 +581,9 @@ let g:rustfmt_command = expand('~/.cargo/bin/rustfmt')
 "let g:racer_experimental_completer = 1
 let g:rust_doc#open_cmd = 'open'
 let g:rust_doc#downloaded_rust_doc_dir = expand('~/.rustup/doc')
+
+" autocmd User asyncomplete_setup call asyncomplete#register_source(
+"     \ asyncomplete#sources#racer#get_source_options())
 
 " if executable('rls')
 "     au User lsp_setup call lsp#register_server({
