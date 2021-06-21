@@ -23,7 +23,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export PKG_CONFIG_PATH="$homebrew_prefix/lib/pkgconfig:$homebrew_prefix/lib:$PKG_CONFIG_PATH"
 
-alias vim='env_LANG=ja_JP.UTF-8 /usr/local/bin/vim "$@"'
+alias vim='env_LANG=ja_JP.UTF-8 vim "$@"'
 
 fpath=($homebrew_prefix/share/zsh-completions $fpath)
 
