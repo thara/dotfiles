@@ -2,63 +2,70 @@
 
 # Stop script if errors occur
 trap 'echo Error: $0:$LINENO stopped; exit 1' ERR INT
-set -eu
+set -eux
 
 . "$DOTFILES_ROOT/script/functions"
 
-apt-get install -y tree wget zsh
+sudo apt-get install -y tree wget zsh
 
 # zsh-completions
-wget -nv https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/xUbuntu_18.10/Release.key -O Release.key
-apt-key add - < Release.key
-rm Release.key
-apt-get update
+sudo wget -nv https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/xUbuntu_19.10/Release.key -O Release.key
+sudo apt-key add Release.key
 
-sh -c "echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/xUbuntu_18.10/ /' > /etc/apt/sources.list.d/shells:zsh-users:zsh-completions.list"
-apt-get update && apt-get install -y zsh-completions
+echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/xUbuntu_19.10/ /' | sudo tee /etc/apt/sources.list.d/shells:zsh-users:zsh-completions.list
+sudo curl -fsSL https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/xUbuntu_19.10/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_zsh-users_zsh-completions.gpg > /dev/null
+sudo apt update
+sudo apt install zsh-completions
+
+sudo apt-get install -y git-lfs tig
+
+sudo apt-get install -y libevent-dev ncurses-dev build-essential bison pkg-config
+
+sudo apt-get install -y fzf
+
+mkdir -p ~/.local/bin
+
+sudo apt install fd-find
+ln -fs $(which fdfind) ~/.local/bin/fd
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source ~/.profile
+cargo install exa
+
+cargo install bat
+if ! [ -d "$HOME/.config/bat/themes" ] ; then
+  mkdir -p $HOME/.config/bat/themes
+  git clone https://github.com/thara/gray-matter.git $HOME/.config/bat/themes/ || :
+fi
 
 
-apt-get install -y git-lfs tig tmux
+sudo apt-get install -y ripgrep
+
+sudo add-apt-repository -y ppa:longsleep/golang-backports
+sudo apt update
+sudo apt install -y golang
+
+go get github.com/x-motemen/ghq
+
+cargo install gitui
+cargo install git-delta
+
+sudo apt install -y tmux
 
 ## TODO
-# git-now
-# ghq
-# exa
-# fd
-# rg
-# vim
 # docker
 
 mkdir -p $HOME/.config/bat/themes
 git clone https://github.com/thara/gray-matter.git $HOME/.config/bat/themes/ || :
 
 # Vim
-apt-cache -i depends vim
-apt-get remove --purge -y vim vim-runtime vim-common
-apt-get install -y git build-essential ncurses-dev lua5.2 lua5.2-dev luajit python-dev python3-dev ruby-dev
-git clone --depth 1 https://github.com/vim/vim /opt/vim
-
-(cd /opt/vim && \
-  ./configure \
-      --with-features=huge \
-      --enable-multibyte \
-      --enable-luainterp=dynamic \
-      --enable-gpm \
-      --enable-cscope \
-      --enable-fontset \
-      --enable-fail-if-missing \
-      --prefix=/usr/local \
-      --enable-pythoninterp=dynamic \
-      --enable-python3interp=dynamic \
-      --enable-rubyinterp=dynamic && \
-  make && make install && hash vim
-)
-
+sudo add-apt-repository -y ppa:jonathonf/vim
+sudo apt update
+sudo apt install vim
 
 VIM_DIR=$DOTFILES_ROOT/.vim
 
 mkdir -p $VIM_DIR/autoload
-
 
 : "Install vim-plug" && {
   if ! [ -f "$VIM_DIR/autoload/plug.vim" ] ; then
