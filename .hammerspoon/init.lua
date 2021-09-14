@@ -101,3 +101,55 @@ hs.hotkey.bind({"cmd", "ctrl"}, "Down", function()
   f.h = max.h
   win:setFrame(f)
 end)
+
+hs.hotkey.bind({"cmd", "option"}, "Left", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x
+  f.y = max.y
+  f.w = max.w / 3
+  f.h = max.h
+  win:setFrame(f)
+end)
+
+hs.hotkey.bind({"cmd", "option"}, "Down", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x + (max.w / 3)
+  f.y = max.y
+  f.w = max.w / 3
+  f.h = max.h
+  win:setFrame(f)
+end)
+
+hs.hotkey.bind({"cmd", "option"}, "Right", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x + (max.w / 3 * 2)
+  f.y = max.y
+  f.w = max.w / 3
+  f.h = max.h
+  win:setFrame(f)
+end)
+
+hs.hotkey.bind({"cmd", "option"}, "Up", function()
+  local win = hs.window.focusedWindow()
+  local f = win:frame()
+  local screen = win:screen()
+  local max = screen:frame()
+
+  f.x = max.x + (max.w / 3)
+  f.y = max.y
+  f.w = max.w / 3 * 2
+  f.h = max.h
+  win:setFrame(f)
+end)
