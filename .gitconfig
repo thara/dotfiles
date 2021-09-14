@@ -34,6 +34,7 @@
 	sb = show-branch
 	ft = fetch
 	br = branch
+	pushf = push --force-with-lease
 	brh = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - (%(color:green)%(committerdate:relative)%(color:reset))'
 	sh = show
 	i = ls-files --others -i --exclude-standard
@@ -108,4 +109,4 @@
 	process = git-lfs filter-process
 [delta]
 	line-numbers = true
-	side-by-side = true
+	side-by-side = false
