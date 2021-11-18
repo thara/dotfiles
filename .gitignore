@@ -33,5 +33,6 @@ Session.vim
 .vim/*
 !.vim/cheatsheet.md
 !.vim/ftplugin
+!.vim/syntax
 
 .mjolnir/.mjolnir
