@@ -116,7 +116,7 @@ let g:changelog_new_date_format = "%d  %u\n\n* %p %c\n\n"
 "let g:changelog_new_date_format = "%d  %u\n\n  * %p %c\n\n\n"
 let g:changelog_new_entry_format = "*  %c"
 " changelogグローバルマッピング自動設定
-autocmd MyAutoCmd BufEnter * runtime ftplugin/changelog.vim
+"autocmd MyAutoCmd BufEnter * runtime ftplugin/changelog.vim
 
 if executable('rg')
     let &grepprg = 'rg --vimgrep --hidden'
@@ -239,18 +239,8 @@ inoremap <C-u> <C-x><C-u>
 xnoremap . :normal .<CR>
 " ヤンクレジスタの値をペースト
 xnoremap <silent> <Leader>p "0p
-" lexima.vim で括弧repeat可能にする https://qiita.com/yami_beta/items/26995a5c382bd83ac38f
-inoremap <C-l> <C-g>U<Right>
 " grep https://www.pixiv.net/fanbox/creator/3615/post/38621
 nnoremap g/  :<C-u>global//print<CR>
-
-nnoremap <Leader>cd :cd %:h<CR>:pwd<CR>
-
-" Go to index of notes
-nnoremap <Leader>o :e $NOTES_DIR/inbox.md<CR>
-nnoremap <Leader>ni :e $NOTES_DIR/index.md<CR>cd $NOTES_DIR<CR>
-" Run ctags
-nnoremap <Leader>tt :silent !ctags -R . <CR>:redraw!<CR>
 "}}}
 
 " Plugin{{{1
@@ -420,9 +410,7 @@ Plug 'kamykn/spelunker.vim'
 call plug#end()
 "}}}1
 
-" Plugin Settings{{{1
-nnoremap [Plugin]    <Nop>
-nmap     , [Plugin]
+" Plugin Settings{{{
 
 " dirvish{{{
 let g:dirvish_mode = ':sort r /[^\/]$/'
@@ -451,14 +439,17 @@ nnoremap [fzf]a :RG<CR>
 nnoremap [fzf]f :Files<CR>
 nnoremap [fzf]s :GFiles?<CR>
 nnoremap [fzf]b :Buffers<CR>
-nnoremap [fzf]t :Tags<CR>
+"nnoremap [fzf]t :Tags<CR>
 nnoremap [fzf]v :Vista finder vim_lsp<CR>
 nnoremap [fzf]m :Marks<CR>
-"nnoremap [fzf]ln :Lines<CR>
-nnoremap [fzf]l :BLines<CR>
-nnoremap [fzf]c :Commits<CR>
-nnoremap [fzf]bc :BCommits<CR>
+"nnoremap [fzf]l :Lines<CR>
+"nnoremap [fzf]l :BLines<CR>
+"nnoremap [fzf]c :Commits<CR>
+"nnoremap [fzf]bc :BCommits<CR>
 nnoremap [fzf]w :Windows<CR>
+
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
 
 " https://github.com/junegunn/fzf.vim/issues/714
 command! -bang -nargs=* Rg
@@ -474,13 +465,6 @@ function! RipgrepFzf(query, fullscreen)
   call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
 command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-
-nnoremap <silent> <Leader>gf :<C-u>FzfPreviewFromResources project_mru git -add-fzf-arg=--select-1 -add-fzf-arg=--query="<C-r>=substitute(expand('<cfile>'), '^\.\+/', '', '')<CR>"<CR>
-
-" Mapping selecting mappings
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
