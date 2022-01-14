@@ -21,6 +21,7 @@ $character"""
 
 add_newline = false
 scan_timeout = 10
+#command_timeout = 100 # ms
 
 [character]
 format = "$symbol$symbol$symbol "
@@ -50,3 +51,7 @@ disabled = false
 [status]
 format = '[$symbol $status]($style) '
 disabled = false
+
+[time]
+disabled = false
+format = '[\[$time\]]($style) '
