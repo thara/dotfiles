@@ -86,6 +86,7 @@ set dictionary=/usr/share/dict/words
 if !exists('loaded_matchit')
   runtime macros/matchit.vim
 endif
+set nrformats+=unsigned
 "}}}
 " Command{{{
 set wildmenu
