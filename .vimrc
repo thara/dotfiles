@@ -44,7 +44,7 @@ syntax on
 if !has('gui_running')
   set t_Co=256
 endif
-set background=light
+set background=dark
 set cmdheight=1
 set nocursorline
 set ruler
@@ -482,6 +482,7 @@ autocmd! FileType fzf set laststatus=0 noshowmode noruler
 "autocmd MyAutoCmd ColorScheme * highlight LineNr ctermfg=241 ctermbg=none guifg=Yellow
 "autocmd MyAutoCmd ColorScheme * highlight Normal ctermfg=250 ctermbg=none
 "autocmd MyAutoCmd ColorScheme * highlight SpecialComment ctermfg=8
+autocmd MyAutoCmd ColorScheme * highlight Normal ctermbg=none
 colorscheme off
 "}}}
 " vim-lsp{{{

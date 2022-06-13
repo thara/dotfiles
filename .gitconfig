@@ -5,7 +5,7 @@
 	quotepath = false
 	precomposeunicode = true
 	ignorecase = false
-	pager = delta --theme 'Solarized (light)'
+	pager = delta --theme 'Solarized (dark)'
 [color]
 	ui = auto
 	status = auto
