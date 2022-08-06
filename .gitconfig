@@ -5,7 +5,7 @@
 	quotepath = false
 	precomposeunicode = true
 	ignorecase = false
-	pager = delta --theme 'Solarized (dark)'
+	pager = delta
 [color]
 	ui = auto
 	status = auto
@@ -17,11 +17,11 @@
 	default = current
 [rebase]
 	autosquash = true
+[merge]
+	conflictstyle = diff3
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [alias]
 	ls = ls-files
@@ -97,8 +97,11 @@
 [diff]
 	renames = true
 	noprefix = true
+	colorMoved = default
 [interactive]
-	diffFilter = delta
+	diffFilter = delta --color-only
+[add.interactive]
+    useBuiltin = false
 [pull]
   rebase = false
   ff = only
@@ -108,5 +111,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 [delta]
+	navigate = true
 	line-numbers = true
-	side-by-side = false
+	side-by-side = true
