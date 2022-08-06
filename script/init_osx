@@ -61,6 +61,8 @@ set -e
   brew list ghq &>/dev/null || brew install ghq
   brew list fzf &>/dev/null || brew install fzf
 
+  brew list starship &>/dev/null || brew install starship
+
   brew list rlwrap &>/dev/null || brew install rlwrap
   brew list coreutils &>/dev/null || brew install coreutils
   #brew list universal-ctags &>/dev/null || (brew tap universal-ctags/universal-ctags; brew install --with-jansson --HEAD universal-ctags/universal-ctags/universal-ctags)
@@ -85,28 +87,15 @@ set -e
   brew list todo-txt &>/dev/null || brew install todo-txt
 
   if [ -n "${DOTFILES_CASK:-}" ] ; then
-    #brew cask list 1password &>/dev/null || brew cask install 1password
-    #brew cask list google-japanese-ime &>/dev/null || brew cask install google-japanese-ime
-    brew list omnidisksweeper &>/dev/null || brew install omnidisksweeper
-    brew list slack &>/dev/null || brew install slack
-    #brew cask list discord &>/dev/null || brew cask install discord
-    #brew cask list google-chrome &>/dev/null || brew cask install google-chrome
     brew list dropbox &>/dev/null || brew install dropbox
     brew list visual-studio-code &>/dev/null || brew install visual-studio-code
     brew list karabiner-elements &>/dev/null || brew install karabiner-elements
-    #brew cask list google-backup-and-sync &>/dev/null || brew cask install google-backup-and-sync
-    ##brew cask list handshaker &>/dev/null || brew cask install handshaker  # Android device manager
     brew list github &>/dev/null || brew install github
-    brew list kindle &>/dev/null || brew install kindle
-    #brew cask list virtualbox &>/dev/null || brew cask install virtualbox
     brew list docker &>/dev/null || brew install docker
-    #brew cask list jetbrains-toolbox &>/dev/null || brew cask install jetbrains-toolbox
     brew list hammerspoon &>/dev/null || brew install hammerspoon
     brew list alfred &>/dev/null || brew install alfred
-    brew list dash &>/dev/null || brew install dash
 
-    brew tap homebrew/cask-fonts
-    brew cask list font-myrica &>/dev/null || brew cask install font-myrica font-myricam
+    brew list iandol/adobe-fonts/font-source-code-pro &/dev/null || brew install iandol/adobe-fonts/font-source-code-pro
   fi
 }
 
