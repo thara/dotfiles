@@ -6,6 +6,7 @@
 	precomposeunicode = true
 	ignorecase = false
 	pager = delta --theme 'Solarized (dark)'
+	fsmonitor = true
 [color]
 	ui = auto
 	status = auto
@@ -28,6 +29,7 @@
 	al = config --get-regexp alias
 	st = status --short --branch
 	s = switch
+	sw = switch
 	r = restore
 	a = add
 	co = checkout
