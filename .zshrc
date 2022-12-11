@@ -227,7 +227,7 @@ exists "fzf" && {
       local project_path=$(ghq root)/${selected_dir}
       if [[ ! -z ${TMUX} ]]; then
         local session=${${selected_dir##*/}//./-}
-        local current_sessoin=$(tmux list-sessions | grep 'attached' | cut -d":" -f1)
+        local current_session=$(tmux list-sessions | grep 'attached' | cut -d":" -f1)
         if [[ $current_session =~ ^[0-9]+$ ]]; then
           BUFFER="cd $project_path && tmux rename-session $session"
         else
