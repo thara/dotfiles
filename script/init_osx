@@ -30,6 +30,9 @@ set -e
   fi
 }
 
+function brew_install {
+  brew list $1 &>/dev/null || brew install $1
+}
 
 : "Hombrew setup" && {
 
@@ -44,11 +47,11 @@ set -e
   brew list bash &>/dev/null || brew install bash
   brew list zsh &>/dev/null || brew install zsh
   brew list zsh-completions &>/dev/null || brew install zsh-completions
+  brew install nushell
 
   brew list exa &>/dev/null || brew install exa
   brew list fd &>/dev/null || brew install fd
   brew list rg &>/dev/null || brew install rg
-  brew list rargs &>/dev/null || brew install rargs
   brew list zoxide &>/dev/null || brew install zoxide
 
   brew list tig &>/dev/null || brew install tig
@@ -65,7 +68,6 @@ set -e
 
   brew list rlwrap &>/dev/null || brew install rlwrap
   brew list coreutils &>/dev/null || brew install coreutils
-  #brew list universal-ctags &>/dev/null || (brew tap universal-ctags/universal-ctags; brew install --with-jansson --HEAD universal-ctags/universal-ctags/universal-ctags)
 
   brew list git &>/dev/null || brew install git
   brew list git-delta &>/dev/null || brew install git-delta
@@ -84,8 +86,6 @@ set -e
 
   brew list mergepbx &>/dev/null || brew install mergepbx
 
-  brew list todo-txt &>/dev/null || brew install todo-txt
-
   if [ -n "${DOTFILES_CASK:-}" ] ; then
     brew list dropbox &>/dev/null || brew install dropbox
     brew list visual-studio-code &>/dev/null || brew install visual-studio-code
@@ -103,7 +103,6 @@ set -e
 VIM_DIR=$DOTFILES_ROOT/.vim
 
 mkdir -p $VIM_DIR/autoload
-
 
 : "Install vim-plug" && {
   if ! [ -f "$VIM_DIR/autoload/plug.vim" ] ; then
