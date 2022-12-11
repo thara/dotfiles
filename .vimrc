@@ -800,6 +800,14 @@ autocmd MyAutoCmd FileType swift setlocal tabstop=4 tw=0 sw=4 expandtab
 autocmd MyAutoCmd FileType swift setlocal omnifunc=lsp#complete
 "autocmd MyAutoCmd BufWritePre *.go GoFmt
 autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab nolist
+autocmd MyAutoCmd FileType go iabbrev <buffer> u8 uint8
+autocmd MyAutoCmd FileType go iabbrev <buffer> u16 uint16
+autocmd MyAutoCmd FileType go iabbrev <buffer> u32 uint32
+autocmd MyAutoCmd FileType go iabbrev <buffer> u64 uint64
+autocmd MyAutoCmd FileType go iabbrev <buffer> i8 int8
+autocmd MyAutoCmd FileType go iabbrev <buffer> i16 int16
+autocmd MyAutoCmd FileType go iabbrev <buffer> i32 int32
+autocmd MyAutoCmd FileType go iabbrev <buffer> i64 int64
 
 autocmd MyAutoCmd BufNewFile,BufRead *.changelog setf changelog
 autocmd MyAutoCmd BufNewFile,BufRead *.clg setf changelog
