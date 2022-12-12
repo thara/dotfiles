@@ -6,6 +6,8 @@ set -e
 
 . "$DOTFILES_ROOT/script/functions"
 
+export PATH="/opt/homebrew/bin:$PATH"
+
 : "Hombrew install" && {
 
   export HOMEBREW_NO_ANALYTICS=1
