@@ -64,7 +64,7 @@ set textwidth=0
 set showtabline=1
 set display=lastline,uhex
 set fillchars=stl:\ ,stlnc:\ ,vert:\|,fold:-,diff:-
-set synmaxcol=150
+set synmaxcol=300
 set signcolumn=yes
 set ambiwidth=double
 set formatoptions+=mM
@@ -151,17 +151,18 @@ nnoremap <Space><Space> <C-^>
 " 引数リスト
 "nnoremap <Space><Space> :args<CR>
 "nnoremap <Space>l :arglocal<CR>
+"nnoremap <Space>: :args<CR>
 "nnoremap <Space>j :argadd % <Bar> next <CR>
 "nnoremap <Space>e :argedit %<CR>
 "nnoremap <Space>k :<C-R>=argidx()+1<CR>argdelete<CR>
 " 新規ローカル引数リストを作る
-"'nnoremap <Space>s :arglocal! %<CR>
+"nnoremap <Space>s :arglocal! %<CR>
 " 引数リスト内の現在指しているファイルに戻る
 "nnoremap <Space>c :argument<CR>
 "nnoremap <Space>f :first<CR>
 "nnoremap <Space>t :last<CR>
-"nnoremap <silent> <C-h> :previous<CR>
-"nnoremap <silent> <C-l> :next<CR>
+"nnoremap <Space>h :previous<CR>
+"nnoremap <Space>l :next<CR>
 " タブページ間の移動
 nnoremap <silent> [t :tabprevious<CR>
 nnoremap <silent> ]t :tabnext<CR>
@@ -172,11 +173,13 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
+nnoremap <space>k :bprevious<CR>
+nnoremap <space>j :bnext<CR>
 " arglist移動
-nnoremap <silent> [a :previous<CR>
-nnoremap <silent> ]a :next<CR>
-nnoremap <silent> [A :first<CR>
-nnoremap <silent> ]A :last<CR>
+"nnoremap <silent> [a :previous<CR>
+"nnoremap <silent> ]a :next<CR>
+"nnoremap <silent> [A :first<CR>
+"nnoremap <silent> ]A :last<CR>
 " Quickfix
 nnoremap <silent> [q :cprevious<CR>
 nnoremap <silent> ]q :cnext<CR>
@@ -397,6 +400,8 @@ Plug 'reireias/vim-cheatsheet'
 " \]
 " let QFixHowm_MenuDir = 'menu'
 
+Plug 'wakatime/vim-wakatime'
+
 " Dash
 " Plug 'rizzatti/dash.vim'
 " Google Translate
@@ -496,9 +501,9 @@ let g:lsp_textprop_enabled = 1
 let g:lsp_virtual_text_enabled = 1
 "let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
-"let g:lsp_settings = {
-"\  'solargraph': {'whitelist': []}
-"\}
+let g:lsp_settings = {
+\  'bufls': {'cmd': ['bufls', 'serve'],'allowlist': ['proto']}
+\}
 nnoremap <silent> gs :<C-u>LspPeekDefinition<CR>
 
 nnoremap <silent> gd :<C-u>LspDefinition<CR>
