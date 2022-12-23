@@ -36,7 +36,7 @@
 	sb = show-branch
 	ft = fetch
 	br = branch
-	pushf = push --force-with-lease
+	pushf = push --force-with-lease --force-if-includes
 	brh = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - (%(color:green)%(committerdate:relative)%(color:reset))'
 	sh = show
 	i = ls-files --others -i --exclude-standard
@@ -79,7 +79,7 @@
 [github]
 	user = thara
 [user]
-	email = git@thara.jp
+	email = git@thara.dev
 	name = Tomochika Hara
 [commit]
 	template = ~/.gitmessage.txt
