@@ -51,3 +51,8 @@ let-env NU_PLUGIN_DIRS = [
 # let-env PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 
 let-env PATH = ($env.PATH | prepend '~/bin')
+let-env PATH = ($env.PATH | prepend '/opt/homebrew/bin')
+let-env PATH = ($env.PATH | prepend '/opt/homebrew/opt/openjdk@11/bin')
+
+let-env PATH = ($env.PATH | prepend '~/.rbenv/shims')
+let-env RBENV_SHELL = "nu"
