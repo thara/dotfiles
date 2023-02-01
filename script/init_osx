@@ -49,8 +49,8 @@ function brew_install {
   brew list bash &>/dev/null || brew install bash
   brew list zsh &>/dev/null || brew install zsh
   brew list zsh-completions &>/dev/null || brew install zsh-completions
-
   brew_install nushell
+  brew_install bash-completion
 
   brew list exa &>/dev/null || brew install exa
   brew list fd &>/dev/null || brew install fd
