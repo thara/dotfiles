@@ -69,3 +69,19 @@ function fzf-select-repos {
 }
 
 bind -m vi-command -x '"\C-o":fzf-select-repos'
+
+function get_os {
+  case "$(uname | awk '{print tolower($0)}')" in
+      *'linux'*)  echo 'linux'   ;;
+      *'darwin'*) echo 'osx'     ;;
+      *'bsd'*)    echo 'bsd'     ;;
+      *)          echo 'unknown' ;;
+  esac
+}
+
+if [ -n "$(get_os)" ]; then
+  f="$HOME/.bashrc.$(get_os)"
+  if [ -f "$f" ]; then
+    source "$f"
+  fi
+fi
