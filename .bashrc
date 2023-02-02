@@ -61,10 +61,6 @@ for i in $HOME/etc/profile.d/*.sh ; do
   [ -r "$i" ] && source "$i"
 done
 
-if command -v brew &> /dev/null; then
-  [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-fi
-
 function fzf-select-repos {
   local selected_dir=$(ghq list | fzf-tmux --query "$LBUFFER" --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
   if [ -n "$selected_dir" ]; then
