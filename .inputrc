@@ -11,8 +11,6 @@ set page-completions off
 
 #set keymap vi-command
 
-#"\C-o": "fzf-select-repos\n"
-
 set keymap vi-insert
 
 TAB: menu-complete
