@@ -19,6 +19,7 @@ $ make links
 
 - [exa](https://github.com/ogham/exa)
 - [bat](https://github.com/sharkdp/bat)
+- [fd](https://github.com/sharkdp/fd)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
 - [fzf](https://github.com/junegunn/fzf)
