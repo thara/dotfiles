@@ -9,14 +9,6 @@ set -eu
 ERR=0
 export ERR
 
-test_prezto() {
-  if [[ -d "$HOME/.zprezto" ]]; then
-    print_success "prezto installed"
-  else
-    failure "$0: $LINENO: $FUNCNAME"
-  fi
-}
-
 test_homebrew() {
   if is_exists "brew"; then
     print_success "homebrew installed"
@@ -25,4 +17,4 @@ test_homebrew() {
   fi
 }
 
-test_prezto && test_homebrew
+test_homebrew
