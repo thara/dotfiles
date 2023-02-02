@@ -12,7 +12,6 @@ jobs:
     - name: Install
       run: |
         make init
-        make initzsh
       env:
         DOTFILES_CASK: ""
     - name: Run tests

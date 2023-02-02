@@ -11,7 +11,7 @@ if ! is_exists "yay"; then
   exit 1
 fi
 
-yay -S zsh-completions tmux tig
+yay -S tmux tig
 yay -S git-lfs
 yay -S exa fd ripgrep rargs zoxide bat
 yay -S fpp ghq fzf

@@ -6,17 +6,7 @@ set -eu
 
 . "$DOTFILES_ROOT/script/functions"
 
-apt-get install -y tree wget zsh
-
-# zsh-completions
-wget -nv https://download.opensuse.org/repositories/shells:zsh-users:zsh-completions/xUbuntu_18.10/Release.key -O Release.key
-apt-key add - < Release.key
-rm Release.key
-apt-get update
-
-sh -c "echo 'deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-completions/xUbuntu_18.10/ /' > /etc/apt/sources.list.d/shells:zsh-users:zsh-completions.list"
-apt-get update && apt-get install -y zsh-completions
-
+apt-get install -y tree wget
 
 apt-get install -y git-lfs tig tmux
 

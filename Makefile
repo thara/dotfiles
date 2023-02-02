@@ -15,16 +15,10 @@ links:
 	@mkdir -p $(HOME)/bin
 	@$(foreach val, $(BINFILES), ln -sfnv $(abspath bin/$(val)) $(HOME)/bin/$(val);)
 	@ln -sfnv $(HOME)/src/github.com/thara/dotfiles/.vim $(HOME)/.vim
-	@mkdir -p $(HOME)/.config/nu
-	@ln -sfnv $(HOME)/src/github.com/thara/dotfiles/.config/nu/env.nu $(HOME)/.config/nu/env.nu
-	@ln -sfnv $(HOME)/src/github.com/thara/dotfiles/.config/nu/config.nu $(HOME)/.config/nu/config.nu
+	@ln -sfnv $(HOME)/src/github.com/thara/dotfiles/etc $(HOME)/etc
 
 init:
 	@DOTFILES_ROOT=$(PWD) bash $(PWD)/script/init
-
-initzsh:
-	@DOTFILES_ROOT=$(PWD) zsh $(PWD)/script/init_zsh
-	@ln -sfnv $(HOME)/src/github.com/thara/dotfiles/etc $(HOME)/etc
 
 test:
 	@DOTFILES_ROOT=$(PWD) bash $(PWD)/script/runtest

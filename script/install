@@ -54,7 +54,7 @@ run_make() {
     fi
 
     cd "$DOTFILES_ROOT"
-    make init && make initzsh && printf "\n" && print_done "Dotfiles links"
+    make init && printf "\n" && print_done "Dotfiles links"
 }
 
 

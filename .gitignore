@@ -24,12 +24,6 @@ Session.vim
 .luarocks/lib
 .luarocks/share
 
-# prezto
-.zlogin
-.zlogout
-.zprofile
-.zshenv
-
 .vim/*
 !.vim/cheatsheet.md
 !.vim/ftplugin
