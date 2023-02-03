@@ -17,6 +17,24 @@ for i in $HOME/etc/profile.d/*.sh ; do
   [ -r "$i" ] && source "$i"
 done
 
+function fzf-select-session {
+  local selected_dir=$(ghq list | fzf-tmux --query "$LBUFFER" --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
+  echo $selected_dir
+  if [ -n "$selected_dir" ]; then
+    local project_path=$(ghq root)/${selected_dir}
+    if [[ ! -z ${TMUX} ]]; then
+      local name=${selected_dir##*/}
+      local session=${name//./-}
+      tmux new-session -d -c $project_path -s $session 2> /dev/null
+      tmux switch-client -t $session 2> /dev/null
+    else
+      cd $project_path
+    fi
+  fi
+}
+
+bind -m vi-command -x '"\C-o":fzf-select-session'
+
 function fzf-select-repos {
   local selected_dir=$(ghq list | fzf-tmux --query "$LBUFFER" --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
   if [ -n "$selected_dir" ]; then
@@ -24,7 +42,7 @@ function fzf-select-repos {
   fi
 }
 
-bind -m vi-command -x '"\C-o":fzf-select-repos'
+bind -m vi-command -x '"\C-[":fzf-select-repos'
 
 function get_os {
   case "$(uname | awk '{print tolower($0)}')" in
