@@ -1,0 +1,14 @@
+export COCOAPODS_DISABLE_STATS=1
+
+function alias_gnu_command {
+  if command -v $1 &> /dev/null ; then
+    alias "$2"="$(brew --prefix)/bin/$1"
+  fi
+}
+
+alias_gnu_command gdate date
+alias_gnu_command gawk awk
+
+PATH="$(brew --prefix)/opt/gnu-tar/libexec/gnubin:$PATH"
+PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
+PATH="$(brew --prefix)/opt/gnu-time/libexec/gnubin:$PATH"

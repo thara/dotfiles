@@ -68,7 +68,14 @@ function brew_install {
   brew list starship &>/dev/null || brew install starship
 
   brew list rlwrap &>/dev/null || brew install rlwrap
-  brew list coreutils &>/dev/null || brew install coreutils
+
+  brew_install coreutils
+  brew_install grep
+  brew_install gawk
+  brew_install gzip
+  brew_install gnu-tar
+  brew_install gnu-sed
+  brew_install gnu-time
 
   brew list git &>/dev/null || brew install git
   brew list git-delta &>/dev/null || brew install git-delta
