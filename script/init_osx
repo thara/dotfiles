@@ -81,7 +81,6 @@ function brew_install {
   brew list git-delta &>/dev/null || brew install git-delta
 
   brew list git-lfs &>/dev/null || brew install git-lfs
-  brew list git-now &>/dev/null || brew install git-now
   brew list github/gh/gh &>/dev/null || brew install github/gh/gh
 
   if ! [ -d "$HOME/.config/bat/themes" ] ; then
@@ -92,7 +91,7 @@ function brew_install {
   brew list gpg2 &>/dev/null || brew install gpg2
   brew list pinentry-mac &>/dev/null || brew install pinentry-mac
 
-  brew list mergepbx &>/dev/null || brew install mergepbx
+  brew_install colima
 
   if [ -n "${DOTFILES_CASK:-}" ] ; then
     brew list dropbox &>/dev/null || brew install dropbox
