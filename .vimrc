@@ -289,6 +289,7 @@ Plug 'tyru/stoptypofile.vim'
 " 一部分だけ別バッファで編集
 Plug 'thinca/vim-partedit'
 " easily search for, substitute, and abbreviate multiple variants of a word
+" crs: snake_case
 Plug 'tpope/vim-abolish'
 " Emoji
 Plug 'junegunn/vim-emoji'
