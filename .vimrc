@@ -109,15 +109,14 @@ set viminfo='50,<1000,s100,\"50
 set splitright
 set termwinkey=<C-l>
 " changelog設定
-"let g:changelog_dateformat = "%Y-%m-%d %H:%M:%S"
 let g:changelog_dateformat = "%Y-%m-%d"
 let g:changelog_username = "thara"
-let g:changelog_new_date_format = "%d  %u\n\n* %p %c\n\n"
+let g:changelog_date_entry_search = "^## %d"
+let g:changelog_new_date_format = "## %d\n\n- %p %c\n\n"
 " エントリの下に空行を入れておくと新アイテム行が一番下になる
-"let g:changelog_new_date_format = "%d  %u\n\n  * %p %c\n\n\n"
-let g:changelog_new_entry_format = "*  %c"
-" changelogグローバルマッピング自動設定
-"autocmd MyAutoCmd BufEnter * runtime ftplugin/changelog.vim
+let g:changelog_new_entry_format = "-  %c"
+" changelogグローバルマッピング自動設定(どこでもchangelogを開ける)
+autocmd MyAutoCmd BufEnter * runtime ftplugin/changelog.vim
 
 if executable('rg')
     let &grepprg = 'rg --vimgrep --hidden'
