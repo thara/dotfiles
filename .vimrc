@@ -69,12 +69,7 @@ set signcolumn=yes
 set ambiwidth=double
 set formatoptions+=mM
 
-"set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}
-
 let g:vim_indent_cont = 0
-
-"let g:hybrid_custom_term_colors = 1
-"let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
 "}}}
 " Input{{{
 set backspace=indent,eol,start
@@ -140,28 +135,8 @@ nmap g* g*zz
 nmap g# g#zz
 " Ex-Mode 無効
 nnoremap Q <Nop>
-" ウィンドウ移動
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-l> <C-w>l
 " 一つ前に開いたファイルを開く
 nnoremap <Space><Space> <C-^>
-" 引数リスト
-"nnoremap <Space><Space> :args<CR>
-"nnoremap <Space>l :arglocal<CR>
-"nnoremap <Space>: :args<CR>
-"nnoremap <Space>j :argadd % <Bar> next <CR>
-"nnoremap <Space>e :argedit %<CR>
-"nnoremap <Space>k :<C-R>=argidx()+1<CR>argdelete<CR>
-" 新規ローカル引数リストを作る
-"nnoremap <Space>s :arglocal! %<CR>
-" 引数リスト内の現在指しているファイルに戻る
-"nnoremap <Space>c :argument<CR>
-"nnoremap <Space>f :first<CR>
-"nnoremap <Space>t :last<CR>
-"nnoremap <Space>h :previous<CR>
-"nnoremap <Space>l :next<CR>
 " タブページ間の移動
 nnoremap <silent> [t :tabprevious<CR>
 nnoremap <silent> ]t :tabnext<CR>
@@ -174,11 +149,6 @@ nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 nnoremap <space>k :bprevious<CR>
 nnoremap <space>j :bnext<CR>
-" arglist移動
-"nnoremap <silent> [a :previous<CR>
-"nnoremap <silent> ]a :next<CR>
-"nnoremap <silent> [A :first<CR>
-"nnoremap <silent> ]A :last<CR>
 " Quickfix
 nnoremap <silent> [q :cprevious<CR>
 nnoremap <silent> ]q :cnext<CR>
@@ -192,11 +162,7 @@ vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 " 行末までヤンク
 nnoremap Y y$
-" x,X,s,S でレジスタを汚さない
-" nnoremap x "_x
-" vnoremap x "_x
-" nnoremap X "_X
-" vnoremap X "_X
+" s,S でレジスタを汚さない
 nnoremap s "_s
 vnoremap s "_s
 nnoremap S "_S
@@ -222,11 +188,7 @@ inoremap <C-@> <C-[>
 " Emacs風
 inoremap <silent> <C-b> <Left>
 inoremap <silent> <C-f> <Right>
-" inoremap <silent> <C-e> <End>
-" inoremap <silent> <C-a> <Home>
 inoremap <silent> <C-d> <Del>
-"nnoremap <silent> <C-X>0 :only<CR>
-"nnoremap <silent> <C-x>2 :sp<CR>
 " コマンドラインモードでもEmacs風
 cnoremap <C-a> <Home>
 cnoremap <C-b> <Left>
@@ -242,8 +204,6 @@ inoremap <C-u> <C-x><C-u>
 xnoremap . :normal .<CR>
 " ヤンクレジスタの値をペースト
 xnoremap <silent> <Leader>p "0p
-" grep https://www.pixiv.net/fanbox/creator/3615/post/38621
-nnoremap g/  :<C-u>global//print<CR>
 "}}}
 
 " Plugin{{{1
@@ -268,9 +228,14 @@ Plug 'obcat/vim-sclow'
 " Minimalist path navigator
 Plug 'justinmk/vim-dirvish'
 " Fuzzy Finder (ctrlp alternative)
-" Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+" > move between Vim panes and tmux splits seamlessly.
+" <C-h> Left
+" <C-j> Down
+" <C-k> Up
+" <C-l> Right
 Plug 'christoomey/vim-tmux-navigator'
 "}}}
 " Input{{{
@@ -293,36 +258,29 @@ Plug 'thinca/vim-partedit'
 Plug 'tpope/vim-abolish'
 " Emoji
 Plug 'junegunn/vim-emoji'
-" extends f, F, t and T mappings for more convenience
+
+" clever-fはnot for meなので使わない(意思表示のためにコメントアウトを残しておく)
 "Plug 'rhysd/clever-f.vim'
+
 " Code template
 Plug 'mattn/vim-sonictemplate'
 "}}}
 " Language{{{
-" Plug 'keith/swift.vim', { 'for': ['swift'] }
-" let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
-"Plug 'derekwyatt/vim-scala', { 'for': ['scala'] }
-
 Plug 'mattn/vim-goimports'
-"Plug 'fatih/vim-go'
 
 Plug 'elixir-editors/vim-elixir', { 'for': ['ex', 'exs', 'eex', 'leex'] }
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': ['rust']}
-"Plug 'racer-rust/vim-racer', { 'for': ['rust']}
 Plug 'rhysd/rust-doc.vim', { 'for': ['rust']}
-" Plug 'keremc/asyncomplete-racer.vim', { 'for': ['rust'] }
 
 Plug 'udalov/kotlin-vim', { 'for': ['kotlin'] }
 Plug 'jparise/vim-graphql'
 
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript']}
-" [Python] 関数とクラスをテキストオブジェクト化 + motion追加
-Plug 'bps/vim-textobj-python', { 'for': ['python']}
-" [Ruby] ブロックをテキストオブジェクト化
-"Plug 'rhysd/vim-textobj-ruby', { 'for': ['ruby']}
-" [Ruby] end キーワードの自動挿入
+
+" Ruby: end キーワードの自動挿入
 Plug 'tpope/vim-endwise'
+
 Plug 'elzr/vim-json', { 'for': ['json']}
 
 Plug 'axvr/zepl.vim'
@@ -347,12 +305,15 @@ Plug 'tikhomirov/vim-glsl'
 " Misc{{{
 " Auto change directory to project root directory of the file
 Plug 'mattn/vim-findroot'
+
+" git関連はterminalでやる
 " Git (using by lightline )
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 " Add GitHub support to fugitive
 " Plug 'tpope/vim-rhubarb'
 " Show git diff left
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
+
 " テキストオブジェクト拡張
 Plug 'kana/vim-textobj-user'
 " 全体をテキストオブジェクト化
@@ -370,42 +331,10 @@ Plug 'terryma/vim-expand-region'
 Plug 'liuchengxu/vista.vim'
 let g:vista_sidebar_width = 50
 
-" ヤンク履歴
-"Plug 'LeafCage/yankround.vim'
-
 " Cheat Sheet
 Plug 'reireias/vim-cheatsheet'
 
-" Plug 'davidoc/taskpaper.vim'
-" let g:task_paper_date_format = "%Y-%m-%d %H:%M:%S"
-
-" Plug 'vim-scripts/todo-txt.vim'
-" Plug 'jkramer/vim-checkbox'
-
-" Plug 'fuenor/qfixhowm'
-" let g:QFixHowm_Key = 'g'
-" let g:howm_dir           = '~/Dropbox/howm'
-" let g:howm_filename      = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
-" let g:howm_fileencoding  = 'utf-8'
-" let g:howm_fileformat    = 'unix'
-" let g:QFixWin_EnableMode = 1
-" let g:QFixHowm_FileType = 'asciidoc'
-" let g:QFixHowm_Title = '#'
-" let g:QFixHowm_Wiki = 1
-" let g:QFixHowm_WikiDir = 'wiki'
-" let g:QFixHowm_UserSwActionLock = ['[ ]', '[:draft]', '[:work]', '[:private]']
-" let g:QFixHowm_Template = [
-"   \"# %TAG%",
-"   \""
-" \]
-" let QFixHowm_MenuDir = 'menu'
-
 Plug 'wakatime/vim-wakatime'
-
-" Dash
-" Plug 'rizzatti/dash.vim'
-" Google Translate
-Plug 'skanehira/translate.vim'
 
 " Git commit message
 Plug 'rhysd/committia.vim'
@@ -569,29 +498,11 @@ endfunction
 " Rust{{{
 let g:rustfmt_autosave = 1
 let g:rustfmt_command = expand('~/.cargo/bin/rustfmt')
-"let g:racer_cmd = expand("~/.cargo/bin/racer")
-"let g:racer_experimental_completer = 1
 let g:rust_doc#open_cmd = 'open'
 let g:rust_doc#downloaded_rust_doc_dir = expand('~/.rustup/doc')
 
 " autocmd User asyncomplete_setup call asyncomplete#register_source(
 "     \ asyncomplete#sources#racer#get_source_options())
-
-" if executable('rls')
-"     au User lsp_setup call lsp#register_server({
-"         \ 'name': 'rls',
-"         \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-"         \ 'workspace_config': {'rust': {'clippy_preference': 'on'}},
-"         \ 'whitelist': ['rust'],
-"         \ })
-" endif
-"}}}
-" fugitive{{{
-" nnoremap <silent> <Leader>gs  :<C-u>Gstatus<CR>
-" nnoremap <silent> <Leader>gc  :<C-u>Gcommit<CR>
-" nnoremap <silent> <Leader>gd  :<C-u>Gdiff<CR>
-" nnoremap <silent> <Leader>gb  :<C-u>Gblame<CR>
-" nnoremap <silent> <Leader>gw  :<C-u>Gbrowse<CR>
 "}}}
 " committia.vim{{{
 let g:committia_hooks = {}
@@ -641,36 +552,10 @@ call submode#map('winsize', 'n', '', '-', '<C-W>-')
 " Misc{{{
 let g:vim_json_syntax_conceal = 0
 " the path to python3 is obtained through executing `:echo exepath('python3')` in vim
-let g:python3_host_prog = "/usr/local/bin/python3"
+let g:python3_host_prog = "/opt/local/bin/python3"
 " cheatsheet
 let g:cheatsheet#cheat_file = '~/Dropbox/Work/cheatsheet.md'
 let g:cheatsheet#vsplit = 1
-" Search a word under cursor about the file type on Dash
-nmap <silent> sd <Plug>DashSearch
-
-let g:clever_f_show_prompt = 1
-let g:clever_f_across_no_line = 1
-" f matchs Japanese characters by roman
-let g:clever_f_use_migemo = 1
-let g:clever_f_smart_case = 1
-let g:clever_f_mark_direct = 1
-let g:clever_f_fix_key_direction = 1
-
-" let g:clever_f_not_overwrites_standard_mappings = 1
-" map : <Plug>(clever-f-repeat-forward)
-" map , <Plug>(clever-f-repeat-back)
-" nmap f <Plug>(clever-f-reset)<Plug>(clever-f-f)
-" xmap f <Plug>(clever-f-reset)<Plug>(clever-f-f)
-" omap f <Plug>(clever-f-reset)<Plug>(clever-f-f)
-" nmap F <Plug>(clever-f-reset)<Plug>(clever-f-F)
-" xmap F <Plug>(clever-f-reset)<Plug>(clever-f-F)
-" omap F <Plug>(clever-f-reset)<Plug>(clever-f-F)
-" nmap t <Plug>(clever-f-reset)<Plug>(clever-f-t)
-" xmap t <Plug>(clever-f-reset)<Plug>(clever-f-t)
-" omap t <Plug>(clever-f-reset)<Plug>(clever-f-t)
-" nmap T <Plug>(clever-f-reset)<Plug>(clever-f-T)
-" xmap T <Plug>(clever-f-reset)<Plug>(clever-f-T)
-" omap T <Plug>(clever-f-reset)<Plug>(clever-f-T)
 
 let g:findroot_patterns = [
 \  '.git/',
@@ -705,38 +590,6 @@ if executable('rg')
 endif
 
 command! Today r!date +\%Y-\%m-\%d
-" ### c0hama流スムースなスクロール {{{
-" let s:scroll_time_ms = 100
-" let s:scroll_precision = 8
-" function! MySmoothScroll(dir, windiv, factor)
-"   let cl = &cursorline
-"   let cc = &cursorcolumn
-"   set nocursorline nocursorcolumn
-"   let height = winheight(0) / a:windiv
-"   let n = height / s:scroll_precision
-"   if n <= 0
-"     let n = 1
-"   endif
-"   let wait_per_one_move_ms = s:scroll_time_ms / s:scroll_precision * a:factor
-"   let i = 0
-"   let scroll_command = a:dir == "down" ?
-"     \ "normal! " . n . "\<C-e>" . n . "j" :
-"     \ "normal! " . n . "\<C-y>" . n . "k"
-"   while i < s:scroll_precision
-"     let i = i + 1
-"     execute scroll_command
-"     execute "sleep " . wait_per_one_move_ms . "m"
-"     redraw
-"   endwhile
-"   let &cursorline = cl
-"   let &cursorcolumn = cc
-" endfunction
-"noremap <silent> <C-d> :call MySmoothScroll("down", 2, 1)<CR>
-"noremap <silent> <C-u> :call MySmoothScroll("up", 2, 1)<CR>
-"noremap <silent> <C-j> :call MySmoothScroll("down", 1, 2)<CR>
-"noremap <silent> <C-k> :call MySmoothScroll("up", 1, 2)<CR>
-" }}}
-
 " {{{ same_indent
 " https://github.com/tyru/config/blob/c765a18ee9577cd8f62e654e348ad066d4e4d3e2/home/volt/rc/default/vimrc.vim#L489-L506
 function! s:same_indent(dir) abort
@@ -771,21 +624,6 @@ command! -nargs=0 ClipFullPath call s:Clip(expand('%:p'))
 command! -nargs=0 ClipFile call s:Clip(expand('%:t'))
 " 現在開いているファイルのディレクトリパスをレジスタへ
 command! -nargs=0 ClipDir  call s:Clip(expand('%:p:h'))
-" ### Dvorak {{{
-let g:is_dvorak = 0
-
-function! ToggleDvorakMode()
-  if g:is_dvorak
-    let g:is_dvorak = 0
-    set keymap=
-  else
-    let g:is_dvorak = 1
-    set keymap=dvorak
-  endif
-endfunction
-
-command! ToggleDovorakMode call ToggleDvorakMode()
-" }}}
 " ファイルタイプ別設定 {{{
 autocmd MyAutoCmd FileType c setlocal tabstop=4 tw=0 sw=4 expandtab
 autocmd MyAutoCmd FileType cpp setlocal tabstop=4 tw=0 sw=4 expandtab
@@ -804,7 +642,6 @@ autocmd MyAutoCmd FileType html setlocal tabstop=2 tw=0 sw=2 expandtab
 autocmd MyAutoCmd BufNewFile,BufRead *.swift setfiletype swift
 autocmd MyAutoCmd FileType swift setlocal tabstop=4 tw=0 sw=4 expandtab
 autocmd MyAutoCmd FileType swift setlocal omnifunc=lsp#complete
-"autocmd MyAutoCmd BufWritePre *.go GoFmt
 autocmd MyAutoCmd FileType go setlocal tabstop=4 tw=0 sw=4 noexpandtab nolist
 autocmd MyAutoCmd FileType go iabbrev <buffer> u8 uint8
 autocmd MyAutoCmd FileType go iabbrev <buffer> u16 uint16
