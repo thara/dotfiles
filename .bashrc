@@ -62,3 +62,4 @@ fi
 
 export GOPATH="$HOME"
 export RUST_BACKTRACE=1
+. "$HOME/.cargo/env"
