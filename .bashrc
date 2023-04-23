@@ -60,6 +60,10 @@ if [ -n "$(get_os)" ]; then
   fi
 fi
 
+# update history in real time
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
 export GOPATH="$HOME"
 export RUST_BACKTRACE=1
 . "$HOME/.cargo/env"
