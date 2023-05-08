@@ -1,4 +1,4 @@
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/bin:$PATH
 
 # no limit
 HISTSIZE=-1
@@ -64,6 +64,10 @@ fi
 shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 export GOPATH="$HOME"
 export RUST_BACKTRACE=1
 . "$HOME/.cargo/env"
+
+export PATH=$HOME/bin:$PATH
