@@ -68,6 +68,6 @@ PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 export GOPATH="$HOME"
 export RUST_BACKTRACE=1
-. "$HOME/.cargo/env"
+[ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
 
 export PATH=$HOME/bin:$PATH
