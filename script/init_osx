@@ -2,7 +2,7 @@
 
 # Stop script if errors occur
 trap 'echo Error: $0:$LINENO stopped; exit 1' ERR INT
-set -e
+set -ex
 
 . "$DOTFILES_ROOT/script/functions"
 
