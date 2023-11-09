@@ -669,3 +669,7 @@ augroup zepl
 augroup END
 " }}}
 "}}}
+
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
