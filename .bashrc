@@ -44,6 +44,17 @@ function fzf-select-repos {
 
 bind -m vi-command -x '"\C-[":fzf-select-repos'
 
+function fzf-git-fixup {
+  local commit_hash=$(git log --pretty=format:'%h - %s' --abbrev-commit | fzf --height 40% --reverse --ansi | awk '{print $1}')
+  if [ -n "$commit_hash" ]; then
+    git commit --fixup $commit_hash
+  else
+    echo "No commit selected"
+  fi
+}
+
+bind -m vi-command -x '"\C-f":fzf-git-fixup'
+
 function get_os {
   case "$(uname | awk '{print tolower($0)}')" in
       *'linux'*)  echo 'linux'   ;;
