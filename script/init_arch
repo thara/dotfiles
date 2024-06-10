@@ -13,7 +13,7 @@ fi
 
 yay -S tmux tig
 yay -S git-lfs
-yay -S exa fd ripgrep rargs zoxide bat
+yay -S fd ripgrep rargs zoxide bat
 yay -S fpp ghq fzf
 yay -S rlwrap
 yay -S git-delta

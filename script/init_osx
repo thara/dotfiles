@@ -50,7 +50,7 @@ function brew_install {
   brew_install bash
   brew_install bash-completion
 
-  brew list exa &>/dev/null || brew install exa
+  brew list eza &>/dev/null || brew install eza
   brew list fd &>/dev/null || brew install fd
   brew list rg &>/dev/null || brew install rg
   brew list zoxide &>/dev/null || brew install zoxide

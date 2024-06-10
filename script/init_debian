@@ -13,7 +13,7 @@ apt-get install -y git-lfs tig tmux
 ## TODO
 # git-now
 # ghq
-# exa
+# eza
 # fd
 # rg
 # vim
