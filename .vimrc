@@ -348,7 +348,7 @@ call plug#end()
 " Plugin Settings{{{
 
 " dirvish{{{
-let g:dirvish_mode = ':sort r /[^\/]$/'
+let g:dirvish_mode = ':sort ,^\v(.*[\/])|\ze,'
 let g:dirvish_relative_paths = 1
 "nnoremap <silent> <C-e> :Dirvish<CR>
 " hidden files
