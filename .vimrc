@@ -441,7 +441,8 @@ let g:lsp_diagnostics_virtual_text_enabled = 0
 "let g:lsp_log_verbose = 1
 "let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:lsp_settings = {
-\  'bufls': {'cmd': ['bufls', 'serve'],'allowlist': ['proto']}
+\  'bufls': {'cmd': ['bufls', 'serve'],'allowlist': ['proto']},
+\  'sourcekit-lsp': {'cmd': ['xcrun', 'sourcekit-lsp']},
 \}
 nnoremap <silent> gs :<C-u>LspPeekDefinition<CR>
 
