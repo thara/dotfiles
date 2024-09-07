@@ -304,6 +304,11 @@ Plug 'asciidoc/vim-asciidoc'
 
 Plug 'gleam-lang/gleam.vim'
 Plug 'tikhomirov/vim-glsl'
+
+Plug 'onyx-lang/onyx.vim'
+
+Plug 'Nymphium/vim-koka'
+
 "}}}
 " Misc{{{
 " Auto change directory to project root directory of the file
