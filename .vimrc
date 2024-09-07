@@ -345,6 +345,9 @@ Plug 'wakatime/vim-wakatime'
 Plug 'rhysd/committia.vim'
 " Spell checker
 Plug 'kamykn/spelunker.vim'
+
+" Personal Wiki for Vim
+Plug 'vimwiki/vimwiki'
 "}}}
 
 call plug#end()
@@ -589,6 +592,21 @@ augroup onyx_ft
     au!
     autocmd BufNewFile,BufRead *.onyx set syntax=onyx
 augroup END
+
+" vimwiki
+" https://github.com/patrickdavey/vimwiki_markdown
+let g:vimwiki_list = [
+  \ {'path': '~/plain/garden',
+  \   'syntax': 'markdown', 'ext': 'md',
+  \   'custom_wiki2html': 'vimwiki_markdown', 'path_html': '~/plain/dist/garden_html',
+  \   'template_path': '~/src/github.com/thara/dotfiles/templates',
+  \   'html_filename_parameterization': 1
+  \ }]
+let g:vimwiki_global_ext = 0
+let g:vimwiki_key_mappings =
+  \ {
+  \ 'headers': 0,
+  \ }
 "}}}
 "}}}1
 
@@ -670,6 +688,8 @@ autocmd MyAutoCmd FileType markdown nnoremap <buffer> T :call checkbox#ToggleCB(
 autocmd MyAutoCmd FileType markdown setlocal wrap syntax=off
 autocmd MyAutoCmd FileType make setlocal isfname-==
 autocmd FileType vim setlocal foldmethod=marker
+
+autocmd MyAutoCmd FileType vimwiki :nmap - <Plug>(dirvish_up)
 
 augroup zepl
     autocmd!
