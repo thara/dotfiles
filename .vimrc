@@ -264,9 +264,6 @@ Plug 'junegunn/vim-emoji'
 
 " Code template
 Plug 'mattn/vim-sonictemplate'
-
-" memo
-Plug 'glidenote/memolist.vim'
 "}}}
 " Language{{{
 Plug 'mattn/vim-goimports'
@@ -588,13 +585,10 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-let g:memolist_path = expand("~/Dropbox/memo")
-nnoremap <Leader>mn  :MemoNew<CR>
-nnoremap <Leader>ml  :MemoList<CR>
-nnoremap <Leader>mg  :MemoGrep<CR>
-
-let g:memolist_memo_suffix = "md"
-let g:memolist_template_dir_path = expand("~/Dropbox/memo/.memolist-template")
+augroup onyx_ft
+    au!
+    autocmd BufNewFile,BufRead *.onyx set syntax=onyx
+augroup END
 "}}}
 "}}}1
 
