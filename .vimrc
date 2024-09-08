@@ -609,6 +609,22 @@ let g:vimwiki_key_mappings =
   \ {
   \ 'headers': 0,
   \ }
+
+let g:memolist_memo_suffix = "md"
+let g:memolist_template_dir_path = expand("~/Dropbox/memo/.memolist-template")
+
+" Copilot
+" https://codeinthehole.com/tips/vim-and-github-copilot/
+let g:copilot_filetypes = #{
+  \   gitcommit: v:true,
+  \   markdown: v:true,
+  \   text: v:true,
+  \ }
+autocmd BufReadPre *
+  \ let f=getfsize(expand("<afile>"))
+  \ | if f > 100000 || f == -2
+  \ | let b:copilot_enabled = v:false
+  \ | endif
 "}}}
 "}}}1
 
