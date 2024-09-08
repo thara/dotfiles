@@ -717,6 +717,37 @@ augroup zepl
     autocmd FileType swift      let b:repl_config = { 'cmd': 'swift' }
 augroup END
 " }}}
+
+if has('python3')
+  command -range FormatSQL :call FormatSQL(<line1>, <line2>)
+
+  function! FormatSQL(start, end)
+python3 << EOF
+import vim
+import sqlparse
+
+start = int(vim.eval('a:start')) - 1
+end = int(vim.eval('a:end')) - 1
+buf = vim.current.buffer
+
+try:
+    sql = '\n'.join(buf[start:end + 1])
+    formatted = sqlparse.format(sql,
+      reindent=True,
+      keyword_case='upper',
+      indent_columns=True,
+    )
+
+    lines = [line.encode('utf-8') for line in formatted.split('\n')]
+    buf[:] = buf[:start] + lines + buf[end + 1:]
+except Exception as e:
+    print(e)
+EOF
+  endfunction
+else
+    echo "Error: FormatSQL Required vim compiled with +python"
+endif
+
 "}}}
 
 if filereadable(expand("~/.vimrc.local"))
