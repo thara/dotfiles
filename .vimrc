@@ -177,6 +177,7 @@ nnoremap ZQ <Nop>
 " LeaderをSpaceキーに
 noremap <Space> <Nop>
 map <Space> <Leader>
+let mapleader = "\<Space>"
 " .vimrcを開く
 nnoremap <silent> <Leader>ev  :<C-u>tabedit $MYVIMRC<CR>
 " .vimrcのリロード
