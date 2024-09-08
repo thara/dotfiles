@@ -255,6 +255,8 @@ Plug 'tyru/stoptypofile.vim'
 Plug 'thinca/vim-partedit'
 " easily search for, substitute, and abbreviate multiple variants of a word
 " crs: snake_case
+" crc: camelCase
+" cru: UPPER_CASE
 Plug 'tpope/vim-abolish'
 " Emoji
 Plug 'junegunn/vim-emoji'
