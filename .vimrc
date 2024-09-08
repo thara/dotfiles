@@ -607,11 +607,20 @@ let g:vimwiki_list = [
   \   'custom_wiki2html': 'vimwiki_markdown', 'path_html': '~/plain/dist/garden_html',
   \   'template_path': '~/src/github.com/thara/dotfiles/templates',
   \   'html_filename_parameterization': 1
-  \ }]
+  \ },
+  \ {'path': '~/plain/private',
+  \   'syntax': 'markdown', 'ext': 'md',
+  \   'custom_wiki2html': 'vimwiki_markdown', 'path_html': '~/plain/dist/private_html',
+  \   'template_path': '~/src/github.com/thara/dotfiles/templates',
+  \   'html_filename_parameterization': 1,
+  \   'diary_rel_path': 'daily', 'diary_index': 'daily', 'diary_header': 'Daily',
+  \ },
+  \]
 let g:vimwiki_global_ext = 0
 let g:vimwiki_key_mappings =
   \ {
   \ 'headers': 0,
+  \ 'table_mappings': 0,
   \ }
 
 let g:calendar_diary_list = [
