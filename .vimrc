@@ -351,6 +351,9 @@ Plug 'kamykn/spelunker.vim'
 
 " Personal Wiki for Vim
 Plug 'vimwiki/vimwiki'
+
+" Calendar
+Plug 'mattn/calendar-vim'
 "}}}
 
 call plug#end()
@@ -611,8 +614,9 @@ let g:vimwiki_key_mappings =
   \ 'headers': 0,
   \ }
 
-let g:memolist_memo_suffix = "md"
-let g:memolist_template_dir_path = expand("~/Dropbox/memo/.memolist-template")
+let g:calendar_diary_list = [
+  \   {'name': 'Private Daily', 'path': $HOME.'/plain/daily', 'ext': '.md'},
+  \ ]
 
 " Copilot
 " https://codeinthehole.com/tips/vim-and-github-copilot/
