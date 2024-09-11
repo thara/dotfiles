@@ -606,6 +606,7 @@ let g:vimwiki_list = [
   \   'syntax': 'markdown', 'ext': 'md',
   \   'custom_wiki2html': 'vimwiki_markdown', 'path_html': '~/plain/dist/garden_html',
   \   'template_path': '~/src/github.com/thara/dotfiles/templates',
+  \   'template_default': 'garden',
   \   'html_filename_parameterization': 1
   \ },
   \ {'path': '~/plain/private',
@@ -622,6 +623,8 @@ let g:vimwiki_key_mappings =
   \ 'headers': 0,
   \ 'table_mappings': 0,
   \ }
+let g:vimwiki_automatic_nested_syntaxes = 1
+let g:vimwiki_links_space_char = '_'
 
 let g:calendar_diary_list = [
   \   {'name': 'Private Daily', 'path': $HOME.'/plain/daily', 'ext': '.md'},
