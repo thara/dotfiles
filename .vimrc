@@ -309,6 +309,8 @@ Plug 'onyx-lang/onyx.vim'
 
 Plug 'Nymphium/vim-koka'
 
+Plug 'dart-lang/dart-vim-plugin'
+
 "}}}
 " Misc{{{
 " Auto change directory to project root directory of the file
