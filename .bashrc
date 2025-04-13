@@ -82,3 +82,5 @@ export RUST_BACKTRACE=1
 [ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
 
 export PATH=$HOME/bin:$PATH
+
+bind -m vi-insert '"\C-x\C-e": edit-and-execute-command'
