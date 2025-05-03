@@ -8,11 +8,11 @@ jobs:
     timeout-minutes: 10
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Install
       run: |
-        make init
+        make install
       env:
-        DOTFILES_CASK: ""
+        DOTFILES_INSTALL_APPS: ""
     - name: Run tests
       run: make test
