@@ -1,0 +1,10 @@
+cask "dropbox"
+cask "visual-studio-code"
+cask "karabiner-elements"
+cask "github"
+cask "docker"
+cask "hammerspoon"
+cask "alfred"
+
+tap "iandol/adobe-fonts"
+brew "font-source-code-pro"
