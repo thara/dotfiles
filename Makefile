@@ -5,6 +5,20 @@ export DOTFILES_ROOT
 
 OS := $(shell . $(DOTFILES_ROOT)/script/functions && get_os)
 
+install:
+	@if [ -r "$(DOTFILES_ROOT)/$(OS)/install.sh" ]; then \
+		bash "$(DOTFILES_ROOT)/$(OS)/install.sh"; \
+	else \
+		echo "No $@.sh found for OS: $(OS)"; \
+	fi
+
+test:
+	@if [ -r "$(DOTFILES_ROOT)/$(OS)/test.sh" ]; then \
+		bash "$(DOTFILES_ROOT)/$(OS)/test.sh"; \
+	else \
+		echo "No $@.sh found for OS: $(OS)"; \
+	fi
+
 CANDIDATES := $(wildcard .??*)
 EXCLUSIONS := .DS_Store .git .gitignore .gitmodules .travis.yml bin .vim .config
 DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
@@ -21,20 +35,6 @@ links:
 	@$(foreach val, $(BINFILES), ln -sfnv $(abspath bin/$(val)) $(HOME)/bin/$(val);)
 	@ln -sfnv $(HOME)/src/github.com/thara/dotfiles/.vim $(HOME)/.vim
 	@ln -sfnv $(HOME)/src/github.com/thara/dotfiles/etc $(HOME)/etc
-
-install:
-	@echo "Detected OS: $(OS)"
-	@if [ -x "$(DOTFILES_ROOT)/$(OS)/install.sh" ]; then \
-		bash "$(DOTFILES_ROOT)/$(OS)/install.sh"; \
-	else \
-		echo "No install.sh found for OS: $(OS)"; \
-	fi
-
-init:
-	@DOTFILES_ROOT=$(PWD) bash $(PWD)/script/init
-
-test:
-	@DOTFILES_ROOT=$(PWD) bash $(PWD)/script/runtest
 
 clean:
 	@echo 'Remove dotfiles in home directory...'
