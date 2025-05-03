@@ -223,7 +223,7 @@ Plug 'cohama/vim-insert-linenr'
 " place, toggle and display marks
 Plug 'kshenoy/vim-signature'
 " Scroll bar for terminal
-Plug 'obcat/vim-sclow'
+"Plug 'obcat/vim-sclow'
 "}}}
 " Navigation{{{
 " Minimalist path navigator
