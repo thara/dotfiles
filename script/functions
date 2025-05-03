@@ -11,7 +11,7 @@ get_os() {
             echo 'linux'
           fi
           ;;
-      *'darwin'*) echo 'osx'     ;;
+      *'darwin'*) echo 'macos'   ;;
       *'bsd'*)    echo 'bsd'     ;;
       *)          echo 'unknown' ;;
   esac
