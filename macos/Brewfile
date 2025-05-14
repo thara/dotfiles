@@ -32,3 +32,4 @@ brew "gh"  # github/gh/gh
 brew "gpg2"
 brew "pinentry-mac"
 brew "colima"
+brew "asdf"
