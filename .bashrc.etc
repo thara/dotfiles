@@ -68,4 +68,6 @@ export GOPATH="$HOME"
 export RUST_BACKTRACE=1
 [ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
 
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 export PATH=$HOME/bin:$PATH
