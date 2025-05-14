@@ -12,10 +12,7 @@ export VISUAL=vim
 export TERM=xterm-256color
 
 [ -f ~/.bashrc.local ] && source ~/.bashrc.local
-
-for i in $HOME/etc/profile.d/*.sh ; do
-  [ -r "$i" ] && source "$i"
-done
+[ -f ~/.bashrc.etc ] && source ~/.bashrc.etc
 
 function fzf-select-session {
   local selected_dir=$(ghq list | fzf-tmux --query "$LBUFFER" --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
@@ -74,13 +71,5 @@ fi
 # update history in real time
 shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-export GOPATH="$HOME"
-export RUST_BACKTRACE=1
-[ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
-
-export PATH=$HOME/bin:$PATH
 
 bind -m vi-insert '"\C-x\C-e": edit-and-execute-command'

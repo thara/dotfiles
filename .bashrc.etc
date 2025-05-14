@@ -1,0 +1,71 @@
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+
+# homebrew
+if command -v brew &> /dev/null ; then
+  export PATH="$(brew --prefix):$PATH"
+  export PKG_CONFIG_PATH="$(brew --prefix)/lib/pkgconfig:$(brew --prefix)/lib:$PKG_CONFIG_PATH"
+
+  [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
+
+  export HOMEBREW_NO_ANALYTICS=1
+  export HOMEBREW_NO_AUTO_UPDATE=1
+fi
+
+# bat
+if command -v bat &> /dev/null; then
+  # show plain
+  alias cat='bat -p -P'
+  export BAT_CONFIG_PATH="$HOME/.bat.conf"
+fi
+
+# direnv
+if command -v direnv &> /dev/null ; then
+  eval "$(direnv hook bash)"
+fi
+
+# eza
+if command -v eza &> /dev/null; then
+  alias eza='eza --time-style long-iso'
+  # grid, all, sort by type
+  alias ls='eza -G -a -s type'
+  alias l='eza -G -a -s type'
+  # table, all, sort by type, show group & git status
+  alias ll='eza -l -a -s type -g --git'
+  # tree
+  alias lt='eza -T'
+fi
+
+# fzf
+if command -v fzf &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden'
+  export FZF_DEFAULT_OPTS='--border'
+  export FZF_TMUX_HEIGHT="50%"
+  export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+  export FZF_CTRL_T_COMMAND="rg --files --hidden --follow --glob '!.git/*'"
+  export FZF_CTRL_T_OPTS="--preview 'bat  --color=always --style=header,grid --line-range :100 {}'"
+  export FZF_ALT_C_COMMAND="fd -t d . | sort"
+  export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+
+  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+fi
+
+# starship
+if command -v starship &> /dev/null; then
+  eval "$(starship init bash)"
+  export STARSHIP_CONFIG=~/.starship
+fi
+
+# zoxide
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init bash)"
+fi
+
+# ripgrep
+export RIPGREP_CONFIG_PATH=~/.ripgreprc
+
+export GOPATH="$HOME"
+export RUST_BACKTRACE=1
+[ -f $HOME/.cargo/env ] && . "$HOME/.cargo/env"
+
+export PATH=$HOME/bin:$PATH
