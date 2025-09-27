@@ -604,19 +604,14 @@ augroup END
 " vimwiki
 " https://github.com/patrickdavey/vimwiki_markdown
 let g:vimwiki_list = [
-  \ {'path': '~/plain/garden',
+  \ {'path': '~/plain',
   \   'syntax': 'markdown', 'ext': 'md',
-  \   'custom_wiki2html': 'vimwiki_markdown', 'path_html': '~/plain/dist/garden_html',
-  \   'template_path': '~/src/github.com/thara/dotfiles/templates',
-  \   'template_default': 'garden',
-  \   'html_filename_parameterization': 1
+  \ },
+  \ {'path': '~/garden',
+  \   'syntax': 'markdown', 'ext': 'md',
   \ },
   \ {'path': '~/plain/private',
   \   'syntax': 'markdown', 'ext': 'md',
-  \   'custom_wiki2html': 'vimwiki_markdown', 'path_html': '~/plain/dist/private_html',
-  \   'template_path': '~/src/github.com/thara/dotfiles/templates',
-  \   'html_filename_parameterization': 1,
-  \   'diary_rel_path': 'daily', 'diary_index': 'daily', 'diary_header': 'Daily',
   \ },
   \]
 let g:vimwiki_global_ext = 0
