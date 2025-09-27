@@ -22,3 +22,7 @@ test:
 CANDIDATES := $(wildcard .??*)
 EXCLUSIONS := .DS_Store .git .gitignore .gitmodules .travis.yml bin .vim .config
 DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
+
+.PHONY: shell
+shell:
+	@stow --target=$(HOME) --dir=$(DOTFILES_ROOT) shell
