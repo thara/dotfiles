@@ -73,9 +73,3 @@ shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 bind -m vi-insert '"\C-x\C-e": edit-and-execute-command'
-
-if command -v mcfly >/dev/null 2>&1; then
-  export MCFLY_FUZZY=2
-  export MCFLY_RESULTS_SORT=LAST_RUN
-  eval "$(mcfly init bash)"
-fi
