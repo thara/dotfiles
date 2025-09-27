@@ -11,6 +11,10 @@ export VISUAL=vim
 
 export TERM=xterm-256color
 
+# update history in real time
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
+
 [ -f ~/.bashrc.local ] && source ~/.bashrc.local
 [ -f ~/.bashrc.etc ] && source ~/.bashrc.etc
 
@@ -67,9 +71,5 @@ if [ -n "$(get_os)" ]; then
     source "$f"
   fi
 fi
-
-# update history in real time
-shopt -s histappend
-PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
 bind -m vi-insert '"\C-x\C-e": edit-and-execute-command'
