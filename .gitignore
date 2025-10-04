@@ -24,7 +24,7 @@ Session.vim
 .luarocks/lib
 .luarocks/share
 
-.vim/*
-!.vim/cheatsheet.md
-!.vim/ftplugin
-!.vim/syntax
+vim/.vim/*
+!vim/.vim/cheatsheet.md
+!vim/.vim/ftplugin
+!vim/.vim/syntax
