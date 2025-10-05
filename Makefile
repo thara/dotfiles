@@ -24,9 +24,9 @@ EXCLUSIONS := .DS_Store .git .gitignore .gitmodules .travis.yml bin .vim .config
 DOTFILES   := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
 
 STOW          ?= stow
-STOW_FLAGS    ?= --target=$(HOME) --dir=$(DOTFILES_ROOT) --restow $(STOW_VERBOSE)
+STOW_FLAGS    ?= --target=$(HOME) --dir=$(DOTFILES_ROOT) --no-folding --restow $(STOW_VERBOSE)
 
-STOW_PACKAGES ?= shell macos vim git config
+STOW_PACKAGES ?= shell macos vim git config bin
 .PHONY: $(STOW_PACKAGES)
 
 $(STOW_PACKAGES):
@@ -53,4 +53,4 @@ unapply: ## unstow multiple packages: make unapply PKG="shell macos"
 	done
 
 apply_macos:  ## apply macos settings
-	@$(MAKE) apply PKG="shell macos vim git config"
+	@$(MAKE) apply PKG="shell macos vim git config bin"
