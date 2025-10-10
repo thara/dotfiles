@@ -3,6 +3,8 @@ SHELL := /bin/bash
 DOTFILES_ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 export DOTFILES_ROOT
 
+OS := $(shell . $(DOTFILES_ROOT)/shell/.bashrc.d/functions && get_os)
+
 STOW          ?= stow
 STOW_FLAGS    ?= --target=$(HOME) --dir=$(DOTFILES_ROOT) --no-folding --restow $(STOW_VERBOSE)
 
@@ -34,3 +36,11 @@ unapply: ## unstow multiple packages: make unapply PKG="shell macos"
 
 apply_macos:  ## apply macos settings
 	@$(MAKE) apply PKG="shell macos vim git config bin"
+
+apply_linux:  ## apply linux settings
+	@$(MAKE) apply PKG="shell vim git config bin"
+
+apply_all:  ## apply all settings
+	@$(MAKE) apply_$(OS)
+
+.DEFAULT_GOAL := apply_all
