@@ -18,6 +18,14 @@ PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 [ -f ~/.bashrc.local ] && source ~/.bashrc.local
 [ -f ~/.bashrc.etc ] && source ~/.bashrc.etc
 
+if [ -d ~/.bashrc.d ]; then
+  for rc in ~/.bashrc.d/*; do
+    if [ -f "$rc" ]; then
+      . "$rc"
+    fi
+  done
+fi
+
 function fzf-select-session {
   local selected_dir=$(ghq list | fzf-tmux --query "$LBUFFER" --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
   echo $selected_dir
