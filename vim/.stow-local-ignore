@@ -1,0 +1,6 @@
+.vim/bundle/.*
+.vim/.netrwhist
+.vim/plugged/.*
+.vim/vim-lsp-servers/.*
+.vim/spell/.*
+.vim/cheatsheet.md

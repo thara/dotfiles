@@ -16,8 +16,8 @@ Session.vim
 *.aux
 *.elc
 
-.vim/bundle/
-.vim/.netrwhist
+vim/.vim/bundle/
+vim/.vim/.netrwhist
 
 .emacs.d/auto-save-list
 .luarocks/.luarocks
