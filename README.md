@@ -3,9 +3,15 @@ My dotfiles
 
 [![CI](https://github.com/thara/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/thara/dotfiles/actions/workflows/ci.yml)
 
+## Requirements
+
+- [GNU Make](https://www.gnu.org/software/make/)
+- [GNU Stow](https://www.gnu.org/software/stow/)
+
+## Usage
+
 ```
-$ make install
-$ make links
+$ make
 ```
 
 ## My development environments
