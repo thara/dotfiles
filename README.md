@@ -1,7 +1,7 @@
 # dotfiles
 My dotfiles
 
-![macOS](https://github.com/thara/dotfiles/workflows/macOS/badge.svg) 
+[![CI](https://github.com/thara/dotfiles/actions/workflows/ci.yml/badge.svg)](https://github.com/thara/dotfiles/actions/workflows/ci.yml)
 
 ```
 $ make install
