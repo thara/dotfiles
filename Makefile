@@ -49,3 +49,9 @@ apply_all:  ## apply all settings
 	@$(MAKE) apply_$(OS)
 
 .DEFAULT_GOAL := apply_all
+
+.PHONY: action_lint
+action_lint:
+	@actionlint
+	@pinact run --verify
+	@ghalint run
