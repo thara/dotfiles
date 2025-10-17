@@ -34,10 +34,10 @@ unapply: ## unstow multiple packages: make unapply PKG="shell macos"
 		$(STOW) $(STOW_FLAGS) -D $$p; \
 	done
 
-apply_macos:  ## apply macos settings
+apply_macos:  ## apply macOS settings
 	@$(MAKE) apply PKG="shell macos vim git config bin"
 
-apply_linux:  ## apply linux settings
+apply_debian:  ## apply Debian settings
 	@$(MAKE) apply PKG="shell vim git config bin"
 
 apply_all:  ## apply all settings
