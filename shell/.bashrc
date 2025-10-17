@@ -1,3 +1,5 @@
+export LANG=C
+
 export PATH=/usr/local/bin:$PATH
 
 # no limit
