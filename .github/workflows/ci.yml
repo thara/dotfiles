@@ -1,0 +1,29 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest,  macos-latest]
+
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install stow for macos
+        run: |
+          brew install stow
+        if: matrix.os == 'macos-latest'
+
+      - name: Install stow for Ubuntu
+        run: |
+          apt-get install stow
+        if: matrix.os == 'ubuntu-latest'
+
+      - name: Apply All
+        run: make
+
