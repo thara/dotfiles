@@ -17,8 +17,8 @@ export TERM=xterm-256color
 shopt -s histappend
 PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
 
-[ -f ~/.bashrc.local ] && source ~/.bashrc.local
 [ -f ~/.bashrc.etc ] && source ~/.bashrc.etc
+[ -f ~/.bashrc.local ] && source ~/.bashrc.local
 
 if [ -d ~/.bashrc.d ]; then
   for rc in ~/.bashrc.d/*; do
