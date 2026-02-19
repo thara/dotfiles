@@ -9,3 +9,5 @@ __pycache__
 .idea
 
 .terraform.lock.hcl
+
+.claude/settings.local.json
