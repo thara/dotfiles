@@ -11,10 +11,17 @@
       "git log *": "allow",
       "grep *": "allow",
       "rg *": "allow",
-      "rm *": "deny"
+      "rm *": "deny",
+      "ssh *": "deny",
+      "scp *": "deny",
+      "nc *": "deny",
+      "curl * | bash": "deny",
+      "wget * | bash": "deny"
     },
     "read": {
       "*": "allow",
+      "~/.ssh/**": "deny",
+      "~/.aws/**": "deny",
       "*.env": "deny",
       "*.env.*": "deny",
       "*.env.example": "allow",
