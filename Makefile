@@ -38,7 +38,7 @@ unapply: ## unstow multiple packages: make unapply PKG="shell macos"
 
 .PHONY = apply_macos
 apply_macos:  ## apply macOS settings
-	@$(MAKE) apply PKG="shell macos vim git config bin"
+	@$(MAKE) apply PKG="shell macos vim git config bin agents"
 
 .PHONY = apply_debian
 apply_debian:  ## apply Debian settings
