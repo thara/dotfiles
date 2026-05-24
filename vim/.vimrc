@@ -218,12 +218,8 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'smypf/vim-colors-off'
 " Coolなステータスライン
 Plug 'itchyny/lightline.vim'
-" インサートモード時に行番号の色を反転
-Plug 'cohama/vim-insert-linenr'
 " place, toggle and display marks
 Plug 'kshenoy/vim-signature'
-" Scroll bar for terminal
-"Plug 'obcat/vim-sclow'
 "}}}
 " Navigation{{{
 " Minimalist path navigator
@@ -252,8 +248,6 @@ Plug 'tpope/vim-commentary'
 Plug 'junegunn/vim-easy-align'
 " Stop ]
 Plug 'tyru/stoptypofile.vim'
-" 一部分だけ別バッファで編集
-Plug 'thinca/vim-partedit'
 " easily search for, substitute, and abbreviate multiple variants of a word
 " crs: snake_case
 " crc: camelCase
@@ -264,20 +258,13 @@ Plug 'junegunn/vim-emoji'
 
 " clever-fはnot for meなので使わない(意思表示のためにコメントアウトを残しておく)
 "Plug 'rhysd/clever-f.vim'
-
-" Code template
-Plug 'mattn/vim-sonictemplate'
 "}}}
 " Language{{{
 Plug 'mattn/vim-goimports'
 
-Plug 'elixir-editors/vim-elixir', { 'for': ['ex', 'exs', 'eex', 'leex'] }
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': ['rust']}
 Plug 'rhysd/rust-doc.vim', { 'for': ['rust']}
-
-Plug 'udalov/kotlin-vim', { 'for': ['kotlin'] }
-Plug 'jparise/vim-graphql'
 
 Plug 'leafgarland/typescript-vim', { 'for': ['typescript']}
 
@@ -286,43 +273,16 @@ Plug 'tpope/vim-endwise'
 
 Plug 'elzr/vim-json', { 'for': ['json']}
 
-Plug 'axvr/zepl.vim'
-
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-lsp-icons'
-
-Plug 'hashivim/vim-terraform'
-
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-
-Plug 'asciidoc/vim-asciidoc'
-
-Plug 'gleam-lang/gleam.vim'
-Plug 'tikhomirov/vim-glsl'
-
-Plug 'onyx-lang/onyx.vim'
-
-Plug 'Nymphium/vim-koka'
-
-Plug 'dart-lang/dart-vim-plugin'
-
 "}}}
 " Misc{{{
 " Auto change directory to project root directory of the file
 Plug 'mattn/vim-findroot'
-
-" git関連はterminalでやる
-" Git (using by lightline )
-"Plug 'tpope/vim-fugitive'
-" Add GitHub support to fugitive
-" Plug 'tpope/vim-rhubarb'
-" Show git diff left
-"Plug 'airblade/vim-gitgutter'
 
 " テキストオブジェクト拡張
 Plug 'kana/vim-textobj-user'
@@ -334,17 +294,9 @@ Plug 'kana/vim-tabpagecd'
 " 独自モードを作成
 Plug 'thinca/vim-submode'
 
-" Visually select increasingly larger regions of text using the same key combination
-Plug 'terryma/vim-expand-region'
-
 " View and search LSP symbols, tags in Vim/NeoVim
 Plug 'liuchengxu/vista.vim'
 let g:vista_sidebar_width = 50
-
-" Cheat Sheet
-Plug 'reireias/vim-cheatsheet'
-
-Plug 'wakatime/vim-wakatime'
 
 " Git commit message
 Plug 'rhysd/committia.vim'
@@ -353,9 +305,6 @@ Plug 'kamykn/spelunker.vim'
 
 " Personal Wiki for Vim
 Plug 'vimwiki/vimwiki'
-
-" Calendar
-Plug 'mattn/calendar-vim'
 "}}}
 
 call plug#end()
@@ -607,12 +556,6 @@ let g:vimwiki_list = [
   \ {'path': '~/plain',
   \   'syntax': 'markdown', 'ext': 'md',
   \ },
-  \ {'path': '~/garden',
-  \   'syntax': 'markdown', 'ext': 'md',
-  \ },
-  \ {'path': '~/plain/private',
-  \   'syntax': 'markdown', 'ext': 'md',
-  \ },
   \]
 let g:vimwiki_global_ext = 0
 let g:vimwiki_key_mappings =
@@ -763,6 +706,9 @@ else
 endif
 
 "}}}
+
+command UpdatePlugins
+  \ PlugUpdate | PlugSnapshot! ~/dotfiles/Vim/plug.snapshot
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
