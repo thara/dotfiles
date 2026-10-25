@@ -6,7 +6,6 @@
       "*": "ask",
       "ls *": "allow",
       "cat *": "allow",
-      "git *": "deny",
       "git status *": "allow",
       "git log *": "allow",
       "grep *": "allow",
@@ -27,7 +26,6 @@
       "*.env.example": "allow",
       "*.secrets": "deny",
       "*.secrets.*": "deny"
-    },
-    "edit": "deny"
+    }
   }
 }
