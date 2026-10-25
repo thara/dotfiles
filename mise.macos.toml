@@ -1,0 +1,9 @@
+[dotfile_groups.macos]
+root = "macos"
+target = "~"
+mode = "symlink-each"
+
+[dotfile_groups.agents]
+root = "agents"
+target = "~"
+mode = "symlink-each"

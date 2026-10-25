@@ -28,3 +28,8 @@ vim/.vim/*
 !vim/.vim/cheatsheet.md
 !vim/.vim/ftplugin
 !vim/.vim/syntax
+
+/mise.local.toml
+/mise.*.local.toml
+/.miserc.local.toml
+__pycache__/
