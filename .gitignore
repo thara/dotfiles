@@ -32,3 +32,4 @@ vim/.vim/*
 /mise.local.toml
 /mise.*.local.toml
 /.miserc.local.toml
+__pycache__/
