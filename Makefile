@@ -2,11 +2,19 @@ SHELL := /bin/bash
 
 DOTFILES_ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 export DOTFILES_ROOT
+MISE ?= mise
 
-OS := $(shell . $(DOTFILES_ROOT)/shell/.bashrc.d/functions && get_os)
+OS = $(shell . "$(DOTFILES_ROOT)/shell/.bashrc.d/functions" && get_os)
 
 STOW          ?= stow
 STOW_FLAGS    ?= --target=$(HOME) --dir=$(DOTFILES_ROOT) --no-folding --restow $(STOW_VERBOSE)
+
+.PHONY: bootstrap bootstrap-dry-run
+bootstrap: ## Deploy dotfiles with mise
+	$(MISE) -C "$(DOTFILES_ROOT)" bootstrap --only dotfiles
+
+bootstrap-dry-run: ## Preview dotfile changes without applying them
+	$(MISE) -C "$(DOTFILES_ROOT)" bootstrap --dry-run --only dotfiles
 
 STOW_PACKAGES ?= shell macos vim git config bin
 .PHONY: $(STOW_PACKAGES)
