@@ -25,6 +25,9 @@ jobs:
           cache: false
           env: false
 
+      - name: Test migration script
+        run: python3 -m unittest discover -s tests -v
+
       - name: Apply and verify dotfiles
         shell: bash
         env:
