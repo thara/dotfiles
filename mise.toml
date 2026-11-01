@@ -1,0 +1,45 @@
+# Repository bootstrap configuration. Global tool versions live in
+# mise/.config/mise/mise.toml.
+min_version = "2026.10.18"
+
+[settings.dotfiles]
+root = "."
+
+[dotfile_groups.shell]
+root = "shell"
+target = "~"
+mode = "symlink-each"
+
+[dotfile_groups.vim]
+root = "vim"
+target = "~"
+mode = "symlink-each"
+exclude = [
+  ".stow-local-ignore",
+  ".vim/bundle/**",
+  ".vim/.netrwhist",
+  ".vim/plugged/**",
+  ".vim/vim-lsp-servers/**",
+  ".vim/spell/**",
+  ".vim/cheatsheet.md",
+]
+
+[dotfile_groups.git]
+root = "git"
+target = "~"
+mode = "symlink-each"
+
+[dotfile_groups.config]
+root = "config"
+target = "~"
+mode = "symlink-each"
+
+[dotfile_groups.bin]
+root = "bin"
+target = "~"
+mode = "symlink-each"
+
+[dotfile_groups.mise]
+root = "mise"
+target = "~"
+mode = "symlink-each"

@@ -1,0 +1,4 @@
+# Optional machine-specific selection; copy to mise.local.toml.
+# Omit macos and agents on Linux. Without a selection all defined groups apply.
+[bootstrap]
+dotfile_groups = ["mise", "shell", "vim", "git", "config", "bin", "macos", "agents"]
