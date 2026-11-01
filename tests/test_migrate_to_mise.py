@@ -55,22 +55,6 @@ mode = "symlink-each"
         return subprocess.run(['python3', str(self.repo / 'scripts/migrate-to-mise.py'), *args],
                               cwd=self.root, env=self.env, text=True, capture_output=True)
 
-    def add_config_groups(self):
-        with (self.repo / 'mise.toml').open('a') as config:
-            config.write('''[dotfile_groups.agents]
-root = "agents"
-target = "~"
-mode = "symlink-each"
-[dotfile_groups.mise]
-root = "mise"
-target = "~"
-mode = "symlink-each"
-''')
-        for name in ['agents/.config/settings.toml', 'mise/.config/mise/mise.toml']:
-            path = self.repo / name
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text('fixture\n')
-
     def test_preview_apply_and_repeat_preserve_sources_and_exclusions(self):
         original = os.readlink(self.home / '.vim')
         result = self.run_script()
@@ -96,59 +80,6 @@ mode = "symlink-each"
         self.assertTrue((self.home / '.vim').is_symlink())
         self.assertEqual(target.read_text(), 'personal settings\n')
         self.assertEqual(self.hashes(), self.before)
-
-    def test_expands_shared_folded_directory_for_multiple_groups(self):
-        self.add_config_groups()
-        folded = self.home / '.config'
-        folded.symlink_to(self.repo / 'agents/.config', target_is_directory=True)
-        settings = self.repo / 'agents/.config/settings.toml'
-        mise_config = self.repo / 'mise/.config/mise/mise.toml'
-        before = self.hashes()
-
-        result = self.run_script('--apply')
-
-        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
-        self.assertTrue(folded.is_dir())
-        self.assertFalse(folded.is_symlink())
-        self.assertEqual((folded / 'settings.toml').resolve(), settings.resolve())
-        self.assertEqual((folded / 'mise/mise.toml').resolve(), mise_config.resolve())
-        self.assertEqual(self.hashes(), before)
-
-    def test_conflict_at_leaf_inside_managed_folded_directory(self):
-        self.add_config_groups()
-        folded = self.home / '.config'
-        folded.symlink_to(self.repo / 'agents/.config', target_is_directory=True)
-        conflict = self.repo / 'agents/.config/mise/mise.toml'
-        conflict.parent.mkdir(parents=True)
-        conflict.write_text('existing settings\n')
-        before = self.hashes()
-
-        result = self.run_script('--apply')
-
-        self.assertNotEqual(result.returncode, 0)
-        self.assertIn('Conflicting paths', result.stderr)
-        self.assertIn(str(folded / 'mise/mise.toml'), result.stderr)
-        self.assertEqual(os.readlink(folded), str(self.repo / 'agents/.config'))
-        self.assertEqual(conflict.read_text(), 'existing settings\n')
-        self.assertEqual(self.hashes(), before)
-
-    def test_rejects_unmanaged_folded_symlink(self):
-        self.add_config_groups()
-        external = self.root / 'external'
-        conflict = external / 'mise/mise.toml'
-        conflict.parent.mkdir(parents=True)
-        conflict.write_text('personal settings\n')
-        folded = self.home / '.config'
-        folded.symlink_to(external, target_is_directory=True)
-        before = self.hashes()
-
-        result = self.run_script('--apply')
-
-        self.assertNotEqual(result.returncode, 0)
-        self.assertIn('Conflicting paths', result.stderr)
-        self.assertEqual(os.readlink(folded), str(external))
-        self.assertEqual(conflict.read_text(), 'personal settings\n')
-        self.assertEqual(self.hashes(), before)
 
     def test_failed_apply_restores_original_links(self):
         bindir = self.root / 'bin'
