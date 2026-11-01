@@ -115,9 +115,14 @@ def main():
                 source = path.resolve()
                 original = os.readlink(path)
                 children = list(source.iterdir())
-                path.unlink()
-                path.mkdir()
                 expanded.append((path, original, source))
+                try:
+                    path.unlink()
+                    path.mkdir()
+                except BaseException:
+                    if not exists(path):
+                        path.symlink_to(original)
+                    raise
                 for child in children:
                     (path / child.name).symlink_to(child)
             for target, source in planned.items():
