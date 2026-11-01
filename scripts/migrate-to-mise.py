@@ -69,24 +69,26 @@ def main():
         conflicts = []
         for target, source in planned.items():
             parent = target.parent
-            source_parent = source.parent
             under_conversion = False
             while parent != home:
-                if parent.resolve() != parent:
-                    if parent.resolve() != source_parent:
+                if parent.is_symlink():
+                    resolved = parent.resolve()
+                    if (resolved != REPO and REPO not in resolved.parents) or not resolved.is_dir():
                         conflicts.append(str(parent))
                     else:
-                        conversions[parent] = os.readlink(parent) if parent.is_symlink() else str(source_parent)
+                        conversions[parent] = os.readlink(parent)
                         under_conversion = True
                 elif exists(parent) and not parent.is_dir():
                     conflicts.append(str(parent))
                 parent = parent.parent
-                source_parent = source_parent.parent
-            if not under_conversion and exists(target):
-                if not target.is_symlink() or target.resolve() != source:
+            if exists(target):
+                if target.is_symlink():
+                    if target.resolve() != source:
+                        conflicts.append(str(target))
+                    else:
+                        old_links[target] = os.readlink(target)
+                elif not under_conversion or target.resolve() != source:
                     conflicts.append(str(target))
-                else:
-                    old_links[target] = os.readlink(target)
         if conflicts:
             raise RuntimeError('Conflicting paths; nothing changed:\n' + '\n'.join(sorted(set(conflicts))))
         groups = [Path(e['origin']['source']).name for e in status['files']]
