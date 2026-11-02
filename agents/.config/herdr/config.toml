@@ -41,6 +41,7 @@ default_shell = "/opt/homebrew/bin/bash"
 # Use "follow" to inherit the source pane/workspace, "home" for $HOME,
 # "current" for Herdr's process directory, or a fixed path such as "~/Projects".
 # new_cwd = "follow"
+new_cwd = "follow"
 
 [update]
 # Update channel used by background version checks and `herdr update`.
@@ -63,6 +64,19 @@ default_shell = "/opt/homebrew/bin/bash"
 # Most reliable direct bindings are ctrl+letter, function keys, and explicit modified chords.
 # alt+..., cmd/super, and punctuation-with-modifiers may depend on your terminal/tmux setup.
 prefix = "ctrl+q"
+zoom = "prefix+y"
+reload_config = "prefix+r"
+split_vertical = ["prefix+|", "prefix+%"]
+split_horizontal = ["prefix+-", 'prefix+"']
+resize_pane_left = "prefix+shift+h"
+resize_pane_down = "prefix+shift+j"
+resize_pane_up = "prefix+shift+k"
+resize_pane_right = "prefix+shift+l"
+resize_mode = "prefix+alt+r"
+swap_pane_left = "prefix+alt+h"
+swap_pane_down = "prefix+alt+j"
+swap_pane_up = "prefix+alt+k"
+swap_pane_right = "prefix+alt+l"
 
 # Prefix-mode actions
 # help = "prefix+?"
@@ -180,6 +194,7 @@ prefix = "ctrl+q"
 # Ask for a tab name before creating a new tab.
 # Set false to create tabs immediately with generated names.
 # prompt_new_tab_name = true
+prompt_new_tab_name = false
 
 # Draw borders around split panes.
 # pane_borders = true
@@ -282,25 +297,25 @@ pane_history = false
 # scrollback_limit_bytes = 10000000
 
 [[keys.command]]
-key = "prefix+h"
+key = "alt+h"
 type = "plugin_action"
 command = "willfish.herdr-navigator.left"
 description = "navigate left"
 
 [[keys.command]]
-key = "prefix+j"
+key = "alt+j"
 type = "plugin_action"
 command = "willfish.herdr-navigator.down"
 description = "navigate down"
 
 [[keys.command]]
-key = "prefix+k"
+key = "alt+k"
 type = "plugin_action"
 command = "willfish.herdr-navigator.up"
 description = "navigate up"
 
 [[keys.command]]
-key = "prefix+l"
+key = "alt+l"
 type = "plugin_action"
 command = "willfish.herdr-navigator.right"
 description = "navigate right"
