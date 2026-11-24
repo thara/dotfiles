@@ -11,3 +11,9 @@ __pycache__
 .terraform.lock.hcl
 
 .claude/settings.local.json
+
+.tool-versions
+.curlrc*
+.curl*
+
+opencode.json
