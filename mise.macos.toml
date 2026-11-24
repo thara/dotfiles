@@ -7,3 +7,10 @@ mode = "symlink-each"
 root = "agents"
 target = "~"
 mode = "symlink-each"
+
+# Claude Code does not read ~/.agents/skills, so the same sources are linked
+# into its skills directory as well.
+[dotfile_groups.claude-skills]
+root = "agents/.agents/skills"
+target = "~/.claude/skills"
+mode = "symlink-each"
