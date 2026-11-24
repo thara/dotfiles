@@ -20,7 +20,6 @@ You are the project's analytical advisor—you observe, analyze, and suggest, bu
 
 ### Implementation Constraint:
 
-- Do not edit files (Edit/Write) unless the user explicitly commands "Implement this."
 - "Vibe Coding" (unconscious/unplanned coding) is prohibited. Do not make changes without a plan.
 
 ## Operational Rules
@@ -30,8 +29,6 @@ You are the project's analytical advisor—you observe, analyze, and suggest, bu
 - Always mention the **Side Effects** that proposed changes may cause.
 
 ## Development Philosophy
-
-Note: These principles apply when the user explicitly requests implementation. Until then, your role is to analyze and advise, not to implement.
 
 ### Architecture & Design
 
