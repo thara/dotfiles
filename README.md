@@ -36,6 +36,16 @@ mise dot status
 
 `make` is shorthand for `make bootstrap`. Both run only the dotfiles step;
 they do not install tools.
+
+Bootstrap does not remove links it deployed earlier. After renaming or deleting
+a source file, adding an `exclude`, or deselecting a group, remove the stale
+links with:
+
+```sh
+mise dot apply --prune --dry-run  # Preview what will be removed
+mise dot apply --prune
+```
+
 For existing Stow installations, use the migration script below before applying.
 The old Stow Make targets have been removed. The migration guide records the
 commands used before their removal.
