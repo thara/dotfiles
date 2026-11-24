@@ -556,6 +556,10 @@ let g:vimwiki_list = [
   \ {'path': '~/plain',
   \   'syntax': 'markdown', 'ext': 'md',
   \ },
+  \ {'path': '~/src/github.com/thara/garden',
+  \   'syntax': 'markdown', 'ext': 'md',
+  \   'diary_rel_path': 'digest/', 'diary_index': 'index', 'diary_header': 'Digest',
+  \ },
   \]
 let g:vimwiki_global_ext = 0
 let g:vimwiki_key_mappings =
